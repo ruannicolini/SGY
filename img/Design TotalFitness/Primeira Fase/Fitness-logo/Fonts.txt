@@ -1,0 +1,4 @@
+﻿FONTS:
+
+
+- EXO, by Natanael Gama: http://www.fontsquirrel.com/fonts/exo
