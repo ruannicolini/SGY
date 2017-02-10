@@ -192,6 +192,7 @@ begin
     DModule.qAux.Close;
     DModule.qAux.Open;
     DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
+
 end;
 
 end.

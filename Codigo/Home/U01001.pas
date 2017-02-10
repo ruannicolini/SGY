@@ -290,79 +290,6 @@ type
     btnCancelarPI: TSpeedButton;
     Panel6: TPanel;
     btnFicha: TSpeedButton;
-    FDRelAluno: TFDQuery;
-    pRelAlunoFicha: TDataSetProvider;
-    cdsRelAlunoFicha: TClientDataSet;
-    dsRelAlunoFicha: TDataSource;
-    FDRelAlunoidAluno: TIntegerField;
-    FDRelAlunonomeAluno: TStringField;
-    FDRelAlunoidade: TIntegerField;
-    FDRelAlunodataNascimento: TDateField;
-    FDRelAlunoemail: TStringField;
-    FDRelAlunosexo: TStringField;
-    FDRelAlunocidade: TStringField;
-    FDRelAlunobairro: TStringField;
-    FDRelAlunorua: TStringField;
-    FDRelAlunonumero: TIntegerField;
-    FDRelAlunocep: TIntegerField;
-    FDRelAlunotel1: TStringField;
-    FDRelAlunotel2: TStringField;
-    FDRelAlunonomeResponsavel: TStringField;
-    FDRelAlunoparentescoResponsavel: TStringField;
-    FDRelAlunotelResponsavel: TStringField;
-    FDRelAlunopeso: TSingleField;
-    FDRelAlunoaltura: TSingleField;
-    FDRelAlunofrequenciaAtividadeFisica: TIntegerField;
-    FDRelAlunoqtdRefeicoesDia: TIntegerField;
-    FDRelAlunoqtdHorasSono: TIntegerField;
-    FDRelAlunosuplementacao: TBooleanField;
-    FDRelAlunodieta: TBooleanField;
-    FDRelAlunofumante: TBooleanField;
-    FDRelAlunoconsomeBebidaAlcoolica: TBooleanField;
-    FDRelAlunodataCadastro: TDateField;
-    FDRelAlunoativo: TBooleanField;
-    FDRelAlunocpf: TStringField;
-    FDRelAlunofoto: TBlobField;
-    FDRelAlunoinformacaoAdicional: TStringField;
-    FDRelAlunoidObjetivo: TIntegerField;
-    FDRelAlunodataComposicaoFicha: TDateField;
-    FDRelAlunoDESCRICAOOBJETIVO: TStringField;
-    cdsRelAlunoFichaidAluno: TIntegerField;
-    cdsRelAlunoFichanomeAluno: TStringField;
-    cdsRelAlunoFichaidade: TIntegerField;
-    cdsRelAlunoFichadataNascimento: TDateField;
-    cdsRelAlunoFichaemail: TStringField;
-    cdsRelAlunoFichasexo: TStringField;
-    cdsRelAlunoFichacidade: TStringField;
-    cdsRelAlunoFichabairro: TStringField;
-    cdsRelAlunoFicharua: TStringField;
-    cdsRelAlunoFichanumero: TIntegerField;
-    cdsRelAlunoFichacep: TIntegerField;
-    cdsRelAlunoFichatel1: TStringField;
-    cdsRelAlunoFichatel2: TStringField;
-    cdsRelAlunoFichanomeResponsavel: TStringField;
-    cdsRelAlunoFichaparentescoResponsavel: TStringField;
-    cdsRelAlunoFichatelResponsavel: TStringField;
-    cdsRelAlunoFichapeso: TSingleField;
-    cdsRelAlunoFichaaltura: TSingleField;
-    cdsRelAlunoFichafrequenciaAtividadeFisica: TIntegerField;
-    cdsRelAlunoFichaqtdRefeicoesDia: TIntegerField;
-    cdsRelAlunoFichaqtdHorasSono: TIntegerField;
-    cdsRelAlunoFichasuplementacao: TBooleanField;
-    cdsRelAlunoFichadieta: TBooleanField;
-    cdsRelAlunoFichafumante: TBooleanField;
-    cdsRelAlunoFichaconsomeBebidaAlcoolica: TBooleanField;
-    cdsRelAlunoFichadataCadastro: TDateField;
-    cdsRelAlunoFichaativo: TBooleanField;
-    cdsRelAlunoFichacpf: TStringField;
-    cdsRelAlunoFichafoto: TBlobField;
-    cdsRelAlunoFichainformacaoAdicional: TStringField;
-    cdsRelAlunoFichaidObjetivo: TIntegerField;
-    cdsRelAlunoFichadataComposicaoFicha: TDateField;
-    cdsRelAlunoFichaDESCRICAOOBJETIVO: TStringField;
-    frxReport1: TfrxReport;
-    frxDBDataset1: TfrxDBDataset;
-    frxDBDataset2: TfrxDBDataset;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -886,14 +813,6 @@ begin
   DSPagamento.DataSet.close;
   DSPagamento.DataSet.open;
 
-  {
-  //PESQUISA relatorio aluno
-  FDRelAluno.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-  dsRelAlunoFicha.DataSet.close;
-  dsRelAlunoFicha.DataSet.open;
-  }
-
-
 end;
 
 procedure TF01001.DSPagamentoDataChange(Sender: TObject; Field: TField);
@@ -1059,111 +978,139 @@ procedure TF01001.SpeedButton3Click(Sender: TObject);
 var
   I: INTEGER;
   valorMensalidade : Double;
+  DATA_VENCIMENTO_ULTIMO_PAGAMENTO : TDATETIME;
 begin
-  inherited;
+    inherited;
 
-  if not DSModalidade.DataSet.Active then
-  DSModalidade.DataSet.Open;
+    if not DSModalidade.DataSet.Active then DSModalidade.DataSet.Open;
 
-  IF trim(EditModalidade.Text ) <> '' THEN
-  BEGIN
-  //INCLUI MODALIDADE
-    DSModalidade.DataSet.Append;
-    CDSModalidadeidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
-    cdsModalidadeidmodalidade.AsInteger := strtoint(EditModalidade.Text);
-
-    cdsModalidadedataInscrição.AsDateTime := DMODULE.datahoje;
-    cdsModalidadediavencimento.AsInteger := DayOf(cdsModalidadedataInscrição.AsDateTime);
-    CDSModalidade.Post;
-
-  //GERA PAGAMENTOS DOS PROXIMOS 12 MESES
-    if not DSPagamento.DataSet.Active then
-      DSPagamento.DataSet.Open;
-
-    //CONSULTA Valor Modalidade
-    DModule.qAux.SQL.Text := 'select VALOR FROM MODALIDADE WHERE IDMODALIDADE =:IDM ';
-    DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
-    DModule.qAux.Close;
-    DModule.qAux.Open;
-    valorMensalidade := DModule.qAux.FieldByName('VALOR').Asfloat;
-
-    For I := 0 to 11 do
+    IF trim(EditModalidade.Text ) <> '' THEN
     BEGIN
-        DSPagamento.DataSet.Append;
+        //verifica se não há mensalidades já pagas
+        DModule.qAux.SQL.Text := 'SELECT P.* FROM PAGAMENTO P WHERE P. IDPAGAMENTO = ' +
+        '(SELECT max(IDPAGAMENTO) FROM PAGAMENTO PA WHERE PA.idAluno =:idA AND PA.idmodalidade =:idM AND ((PA.idstatusPagamento = 2)OR(PA.idstatusPagamento = 3)) )';
+        DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+        DModule.qAux.ParamByName('idM').AsInteger := strtoint(editmodalidade.Text);
+        DModule.qAux.close;
+        DModule.qAux.open;
 
-        //idAluno
-        cdsPagamentoidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
+        //SE HÁ MENSALIDADES JA PAGAS, MATRÍCULA SÓ PODE SER REALIZADA SE "DATA_HOJE > (DATAVENCIMENTO_DA_ULTIMA_MENSALIDADE_PAGA_OU_ISENTA + 30_DIAS)"
+        DATA_VENCIMENTO_ULTIMO_PAGAMENTO := DModule.qAux.FieldByName('dataVencimento').AsDateTime;
 
-        //idModalidade
-        cdsPagamentoidmodalidade.AsInteger := cdsModalidadeidmodalidade.AsInteger;
+        if(   DModule.datahoje  > ( IncMonth(DATA_VENCIMENTO_ULTIMO_PAGAMENTO,1))      )
+        or(DATA_VENCIMENTO_ULTIMO_PAGAMENTO = NULL)  then   {null caso não tenha nenhum registro anterior}
+        begin
 
-        //valorModalidade
-        cdsPagamentovalorModalidade.AsFloat := valorMensalidade;
+              //INCLUI MODALIDADE
+              DSModalidade.DataSet.Append;
+              CDSModalidadeidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
+              cdsModalidadeidmodalidade.AsInteger := strtoint(EditModalidade.Text);
+              cdsModalidadedataInscrição.AsDateTime := DMODULE.datahoje;
+              cdsModalidadediavencimento.AsInteger := DayOf(cdsModalidadedataInscrição.AsDateTime);
+              CDSModalidade.Post;
 
-        // DATA VENCIMENTO
-        cdsPagamentodataVencimento.AsDateTime := IncMonth(DModule.datahoje, I);
+              //GERA PAGAMENTOS DOS PROXIMOS 12 MESES
+              if not DSPagamento.DataSet.Active then
+                DSPagamento.DataSet.Open;
 
-        //STATUS PAGAMENTO
-        cdsPagamentoidstatusPagamento.AsInteger := 1;  // 1 = EM ABERTO
+              //CONSULTA Valor Modalidade
+              DModule.qAux.SQL.Text := 'select VALOR FROM MODALIDADE WHERE IDMODALIDADE =:IDM ';
+              DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+              DModule.qAux.Close;
+              DModule.qAux.Open;
+              valorMensalidade := DModule.qAux.FieldByName('VALOR').Asfloat;
 
-        //LOG
-        cdsPagamentoLOGUsuarioResponsavel.AsString := 'GERADO POR: ' + DModule.NOMEUSUARIO +' em '+ DateToStr(DMODULE.datahoje);
+              For I := 0 to 11 do
+              BEGIN
+                  DSPagamento.DataSet.Append;
 
-        DSPagamento.DataSet.Post;
+                  //idAluno
+                  cdsPagamentoidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
 
+                  //idModalidade
+                  cdsPagamentoidmodalidade.AsInteger := cdsModalidadeidmodalidade.AsInteger;
+
+                  //valorModalidade
+                  cdsPagamentovalorModalidade.AsFloat := valorMensalidade;
+
+                  // DATA VENCIMENTO
+                  cdsPagamentodataVencimento.AsDateTime := IncMonth(DModule.datahoje, I);
+
+                  //STATUS PAGAMENTO
+                  cdsPagamentoidstatusPagamento.AsInteger := 1;  // 1 = EM ABERTO
+
+                  //LOG
+                  cdsPagamentoLOGUsuarioResponsavel.AsString := 'GERADO POR: ' + DModule.NOMEUSUARIO +' em '+ DateToStr(DMODULE.datahoje);
+
+                  DSPagamento.DataSet.Post;
+
+              END;
+
+              //ATUALIZA DBGRID MODALIDADE
+              qMODALIDADE.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+              DSModalidade.DataSet.close;
+              DSModalidade.DataSet.open;
+
+              //ATUALIZA DBGRID PEGAMENTO
+              qPagamento.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+              DSPagamento.DataSet.close;
+              DSPagamento.DataSet.open;
+
+              //LIMPA EDITS MODALIDADEE
+              editBModalidade.Clear;
+              EditModalidade.Clear;
+
+        end else
+        begin
+            ShowMessage('Aluno possui mensalidade isenta ou quitada até '+ datetostr(IncMonth(DATA_VENCIMENTO_ULTIMO_PAGAMENTO,1)) +
+            '. Matrícula só poderá ser realizada após esta data.');
+        end;
+
+    END ELSE
+    BEGIN
+        ShowMessage('SELECIONE UMA MODALIDADE');
     END;
-
-    //ATUALIZA DBGRID MODALIDADE
-    qMODALIDADE.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-    DSModalidade.DataSet.close;
-    DSModalidade.DataSet.open;
-
-    //ATUALIZA DBGRID PEGAMENTO
-    qPagamento.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-    DSPagamento.DataSet.close;
-    DSPagamento.DataSet.open;
-
-  END ELSE
-  BEGIN
-      ShowMessage('SELECIONE UMA MODALIDADE');
-  END;
-
 
 end;
 
 procedure TF01001.btnCancelaMatriculaClick(Sender: TObject);
+VAR
+    DATA_VENCIMENTO_ULTIMO_PAGAMENTO: TDATETIME;
 begin
   inherited;
   if NOT(DSModalidade.DataSet.IsEmpty) then
   begin
-      if MessageDlg('DESEJA APAGAR ITEM ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      begin
 
-          // Trata Mensalidades já vencidas
-          Case MessageBox (Application.Handle, Pchar ('APAGAR MENSALIDADES EM ATRASO?'), 'EXCLUSÃO', MB_YESNOCANCEL+MB_DEFBUTTON2) of
-            idYes:
-                begin
-                    // APAGA TODAS AS MENSALIDADES EM ABERTO
-                    DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND IDSTATUSPAGAMENTO AND idstatusPagamento = 1';
-                    DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                    DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
-                    DModule.qAux.Close;
-                    DModule.qAux.ExecSQL;
-                    cdsModalidade.Delete;
-                    DBGridBeleza5.Refresh;
-                end;
-            idNo:
-                begin
-                    cdsModalidade.Delete;
+        if MessageDlg('DESEJA CANCELAR MATRÍCULA ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        begin
+            // Trata Mensalidades já vencidas
+            Case MessageBox (Application.Handle, Pchar ('APAGAR MENSALIDADES EM ATRASO?'), 'EXCLUSÃO', MB_YESNOCANCEL+MB_DEFBUTTON2) of
+                  idYes:
+                        begin
+                            // APAGA TODAS AS MENSALIDADES EM ABERTO
+                            DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND IDSTATUSPAGAMENTO AND idstatusPagamento = 1';
+                            DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                            DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+                            DModule.qAux.Close;
+                            DModule.qAux.ExecSQL;
+                            cdsModalidade.Delete;
+                            cdsPagamento.Refresh;
+                        end;
 
-                end;
-            idCancel:
-                begin
+                  idNo:
+                        begin
+                            cdsModalidade.Delete;
+                        end;
 
-                end;
-          end;
+                  idCancel:
+                        begin
 
-      end;
+                        end;
+
+            end;
+
+        end;
+
   end ELSE
   BEGIN
     ShowMessage('Nenhuma Modalidade Selecionada.');
