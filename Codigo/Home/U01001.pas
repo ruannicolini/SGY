@@ -343,6 +343,8 @@ type
     { Public declarations }
     procedure QualityResizeBitmap(bmpOrig, bmpDest: TBitmap; newWidth, newHeight: Integer);
     procedure CriarForm(Tela, Desc: String);
+    function MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
+    Buttons: TMsgDlgButtons; Captions: array of string): Integer;
 
   end;
 
@@ -866,6 +868,34 @@ begin
   END;
 end;
 
+function TF01001.MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
+  Buttons: TMsgDlgButtons; Captions: array of string): Integer;
+var
+  aMsgDlg: TForm;
+  i: Integer;
+  dlgButton: TButton;
+  CaptionIndex: Integer;
+begin
+  { Criar o dialogo }
+  aMsgDlg := CreateMessageDialog(Msg, DlgType, Buttons);
+  CaptionIndex := 0;
+  { Faz um loop varrendo os objetos do dialogo }
+  for i := 0 to pred(aMsgDlg.ComponentCount) do
+  begin
+    if (aMsgDlg.Components[i] is TButton) then
+    begin
+      { Apenas entra na condição se o objeto for um button }
+      dlgButton := TButton(aMsgDlg.Components[i]);
+      if CaptionIndex > High(Captions) then //Captura o Index dos captions dos buttons criado no array
+         Break;
+      dlgButton.Caption := Captions[CaptionIndex];
+      Inc(CaptionIndex);
+      //dlgButton.
+    end;
+  end;
+  Result := aMsgDlg.ShowModal;
+end;
+
 procedure TF01001.QualityResizeBitmap(bmpOrig, bmpDest: TBitmap; newWidth,
   newHeight: Integer);
 var
@@ -1076,19 +1106,70 @@ end;
 procedure TF01001.btnCancelaMatriculaClick(Sender: TObject);
 VAR
     DATA_VENCIMENTO_ULTIMO_PAGAMENTO: TDATETIME;
+    StrX: string;
+    iMensagem: Integer;
 begin
   inherited;
   if NOT(DSModalidade.DataSet.IsEmpty) then
   begin
+      if MessageDlg('DESEJA CANCELAR MATRÍCULA ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
 
-        if MessageDlg('DESEJA CANCELAR MATRÍCULA ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        //verifica se não há mensalidades EM ABERTO e DATA DE HOJE > DATA DE VENCIMENTO dela
+        DModule.qAux.SQL.Text := 'SELECT P.* FROM PAGAMENTO P WHERE P.idAluno=:idA AND P.idmodalidade =:idM AND P.idstatusPagamento = 1 AND CURDATE() > P.DATAVENCIMENTO;';
+        DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+        DModule.qAux.ParamByName('idM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+        DModule.qAux.close;
+        DModule.qAux.open;
+
+        if(DModule.qAux.RecordCount>0)then
         begin
+
+            iMensagem := MsgDlgButtonPersonal('Aluno possui ' + inttostr(DModule.qAux.RecordCount) + ' mensalidade(s) em atraso. Essas mensalidades serão excluidas automaticamente pelo sistema.', mtConfirmation, [mbYes,mbNo,mbOK],
+            ['VISUALIZAR','CANCELAR', 'OK']);
+           case iMensagem of
+               6:
+                   BEGIN
+                      //ShowMessage('VISUALIZAR MENSALIDADES');
+                   END;
+               7:
+                   BEGIN
+                   //ShowMessage('CANCELAR');
+                   END;
+               1:
+                   BEGIN
+                   // ShowMessage('OK');
+                   // APAGA TODAS AS MENSALIDADES EM ABERTO
+                      DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
+                      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                      DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+                      DModule.qAux.Close;
+                      DModule.qAux.ExecSQL;
+                      cdsModalidade.Delete;
+                      cdsPagamento.Refresh
+                   END;
+           end;
+
+        end else
+        begin
+            // APAGA APENAS AS MENSALIDADES EM ABERTO
+              DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
+              DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+              DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+              DModule.qAux.Close;
+              DModule.qAux.ExecSQL;
+              cdsModalidade.Delete;
+              cdsPagamento.Refresh
+        end;
+
+      end;    {
+
             // Trata Mensalidades já vencidas
             Case MessageBox (Application.Handle, Pchar ('APAGAR MENSALIDADES EM ATRASO?'), 'EXCLUSÃO', MB_YESNOCANCEL+MB_DEFBUTTON2) of
                   idYes:
                         begin
                             // APAGA TODAS AS MENSALIDADES EM ABERTO
-                            DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND IDSTATUSPAGAMENTO AND idstatusPagamento = 1';
+                            DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
                             DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
                             DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
                             DModule.qAux.Close;
@@ -1099,17 +1180,12 @@ begin
 
                   idNo:
                         begin
-                            cdsModalidade.Delete;
-                        end;
-
-                  idCancel:
-                        begin
-
+                            ;
                         end;
 
             end;
 
-        end;
+                 }
 
   end ELSE
   BEGIN
