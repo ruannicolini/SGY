@@ -14,7 +14,7 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
   cxDropDownEdit, cxBlobEdit, cxDBEdit, cxTextEdit, cxMaskEdit, cxSpinEdit,
   Vcl.Mask, Vcl.DBCtrls, Vcl.ExtDlgs, cxImage, Vcl.Imaging.jpeg, dxCameraControl,
-  Vcl.Menus, cxButtons	;
+  Vcl.Menus, cxButtons, PngImageList	;
 
 type
   TF01003 = class(TFBase)
@@ -31,6 +31,8 @@ type
     FDQuery1imgEquipamento: TIntegerField;
     ClientDataSet1imgEquipamento: TIntegerField;
     Label3: TLabel;
+    PngImageList1: TPngImageList;
+    PngImageList2: TPngImageList;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure ListViewSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);

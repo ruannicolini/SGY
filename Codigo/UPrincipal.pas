@@ -12,7 +12,7 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.ComCtrls, System.Actions, Vcl.ActnList,
   Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus,
   Vcl.PlatformDefaultStyleActnCtrls, VCLTee.TeCanvas, Vcl.Buttons, XiButton,
-  Vcl.XPMan, dxGDIPlusClasses;
+  Vcl.XPMan, dxGDIPlusClasses, PngSpeedButton;
 
 type
   TFPrincipal = class(TForm)
@@ -155,6 +155,7 @@ idInterface : integer;
 ArqIni: TIniFile;
 nomeInterface : string;
 begin
+
   //Definição de acesso do usuário
   ArqIni := TIniFile.Create( ExtractFilePath(Application.ExeName) + '\user.ini' );
   try

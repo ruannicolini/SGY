@@ -2,8 +2,6 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
-  ExplicitLeft = -76
-  ExplicitTop = -343
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,12 +16,9 @@
   inherited PageControl: TPageControl
     Width = 829
     Height = 706
-    ActivePage = TbDados
     ExplicitWidth = 829
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 821
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -1561,8 +1556,6 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 821
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1580,6 +1573,202 @@
       inherited DBGridBeleza1: TDBGridBeleza
         Width = 821
         Height = 567
+        Columns = <
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'idAluno'
+            Title.Alignment = taCenter
+            Title.Caption = 'COD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nomeAluno'
+            Title.Caption = 'ALUNO'
+            Width = 805
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'cpf'
+            Title.Alignment = taCenter
+            Title.Caption = 'CPF'
+            Width = 110
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'tel1'
+            Title.Alignment = taCenter
+            Title.Caption = 'TEL'
+            Width = 110
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'dataNascimento'
+            Title.Alignment = taCenter
+            Title.Caption = 'DATA NASC.'
+            Width = 110
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'dataComposicaoFicha'
+            Title.Alignment = taCenter
+            Title.Caption = 'INICIO FICHA'
+            Width = 110
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'email'
+            Title.Alignment = taCenter
+            Title.Caption = 'EMAIL'
+            Width = -1
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCRICAOOBJETIVO'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'tel2'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'idade'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'sexo'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'cidade'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'bairro'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'rua'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'numero'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'cep'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'nomeResponsavel'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'parentescoResponsavel'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'telResponsavel'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'peso'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'altura'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'frequenciaAtividadeFisica'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'qtdRefeicoesDia'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'qtdHorasSono'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'suplementacao'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'dieta'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'fumante'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'consomeBebidaAlcoolica'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'dataCadastro'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'ativo'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'foto'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'informacaoAdicional'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'idObjetivo'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'IMC'
+            Visible = False
+          end>
       end
       inherited PanelFiltros: TPanel
         Width = 821
@@ -2019,7 +2208,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C001C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
