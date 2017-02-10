@@ -361,7 +361,7 @@ implementation
 uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
-{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage;
+{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011;
 
 
 procedure TF01001.BCancelarClick(Sender: TObject);
@@ -1124,35 +1124,40 @@ begin
 
         if(DModule.qAux.RecordCount>0)then
         begin
+            //EMITE AVISO DAS MENSALIDADES EM ABERTO
+            With TF01011.Create(self, ClientDataSet1idAluno.AsInteger, cdsModalidadeidmodalidade.AsInteger) do  // 1 =Pagamento, 2=Isenção
+            Begin
+                  if(ShowModal = mrOk)then
+                  begin
+                        //// APAGA MENSALIDADES EM ABERTO
+                        DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
+                        DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                        DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
+                        DModule.qAux.Close;
+                        DModule.qAux.ExecSQL;
+                        cdsModalidade.Delete;
+                        cdsPagamento.Refresh
+                  end else
+                  begin
+                        //ShowMessage('Funfô não mano');
+                  end;
+                  Free;
+            End;
 
+
+            {
+            VAR iMensagem: Integer;
             iMensagem := MsgDlgButtonPersonal('Aluno possui ' + inttostr(DModule.qAux.RecordCount) + ' mensalidade(s) em atraso. Essas mensalidades serão excluidas automaticamente pelo sistema.', mtConfirmation, [mbYes,mbNo,mbOK],
             ['VISUALIZAR','CANCELAR', 'OK']);
-           case iMensagem of
-               6:
-                   BEGIN
-                      //ShowMessage('VISUALIZAR MENSALIDADES');
-                   END;
-               7:
-                   BEGIN
-                   //ShowMessage('CANCELAR');
-                   END;
-               1:
-                   BEGIN
-                   // ShowMessage('OK');
-                   // APAGA TODAS AS MENSALIDADES EM ABERTO
-                      DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
-                      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                      DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
-                      DModule.qAux.Close;
-                      DModule.qAux.ExecSQL;
-                      cdsModalidade.Delete;
-                      cdsPagamento.Refresh
-                   END;
-           end;
+            case iMensagem of
+               6: //ShowMessage('VISUALIZAR');
+               7: //ShowMessage('CANCELAR');
+               1: // ShowMessage('OK');
+            end;}
 
         end else
         begin
-            // APAGA APENAS AS MENSALIDADES EM ABERTO
+            // APAGA MENSALIDADES EM ABERTO
               DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
               DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
               DModule.qAux.ParamByName('IDM').AsInteger := cdsModalidadeidmodalidade.AsInteger;

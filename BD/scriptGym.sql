@@ -271,13 +271,19 @@ BEGIN
     
     
 END
-|
+|;
 
 CALL geraMensalidade;
 
 Drop PROCEDURE geraMensalidade;
 
-SELECT am.* FROM alunomodalidade am where am.dataInscrição < curdate();
+SELECT DATE_ADD('2017-01-31', INTERVAL 1 MONTH);
+
+
+
+
+
+
 
 
 
