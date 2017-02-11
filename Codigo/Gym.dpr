@@ -16,7 +16,8 @@ uses
   U01006 in 'Home\U01006.pas' {F01006},
   U01008 in 'Home\U01008.pas' {F01008},
   U01010 in 'Home\U01010.pas' {F01010},
-  U01011 in 'Home\U01011.pas' {F01011};
+  U01011 in 'Home\U01011.pas' {F01011},
+  U01009 in 'Home\U01009.pas' {F01009};
 
 {$R *.res}
 

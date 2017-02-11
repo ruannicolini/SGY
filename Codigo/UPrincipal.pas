@@ -41,6 +41,7 @@ type
     procedure btnExercicioClick(Sender: TObject);
     procedure btnUsuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure bntBackUpClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,7 +55,16 @@ implementation
 
 {$R *.dfm}
 
-uses ubase, vcl.themes, vcl.styles, UDataModule;
+uses ubase, vcl.themes, vcl.styles, UDataModule, U01009;
+
+procedure TFPrincipal.bntBackUpClick(Sender: TObject);
+begin
+    With TF01009.Create(self) do
+    Begin
+      ShowModal;
+    End;
+end;
+
 
 procedure TFPrincipal.btnAlunoClick(Sender: TObject);
 begin
