@@ -235,8 +235,10 @@ delimiter |
 CREATE PROCEDURE GeraMensalidade ()
 BEGIN
 	-- Declaração variaveis
-    DECLARE idA, idM  INT;
-    DECLARE dataI, dataV  date;
+    DECLARE search_condition, idPagam, idA, idM INT;
+    DECLARE dataI, dataV date;
+    DECLARE valorMensalidade FLOAT;
+    DECLARE done boolean;
 
 	-- DECLARAÇÃO DO CURSOR
 	-- SELECIONA TODAS AS MATRICULAS E A MENSALIDADE( TABELA ALUNOMODALIDADE ) COM A DATA DE VENCIMENTO MAIS DISTANTE
@@ -260,7 +262,30 @@ BEGIN
 			  LEAVE read_loop;
 			END IF;
             
-            -- Código para criar novas mensalidades
+            -- VERIFICA SE A DATA ATUAL ESTA A MENOS DE UM MÊS DA DATA DE VENCIMENTO DA ULTIMA MENSALIDADE GERADA
+            if(curdate() > DATE_ADD(datav, INTERVAL -1 MONTH))
+            THEN
+					SET search_condition = 0;
+                    
+					-- SE SIM, CRIA MAIS 12 MENSALIDADES
+					WHILE (search_condition < 12) DO
+							
+                            SELECT valor INTO idPagam from parametros where parametro = 'pagamento';
+                            SELECT valor INTO valorMensalidade from modalidade where idmodalidade = idM;
+                            
+							INSERT INTO pagamento (idPagamento, idAluno,idmodalidade,valorModalidade,datavencimento, 
+                            idstatusPagamento, LOGUsuarioResponsavel) 
+                            VALUES (
+                            idPagam, idA, idM, valorMensalidade, 
+                            DATE_ADD(dataV, INTERVAL (search_condition+1) MONTH), 1, 
+                            ('Gerado Automaticamente')
+                            );
+                            
+                            SET idPagam = idPagam + 1;
+                            update parametros SET valor = idPagam where parametro = 'pagamento';
+							SET search_condition = search_condition + 1;
+					END WHILE;
+            END IF;
     
     END LOOP;
     
@@ -271,13 +296,12 @@ BEGIN
     
     
 END
-|;
+| 
+delimiter ;
 
 CALL geraMensalidade;
 
 Drop PROCEDURE geraMensalidade;
-
-SELECT DATE_ADD('2017-01-31', INTERVAL 1 MONTH);
 
 
 
