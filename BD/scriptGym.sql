@@ -239,6 +239,7 @@ BEGIN
     DECLARE dataI, dataV date;
     DECLARE valorMensalidade FLOAT;
     DECLARE done boolean;
+    DECLARE log varchar(50);
 
 	-- DECLARAÇÃO DO CURSOR
 	-- SELECIONA TODAS AS MATRICULAS E A MENSALIDADE( TABELA ALUNOMODALIDADE ) COM A DATA DE VENCIMENTO MAIS DISTANTE
@@ -251,6 +252,8 @@ BEGIN
 
     -- ABRE CURSOR
     OPEN cur_X;
+    
+    set log = ('Gerado Automaticamente.');
     
     -- LAÇO DE REPETIÇÃO
     read_loop: LOOP
@@ -278,7 +281,7 @@ BEGIN
                             VALUES (
                             idPagam, idA, idM, valorMensalidade, 
                             DATE_ADD(dataV, INTERVAL (search_condition+1) MONTH), 1, 
-                            ('Gerado Automaticamente')
+                            log
                             );
                             
                             SET idPagam = idPagam + 1;
@@ -299,19 +302,23 @@ END
 | 
 delimiter ;
 
-CALL geraMensalidade;
+-- CALL geraMensalidade;
 
-Drop PROCEDURE geraMensalidade;
+-- Drop PROCEDURE geraMensalidade;
+
+delimiter |
+CREATE EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE ON SCHEDULE EVERY 1 DAY 
+ -- STARTS ALGUMA_DATA_HORA ENABLE
+DO
+	CALL geraMensalidade;
+|
+DELIMITER ;
 
 
 
+-- SHOW events;
 
-
-
-
-
-
-
+-- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 
 
 
