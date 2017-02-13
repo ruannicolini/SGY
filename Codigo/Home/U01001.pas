@@ -337,6 +337,7 @@ type
     procedure DBGridBeleza5DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure btnFichaClick(Sender: TObject);
+    procedure bRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -361,7 +362,7 @@ implementation
 uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
-{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011;
+{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios;
 
 
 procedure TF01001.BCancelarClick(Sender: TObject);
@@ -378,6 +379,66 @@ begin
   editSerie.Clear;
   editRepeticoes.Clear;
 
+end;
+
+procedure TF01001.bRelatorioClick(Sender: TObject);
+var
+  q: TFDQuery;
+begin
+  inherited;
+
+  if NOT(Ds.DataSet.IsEmpty)then
+  begin
+    {
+      q := TFDQuery.Create(self);
+      q.Connection := DModule.FDConnection;
+
+      //OBS : sec_to_time(c.tempopadraofinal/1000) - converte de milesegundos para segundos e retorna tempo
+      q.sql.text := 'select  p.idProduto, p.descricao as produto, f.idFase, f.descricao as fase, '+
+                    '  op.idoperacao, op.descricao as operacao, '+
+                    '  c.idCronometragem, c.ritmo, sec_to_time(c.tempopadraofinal/1000) as tempoPadraoFinal, c.tolerancia, phf.sequencia '+
+                    '  from produto p '+
+                    '  left outer join produto_has_fase phf on phf.idproduto = p.idProduto '+
+                    '  left outer join fase f on f.idFase = phf.idfase '+
+                    '  left outer join operacao op on op.idfase = f.idfase '+
+                    '  left outer join cronometragem c on c.idproduto = p.idproduto and '+
+                    '  c.idoperacao = op.idoperacao and p.idproduto in (-1  ';
+
+      ds.DataSet.first;
+      while not ds.DataSet.Eof do
+      begin
+        q.sql.add(','+  ds.DataSet.FieldByName('idproduto').AsString);
+        ds.DataSet.Next;
+      end;
+      q.sql.add(')');
+
+
+      q.sql.add(' order by p.idproduto, phf.sequencia ');
+      q.open;
+
+      }
+
+      //showmessage(q.SQL.Text);
+
+      frelatorios := tfrelatorios.Create(self);
+      with frelatorios do
+      begin
+          try
+              visible := false;
+              //Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, DSSerie.DataSet, 'idAluno', 'idAluno');
+
+              Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              ShowModal;
+          finally
+              Relatorios_sis.close;
+              relats_usur.close;
+              Free;
+          end;
+      end;
+  end else
+  begin
+    ShowMessage('Relatório necessita de pesquisa');
+  end;
 end;
 
 procedure TF01001.BSalvarClick(Sender: TObject);

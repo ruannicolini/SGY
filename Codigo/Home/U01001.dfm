@@ -405,8 +405,6 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object cxGroupBox3: TcxGroupBox
               Left = 16
               Top = 0
@@ -802,8 +800,6 @@
           object pag3: TcxTabSheet
             Caption = 'FICHA DE EXERCICIOS'
             ImageIndex = 2
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object cxGroupBox10: TcxGroupBox
               Left = 16
               Top = 0
@@ -1158,8 +1154,6 @@
           object pag4: TcxTabSheet
             Caption = 'MODALIDADES'
             ImageIndex = 4
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object cxGroupBox11: TcxGroupBox
               Left = 16
               Top = 0
@@ -1370,8 +1364,6 @@
           object pagMensalidades: TcxTabSheet
             Caption = 'MENSALIDADES'
             ImageIndex = 3
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object cxGroupBox14: TcxGroupBox
               Left = 16
               Top = 0
@@ -2219,7 +2211,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00280210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00300210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
