@@ -2,6 +2,8 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
+  ExplicitLeft = -58
+  ExplicitTop = -365
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -16,6 +18,7 @@
   inherited PageControl: TPageControl
     Width = 829
     Height = 706
+    ActivePage = TbDados
     ExplicitWidth = 829
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
@@ -46,7 +49,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
-          Properties.ActivePage = pag4
+          Properties.ActivePage = pag3
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -1139,14 +1142,31 @@
                 Color = 15329769
                 ParentBackground = False
                 TabOrder = 1
-                object btnFicha: TSpeedButton
+                object btnImprimirFicha: TSpeedButton
                   Left = 631
                   Top = 3
                   Width = 151
                   Height = 30
                   Align = alCustom
                   Caption = 'IMPRIMIR FICHA'
-                  OnClick = btnFichaClick
+                  OnClick = btnImprimirFichaClick
+                end
+                object btnLimparFicha: TSpeedButton
+                  Left = 478
+                  Top = 3
+                  Width = 151
+                  Height = 30
+                  Align = alCustom
+                  Caption = 'LIMPAR'
+                  OnClick = btnLimparFichaClick
+                end
+                object btnImportarFicha: TSpeedButton
+                  Left = 325
+                  Top = 3
+                  Width = 151
+                  Height = 30
+                  Align = alCustom
+                  Caption = 'IMPORTAR'
                 end
               end
             end
@@ -2211,7 +2231,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00300210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00340210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2976,6 +2996,7 @@
   end
   object DSSerie: TDataSource
     DataSet = CDSSerie
+    OnDataChange = DSSerieDataChange
     Left = 736
     Top = 466
   end
@@ -3026,6 +3047,7 @@
   end
   object DSModalidade: TDataSource
     DataSet = cdsModalidade
+    OnDataChange = DSModalidadeDataChange
     Left = 760
     Top = 281
   end

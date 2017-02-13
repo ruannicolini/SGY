@@ -289,7 +289,9 @@ type
     btnIsencao: TSpeedButton;
     btnCancelarPI: TSpeedButton;
     Panel6: TPanel;
-    btnFicha: TSpeedButton;
+    btnImprimirFicha: TSpeedButton;
+    btnLimparFicha: TSpeedButton;
+    btnImportarFicha: TSpeedButton;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -336,8 +338,11 @@ type
     procedure btnCancelarPIClick(Sender: TObject);
     procedure DBGridBeleza5DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure btnFichaClick(Sender: TObject);
+    procedure btnImprimirFichaClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
+    procedure btnLimparFichaClick(Sender: TObject);
+    procedure DSSerieDataChange(Sender: TObject; Field: TField);
+    procedure DSModalidadeDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -540,10 +545,11 @@ begin
   END;
 end;
 
-procedure TF01001.btnFichaClick(Sender: TObject);
+procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
   //
+
 
 end;
 
@@ -834,6 +840,7 @@ begin
   qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSSerie.DataSet.close;
   DSSerie.DataSet.open;
+  
 
   //PESQUISA Modalidade
   QMODALIDADE.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
@@ -845,6 +852,18 @@ begin
   DSPagamento.DataSet.close;
   DSPagamento.DataSet.open;
 
+end;
+
+procedure TF01001.DSModalidadeDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(cdsModalidade.RecordCount > 0)THEN
+  BEGIN
+      btnCancelaMatricula.Enabled := TRUE;
+  END ELSE
+  BEGIN
+      btnCancelaMatricula.Enabled := FALSE;
+  END;
 end;
 
 procedure TF01001.DSPagamentoDataChange(Sender: TObject; Field: TField);
@@ -860,6 +879,22 @@ begin
       btnPagamento.Enabled := FALSE;
       btnIsencao.Enabled := FALSE;
       btnCancelarPI.Enabled := TRUE;
+  END;
+end;
+
+procedure TF01001.DSSerieDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(CDSSerie.RecordCount > 0)THEN
+  BEGIN
+      btnImprimirFicha.Enabled := TRUE;
+      btnLimparFicha.Enabled := TRUE;
+      btnImportarFicha.Enabled := FALSE;
+  END ELSE
+  BEGIN
+      btnImprimirFicha.Enabled := FALSE;
+      btnLimparFicha.Enabled := FALSE;
+      btnImportarFicha.Enabled := TRUE;
   END;
 end;
 
@@ -1010,14 +1045,20 @@ begin
     CDSSerieidTreino.AsInteger := strtoint(Edittreino.Text);
     IF trim(Editexercicio.Text ) <> '' THEN
     BEGIN
-      CDSSerieidExercicio.AsInteger := strtoint(Editexercicio.Text);
-      CDSSerieqtdSerie.AsInteger := strtoint(editSerie.Text);
-      CDSSerieqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
+      IF (trim(editSerie.Text ) <> '') AND (trim(editRepeticoes.Text ) <> '') THEN
+      BEGIN
+          CDSSerieidExercicio.AsInteger := strtoint(Editexercicio.Text);
+          CDSSerieqtdSerie.AsInteger := strtoint(editSerie.Text);
+          CDSSerieqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
 
-      CDSSerie.Post;
-      qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-      DSSerie.DataSet.close;
-      DSSerie.DataSet.open;
+          CDSSerie.Post;
+          qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+          DSSerie.DataSet.close;
+          DSSerie.DataSet.open;
+      END ELSE
+      BEGIN
+          ShowMessage('INFORME QUANTIDADE DE SÉRIES E REPETIÇÕES');
+      END;
 
     END ELSE
     BEGIN
@@ -1131,6 +1172,31 @@ begin
         ShowMessage('SELECIONE UMA MODALIDADE');
     END;
 
+end;
+
+procedure TF01001.btnLimparFichaClick(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('DESEJA APAGAR FICHA DE EXERCÍCIOS ATUAL DO ALUNO?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+      TRY
+        DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
+        DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+        DModule.qAux.Close;
+        DModule.qAux.ExecSQL;
+
+        //PESQUISA FICHA DE EXERCICIO
+        qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+        DSSerie.DataSet.close;
+        DSSerie.DataSet.open;
+
+      EXCEPT
+        ON E: EXCEPTION DO
+        BEGIN
+          ShowMessage(E.Message);
+        END;
+      END;
+  end;
 end;
 
 procedure TF01001.btnCancelaMatriculaClick(Sender: TObject);
