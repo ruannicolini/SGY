@@ -9,9 +9,10 @@ uses
 type
   TF01009 = class(TForm)
     PanelStatus: TPanel;
-    Panel1: TPanel;
+    PanelCAPTION: TPanel;
     SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
+    PanelCOMPLEMENTO: TPanel;
+    procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
@@ -30,26 +31,32 @@ implementation
 
 { TF01009 }
 
+uses Vcl.FileCtrl, SHELLAPI;
+
 procedure TF01009.ExecutaBackupBD;
 Var
    strBanco, strHost, strUsuario, strSenha, strComando, strCaminho, strArquivo: string;
 begin
    try
-      strCaminho := ExtractFilePath(Application.ExeName) + 'backup\';
+      //Pega Caminho
+     strCaminho := ExtractFilePath(Application.ExeName) + 'backup\';
       if not DirectoryExists(strCaminho) then
       begin
          CreateDir(strCaminho);
       end;
+
+      //Verifica se mysqldump.exe esta na pasta do EXE
       if FileExists(ExtractFilePath(Application.ExeName) + 'mysqldump.exe') then
       begin
-         strArquivo := strCaminho + 'BD_' + FormatDateTime('YYYY-mm-dd_hhnnss', Now) + '.sql';
 
+        //Configurações
+         strArquivo := strCaminho + 'BD_' + FormatDateTime('YYYY-mm-dd_hhnnss', Now) + '.sql';
          strHost := DModule.FDConnection.Params.Values['SERVER'] ; // '192.168.1.200';
          strUsuario := DModule.FDConnection.Params.UserName; //'ruan';
          strSenha := DModule.FDConnection.Params.Password;//'ruan';
          strBanco := DModule.FDConnection.Params.Database; //'gym';
 
-        strComando := 'cmd.exe /c ""' +
+         strComando := 'cmd.exe /c ""' +
                        ExtractFilePath(Application.ExeName) +
                        '\mysqldump.exe" ' + strBanco +
                        ' --routines --events --databases --opt -c -e '+
@@ -59,16 +66,18 @@ begin
                        '' +
                        '>' + '"' +
                        strArquivo + '""';
-        ExecutarProcesso(strComando);
+         ExecutarProcesso(strComando);
       end
       else
       begin
          ShowMessage('Atenção o aplicativo auxiliar mysqldump não se encontra no diretório, ' +
                      'solicite o mesmo ao suporte do sistema ');
       end;
+
    finally
       //FreeAndNil(Ini);
    end;
+
 end;
 
 function TF01009.ExecutarProcesso(cmd: string): Boolean;
@@ -89,9 +98,24 @@ if (Result) then
  end;
 end;
 
+procedure TF01009.FormShow(Sender: TObject);
+begin
+    try
+      ExecutaBackupBD;
+      PanelCAPTION.Caption := 'BACKUP CONCLUÍDO!';
+      SpeedButton1.Visible:= TRUE;
+    except
+        ON E: Exception DO
+        begin
+             PanelCAPTION.Caption := 'ERRO ENCONTRADO, CONSULTE SUPORTE!';
+             ShowMessage(E.Message);
+        end;
+    end;
+end;
+
 procedure TF01009.SpeedButton1Click(Sender: TObject);
 begin
-  ExecutaBackupBD;
+  CLOSE;
 end;
 
 Initialization

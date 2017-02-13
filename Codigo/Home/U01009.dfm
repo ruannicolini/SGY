@@ -3,8 +3,8 @@ object F01009: TF01009
   Top = 0
   BorderStyle = bsNone
   Caption = 'F01009'
-  ClientHeight = 229
-  ClientWidth = 394
+  ClientHeight = 115
+  ClientWidth = 390
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,18 +13,19 @@ object F01009: TF01009
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object PanelStatus: TPanel
     Left = 0
     Top = 0
-    Width = 394
+    Width = 390
     Height = 26
     Align = alTop
     Alignment = taLeftJustify
     BevelKind = bkFlat
     BevelOuter = bvNone
-    Caption = '  BACKUP'
+    Caption = '  AVISO'
     Color = clTeal
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clCream
@@ -34,29 +35,38 @@ object F01009: TF01009
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 394
   end
-  object Panel1: TPanel
+  object PanelCAPTION: TPanel
     Left = 0
     Top = 26
-    Width = 394
-    Height = 203
+    Width = 390
+    Height = 47
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'ROTINA DE BACKUP EXECUTANDO. AGUARDE!'
+    TabOrder = 1
+  end
+  object PanelCOMPLEMENTO: TPanel
+    Left = 0
+    Top = 73
+    Width = 390
+    Height = 42
     Align = alClient
     BevelOuter = bvNone
-    TabOrder = 1
+    TabOrder = 2
+    ExplicitLeft = 96
+    ExplicitTop = 115
+    ExplicitWidth = 185
+    ExplicitHeight = 41
     object SpeedButton1: TSpeedButton
-      Left = 8
+      Left = 160
       Top = 6
-      Width = 185
-      Height = 185
-      Caption = 'BACKUP'
+      Width = 65
+      Height = 24
+      Caption = 'OK'
+      Visible = False
       OnClick = SpeedButton1Click
-    end
-    object SpeedButton2: TSpeedButton
-      Left = 199
-      Top = 6
-      Width = 185
-      Height = 185
-      Caption = 'RESTORE'
     end
   end
 end

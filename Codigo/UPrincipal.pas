@@ -43,9 +43,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure bntBackUpClick(Sender: TObject);
   private
-    { Private declarations }
+    // Rotina de backup
+    procedure ExecutaBackupBD();
+    function ExecutarProcesso(cmd: string): Boolean;
   public
     { Public declarations }
+
   end;
 
 var
@@ -55,16 +58,23 @@ implementation
 
 {$R *.dfm}
 
-uses ubase, vcl.themes, vcl.styles, UDataModule, U01009;
+uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi;
 
 procedure TFPrincipal.bntBackUpClick(Sender: TObject);
 begin
-    With TF01009.Create(self) do
-    Begin
-      ShowModal;
-    End;
+    try
+        With TF01009.Create(self) do
+        Begin
+          ShowModal;
+        End;
+        ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+    except
+      ON E: Exception DO
+      begin
+          ShowMessage(E.Message);
+      end;
+    end;
 end;
-
 
 procedure TFPrincipal.btnAlunoClick(Sender: TObject);
 begin
@@ -143,7 +153,72 @@ begin
    end;
 end;
 
-function TFPrincipal.fncAlturaBarraTarefas: Integer;
+procedure TFPrincipal.ExecutaBackupBD;
+Var
+   strBanco, strHost, strUsuario, strSenha, strComando, strCaminho, strArquivo: string;
+begin
+   try
+      //Pega Caminho
+     strCaminho := ExtractFilePath(Application.ExeName) + 'backup\';
+      if not DirectoryExists(strCaminho) then
+      begin
+         CreateDir(strCaminho);
+      end;
+
+      //Verifica se mysqldump.exe esta na pasta do EXE
+      if FileExists(ExtractFilePath(Application.ExeName) + 'mysqldump.exe') then
+      begin
+
+        //Configurações
+         strArquivo := strCaminho + 'BD_' + FormatDateTime('YYYY-mm-dd_hhnnss', Now) + '.sql';
+         strHost := DModule.FDConnection.Params.Values['SERVER'] ; // '192.168.1.200';
+         strUsuario := DModule.FDConnection.Params.UserName; //'ruan';
+         strSenha := DModule.FDConnection.Params.Password;//'ruan';
+         strBanco := DModule.FDConnection.Params.Database; //'gym';
+
+         strComando := 'cmd.exe /c ""' +
+                       ExtractFilePath(Application.ExeName) +
+                       '\mysqldump.exe" ' + strBanco +
+                       ' --routines --events --databases --opt -c -e '+
+                       ' -h' + strHost +
+                       ' -u' + strUsuario +
+                       ' -p' + strSenha +
+                       '' +
+                       '>' + '"' +
+                       strArquivo + '""';
+         ExecutarProcesso(strComando);
+      end
+      else
+      begin
+         ShowMessage('Atenção o aplicativo auxiliar mysqldump não se encontra no diretório, ' +
+                     'solicite o mesmo ao suporte do sistema ');
+      end;
+
+   finally
+      //FreeAndNil(Ini);
+   end;
+
+end;
+
+function TFPrincipal.ExecutarProcesso(cmd: string): Boolean;
+var
+ SUInfo : TStartupInfo;
+ ProcInfo: TProcessInformation;
+begin
+ FillChar(SUInfo, SizeOf(SUInfo), #0);
+ SUInfo.cb := SizeOf(SUInfo);
+ SUInfo.dwFlags := STARTF_USESHOWWINDOW;
+ SUInfo.wShowWindow := SW_HIDE;
+ Result := CreateProcess(nil, PChar(cmd), nil, nil, False, CREATE_NEW_CONSOLE or NORMAL_PRIORITY_CLASS, nil, nil, SUInfo, ProcInfo);
+if (Result) then
+ begin
+ WaitForSingleObject(ProcInfo.hProcess, INFINITE);
+ CloseHandle(ProcInfo.hProcess);
+ CloseHandle(ProcInfo.hThread);
+ end;
+end;
+
+function TFPrincipal.fncAlturaBarraTarefas: Integer;
 var
   rRect: TRect;
   rBarraTarefas: HWND;
