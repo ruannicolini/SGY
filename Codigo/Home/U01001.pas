@@ -389,37 +389,6 @@ begin
 
   if NOT(Ds.DataSet.IsEmpty)then
   begin
-    {
-      q := TFDQuery.Create(self);
-      q.Connection := DModule.FDConnection;
-
-      //OBS : sec_to_time(c.tempopadraofinal/1000) - converte de milesegundos para segundos e retorna tempo
-      q.sql.text := 'select  p.idProduto, p.descricao as produto, f.idFase, f.descricao as fase, '+
-                    '  op.idoperacao, op.descricao as operacao, '+
-                    '  c.idCronometragem, c.ritmo, sec_to_time(c.tempopadraofinal/1000) as tempoPadraoFinal, c.tolerancia, phf.sequencia '+
-                    '  from produto p '+
-                    '  left outer join produto_has_fase phf on phf.idproduto = p.idProduto '+
-                    '  left outer join fase f on f.idFase = phf.idfase '+
-                    '  left outer join operacao op on op.idfase = f.idfase '+
-                    '  left outer join cronometragem c on c.idproduto = p.idproduto and '+
-                    '  c.idoperacao = op.idoperacao and p.idproduto in (-1  ';
-
-      ds.DataSet.first;
-      while not ds.DataSet.Eof do
-      begin
-        q.sql.add(','+  ds.DataSet.FieldByName('idproduto').AsString);
-        ds.DataSet.Next;
-      end;
-      q.sql.add(')');
-
-
-      q.sql.add(' order by p.idproduto, phf.sequencia ');
-      q.open;
-
-      }
-
-      //showmessage(q.SQL.Text);
-
       frelatorios := tfrelatorios.Create(self);
       with frelatorios do
       begin

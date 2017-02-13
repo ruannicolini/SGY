@@ -5,8 +5,8 @@ object FRelatorios: TFRelatorios
   BorderStyle = bsSingle
   Caption = 'Relat'#243'rios '
   ClientHeight = 349
-  ClientWidth = 481
-  Color = 1710618
+  ClientWidth = 484
+  Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -22,7 +22,7 @@ object FRelatorios: TFRelatorios
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 481
+    Width = 484
     Height = 349
     Align = alClient
     Picture.Data = {
@@ -20924,395 +20924,409 @@ object FRelatorios: TFRelatorios
       58F5CFCCB61F8ED7DA33FA48433F7260EA237ABF1058DFAC4EFB1844FFD1EE0D
       22BF82625FB312A080521554F1C7F9EBEFFF07571B391EB6D9245A0000000049
       454E44AE426082}
-    Stretch = True
+    ExplicitWidth = 481
     ExplicitHeight = 353
   end
-  object Shape2: TShape
-    Left = 8
-    Top = 10
-    Width = 463
-    Height = 37
-    Brush.Style = bsClear
-    Pen.Color = clSilver
-  end
-  object lbTpRelat: TLabel
-    Left = 14
-    Top = 15
-    Width = 75
-    Height = 26
-    Caption = 'Relat'#243'rios do'#13#10'Sistema'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    Transparent = True
-  end
-  object Label1: TLabel
-    Left = 192
-    Top = 327
-    Width = 88
-    Height = 13
-    Caption = 'Relat'#243'rio Atual:'
-    Color = clBtnHighlight
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = True
-  end
-  object lbRelatAtual: TLabel
-    Left = 285
-    Top = 328
-    Width = 36
-    Height = 13
-    Caption = '00000'
-    Color = clBtnHighlight
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = True
-  end
-  object lbTela: TLabel
-    Left = 81
-    Top = 328
-    Width = 36
-    Height = 13
-    Caption = '00000'
-    Color = clBtnHighlight
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = True
-  end
-  object Label3: TLabel
-    Left = 8
-    Top = 327
-    Width = 71
-    Height = 13
-    Caption = 'Tela Origem:'
-    Color = clBtnHighlight
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWhite
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = True
-  end
-  object PageControl1: TPageControl
-    Left = 8
-    Top = 73
-    Width = 466
-    Height = 249
-    ActivePage = tbRelatsUsuarios
-    TabOrder = 1
-    object tbRelatsSistema: TTabSheet
-      Caption = 'Sistema'
-      object gridRelatsSistema: TDBGrid
-        Left = 0
-        Top = 0
-        Width = 458
-        Height = 221
-        Hint = 'DUPLO CLIQUE pra Imprimir o Relatorio'
-        Align = alClient
-        Ctl3D = False
-        DataSource = ds_relats
-        FixedColor = 16762447
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Options = [dgTitles, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-        ParentCtl3D = False
-        ParentFont = False
-        ParentShowHint = False
-        ReadOnly = True
-        ShowHint = True
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWhite
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        OnDblClick = gridRelatsSistemaDblClick
-        Columns = <
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'num_relat'
-            Title.Alignment = taCenter
-            Title.Caption = 'N'#186
-            Width = 33
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'descricao'
-            Width = 396
-            Visible = True
-          end>
-      end
-    end
-    object tbRelatsUsuarios: TTabSheet
-      Caption = 'Usu'#225'rios'
-      ImageIndex = 1
-      object gridRelatsUsuario: TDBGrid
-        Left = 0
-        Top = 0
-        Width = 458
-        Height = 221
-        Hint = 'DUPLO CLIQUE pra Imprimir o Relatorio'
-        Align = alClient
-        Ctl3D = False
-        DataSource = ds_relats_usur
-        FixedColor = 15854564
-        Options = [dgTitles, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-        ParentCtl3D = False
-        ParentShowHint = False
-        ReadOnly = True
-        ShowHint = True
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        OnDblClick = gridRelatsSistemaDblClick
-        Columns = <
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'num_relat'
-            Title.Alignment = taCenter
-            Title.Font.Charset = DEFAULT_CHARSET
-            Title.Font.Color = clWhite
-            Title.Font.Height = -11
-            Title.Font.Name = 'Tahoma'
-            Title.Font.Style = []
-            Width = 33
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'descricao'
-            Title.Font.Charset = DEFAULT_CHARSET
-            Title.Font.Color = clWhite
-            Title.Font.Height = -11
-            Title.Font.Name = 'Tahoma'
-            Title.Font.Style = []
-            Width = 394
-            Visible = True
-          end>
-      end
-    end
-  end
-  object btRelatsSistema: TXiButton
-    Left = 10
-    Top = 55
-    Width = 57
-    Height = 19
-    Cursor = crHandPoint
-    ColorFace = 14737632
-    ColorGrad = 3653375
-    ColorDark = 11447982
-    ColorLight = 16250871
-    ColorBorder = 6447714
-    ColorText = clBlack
-    OverColorFace = 13619151
-    OverColorGrad = clWhite
-    OverColorDark = 7960953
-    OverColorLight = 15658734
-    OverColorBorder = 7697781
-    OverColorText = clBlack
-    DownColorFace = 13882323
-    DownColorGrad = clWhite
-    DownColorDark = 15329769
-    DownColorLight = 8158332
-    DownColorBorder = 5131854
-    DownColorText = clBlack
-    DisabledColorFace = 14869218
-    DisabledColorGrad = clWhite
-    DisabledColorDark = 14211288
-    DisabledColorLight = 15395562
-    DisabledColorBorder = 12895428
-    DisabledColorText = clGray
-    ColorFocusRect = 9079434
-    ColorScheme = csSilver
-    Ctl3D = True
-    Layout = blGlyphLeft
-    Spacing = 4
-    TransparentGlyph = True
-    Gradient = False
-    HotTrack = True
-    Caption = 'Sistema'
-    TabOrder = 3
-    OnClick = btRelatsSistemaClick
-  end
-  object btRelatsUsuario: TXiButton
-    Left = 66
-    Top = 55
-    Width = 55
-    Height = 17
-    Cursor = crHandPoint
-    ColorFace = clSilver
-    ColorGrad = 3653375
-    ColorDark = 11447982
-    ColorLight = 16250871
-    ColorBorder = 6447714
-    ColorText = clBlack
-    OverColorFace = 13619151
-    OverColorGrad = clWhite
-    OverColorDark = 7960953
-    OverColorLight = 15658734
-    OverColorBorder = 7697781
-    OverColorText = clBlack
-    DownColorFace = 13882323
-    DownColorGrad = clWhite
-    DownColorDark = 15329769
-    DownColorLight = 8158332
-    DownColorBorder = 5131854
-    DownColorText = clBlack
-    DisabledColorFace = 14869218
-    DisabledColorGrad = clWhite
-    DisabledColorDark = 14211288
-    DisabledColorLight = 15395562
-    DisabledColorBorder = 12895428
-    DisabledColorText = clGray
-    ColorFocusRect = 9079434
-    ColorScheme = csCustom
-    Ctl3D = True
-    Layout = blGlyphLeft
-    Spacing = 4
-    TransparentGlyph = True
-    Gradient = False
-    HotTrack = True
-    Caption = 'Usuario'
-    TabOrder = 2
-    OnClick = btRelatsSistemaClick
-  end
-  object barra: TToolBar
-    Left = 120
-    Top = 12
-    Width = 270
-    Height = 33
-    Cursor = crHandPoint
-    Align = alNone
-    ButtonHeight = 33
-    ButtonWidth = 30
-    HotTrackColor = clSilver
-    Images = ImageList1
-    List = True
-    ParentShowHint = False
-    ShowHint = True
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 484
+    Height = 349
+    Align = alClient
+    BevelOuter = bvNone
+    Caption = 'Panel1'
     TabOrder = 0
-    Transparent = True
-    object btimprimir: TToolButton
-      Left = 0
-      Top = 0
-      Hint = 'Imprimir Relat'#243'rio Atual'
-      Caption = 'btimprimir'
-      ImageIndex = 6
+    ExplicitWidth = 481
+    object Label1: TLabel
+      Left = 11
+      Top = 330
+      Width = 88
+      Height = 13
+      Caption = 'Relat'#243'rio Atual:'
+      Color = clBtnHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object Label3: TLabel
+      Left = 356
+      Top = 330
+      Width = 71
+      Height = 13
+      Caption = 'Tela Origem:'
+      Color = clBtnHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object lbRelatAtual: TLabel
+      Left = 105
+      Top = 330
+      Width = 36
+      Height = 13
+      Caption = '00000'
+      Color = clBtnHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object lbTela: TLabel
+      Left = 433
+      Top = 330
+      Width = 36
+      Height = 13
+      Caption = '00000'
+      Color = clBtnHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Transparent = True
+    end
+    object lbTpRelat: TLabel
+      Left = 16
+      Top = 13
+      Width = 82
+      Height = 28
+      Caption = 'Relat'#243'rios do'#13#10'Sistema'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+    object Shape2: TShape
+      Left = 9
+      Top = 9
+      Width = 462
+      Height = 37
+      Brush.Style = bsClear
+      Pen.Color = clSilver
+    end
+    object barra: TToolBar
+      Left = 154
+      Top = 11
+      Width = 279
+      Height = 33
+      Cursor = crHandPoint
+      Align = alNone
+      ButtonHeight = 33
+      ButtonWidth = 30
+      Color = clPurple
+      HotTrackColor = clSilver
+      Images = ImageList1
+      List = True
+      ParentColor = False
       ParentShowHint = False
       ShowHint = True
-      OnClick = btimprimirClick
+      TabOrder = 0
+      Transparent = True
+      object btimprimir: TToolButton
+        Left = 0
+        Top = 0
+        Hint = 'Imprimir Relat'#243'rio Atual'
+        Caption = 'btimprimir'
+        ImageIndex = 6
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btimprimirClick
+      end
+      object btEmail: TToolButton
+        Left = 30
+        Top = 0
+        Hint = 'Enviar para eMail!!!'
+        Caption = 'btEmail'
+        ImageIndex = 5
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btEmailClick
+      end
+      object btPDF: TToolButton
+        Left = 60
+        Top = 0
+        Hint = 'Exportar Relat'#243'rio para Arquivo PDF'
+        Caption = 'btPDF'
+        ImageIndex = 4
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btPDFClick
+      end
+      object btnovo: TToolButton
+        Left = 90
+        Top = 0
+        Hint = 'Novo Relat'#243'rio a partir do Atual'
+        Caption = 'btnovo'
+        Enabled = False
+        ImageIndex = 0
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btnovoClick
+      end
+      object btalterar: TToolButton
+        Left = 120
+        Top = 0
+        Hint = 'Alterar Relat'#243'rio'
+        Caption = 'btalterar'
+        Enabled = False
+        ImageIndex = 1
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btalterarClick
+      end
+      object btexcluir: TToolButton
+        Left = 150
+        Top = 0
+        Hint = 'Excluir Relat'#243'rio'
+        Caption = 'btexcluir'
+        Enabled = False
+        ImageIndex = 2
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btexcluirClick
+      end
+      object btsair: TToolButton
+        Left = 180
+        Top = 0
+        Hint = 'Sair'
+        Caption = 'btsair'
+        ImageIndex = 3
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = btsairClick
+      end
+      object ToolButton2: TToolButton
+        Left = 210
+        Top = 0
+        Caption = 'ToolButton2'
+        Enabled = False
+      end
+      object button5: TToolButton
+        Left = 240
+        Top = 0
+        Caption = 'button5'
+        Enabled = False
+      end
     end
-    object btEmail: TToolButton
-      Left = 30
-      Top = 0
-      Hint = 'Enviar para eMail!!!'
-      Caption = 'btEmail'
-      ImageIndex = 5
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btEmailClick
+    object btRelatsSistema: TXiButton
+      Left = 9
+      Top = 56
+      Width = 57
+      Height = 19
+      Cursor = crHandPoint
+      ColorFace = 14737632
+      ColorGrad = 3653375
+      ColorDark = 11447982
+      ColorLight = 16250871
+      ColorBorder = 6447714
+      ColorText = clBlack
+      OverColorFace = 13619151
+      OverColorGrad = clWhite
+      OverColorDark = 7960953
+      OverColorLight = 15658734
+      OverColorBorder = 7697781
+      OverColorText = clBlack
+      DownColorFace = 13882323
+      DownColorGrad = clWhite
+      DownColorDark = 15329769
+      DownColorLight = 8158332
+      DownColorBorder = 5131854
+      DownColorText = clBlack
+      DisabledColorFace = 14869218
+      DisabledColorGrad = clWhite
+      DisabledColorDark = 14211288
+      DisabledColorLight = 15395562
+      DisabledColorBorder = 12895428
+      DisabledColorText = clGray
+      ColorFocusRect = 9079434
+      ColorScheme = csSilver
+      Ctl3D = True
+      Layout = blGlyphLeft
+      Spacing = 4
+      TransparentGlyph = True
+      Gradient = False
+      HotTrack = True
+      Caption = 'Sistema'
+      TabOrder = 1
+      OnClick = btRelatsSistemaClick
     end
-    object btPDF: TToolButton
-      Left = 60
-      Top = 0
-      Hint = 'Exportar Relat'#243'rio para Arquivo PDF'
-      Caption = 'btPDF'
-      ImageIndex = 4
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btPDFClick
+    object btRelatsUsuario: TXiButton
+      Left = 66
+      Top = 56
+      Width = 57
+      Height = 19
+      Cursor = crHandPoint
+      ColorFace = clSilver
+      ColorGrad = 3653375
+      ColorDark = 11447982
+      ColorLight = 16250871
+      ColorBorder = 6447714
+      ColorText = clBlack
+      OverColorFace = 13619151
+      OverColorGrad = clWhite
+      OverColorDark = 7960953
+      OverColorLight = 15658734
+      OverColorBorder = 7697781
+      OverColorText = clBlack
+      DownColorFace = 13882323
+      DownColorGrad = clWhite
+      DownColorDark = 15329769
+      DownColorLight = 8158332
+      DownColorBorder = 5131854
+      DownColorText = clBlack
+      DisabledColorFace = 14869218
+      DisabledColorGrad = clWhite
+      DisabledColorDark = 14211288
+      DisabledColorLight = 15395562
+      DisabledColorBorder = 12895428
+      DisabledColorText = clGray
+      ColorFocusRect = 9079434
+      ColorScheme = csCustom
+      Ctl3D = True
+      Layout = blGlyphLeft
+      Spacing = 4
+      TransparentGlyph = True
+      Gradient = False
+      HotTrack = True
+      Caption = 'Usuario'
+      TabOrder = 2
+      OnClick = btRelatsSistemaClick
     end
-    object btnovo: TToolButton
-      Left = 90
-      Top = 0
-      Hint = 'Novo Relat'#243'rio a partir do Atual'
-      Caption = 'btnovo'
-      Enabled = False
-      ImageIndex = 0
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btnovoClick
-    end
-    object btalterar: TToolButton
-      Left = 120
-      Top = 0
-      Hint = 'Alterar Relat'#243'rio'
-      Caption = 'btalterar'
-      Enabled = False
-      ImageIndex = 1
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btalterarClick
-    end
-    object btexcluir: TToolButton
-      Left = 150
-      Top = 0
-      Hint = 'Excluir Relat'#243'rio'
-      Caption = 'btexcluir'
-      Enabled = False
-      ImageIndex = 2
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btexcluirClick
-    end
-    object btsair: TToolButton
-      Left = 180
-      Top = 0
-      Hint = 'Sair'
-      Caption = 'btsair'
-      ImageIndex = 3
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = btsairClick
-    end
-    object button5: TToolButton
-      Left = 210
-      Top = 0
-      Caption = 'button5'
-      Enabled = False
-    end
-    object ToolButton2: TToolButton
-      Left = 240
-      Top = 0
-      Caption = 'ToolButton2'
-      Enabled = False
+    object PageControl1: TPageControl
+      Left = 9
+      Top = 75
+      Width = 465
+      Height = 249
+      ActivePage = tbRelatsSistema
+      TabOrder = 3
+      object tbRelatsSistema: TTabSheet
+        Caption = 'Sistema'
+        object gridRelatsSistema: TDBGrid
+          Left = 0
+          Top = 0
+          Width = 457
+          Height = 221
+          Hint = 'DUPLO CLIQUE pra Imprimir o Relatorio'
+          Align = alClient
+          Ctl3D = False
+          DataSource = ds_relats
+          FixedColor = 16762447
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+          ParentCtl3D = False
+          ParentFont = False
+          ParentShowHint = False
+          ReadOnly = True
+          ShowHint = True
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWhite
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          OnDblClick = gridRelatsSistemaDblClick
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'num_relat'
+              Title.Alignment = taCenter
+              Title.Caption = 'N'#186
+              Width = 33
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'descricao'
+              Width = 417
+              Visible = True
+            end>
+        end
+      end
+      object tbRelatsUsuarios: TTabSheet
+        Caption = 'Usu'#225'rios'
+        ImageIndex = 1
+        ExplicitWidth = 458
+        object gridRelatsUsuario: TDBGrid
+          Left = 0
+          Top = 0
+          Width = 457
+          Height = 221
+          Hint = 'DUPLO CLIQUE pra Imprimir o Relatorio'
+          Align = alClient
+          Ctl3D = False
+          DataSource = ds_relats_usur
+          FixedColor = 15854564
+          Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+          ParentCtl3D = False
+          ParentShowHint = False
+          ReadOnly = True
+          ShowHint = True
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          OnDblClick = gridRelatsSistemaDblClick
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'num_relat'
+              Title.Alignment = taCenter
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWhite
+              Title.Font.Height = -11
+              Title.Font.Name = 'Tahoma'
+              Title.Font.Style = []
+              Width = 33
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'descricao'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWhite
+              Title.Font.Height = -11
+              Title.Font.Name = 'Tahoma'
+              Title.Font.Style = []
+              Width = 417
+              Visible = True
+            end>
+        end
+      end
     end
   end
   object ppDBPipeline1: TppDBPipeline
     DataSource = DataSource1
     SkipWhenNoRecords = False
     UserName = 'DBPipeline1'
-    Left = 380
-    Top = 83
+    Left = 284
+    Top = 171
     object ppDBPipeline1ppField1: TppField
       FieldAlias = 'data_recto'
       FieldName = 'data_recto'
@@ -21362,29 +21376,31 @@ object FRelatorios: TFRelatorios
     end
   end
   object DataSource1: TDataSource
-    Left = 412
-    Top = 83
+    Left = 316
+    Top = 171
   end
   object ds_relats: TDataSource
     DataSet = Relatorios_sis
-    Left = 200
-    Top = 156
+    OnDataChange = ds_relatsDataChange
+    Left = 64
+    Top = 228
   end
   object ds_relats_usur: TDataSource
     DataSet = relats_usur
-    Left = 248
-    Top = 156
+    OnDataChange = ds_relats_usurDataChange
+    Left = 112
+    Top = 228
   end
   object DataSource2: TDataSource
-    Left = 412
-    Top = 112
+    Left = 316
+    Top = 208
   end
   object ppDBPipeline2: TppDBPipeline
     DataSource = DataSource2
     SkipWhenNoRecords = False
     UserName = 'DBPipeline2'
-    Left = 380
-    Top = 112
+    Left = 284
+    Top = 208
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppDBPipeline2ppField1: TppField
       FieldAlias = 'data_pagto'
@@ -21444,8 +21460,8 @@ object FRelatorios: TFRelatorios
     DataSource = DataSource3
     SkipWhenNoRecords = False
     UserName = 'DBPipeline3'
-    Left = 380
-    Top = 141
+    Left = 284
+    Top = 237
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppDBPipeline3ppField1: TppField
       Alignment = taRightJustify
@@ -21471,14 +21487,14 @@ object FRelatorios: TFRelatorios
     end
   end
   object DataSource3: TDataSource
-    Left = 412
-    Top = 141
+    Left = 316
+    Top = 237
   end
   object ppDBPipeline4: TppDBPipeline
     DataSource = DataSource4
     UserName = 'DBPipeline4'
-    Left = 380
-    Top = 173
+    Left = 284
+    Top = 269
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppDBPipeline4ppField1: TppField
       FieldAlias = 'cod_condicao'
@@ -21518,14 +21534,14 @@ object FRelatorios: TFRelatorios
     end
   end
   object DataSource4: TDataSource
-    Left = 412
-    Top = 173
+    Left = 316
+    Top = 269
   end
   object ppDBPipeline5: TppDBPipeline
     DataSource = DataSource5
     UserName = 'DBPipeline5'
     Left = 380
-    Top = 205
+    Top = 149
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppDBPipeline5ppField1: TppField
       FieldAlias = 'cod_condicao'
@@ -21586,7 +21602,7 @@ object FRelatorios: TFRelatorios
   end
   object DataSource5: TDataSource
     Left = 412
-    Top = 205
+    Top = 149
   end
   object Relatorios_sis: TClientDataSet
     Aggregates = <>
@@ -21618,9 +21634,8 @@ object FRelatorios: TFRelatorios
     IndexFieldNames = 'num_relat'
     Params = <>
     StoreDefs = True
-    AfterScroll = Relatorios_sisAfterScroll
-    Left = 168
-    Top = 156
+    Left = 32
+    Top = 228
     object Relatorios_sistela: TStringField
       FieldName = 'tela'
       Origin = 'DBSISFAB.relatorios_sistema.tela'
@@ -21652,9 +21667,8 @@ object FRelatorios: TFRelatorios
     IndexFieldNames = 'num_relat'
     Params = <>
     StoreDefs = True
-    AfterScroll = Relatorios_sisAfterScroll
-    Left = 224
-    Top = 156
+    Left = 88
+    Top = 228
     object relats_usurTela: TStringField
       FieldName = 'tela'
       Origin = 'DBSISFAB.relatorios_sistema.tela'
@@ -21680,7 +21694,7 @@ object FRelatorios: TFRelatorios
     DataSource = DataSource6
     UserName = 'DBPipeline6'
     Left = 380
-    Top = 237
+    Top = 181
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppField2: TppField
       FieldAlias = 'cod_condicao'
@@ -21741,13 +21755,13 @@ object FRelatorios: TFRelatorios
   end
   object DataSource6: TDataSource
     Left = 412
-    Top = 237
+    Top = 181
   end
   object ppDBPipeline7: TppDBPipeline
     DataSource = DataSource7
     UserName = 'DBPipeline7'
     Left = 380
-    Top = 269
+    Top = 213
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppField7: TppField
       FieldAlias = 'cod_condicao'
@@ -21814,7 +21828,7 @@ object FRelatorios: TFRelatorios
   end
   object DataSource7: TDataSource
     Left = 412
-    Top = 269
+    Top = 213
   end
   object ppReport1: TppReport
     AutoStop = False
@@ -21880,8 +21894,8 @@ object FRelatorios: TFRelatorios
     XLSSettings.Subject = 'Report'
     XLSSettings.Title = 'Report'
     XLSSettings.WorksheetName = 'Report'
-    Left = 412
-    Top = 42
+    Left = 316
+    Top = 138
     Version = '17.02'
     mmColumnWidth = 0
     DataPipelineName = 'ppDBPipeline1'
@@ -21933,14 +21947,14 @@ object FRelatorios: TFRelatorios
     WindowTop = 50
     WindowWidth = 600
     WindowState = wsMaximized
-    Left = 380
-    Top = 42
+    Left = 284
+    Top = 138
   end
   object ppDBPipeline8: TppDBPipeline
     DataSource = DataSource8
     UserName = 'DBPipeline8'
     Left = 380
-    Top = 301
+    Top = 245
     MasterDataPipelineName = 'ppDBPipeline1'
     object ppField1: TppField
       FieldAlias = 'cod_condicao'
@@ -22007,7 +22021,7 @@ object FRelatorios: TFRelatorios
   end
   object DataSource8: TDataSource
     Left = 412
-    Top = 301
+    Top = 245
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = 'PDF'
@@ -22016,8 +22030,8 @@ object FRelatorios: TFRelatorios
     Top = 353
   end
   object popEnvioEmail: TPopupMenu
-    Left = 280
-    Top = 45
+    Left = 152
+    Top = 142
     object EnviarporEmail1: TMenuItem
       Caption = 'Enviar por Email...'
       OnClick = EnviarporEmail1Click
@@ -22031,13 +22045,13 @@ object FRelatorios: TFRelatorios
   end
   object DataSource9: TDataSource
     Left = 412
-    Top = 333
+    Top = 277
   end
   object ppDBPipeline9: TppDBPipeline
     DataSource = DataSource9
     UserName = 'DBPipeline9'
     Left = 380
-    Top = 333
+    Top = 277
     object ppField16: TppField
       FieldAlias = 'cod_condicao'
       FieldName = 'cod_condicao'
@@ -22196,14 +22210,14 @@ object FRelatorios: TFRelatorios
   end
   object q_aux: TFDQuery
     Connection = DModule.FDConnection
-    Left = 196
-    Top = 241
+    Left = 124
+    Top = 142
   end
   object ImageList1: TImageList
-    Left = 308
-    Top = 49
+    Left = 180
+    Top = 142
     Bitmap = {
-      494C010107003C001C0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107003C00200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

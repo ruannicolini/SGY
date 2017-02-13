@@ -126,6 +126,7 @@ type
     Image1: TImage;
     q_aux: TFDQuery;
     ImageList1: TImageList;
+    Panel1: TPanel;
     procedure btalterarClick(Sender: TObject);
     procedure btnovoClick(Sender: TObject);
     procedure btexcluirClick(Sender: TObject);
@@ -135,11 +136,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure gridRelatsSistemaDblClick(Sender: TObject);
-    procedure Relatorios_sisAfterScroll(DataSet: TDataSet);
     procedure btEmailClick(Sender: TObject);
     procedure btRelatsSistemaClick(Sender: TObject);
     procedure EnviarporEmail1Click(Sender: TObject);
     procedure btPDFClick(Sender: TObject);
+    procedure ds_relats_usurDataChange(Sender: TObject; Field: TField);
+    procedure ds_relatsDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
     RelatsAtual : Short;
@@ -442,11 +444,6 @@ begin
   end;
 end;
 
-procedure TFRelatorios.Relatorios_sisAfterScroll(DataSet: TDataSet);
-begin
-  lbRelatAtual.Caption := DataSet.FieldByName('descricao').AsString;
-end;
-
 function TFRelatorios.PegaNomeRelat(Arq: String): String;
 var i  : Short;
     s  : String;
@@ -650,6 +647,16 @@ begin
   FindClose( SearchRec );
   ADirList.Sort;
 
+end;
+
+procedure TFRelatorios.ds_relatsDataChange(Sender: TObject; Field: TField);
+begin
+  lbRelatAtual.Caption := ds_relats.DataSet.FieldByName('descricao').AsString;
+end;
+
+procedure TFRelatorios.ds_relats_usurDataChange(Sender: TObject; Field: TField);
+begin
+  lbRelatAtual.Caption := ds_relats_usur.DataSet.FieldByName('descricao').AsString;
 end;
 
 Initialization
