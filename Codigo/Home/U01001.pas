@@ -49,7 +49,6 @@ type
     cxDBMaskEdit1: TcxDBMaskEdit;
     Label6: TLabel;
     cxDBMaskEdit2: TcxDBMaskEdit;
-    cxDBCheckBox1: TcxDBCheckBox;
     cxGroupBox1: TcxGroupBox;
     Label12: TLabel;
     cxDBMaskEdit3: TcxDBMaskEdit;
@@ -112,7 +111,6 @@ type
     FDQuery1fumante: TBooleanField;
     FDQuery1consomeBebidaAlcoolica: TBooleanField;
     FDQuery1dataCadastro: TDateField;
-    FDQuery1ativo: TBooleanField;
     FDQuery1cpf: TStringField;
     FDQuery1foto: TBlobField;
     FDQuery1informacaoAdicional: TStringField;
@@ -143,7 +141,6 @@ type
     ClientDataSet1fumante: TBooleanField;
     ClientDataSet1consomeBebidaAlcoolica: TBooleanField;
     ClientDataSet1dataCadastro: TDateField;
-    ClientDataSet1ativo: TBooleanField;
     ClientDataSet1cpf: TStringField;
     ClientDataSet1foto: TBlobField;
     ClientDataSet1informacaoAdicional: TStringField;
@@ -423,6 +420,7 @@ type
     procedure DSSerieDataChange(Sender: TObject; Field: TField);
     procedure DSModalidadeDataChange(Sender: TObject; Field: TField);
     procedure btnImportarFichaClick(Sender: TObject);
+    procedure DSStateChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -499,7 +497,8 @@ procedure TF01001.BSalvarClick(Sender: TObject);
 VAR
   aDest : TBitmap;
 begin
-  //
+
+  // SALVA FOTO DO ALUNO
   IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
   BEGIN
     aDest:= tbitmap.create;
@@ -510,6 +509,7 @@ begin
     ClientDataSet1foto.Assign(aDest);
   END;
 
+  //CONFIRMA ALTERAÇÃO NO DADO
   inherited;
 
   //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
@@ -1006,6 +1006,18 @@ begin
   END;
 end;
 
+procedure TF01001.DSStateChange(Sender: TObject);
+begin
+  inherited;
+  if (ds.DataSet.State = dsInsert) then
+  begin
+    cxDBCheckBox2.Checked := false;
+    cxDBCheckBox3.Checked := false;
+    cxDBCheckBox4.Checked := false;
+    cxDBCheckBox5.Checked := false;
+  end;
+end;
+
 procedure TF01001.EditBExercicioButtonClick(Sender: TObject;
   var query_result: TFDQuery);
 begin
@@ -1136,7 +1148,8 @@ begin
   DSPAtologia.DataSet.Close;
   DSPAtologia.DataSet.Open;
 
-
+  edit1.Clear;
+  EditBeleza1.Clear;
 end;
 
 procedure TF01001.SpeedButton2Click(Sender: TObject);

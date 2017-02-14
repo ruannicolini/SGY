@@ -42,6 +42,7 @@ type
     procedure btnUsuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure bntBackUpClick(Sender: TObject);
+    procedure btnFichaClick(Sender: TObject);
   private
     // Rotina de backup
     procedure ExecutaBackupBD();
@@ -91,6 +92,11 @@ begin
   CriarForm('F01006', 'Exercício');
 end;
 
+procedure TFPrincipal.btnFichaClick(Sender: TObject);
+begin
+  CriarForm('F01005', 'Ficha');
+end;
+
 procedure TFPrincipal.btnGrupoClick(Sender: TObject);
 begin
   CriarForm('F01004', 'Grupo de Exercício');
@@ -98,7 +104,7 @@ end;
 
 procedure TFPrincipal.btnPagamentoClick(Sender: TObject);
 begin
-  CriarForm('F01005', 'Pagamento');
+  CriarForm('F01002', 'Pagamento');
 end;
 
 procedure TFPrincipal.btnPatologiasClick(Sender: TObject);

@@ -2,8 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
-  ExplicitLeft = -58
-  ExplicitTop = -365
+  ExplicitLeft = -83
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -49,7 +48,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
-          Properties.ActivePage = pag3
+          Properties.ActivePage = pag1
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -394,26 +393,18 @@
                 TabOrder = 11
                 Width = 193
               end
-              object cxDBCheckBox1: TcxDBCheckBox
-                Left = 564
-                Top = 25
-                Caption = 'ATIVO'
-                DataBinding.DataField = 'ativo'
-                DataBinding.DataSource = DS
-                TabOrder = 12
-                Width = 61
-              end
             end
           end
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
+            ExplicitTop = 3
             object cxGroupBox3: TcxGroupBox
               Left = 16
               Top = 0
               TabOrder = 0
               Height = 237
-              Width = 794
+              Width = 638
               object Label15: TLabel
                 Left = 171
                 Top = 20
@@ -423,7 +414,7 @@
                 Caption = 'PESO'
               end
               object Label16: TLabel
-                Left = 295
+                Left = 325
                 Top = 20
                 Width = 46
                 Height = 16
@@ -431,7 +422,7 @@
                 Caption = 'ALTURA'
               end
               object Label17: TLabel
-                Left = 419
+                Left = 479
                 Top = 20
                 Width = 22
                 Height = 16
@@ -473,6 +464,7 @@
                 Top = 41
                 DataBinding.DataField = 'qtdRefeicoesDia'
                 DataBinding.DataSource = DS
+                Properties.MinValue = 1.000000000000000000
                 TabOrder = 0
                 Width = 140
               end
@@ -481,44 +473,45 @@
                 Top = 94
                 DataBinding.DataField = 'qtdHorasSono'
                 DataBinding.DataSource = DS
+                Properties.MinValue = 1.000000000000000000
                 TabOrder = 1
                 Width = 140
               end
               object cxDBCheckBox2: TcxDBCheckBox
-                Left = 409
+                Left = 491
                 Top = 163
                 Caption = 'SUPLEMENTA'#199#195'O'
                 DataBinding.DataField = 'suplementacao'
                 DataBinding.DataSource = DS
                 TabOrder = 2
-                Width = 131
+                Width = 134
               end
               object cxDBCheckBox3: TcxDBCheckBox
-                Left = 409
+                Left = 491
                 Top = 144
                 Caption = 'DIETA'
                 DataBinding.DataField = 'dieta'
                 DataBinding.DataSource = DS
                 TabOrder = 3
-                Width = 59
+                Width = 134
               end
               object cxDBCheckBox4: TcxDBCheckBox
-                Left = 409
+                Left = 491
                 Top = 182
                 Caption = 'FUMANTE'
                 DataBinding.DataField = 'fumante'
                 DataBinding.DataSource = DS
                 TabOrder = 4
-                Width = 121
+                Width = 134
               end
               object cxDBCheckBox5: TcxDBCheckBox
-                Left = 409
+                Left = 491
                 Top = 200
                 Caption = 'USO B. ALC'#211'OLICA'
                 DataBinding.DataField = 'consomeBebidaAlcoolica'
                 DataBinding.DataSource = DS
                 TabOrder = 5
-                Width = 172
+                Width = 134
               end
               object cxDBMemo1: TcxDBMemo
                 Left = 16
@@ -527,20 +520,20 @@
                 DataBinding.DataSource = DS
                 TabOrder = 6
                 Height = 73
-                Width = 387
+                Width = 469
               end
               object cxDBSpinEdit6: TcxDBSpinEdit
-                Left = 295
+                Left = 325
                 Top = 41
                 DataBinding.DataField = 'altura'
                 DataBinding.DataSource = DS
-                Properties.AssignedValues.MinValue = True
                 Properties.DisplayFormat = '0.00'
                 Properties.EditFormat = '0.00'
                 Properties.MaxValue = 3.000000000000000000
+                Properties.MinValue = 1.000000000000000000
                 Properties.ValueType = vtFloat
                 TabOrder = 7
-                Width = 122
+                Width = 140
               end
               object cxDBSpinEdit7: TcxDBSpinEdit
                 Left = 171
@@ -548,23 +541,23 @@
                 DataBinding.DataField = 'peso'
                 DataBinding.DataSource = DS
                 Properties.AssignedValues.MaxValue = True
-                Properties.AssignedValues.MinValue = True
                 Properties.DisplayFormat = '#.##'
                 Properties.EditFormat = '#.##'
+                Properties.MinValue = 1.000000000000000000
                 Properties.Nullstring = '0'
                 Properties.ValueType = vtFloat
                 TabOrder = 8
-                Width = 122
+                Width = 140
               end
               object cxDBMaskEdit6: TcxDBMaskEdit
-                Left = 419
+                Left = 479
                 Top = 41
                 DataBinding.DataField = 'IMC'
                 DataBinding.DataSource = DS
                 Properties.EditMask = '99,99;1'
                 Properties.ReadOnly = True
                 TabOrder = 9
-                Width = 122
+                Width = 140
               end
               object DBEdit2: TDBEdit
                 Left = 171
@@ -585,7 +578,7 @@
               object DBEditBeleza1: TDBEditBeleza
                 Left = 195
                 Top = 96
-                Width = 345
+                Width = 424
                 Height = 21
                 Color = 15132390
                 DataField = 'DESCRICAOOBJETIVO'
@@ -624,7 +617,7 @@
               Style.Edges = [bLeft, bTop, bRight, bBottom]
               TabOrder = 1
               Height = 315
-              Width = 794
+              Width = 638
               object cxGroupBox5: TcxGroupBox
                 AlignWithMargins = True
                 Left = 5
@@ -687,11 +680,11 @@
                 Caption = 'OBSERVA'#199#213'ES M'#201'DICAS'
                 TabOrder = 1
                 Height = 238
-                Width = 593
+                Width = 437
                 object Panel3: TPanel
                   Left = 2
                   Top = 209
-                  Width = 589
+                  Width = 433
                   Height = 27
                   Align = alBottom
                   BevelOuter = bvNone
@@ -699,7 +692,7 @@
                   ParentBackground = False
                   TabOrder = 0
                   object BTNALTERAR: TSpeedButton
-                    Left = 414
+                    Left = 258
                     Top = 0
                     Width = 175
                     Height = 27
@@ -729,7 +722,7 @@
                   Properties.ReadOnly = True
                   TabOrder = 1
                   Height = 188
-                  Width = 589
+                  Width = 433
                 end
               end
               object cxGroupBox7: TcxGroupBox
@@ -740,10 +733,10 @@
                 Align = alTop
                 TabOrder = 2
                 Height = 45
-                Width = 784
+                Width = 628
                 object SpeedButton1: TSpeedButton
                   AlignWithMargins = True
-                  Left = 716
+                  Left = 560
                   Top = 14
                   Width = 63
                   Height = 25
@@ -772,7 +765,7 @@
                 object EditBeleza1: TEditBeleza
                   Left = 35
                   Top = 16
-                  Width = 438
+                  Width = 523
                   Height = 21
                   Color = 15461355
                   Font.Charset = DEFAULT_CHARSET
@@ -803,8 +796,6 @@
           object pag3: TcxTabSheet
             Caption = 'FICHA DE EXERCICIOS'
             ImageIndex = 2
-            ExplicitLeft = -280
-            ExplicitTop = -33
             object cxGroupBox10: TcxGroupBox
               Left = 16
               Top = 0
@@ -1096,8 +1087,10 @@
                   BloquearExportacoes = False
                   Columns = <
                     item
+                      Alignment = taCenter
                       Expanded = False
                       FieldName = 'descricaoTreino'
+                      Title.Alignment = taCenter
                       Title.Caption = 'TREINO'
                       Width = 50
                       Visible = True
@@ -1967,11 +1960,6 @@
       Origin = 'dataCadastro'
       ProviderFlags = [pfInUpdate]
     end
-    object ClientDataSet1ativo: TBooleanField
-      FieldName = 'ativo'
-      Origin = 'ativo'
-      ProviderFlags = [pfInUpdate]
-    end
     object ClientDataSet1cpf: TStringField
       FieldName = 'cpf'
       Origin = 'cpf'
@@ -2187,12 +2175,6 @@
       Origin = 'dataCadastro'
       ProviderFlags = [pfInUpdate]
     end
-    object FDQuery1ativo: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'ativo'
-      Origin = 'ativo'
-      ProviderFlags = [pfInUpdate]
-    end
     object FDQuery1cpf: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cpf'
@@ -2235,7 +2217,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C003C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00400210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2958,7 +2940,6 @@
     Top = 466
   end
   object CDSSerie: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pSerie'
