@@ -2,7 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
-  ExplicitLeft = -83
+  ExplicitTop = -47
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -48,7 +48,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
-          Properties.ActivePage = pag1
+          Properties.ActivePage = pag3
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -398,7 +398,6 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
-            ExplicitTop = 3
             object cxGroupBox3: TcxGroupBox
               Left = 16
               Top = 0
@@ -590,6 +589,7 @@
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 11
+                OnKeyPress = EditBTreinoKeyPress
                 Ativar_Pesquisa = True
                 mostrar_Botao = True
                 sql.Strings = (
@@ -775,6 +775,7 @@
                   Font.Style = []
                   ParentFont = False
                   TabOrder = 1
+                  OnKeyPress = EditBTreinoKeyPress
                   Ativar_Pesquisa = True
                   Ativar_MultiSelecao = False
                   mostrar_Botao = True
@@ -898,7 +899,7 @@
                   object EditBTreino: TEditBeleza
                     Left = 41
                     Top = 33
-                    Width = 74
+                    Width = 75
                     Height = 21
                     Color = 15461355
                     Font.Charset = DEFAULT_CHARSET
@@ -908,6 +909,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 1
+                    OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
                     mostrar_Botao = True
@@ -967,6 +969,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 4
+                    OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
                     mostrar_Botao = True
@@ -1000,7 +1003,7 @@
                   object EditBExercicio: TEditBeleza
                     Left = 340
                     Top = 33
-                    Width = 180
+                    Width = 182
                     Height = 21
                     Color = 15461355
                     Enabled = False
@@ -1011,6 +1014,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 6
+                    OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
                     mostrar_Botao = True
@@ -1255,6 +1259,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 1
+                    OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
                     mostrar_Botao = True
@@ -2217,7 +2222,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00400210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00440210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3318,7 +3323,7 @@
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42779.735011747700000000
+    ReportOptions.CreateDate = 42779.735011747710000000
     ReportOptions.LastChange = 42780.602629537000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (

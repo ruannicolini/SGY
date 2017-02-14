@@ -1,10 +1,15 @@
 inherited F01008: TF01008
   Caption = 'F01008'
-  ExplicitLeft = 8
+  ExplicitWidth = 834
+  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited grDados: TGroupBox
         object Label1: TLabel
           Left = 16
@@ -106,6 +111,7 @@ inherited F01008: TF01008
           Font.Style = []
           ParentFont = False
           TabOrder = 5
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -123,6 +129,10 @@ inherited F01008: TF01008
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited DBGridBeleza1: TDBGridBeleza
         Columns = <
           item
@@ -241,7 +251,7 @@ inherited F01008: TF01008
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00A80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00AC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

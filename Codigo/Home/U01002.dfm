@@ -157,6 +157,7 @@ inherited F01002: TF01002
           ParentFont = False
           ReadOnly = True
           TabOrder = 6
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -188,6 +189,7 @@ inherited F01002: TF01002
           ParentFont = False
           ReadOnly = True
           TabOrder = 7
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -253,6 +255,7 @@ inherited F01002: TF01002
           ParentFont = False
           ReadOnly = True
           TabOrder = 11
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -680,7 +683,7 @@ inherited F01002: TF01002
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00A40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00A80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

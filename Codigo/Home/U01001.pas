@@ -421,6 +421,7 @@ type
     procedure DSModalidadeDataChange(Sender: TObject; Field: TField);
     procedure btnImportarFichaClick(Sender: TObject);
     procedure DSStateChange(Sender: TObject);
+    procedure EditBTreinoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -1031,6 +1032,19 @@ procedure TF01001.editBModalidadeButtonClick(Sender: TObject;
 begin
   inherited;
   query_result.ParamByName('idA').Value := (ClientDataSet1idAluno.AsInteger);
+end;
+
+procedure TF01001.EditBTreinoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+
+  //Silencia a tecla enter no Windows
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
+
 end;
 
 procedure TF01001.EditgrupoChange(Sender: TObject);

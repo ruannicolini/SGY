@@ -40,6 +40,7 @@ type
     DBEditBeleza1: TDBEditBeleza;
     DBEditBeleza2: TDBEditBeleza;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
+    procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -57,6 +58,17 @@ procedure TF01006.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
   inherited;
   ClientDataSet1idExercicio.AsInteger := DModule.buscaProximoParametro('exercicio');
+end;
+
+procedure TF01006.DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //SILENCIA O BARULHO DO WIDOWS AL CLICAR NO ENTER
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
 end;
 
 Initialization

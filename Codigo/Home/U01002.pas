@@ -85,6 +85,7 @@ type
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -255,6 +256,17 @@ begin
             valorC.Enabled := false;
           end;
       end;
+  end;
+end;
+
+procedure TF01002.DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //SILENCIA O BARULHO DO WIDOWS AL CLICAR NO ENTER
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
   end;
 end;
 

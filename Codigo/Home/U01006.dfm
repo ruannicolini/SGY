@@ -1,9 +1,15 @@
 inherited F01006: TF01006
   Caption = 'F01006'
+  ExplicitWidth = 834
+  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited grDados: TGroupBox
         object Label1: TLabel
           Left = 24
@@ -81,7 +87,7 @@ inherited F01006: TF01006
           Top = 129
           Width = 50
           Height = 21
-          Color = 13361867
+          Color = 15461355
           DataField = 'idEquipamento'
           DataSource = DS
           ReadOnly = True
@@ -92,7 +98,7 @@ inherited F01006: TF01006
           Top = 172
           Width = 50
           Height = 21
-          Color = 13361867
+          Color = 15461355
           DataField = 'idGrupoExercicio'
           DataSource = DS
           ReadOnly = True
@@ -103,7 +109,7 @@ inherited F01006: TF01006
           Top = 129
           Width = 319
           Height = 21
-          Color = 13361867
+          Color = 15461355
           DataField = 'descricaoEquipamento'
           DataSource = DS
           Font.Charset = DEFAULT_CHARSET
@@ -113,6 +119,7 @@ inherited F01006: TF01006
           Font.Style = []
           ParentFont = False
           TabOrder = 4
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -132,7 +139,7 @@ inherited F01006: TF01006
           Top = 172
           Width = 319
           Height = 21
-          Color = 13361867
+          Color = 15461355
           DataField = 'descricaoGrupoExercicio'
           DataSource = DS
           Font.Charset = DEFAULT_CHARSET
@@ -142,6 +149,7 @@ inherited F01006: TF01006
           Font.Style = []
           ParentFont = False
           TabOrder = 5
+          OnKeyPress = DBEditBeleza1KeyPress
           Ativar_Pesquisa = True
           mostrar_Botao = True
           sql.Strings = (
@@ -159,6 +167,10 @@ inherited F01006: TF01006
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited DBGridBeleza1: TDBGridBeleza
         Columns = <
           item
@@ -282,7 +294,7 @@ inherited F01006: TF01006
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00A80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00AC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
