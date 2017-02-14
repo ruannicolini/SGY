@@ -18,7 +18,8 @@ uses
   U01010 in 'Home\U01010.pas' {F01010},
   U01011 in 'Home\U01011.pas' {F01011},
   U01009 in 'Home\U01009.pas' {F01009},
-  u_relatorios in 'u_relatorios.pas' {FRelatorios};
+  u_relatorios in 'u_relatorios.pas' {FRelatorios},
+  U01005 in 'Home\U01005.pas' {F01005};
 
 {$R *.res}
 

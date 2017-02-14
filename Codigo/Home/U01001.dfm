@@ -803,6 +803,8 @@
           object pag3: TcxTabSheet
             Caption = 'FICHA DE EXERCICIOS'
             ImageIndex = 2
+            ExplicitLeft = -280
+            ExplicitTop = -33
             object cxGroupBox10: TcxGroupBox
               Left = 16
               Top = 0
@@ -845,7 +847,7 @@
                   Height = 70
                   Width = 786
                   object SpeedButton2: TSpeedButton
-                    Left = 706
+                    Left = 704
                     Top = 15
                     Width = 71
                     Height = 40
@@ -1111,7 +1113,7 @@
                       Expanded = False
                       FieldName = 'nomeExercicio'
                       Title.Caption = 'EXERCICIO'
-                      Width = 364
+                      Width = 345
                       Visible = True
                     end
                     item
@@ -1128,6 +1130,7 @@
                       FieldName = 'qtdRepeticao'
                       Title.Alignment = taCenter
                       Title.Caption = 'REPETI'#199#213'ES'
+                      Width = 84
                       Visible = True
                     end>
                 end
@@ -1161,12 +1164,13 @@
                   OnClick = btnLimparFichaClick
                 end
                 object btnImportarFicha: TSpeedButton
-                  Left = 325
+                  Left = 321
                   Top = 3
                   Width = 151
                   Height = 30
                   Align = alCustom
                   Caption = 'IMPORTAR'
+                  OnClick = btnImportarFichaClick
                 end
               end
             end
@@ -1816,7 +1820,6 @@
     Top = 336
   end
   inherited ClientDataSet1: TClientDataSet
-    Active = True
     OnCalcFields = ClientDataSet1CalcFields
     Left = 696
     Top = 336
@@ -3335,13 +3338,13 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42779.735011747700000000
-    ReportOptions.LastChange = 42780.580803726850000000
+    ReportOptions.LastChange = 42780.602629537000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 414
+    Left = 94
     Top = 650
     Datasets = <
       item
@@ -3432,7 +3435,7 @@
           Frame.Width = 0.100000000000000000
           Fill.BackColor = clWhite
           Memo.UTF8W = (
-            ' INICIO DA FICHA: [frxDBDataset1."dataNascimento"]')
+            ' INICIO DA FICHA: [frxDBDataset1."dataComposicaoFicha"]')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -3576,9 +3579,9 @@
   object frxDBDataset1: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
-    DataSource = DS
+    DataSource = DSRelFicha
     BCDToCurrency = False
-    Left = 494
+    Left = 118
     Top = 650
   end
   object frxDBDataset2: TfrxDBDataset
@@ -3586,11 +3589,11 @@
     CloseDataSource = False
     DataSource = DSSerie
     BCDToCurrency = False
-    Left = 550
+    Left = 142
     Top = 650
   end
   object frxGradientObject1: TfrxGradientObject
-    Left = 614
+    Left = 166
     Top = 650
   end
   object frxPDFExport1: TfrxPDFExport
@@ -3612,7 +3615,338 @@
     FitWindow = False
     CenterWindow = False
     PrintScaling = False
-    Left = 646
+    Left = 190
     Top = 650
+  end
+  object DSRelFicha: TDataSource
+    DataSet = CDSRelFicha
+    Left = 358
+    Top = 642
+  end
+  object qRelFicha: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      'SELECT a.*, OBJ.DESCRICAOOBJETIVO FROM ALUNO A'
+      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+      'WHERE A.IDALUNO =:IDA')
+    Left = 262
+    Top = 642
+    ParamData = <
+      item
+        Name = 'IDA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qRelFichaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qRelFichanomeAluno: TStringField
+      FieldName = 'nomeAluno'
+      Origin = 'nomeAluno'
+      Required = True
+      Size = 80
+    end
+    object qRelFichaidade: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idade'
+      Origin = 'idade'
+    end
+    object qRelFichadataNascimento: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'dataNascimento'
+      Origin = 'dataNascimento'
+    end
+    object qRelFichaemail: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 60
+    end
+    object qRelFichasexo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'sexo'
+      Origin = 'sexo'
+      FixedChar = True
+      Size = 1
+    end
+    object qRelFichacidade: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 50
+    end
+    object qRelFichabairro: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 50
+    end
+    object qRelFicharua: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rua'
+      Origin = 'rua'
+      Size = 50
+    end
+    object qRelFichanumero: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'numero'
+      Origin = 'numero'
+    end
+    object qRelFichacep: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'cep'
+      Origin = 'cep'
+    end
+    object qRelFichatel1: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tel1'
+      Origin = 'tel1'
+      Size = 50
+    end
+    object qRelFichatel2: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tel2'
+      Origin = 'tel2'
+      Size = 50
+    end
+    object qRelFichanomeResponsavel: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeResponsavel'
+      Origin = 'nomeResponsavel'
+      Size = 80
+    end
+    object qRelFichaparentescoResponsavel: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'parentescoResponsavel'
+      Origin = 'parentescoResponsavel'
+      Size = 50
+    end
+    object qRelFichatelResponsavel: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'telResponsavel'
+      Origin = 'telResponsavel'
+      Size = 50
+    end
+    object qRelFichapeso: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'peso'
+      Origin = 'peso'
+    end
+    object qRelFichaaltura: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'altura'
+      Origin = 'altura'
+    end
+    object qRelFichafrequenciaAtividadeFisica: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'frequenciaAtividadeFisica'
+      Origin = 'frequenciaAtividadeFisica'
+    end
+    object qRelFichaqtdRefeicoesDia: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
+    end
+    object qRelFichaqtdHorasSono: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
+    end
+    object qRelFichasuplementacao: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'suplementacao'
+      Origin = 'suplementacao'
+    end
+    object qRelFichadieta: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'dieta'
+      Origin = 'dieta'
+    end
+    object qRelFichafumante: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'fumante'
+      Origin = 'fumante'
+    end
+    object qRelFichaconsomeBebidaAlcoolica: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'consomeBebidaAlcoolica'
+      Origin = 'consomeBebidaAlcoolica'
+    end
+    object qRelFichadataCadastro: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'dataCadastro'
+      Origin = 'dataCadastro'
+    end
+    object qRelFichaativo: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'ativo'
+      Origin = 'ativo'
+    end
+    object qRelFichacpf: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 50
+    end
+    object qRelFichafoto: TBlobField
+      AutoGenerateValue = arDefault
+      FieldName = 'foto'
+      Origin = 'foto'
+    end
+    object qRelFichainformacaoAdicional: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
+      Size = 200
+    end
+    object qRelFichaidObjetivo: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
+    end
+    object qRelFichadataComposicaoFicha: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'dataComposicaoFicha'
+      Origin = 'dataComposicaoFicha'
+    end
+    object qRelFichaDESCRICAOOBJETIVO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAOOBJETIVO'
+      Origin = 'descricaoObjetivo'
+      Size = 50
+    end
+  end
+  object pRelFicha: TDataSetProvider
+    DataSet = qRelFicha
+    Left = 294
+    Top = 642
+  end
+  object CDSRelFicha: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pRelFicha'
+    Left = 326
+    Top = 642
+    object CDSRelFichaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSRelFichanomeAluno: TStringField
+      FieldName = 'nomeAluno'
+      Required = True
+      Size = 80
+    end
+    object CDSRelFichaidade: TIntegerField
+      FieldName = 'idade'
+    end
+    object CDSRelFichadataNascimento: TDateField
+      FieldName = 'dataNascimento'
+    end
+    object CDSRelFichaemail: TStringField
+      FieldName = 'email'
+      Size = 60
+    end
+    object CDSRelFichasexo: TStringField
+      FieldName = 'sexo'
+      FixedChar = True
+      Size = 1
+    end
+    object CDSRelFichacidade: TStringField
+      FieldName = 'cidade'
+      Size = 50
+    end
+    object CDSRelFichabairro: TStringField
+      FieldName = 'bairro'
+      Size = 50
+    end
+    object CDSRelFicharua: TStringField
+      FieldName = 'rua'
+      Size = 50
+    end
+    object CDSRelFichanumero: TIntegerField
+      FieldName = 'numero'
+    end
+    object CDSRelFichacep: TIntegerField
+      FieldName = 'cep'
+    end
+    object CDSRelFichatel1: TStringField
+      FieldName = 'tel1'
+      Size = 50
+    end
+    object CDSRelFichatel2: TStringField
+      FieldName = 'tel2'
+      Size = 50
+    end
+    object CDSRelFichanomeResponsavel: TStringField
+      FieldName = 'nomeResponsavel'
+      Size = 80
+    end
+    object CDSRelFichaparentescoResponsavel: TStringField
+      FieldName = 'parentescoResponsavel'
+      Size = 50
+    end
+    object CDSRelFichatelResponsavel: TStringField
+      FieldName = 'telResponsavel'
+      Size = 50
+    end
+    object CDSRelFichapeso: TSingleField
+      FieldName = 'peso'
+    end
+    object CDSRelFichaaltura: TSingleField
+      FieldName = 'altura'
+    end
+    object CDSRelFichafrequenciaAtividadeFisica: TIntegerField
+      FieldName = 'frequenciaAtividadeFisica'
+    end
+    object CDSRelFichaqtdRefeicoesDia: TIntegerField
+      FieldName = 'qtdRefeicoesDia'
+    end
+    object CDSRelFichaqtdHorasSono: TIntegerField
+      FieldName = 'qtdHorasSono'
+    end
+    object CDSRelFichasuplementacao: TBooleanField
+      FieldName = 'suplementacao'
+    end
+    object CDSRelFichadieta: TBooleanField
+      FieldName = 'dieta'
+    end
+    object CDSRelFichafumante: TBooleanField
+      FieldName = 'fumante'
+    end
+    object CDSRelFichaconsomeBebidaAlcoolica: TBooleanField
+      FieldName = 'consomeBebidaAlcoolica'
+    end
+    object CDSRelFichadataCadastro: TDateField
+      FieldName = 'dataCadastro'
+    end
+    object CDSRelFichaativo: TBooleanField
+      FieldName = 'ativo'
+    end
+    object CDSRelFichacpf: TStringField
+      FieldName = 'cpf'
+      Size = 50
+    end
+    object CDSRelFichafoto: TBlobField
+      FieldName = 'foto'
+    end
+    object CDSRelFichainformacaoAdicional: TStringField
+      FieldName = 'informacaoAdicional'
+      Size = 200
+    end
+    object CDSRelFichaidObjetivo: TIntegerField
+      FieldName = 'idObjetivo'
+    end
+    object CDSRelFichadataComposicaoFicha: TDateField
+      FieldName = 'dataComposicaoFicha'
+    end
+    object CDSRelFichaDESCRICAOOBJETIVO: TStringField
+      FieldName = 'DESCRICAOOBJETIVO'
+      Size = 50
+    end
   end
 end

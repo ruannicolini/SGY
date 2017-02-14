@@ -98,7 +98,7 @@ end;
 
 procedure TFPrincipal.btnPagamentoClick(Sender: TObject);
 begin
-  CriarForm('F01002', 'Pagamento');
+  CriarForm('F01005', 'Pagamento');
 end;
 
 procedure TFPrincipal.btnPatologiasClick(Sender: TObject);

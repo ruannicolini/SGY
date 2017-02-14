@@ -301,6 +301,76 @@ type
     frxDBDataset2: TfrxDBDataset;
     frxGradientObject1: TfrxGradientObject;
     frxPDFExport1: TfrxPDFExport;
+    DSRelFicha: TDataSource;
+    qRelFicha: TFDQuery;
+    pRelFicha: TDataSetProvider;
+    CDSRelFicha: TClientDataSet;
+    qRelFichaidAluno: TIntegerField;
+    qRelFichanomeAluno: TStringField;
+    qRelFichaidade: TIntegerField;
+    qRelFichadataNascimento: TDateField;
+    qRelFichaemail: TStringField;
+    qRelFichasexo: TStringField;
+    qRelFichacidade: TStringField;
+    qRelFichabairro: TStringField;
+    qRelFicharua: TStringField;
+    qRelFichanumero: TIntegerField;
+    qRelFichacep: TIntegerField;
+    qRelFichatel1: TStringField;
+    qRelFichatel2: TStringField;
+    qRelFichanomeResponsavel: TStringField;
+    qRelFichaparentescoResponsavel: TStringField;
+    qRelFichatelResponsavel: TStringField;
+    qRelFichapeso: TSingleField;
+    qRelFichaaltura: TSingleField;
+    qRelFichafrequenciaAtividadeFisica: TIntegerField;
+    qRelFichaqtdRefeicoesDia: TIntegerField;
+    qRelFichaqtdHorasSono: TIntegerField;
+    qRelFichasuplementacao: TBooleanField;
+    qRelFichadieta: TBooleanField;
+    qRelFichafumante: TBooleanField;
+    qRelFichaconsomeBebidaAlcoolica: TBooleanField;
+    qRelFichadataCadastro: TDateField;
+    qRelFichaativo: TBooleanField;
+    qRelFichacpf: TStringField;
+    qRelFichafoto: TBlobField;
+    qRelFichainformacaoAdicional: TStringField;
+    qRelFichaidObjetivo: TIntegerField;
+    qRelFichadataComposicaoFicha: TDateField;
+    qRelFichaDESCRICAOOBJETIVO: TStringField;
+    CDSRelFichaidAluno: TIntegerField;
+    CDSRelFichanomeAluno: TStringField;
+    CDSRelFichaidade: TIntegerField;
+    CDSRelFichadataNascimento: TDateField;
+    CDSRelFichaemail: TStringField;
+    CDSRelFichasexo: TStringField;
+    CDSRelFichacidade: TStringField;
+    CDSRelFichabairro: TStringField;
+    CDSRelFicharua: TStringField;
+    CDSRelFichanumero: TIntegerField;
+    CDSRelFichacep: TIntegerField;
+    CDSRelFichatel1: TStringField;
+    CDSRelFichatel2: TStringField;
+    CDSRelFichanomeResponsavel: TStringField;
+    CDSRelFichaparentescoResponsavel: TStringField;
+    CDSRelFichatelResponsavel: TStringField;
+    CDSRelFichapeso: TSingleField;
+    CDSRelFichaaltura: TSingleField;
+    CDSRelFichafrequenciaAtividadeFisica: TIntegerField;
+    CDSRelFichaqtdRefeicoesDia: TIntegerField;
+    CDSRelFichaqtdHorasSono: TIntegerField;
+    CDSRelFichasuplementacao: TBooleanField;
+    CDSRelFichadieta: TBooleanField;
+    CDSRelFichafumante: TBooleanField;
+    CDSRelFichaconsomeBebidaAlcoolica: TBooleanField;
+    CDSRelFichadataCadastro: TDateField;
+    CDSRelFichaativo: TBooleanField;
+    CDSRelFichacpf: TStringField;
+    CDSRelFichafoto: TBlobField;
+    CDSRelFichainformacaoAdicional: TStringField;
+    CDSRelFichaidObjetivo: TIntegerField;
+    CDSRelFichadataComposicaoFicha: TDateField;
+    CDSRelFichaDESCRICAOOBJETIVO: TStringField;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -352,6 +422,7 @@ type
     procedure btnLimparFichaClick(Sender: TObject);
     procedure DSSerieDataChange(Sender: TObject; Field: TField);
     procedure DSModalidadeDataChange(Sender: TObject; Field: TField);
+    procedure btnImportarFichaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -554,10 +625,28 @@ begin
   END;
 end;
 
+procedure TF01001.btnImportarFichaClick(Sender: TObject);
+begin
+  inherited;
+
+  //IMPORTA OS REGISTROS DA SÉRIE DE UAM FICHA PRÉ CADASTRADA
+
+
+  //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
+  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno := idA';
+  DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+  DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+  DModule.qAux.Close;
+  DModule.qAux.ExecSQL;
+end;
+
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
   //
+  qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+  DSRelFicha.DataSet.Close;
+  DSRelFicha.DataSet.Open;
   REPORT_FICHA.ShowReport(TRUE);
 end;
 
@@ -792,6 +881,17 @@ begin
     if MessageDlg('Deseja Apagar Item [' + CDSSerienomeExercicio.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
      begin
         CDSSerie.Delete;
+
+        // SE APAGOU TODOS OS REGISTROS
+        IF(CDSSerie.IsEmpty)THEN
+        BEGIN
+            //DATA DE COMPOSIÇÃO DA FICHA = NULL
+            DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null where idAluno =:idA';
+            DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+            DModule.qAux.Close;
+            DModule.qAux.ExecSQL;
+        END;
+
      end;
   end;
 end;
@@ -1046,20 +1146,33 @@ begin
   if not DSSerie.DataSet.Active then
   DSSerie.DataSet.Open;
 
-  DSSerie.DataSet.Append;
-  CDSSerieidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
   IF trim(Edittreino.Text ) <> '' THEN
   BEGIN
-    CDSSerieidTreino.AsInteger := strtoint(Edittreino.Text);
     IF trim(Editexercicio.Text ) <> '' THEN
     BEGIN
       IF (trim(editSerie.Text ) <> '') AND (trim(editRepeticoes.Text ) <> '') THEN
       BEGIN
+          // SE APAGOU TODOS OS REGISTROS
+          IF(CDSSerie.RecordCount = 0)THEN
+          BEGIN
+              //SET DATA DE COMPOSIÇÃO DA FICHA
+              DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+              DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+              DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+              DModule.qAux.Close;
+              DModule.qAux.ExecSQL;
+          END;
+
+          //INCLUI REGISTRO
+          DSSerie.DataSet.Append;
+          CDSSerieidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
+          CDSSerieidTreino.AsInteger := strtoint(Edittreino.Text);
           CDSSerieidExercicio.AsInteger := strtoint(Editexercicio.Text);
           CDSSerieqtdSerie.AsInteger := strtoint(editSerie.Text);
           CDSSerieqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
-
           CDSSerie.Post;
+
+          //REFRESH
           qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
           DSSerie.DataSet.close;
           DSSerie.DataSet.open;
@@ -1190,6 +1303,12 @@ begin
       TRY
         DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
         DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+        DModule.qAux.Close;
+        DModule.qAux.ExecSQL;
+
+        //DATA DE COMPOSIÇÃO DA FICHA = NULL
+        DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null where idAluno =:idA';
+        DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
         DModule.qAux.Close;
         DModule.qAux.ExecSQL;
 
