@@ -422,6 +422,10 @@ type
     procedure btnImportarFichaClick(Sender: TObject);
     procedure DSStateChange(Sender: TObject);
     procedure EditBTreinoKeyPress(Sender: TObject; var Key: Char);
+    procedure EditBeleza1ButtonClick(Sender: TObject;
+      var query_result: TFDQuery);
+    procedure DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -872,6 +876,20 @@ begin
              }
 end;
 
+procedure TF01001.DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = 46) then
+  //Deleta PATOLOGIA
+  begin
+    if MessageDlg('Deseja Apagar Item [' + cdsPatologiaNOMEPATOLOGIA.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+     begin
+        cdsPatologia.Delete;
+     end;
+  end;
+end;
+
 procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -1017,6 +1035,13 @@ begin
     cxDBCheckBox4.Checked := false;
     cxDBCheckBox5.Checked := false;
   end;
+end;
+
+procedure TF01001.EditBeleza1ButtonClick(Sender: TObject;
+  var query_result: TFDQuery);
+begin
+  inherited;
+  query_result.ParamByName('idA').Value := (ClientDataSet1idAluno.AsInteger);
 end;
 
 procedure TF01001.EditBExercicioButtonClick(Sender: TObject;

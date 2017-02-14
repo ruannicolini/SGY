@@ -2,7 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
-  ExplicitTop = -47
+  ExplicitTop = -365
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -48,7 +48,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
-          Properties.ActivePage = pag3
+          Properties.ActivePage = pag2
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -657,6 +657,7 @@
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
+                  OnKeyDown = DBGridBeleza2KeyDown
                   Cor_2 = 16382457
                   Direcao_Cor2 = dg_Horiz
                   Direcao_Enter = dg_Horiz
@@ -781,8 +782,11 @@
                   mostrar_Botao = True
                   sql.Strings = (
                     
-                      'select idPatologia, nomePatologia from Patologia where nomePatol' +
-                      'ogia like :varDescricao')
+                      'select P.idPatologia, P.nomePatologia from Patologia P where P.n' +
+                      'omePatologia like :varDescricao AND'
+                    
+                      'P.idPatologia NOT IN (SELECT DISTINCT idPatologia FROM ALUNOPATO' +
+                      'LOGIA where idAluno =:idA)')
                   database = 'GYM'
                   campo = 'nomePATOLOGIA'
                   Sempre_Mostrar_Janela = False
@@ -790,6 +794,7 @@
                   campo_outro_edit = 'IDPATOLOGIA'
                   CorBorda = clGray
                   NovoLayout = False
+                  OnButtonClick = EditBeleza1ButtonClick
                 end
               end
             end
@@ -2222,7 +2227,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00440210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00480210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
