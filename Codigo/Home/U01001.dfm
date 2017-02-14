@@ -2,8 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
-  ExplicitLeft = -58
-  ExplicitTop = -365
+  ExplicitTop = -277
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -2231,7 +2230,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00340210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C003C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2858,13 +2857,18 @@
     SQL.Strings = (
       
         'select s.*, t.descricaoTreino, e.nomeExercicio, e.idgrupoExercic' +
-        'io, ge.descricaoGrupoExercicio from serie s '
+        'io, ge.descricaoGrupoExercicio, '
+      'eq.idequipamento, eq.descricaoequipamento from serie s '
       'left outer join treino t on t.idTreino = s.idTreino '
       'left outer join exercicio e on e.idexercicio = s.idExercicio '
       
+        'left outer join equipamento eq on eq.idequipamento = e.idequipam' +
+        'ento '
+      
         'left outer join grupoExercicio ge on ge.idGrupoExercicio = e.idg' +
         'rupoExercicio '
-      'where s.idAluno =:idA;')
+      'where s.idAluno =:idA '
+      'ORDER BY S.IDTREINO,  e.idgrupoExercicio;')
     Left = 648
     Top = 466
     ParamData = <
@@ -2929,6 +2933,19 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
+    object qSerieidequipamento: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idequipamento'
+      Origin = 'idEquipamento'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qSeriedescricaoequipamento: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoequipamento'
+      Origin = 'descricaoEquipamento'
+      ProviderFlags = [pfInUpdate]
+      Size = 50
+    end
   end
   object pSerie: TDataSetProvider
     DataSet = qSerie
@@ -2990,6 +3007,17 @@
     object CDSSeriedescricaoGrupoExercicio: TStringField
       FieldName = 'descricaoGrupoExercicio'
       Origin = 'descricaoGrupoExercicio'
+      ProviderFlags = [pfInUpdate]
+      Size = 50
+    end
+    object CDSSerieidequipamento: TIntegerField
+      FieldName = 'idequipamento'
+      Origin = 'idEquipamento'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CDSSeriedescricaoequipamento: TStringField
+      FieldName = 'descricaoequipamento'
+      Origin = 'descricaoEquipamento'
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
@@ -3292,5 +3320,240 @@
       ProviderFlags = []
       Size = 50
     end
+  end
+  object REPORT_FICHA: TfrxReport
+    Version = '5.2.3'
+    DataSet = frxDBDataset1
+    DataSetName = 'frxDBDataset1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 42779.735011747700000000
+    ReportOptions.LastChange = 42780.424223819400000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 414
+    Top = 650
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset1'
+      end
+      item
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Columns = 1
+      ColumnWidth = 190.000000000000000000
+      ColumnPositions.Strings = (
+        '0')
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Height = 132.283550000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 151.181200000000000000
+          Top = 18.897650000000000000
+          Width = 415.748300000000000000
+          Height = 34.015770000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -24
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'FICHA DE EXERC'#205'CIOS')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          Left = 394.630180000000000000
+          Top = 94.031540000000000000
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Memo.UTF8W = (
+            ' DATA DE COMPOSI'#199#195'O: [frxDBDataset1."dataComposicaoFicha"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo2: TfrxMemoView
+          Left = 21.015770000000000000
+          Top = 94.031540000000000000
+          Width = 374.173470000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Fill.BackColor = 15790320
+          Memo.UTF8W = (
+            ' ALUNO: [frxDBDataset1."nomeAluno"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Gradient1: TfrxGradientView
+          Left = 3.779530000000000000
+          Top = 56.692950000000000000
+          Width = 718.110700000000000000
+          Height = 11.338590000000000000
+          EndColor = clTeal
+          Style = gsHorizCenter
+          Color = 12632192
+        end
+      end
+      object GroupHeader1: TfrxGroupHeader
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 211.653680000000000000
+        Width = 718.110700000000000000
+        Condition = 'frxDBDataset2."idTreino"'
+        object Memo4: TfrxMemoView
+          Left = 1.000000000000000000
+          Top = 2.000000000000000000
+          Width = 340.157700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Fill.BackColor = 15329769
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'TREINO [frxDBDataset2."descricaoTreino"]')
+          ParentFont = False
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Height = 49.133890000000000000
+        Top = 302.362400000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        RowCount = 0
+        object frxDBDataset2idExercicio: TfrxMemoView
+          Left = 11.338590000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'idExercicio'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Memo.UTF8W = (
+            '[frxDBDataset2."idExercicio"]')
+        end
+        object frxDBDataset2nomeExercicio: TfrxMemoView
+          Left = 102.047310000000000000
+          Top = 3.779530000000000000
+          Width = 204.094620000000000000
+          Height = 18.897650000000000000
+          DataField = 'nomeExercicio'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Memo.UTF8W = (
+            '[frxDBDataset2."nomeExercicio"]')
+        end
+      end
+      object GroupFooter1: TfrxGroupFooter
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 374.173470000000000000
+        Width = 718.110700000000000000
+      end
+      object GroupHeader2: TfrxGroupHeader
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 257.008040000000000000
+        Width = 718.110700000000000000
+        Condition = 'frxDBDataset2."idgrupoExercicio"'
+        object frxDBDataset2descricaoGrupoExercicio: TfrxMemoView
+          Left = 3.779530000000000000
+          Width = 328.819110000000000000
+          Height = 18.897650000000000000
+          DataField = 'descricaoGrupoExercicio'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Fill.BackColor = clWhite
+          Memo.UTF8W = (
+            '[frxDBDataset2."descricaoGrupoExercicio"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+    end
+  end
+  object frxDBDataset1: TfrxDBDataset
+    UserName = 'frxDBDataset1'
+    CloseDataSource = False
+    DataSource = DS
+    BCDToCurrency = False
+    Left = 494
+    Top = 650
+  end
+  object frxDBDataset2: TfrxDBDataset
+    UserName = 'frxDBDataset2'
+    CloseDataSource = False
+    DataSource = DSSerie
+    BCDToCurrency = False
+    Left = 550
+    Top = 650
+  end
+  object frxGradientObject1: TfrxGradientObject
+    Left = 614
+    Top = 650
+  end
+  object frxPDFExport1: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    Left = 646
+    Top = 650
   end
 end

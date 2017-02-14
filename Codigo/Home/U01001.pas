@@ -18,7 +18,7 @@ uses
   cxRadioGroup, cxButtons, DateUtils, cxMemo, Math, DBEditBeleza,
   Vcl.Samples.Spin, ppProd, ppClass, ppReport, ppComm, ppRelatv, ppDB, ppDBPipe,
   ppBands, ppCache, ppDesignLayer, ppParameter, ppCtrls, ppPrnabl, frxClass,
-  frxDBSet;
+  frxDBSet, frxGradient, frxExportPDF;
 
 type
   TF01001 = class(TFBase)
@@ -292,6 +292,15 @@ type
     btnImprimirFicha: TSpeedButton;
     btnLimparFicha: TSpeedButton;
     btnImportarFicha: TSpeedButton;
+    qSerieidequipamento: TIntegerField;
+    qSeriedescricaoequipamento: TStringField;
+    CDSSerieidequipamento: TIntegerField;
+    CDSSeriedescricaoequipamento: TStringField;
+    REPORT_FICHA: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    frxDBDataset2: TfrxDBDataset;
+    frxGradientObject1: TfrxGradientObject;
+    frxPDFExport1: TfrxPDFExport;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -549,7 +558,7 @@ procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
   //
-
+  REPORT_FICHA.ShowReport(TRUE);
 
 end;
 
