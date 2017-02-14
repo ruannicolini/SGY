@@ -559,7 +559,6 @@ begin
   inherited;
   //
   REPORT_FICHA.ShowReport(TRUE);
-
 end;
 
 procedure TF01001.btnFotoClick(Sender: TObject);
