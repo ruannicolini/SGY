@@ -87,9 +87,10 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure DSDataChange(Sender: TObject; Field: TField);
     procedure btnLimparFichaClick(Sender: TObject);
-    procedure BCancelarClick(Sender: TObject);
     procedure EditBTreinoKeyPress(Sender: TObject; var Key: Char);
     procedure BSalvarClick(Sender: TObject);
+    procedure Action5Execute(Sender: TObject);
+    procedure DsSerieFichaDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -103,8 +104,9 @@ implementation
 
 {$R *.dfm}
 
-procedure TF01005.BCancelarClick(Sender: TObject);
+procedure TF01005.Action5Execute(Sender: TObject);
 begin
+  inherited;
   //APAGA REGISTROS DA EXERCICIO DA FICHA
   IF(DS.DataSet.State = dsInsert)THEN
   BEGIN
@@ -113,9 +115,6 @@ begin
     DModule.qAux.Close;
     DModule.qAux.ExecSQL;
   END;
-  //CANCELA INCLUSÃO DO REGISTRO DA FICHA
-  inherited;
-
   //limpa campos da ficha;
   Edittreino.Clear;
   EditBTreino.Clear;
@@ -205,6 +204,20 @@ begin
   qSerieFicha.Params[0].AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
   DsSerieFicha.DataSet.close;
   DsSerieFicha.DataSet.open;
+end;
+
+procedure TF01005.DsSerieFichaDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(CDSSerieFicha.RecordCount > 0)THEN
+  BEGIN
+      btnImprimirFicha.Enabled := TRUE;
+      btnLimparFicha.Enabled := TRUE;
+  END ELSE
+  BEGIN
+      btnImprimirFicha.Enabled := FALSE;
+      btnLimparFicha.Enabled := FALSE;
+  END;
 end;
 
 procedure TF01005.EditBExercicioButtonClick(Sender: TObject;

@@ -47,6 +47,7 @@ type
     ActionMostrarFiltros: TAction;
     btnFiltrar: TButton;
     bRelatorio: TSpeedButton;
+    ActionExcluir: TAction;
 
     procedure ClientDataSet1AfterCancel(DataSet: TDataSet);
     procedure ClientDataSet1AfterDelete(DataSet: TDataSet);
@@ -77,6 +78,7 @@ type
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
     procedure StatusBotoes (e : integer);
@@ -199,13 +201,20 @@ begin
   Action5.Execute;
 end;
 
+procedure TFBase.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // Impede Alt+F4
+  if ((ssAlt in Shift) and (Key = VK_F4)) then
+  Key := 0;
+end;
+
 procedure TFBase.FormShow(Sender: TObject);
 begin
   ArredondarComponente(btnFiltrar, 60);
   ArredondarComponente(BtnLimparFiltros, 60);
   BSalvar.Enabled := false;
   BCancelar.Enabled := false;
-  
 end;
 
 procedure TFBase.BLastClick(Sender: TObject);
@@ -260,6 +269,7 @@ begin
       begin
           if (Application.MessageBox('Deseja Deletar ', 'Deletar', MB_YESNO + MB_ICONQUESTION) = id_yes) then
           begin
+            ActionExcluir.Execute;
             ds.DataSet.Delete;
           end;
       end else

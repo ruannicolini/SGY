@@ -25,6 +25,7 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,6 +38,22 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF01004.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM EXERCICIO p where p.idGRUPOEXERCICIO =:idG';
+  DModule.qAux.ParamByName('idG').AsInteger := ClientDataSet1idGrupoExercicio.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.RecordCount > 0)then
+  begin
+    showmessage('GRUPO POSSUI EXERCÍCIOS VINCULADOS A ELE. NÃO É POSSÍVEL EXCLUIR.')
+  end else
+  begin
+    //Executa exclusão
+    inherited;
+  end;
+end;
 
 procedure TF01004.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin

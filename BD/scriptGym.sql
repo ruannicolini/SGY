@@ -201,7 +201,7 @@ INSERT INTO MODULO(IDMODULO, DESCRICAOMODULO) VALUES(1,'HOME');
 --
 
 -- CADATRA USUARIO PADRAO INICIAL
-INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO) VALUES(1,'ADMINISTRADOR', 'admin','admin',1);
+INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO) VALUES(1,'ADMINISTRADOR', 'admin','21232F297A57A5A743894A0E4A801FC3',1);
 
 -- CADASTRAR TODOS OS TIPOS DE USUARIO: ADMIN E INSTRUTOR
 INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(1,'ADMINISTRADOR');
@@ -314,19 +314,49 @@ delimiter ;
 -- Drop PROCEDURE geraMensalidade;
 
 delimiter |
-CREATE EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE ON SCHEDULE EVERY 1 DAY 
+CREATE EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE 
+ON SCHEDULE EVERY 1 DAY -- ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 DAY
  -- STARTS ALGUMA_DATA_HORA ENABLE
 DO
 	CALL geraMensalidade;
 |
 DELIMITER ;
 
-
-
 SHOW events;
+SELECT * FROM INFORMATION_SCHEMA.EVENTS;
 
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 
+-- Exclui alunoPatologia, alunoModalidade, serie e pagamento em aberto do Aluno excluído
+DELIMITER //
+CREATE TRIGGER TRIGGER_Aluno_Delete 
+AFTER DELETE ON aluno for each row
+BEGIN
+	-- Delete AlunoPatologia
+	DELETE FROM alunoPatologia WHERE alunoPatologia.idAluno = old.idAluno;
+    
+    -- Delete AlunoModalidade
+	DELETE FROM alunoModalidade WHERE alunomodalidade.idAluno = old.idAluno;
+    
+    -- Delete Serie
+	DELETE FROM serie WHERE serie.idAluno = old.idAluno;
+    
+    -- Delete Pagamentos em aberto
+	DELETE FROM pagamento WHERE pagamento.idAluno = old.idAluno and pagamento.idstatusPagamento = 1;
+    
+END //
+DELIMITER ;
+
+-- Exclui SERIE da FichaPreDefinida Excluída
+DELIMITER //
+CREATE TRIGGER TRIGGER_fichaPreDefinidaSerie_Delete 
+AFTER DELETE ON fichapredefinida for each row
+BEGIN
+	-- Delete fichapredefinidaserie
+	DELETE FROM fichapredefinidaserie WHERE fichapredefinidaserie.idFichaPreDefinida = old.idFichaPreDefinida;
+
+END //
+DELIMITER ;
 
 
 

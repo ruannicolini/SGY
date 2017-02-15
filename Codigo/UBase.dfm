@@ -10,9 +10,11 @@ object FBase: TFBase
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -918,7 +920,7 @@ object FBase: TFBase
     Left = 616
     Top = 192
     Bitmap = {
-      494C01010F002C00940110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00980110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -1465,6 +1467,9 @@ object FBase: TFBase
       Caption = 'MostrarFiltros'
       ShortCut = 117
       OnExecute = ActionMostrarFiltrosExecute
+    end
+    object ActionExcluir: TAction
+      Caption = 'ActionExcluir'
     end
   end
 end

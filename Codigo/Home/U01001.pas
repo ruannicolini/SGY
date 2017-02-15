@@ -396,7 +396,6 @@ type
       var query_result: TFDQuery);
     procedure DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure BCancelarClick(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure editBModalidadeButtonClick(Sender: TObject;
       var query_result: TFDQuery);
@@ -426,6 +425,9 @@ type
       var query_result: TFDQuery);
     procedure DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure Action5Execute(Sender: TObject);
+    procedure DSPAtologiaDataChange(Sender: TObject; Field: TField);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -453,20 +455,65 @@ vcl.themes, vcl.styles, U01010,
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios;
 
 
-procedure TF01001.BCancelarClick(Sender: TObject);
+procedure TF01001.Action5Execute(Sender: TObject);
 begin
   inherited;
+    //APAGA REGISTROS SUBORDINADOS
+    IF(DS.DataSet.State = dsInsert)THEN
+    BEGIN
 
-  //limpa campos da ficha;
-  Edittreino.Clear;
-  EditBTreino.Clear;
-  Editgrupo.Clear;
-  EditBGrupo.Clear;
-  Editexercicio.Clear;
-  EditBExercicio.Clear;
-  editSerie.Clear;
-  editRepeticoes.Clear;
+      //PATOLOGIA
+      DModule.qAux.SQL.Text := 'DELETE FROM ALUNOPATOLOGIA WHERE idALUNO =:IDA';
+      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+      DModule.qAux.Close;
+      DModule.qAux.ExecSQL;
 
+      //MODALIDADES
+      DModule.qAux.SQL.Text := 'DELETE FROM ALUNOMODALIDADE WHERE idALUNO =:IDA';
+      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+      DModule.qAux.Close;
+      DModule.qAux.ExecSQL;
+
+      // SÉRIE (FICHA DE EXERCÍCIOS)
+      DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE idALUNO =:IDA';
+      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+      DModule.qAux.Close;
+      DModule.qAux.ExecSQL;
+
+      // PAGAMENTOS
+      DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE idALUNO =:IDA';
+      DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+      DModule.qAux.Close;
+      DModule.qAux.ExecSQL;
+
+    END;
+
+    //limpa campos da ficha;
+    Edittreino.Clear;
+    EditBTreino.Clear;
+    Editgrupo.Clear;
+    EditBGrupo.Clear;
+    Editexercicio.Clear;
+    EditBExercicio.Clear;
+    editSerie.Clear;
+    editRepeticoes.Clear;
+
+end;
+
+procedure TF01001.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM pagamento p where p.idAluno =:idA and ((p.idstatuspagamento = 2) or(p.idstatuspagamento = 3))';
+  DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.RecordCount > 0)then
+  begin
+    showmessage('ALUNO POSSUI PAGAMENTOS EFETUADOS. NÃO É POSSÍVEL EXCLUIR.')
+  end else
+  begin
+    //Executa exclusão
+    inherited;
+  end;
 end;
 
 procedure TF01001.bRelatorioClick(Sender: TObject);
@@ -575,6 +622,7 @@ begin
 
   BTNCANCELAR.Enabled := FALSE;
   BTNALTERAR.Caption := 'ALTERAR';
+  cxDBMemo2.Properties.ReadOnly:= TRUE;
 
   //CANCELA ALTERAÇÕES
   DSPAtologia.DataSet.Cancel;
@@ -1006,6 +1054,18 @@ begin
       btnPagamento.Enabled := FALSE;
       btnIsencao.Enabled := FALSE;
       btnCancelarPI.Enabled := TRUE;
+  END;
+end;
+
+procedure TF01001.DSPAtologiaDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(cdsPatologia.RecordCount > 0)THEN
+  BEGIN
+    BTNALTERAR.Enabled := TRUE;
+  END ELSE
+  BEGIN
+    BTNALTERAR.Enabled := FALSE;
   END;
 end;
 

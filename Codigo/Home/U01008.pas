@@ -46,6 +46,7 @@ type
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure BSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +59,16 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uFuncao;
+
+procedure TF01008.BSalvarClick(Sender: TObject);
+begin
+  //criptografia
+  ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
+  // salva
+  inherited;
+end;
 
 procedure TF01008.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin

@@ -29,6 +29,7 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +42,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF01007.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM ALUNOPATOLOGIA AP where AP.idPATOLOGIA =:idP';
+  DModule.qAux.ParamByName('idP').AsInteger := ClientDataSet1idpatologia.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.IsEmpty)then
+  begin
+    //Executa exclusão
+    inherited;
+  end else
+  begin
+    showmessage('PATOLOGIA POSSUI REGISTRO DE USO EM ANAMNESE DE ALUNO. NÃO É POSSÍVEL EXCLUIR.')
+  end;
+
+end;
 
 procedure TF01007.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin

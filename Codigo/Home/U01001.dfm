@@ -16,7 +16,6 @@
   inherited PageControl: TPageControl
     Width = 829
     Height = 706
-    ActivePage = TbDados
     ExplicitWidth = 829
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
@@ -47,7 +46,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
-          Properties.ActivePage = pag3
+          Properties.ActivePage = pag1
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -122,6 +121,7 @@
                 Top = 26
                 DataBinding.DataField = 'cidade'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 0
                 Width = 193
               end
@@ -130,6 +130,7 @@
                 Top = 26
                 DataBinding.DataField = 'bairro'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 1
                 Width = 193
               end
@@ -146,6 +147,7 @@
                 Top = 79
                 DataBinding.DataField = 'rua'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 3
                 Width = 401
               end
@@ -197,6 +199,7 @@
                 Top = 40
                 DataBinding.DataField = 'nomeResponsavel'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 0
                 Width = 608
               end
@@ -205,6 +208,7 @@
                 Top = 93
                 DataBinding.DataField = 'parentescoResponsavel'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 1
                 Width = 297
               end
@@ -213,6 +217,7 @@
                 Top = 93
                 DataBinding.DataField = 'telResponsavel'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 Properties.EditMask = '!\(99\)0000-99999;1;_'
                 TabOrder = 2
                 Width = 297
@@ -285,6 +290,7 @@
                 Top = 55
                 DataBinding.DataField = 'nomeAluno'
                 DataBinding.DataSource = DS
+                Properties.CharCase = ecUpperCase
                 TabOrder = 0
                 Width = 344
               end
@@ -2226,7 +2232,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00500210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00640210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2767,6 +2773,7 @@
   end
   object DSPAtologia: TDataSource
     DataSet = cdsPatologia
+    OnDataChange = DSPAtologiaDataChange
     Left = 734
     Top = 533
   end

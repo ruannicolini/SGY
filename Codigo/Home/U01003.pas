@@ -30,6 +30,7 @@ type
     PngImageList2: TPngImageList;
     DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +44,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF01003.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM EXERCICIO p where p.idEQUIPAMENTO =:idE';
+  DModule.qAux.ParamByName('idE').AsInteger := ClientDataSet1idEquipamento.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.RecordCount > 0)then
+  begin
+    showmessage('EQUIPAMENTO POSSUI EXERCÍCIOS VINCULADOS A ELE. NÃO É POSSÍVEL EXCLUIR.')
+  end else
+  begin
+    //Executa exclusão
+    inherited;
+  end;
+
+end;
 
 procedure TF01003.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin

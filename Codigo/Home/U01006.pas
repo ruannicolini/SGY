@@ -41,6 +41,7 @@ type
     DBEditBeleza2: TDBEditBeleza;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,6 +54,32 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF01006.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM SERIE S where S.idExercicio =:idE';
+  DModule.qAux.ParamByName('idE').AsInteger := ClientDataSet1idExercicio.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.IsEmpty)then
+  begin
+        DModule.qAux.SQL.Text := 'SELECT * FROM fichapredefinidaserie FS where FS.idExercicio =:idE';
+        DModule.qAux.ParamByName('idE').AsInteger := ClientDataSet1idExercicio.AsInteger;
+        DModule.qAux.Close;
+        DModule.qAux.open;
+        if(DModule.qAux.IsEmpty)then
+        begin
+            inherited;
+        end ELSE
+        BEGIN
+            showmessage('EXERCÍCIO VINCULADO A FICHA PREDEFINIDA. NÃO É POSSÍVEL EXCLUIR.')
+        END;
+  end else
+  begin
+    showmessage('EXERCÍCIO VINCULADO A FICHA DE ALUNO. NÃO É POSSÍVEL EXCLUIR.')
+  end;
+
+end;
 
 procedure TF01006.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin

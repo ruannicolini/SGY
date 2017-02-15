@@ -86,6 +86,7 @@ type
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,6 +101,12 @@ implementation
 {$R *.dfm}
 
 uses U01010;
+
+procedure TF01002.BExcluirClick(Sender: TObject);
+begin
+  //inherited;
+  ShowMessage('FUNÇÃO NÃO PERMITIDA.')
+end;
 
 procedure TF01002.btnCancelarClick(Sender: TObject);
 begin

@@ -10,17 +10,16 @@ inherited F01005: TF01005
   inherited PageControl: TPageControl
     Width = 858
     Height = 706
-    ActivePage = TbDados
+    ExplicitWidth = 858
+    ExplicitHeight = 706
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
+      ExplicitWidth = 850
+      ExplicitHeight = 678
       inherited grDados: TGroupBox
         Width = 850
         Height = 678
-        ExplicitLeft = 2
-        ExplicitTop = -18
         ExplicitWidth = 850
         ExplicitHeight = 678
         object Label1: TLabel
@@ -52,6 +51,7 @@ inherited F01005: TF01005
           Top = 30
           Width = 727
           Height = 21
+          CharCase = ecUpperCase
           DataField = 'descricaoFicha'
           DataSource = DS
           TabOrder = 1
@@ -425,33 +425,61 @@ inherited F01005: TF01005
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
+      ExplicitWidth = 850
+      ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
         Width = 850
+        ExplicitWidth = 850
         inherited Panel1: TPanel
           Width = 841
+          ExplicitWidth = 841
           inherited BtnLimparFiltros: TButton
             Left = 796
+            ExplicitLeft = 796
           end
         end
       end
       inherited DBGridBeleza1: TDBGridBeleza
         Width = 850
         Height = 567
+        Columns = <
+          item
+            Alignment = taLeftJustify
+            Expanded = False
+            FieldName = 'idFichaPreDefinida'
+            Title.Alignment = taCenter
+            Title.Caption = 'COD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'descricaoFicha'
+            Title.Caption = 'DESCRI'#199#195'O'
+            Width = 1280
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dataComposicao'
+            Visible = False
+          end>
       end
       inherited PanelFiltros: TPanel
         Width = 850
+        ExplicitWidth = 850
         inherited btnFiltrar: TButton
           Left = 799
+          ExplicitLeft = 799
         end
       end
     end
   end
   inherited Panel2: TPanel
     Width = 858
+    ExplicitWidth = 858
     inherited BFechar: TSpeedButton
       Left = 824
+      ExplicitLeft = 824
     end
   end
   inherited DS: TDataSource
@@ -506,7 +534,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00A00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00AC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -1197,6 +1225,7 @@ inherited F01005: TF01005
   end
   object DsSerieFicha: TDataSource
     DataSet = CDSSerieFicha
+    OnDataChange = DsSerieFichaDataChange
     Left = 788
     Top = 35
   end
