@@ -1207,12 +1207,21 @@ begin
           // SE APAGOU TODOS OS REGISTROS
           IF(CDSSerie.RecordCount = 0)THEN
           BEGIN
-              //SET DATA DE COMPOSIÇÃO DA FICHA
-              DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
-              DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-              DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
-              DModule.qAux.Close;
-              DModule.qAux.ExecSQL;
+              if((ds.DataSet.State = dsInsert))then
+              begin
+                     ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
+              end else
+              begin
+                  if (ds.DataSet.State = dsEdit) then
+                  begin
+                      //SET DATA DE COMPOSIÇÃO DA FICHA
+                      DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+                      DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                      DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+                      DModule.qAux.Close;
+                      DModule.qAux.ExecSQL;
+                  end;
+              end;
           END;
 
           //INCLUI REGISTRO

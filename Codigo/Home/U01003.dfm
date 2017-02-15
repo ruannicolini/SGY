@@ -22,8 +22,8 @@ inherited F01003: TF01003
         ExplicitWidth = 664
         ExplicitHeight = 381
         object Label1: TLabel
-          Left = 219
-          Top = 48
+          Left = 24
+          Top = 16
           Width = 23
           Height = 13
           Caption = 'COD'
@@ -35,62 +35,36 @@ inherited F01003: TF01003
           ParentFont = False
         end
         object Label2: TLabel
-          Left = 318
-          Top = 49
+          Left = 24
+          Top = 65
           Width = 64
           Height = 13
           Caption = 'DESCRI'#199#195'O'
-          FocusControl = cxDBTextEdit1
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 219
-          Top = 91
-          Width = 93
-          Height = 13
-          Caption = 'REPRESENTA'#199#195'O'
-          FocusControl = cxDBTextEdit1
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object cxDBTextEdit1: TcxDBTextEdit
-          Left = 318
-          Top = 64
-          Anchors = [akLeft, akTop, akRight]
-          DataBinding.DataField = 'descricaoEquipamento'
-          DataBinding.DataSource = DS
-          TabOrder = 0
-          Width = 77
         end
         object DBEdit1: TDBEdit
-          Left = 219
-          Top = 64
+          Left = 24
+          Top = 32
           Width = 83
           Height = 21
           DataField = 'idEquipamento'
           DataSource = DS
-          TabOrder = 1
+          TabOrder = 0
         end
-        object ListView: TListView
-          Left = 220
-          Top = 110
-          Width = 175
-          Height = 120
-          Align = alCustom
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          Columns = <>
-          LargeImages = PngImageList1
-          TabOrder = 2
-          OnSelectItem = ListViewSelectItem
+        object DBEdit2: TDBEdit
+          Left = 24
+          Top = 82
+          Width = 393
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'descricaoEquipamento'
+          DataSource = DS
+          TabOrder = 1
         end
       end
     end
@@ -164,9 +138,6 @@ inherited F01003: TF01003
       FieldName = 'descricaoEquipamento'
       Size = 50
     end
-    object ClientDataSet1imgEquipamento: TIntegerField
-      FieldName = 'imgEquipamento'
-    end
   end
   inherited FDQuery1: TFDQuery
     ChangeAlertName = 'gym'
@@ -185,15 +156,10 @@ inherited F01003: TF01003
       Origin = 'descricaoEquipamento'
       Size = 50
     end
-    object FDQuery1imgEquipamento: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'imgEquipamento'
-      Origin = 'imgEquipamento'
-    end
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00D40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -731,10 +697,10 @@ inherited F01003: TF01003
   object ImgListEquipamento: TImageList
     Height = 32
     Width = 32
-    Left = 556
-    Top = 131
+    Left = 580
+    Top = 331
     Bitmap = {
-      494C0101100054007C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010110005400800020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000A000000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3907,8 +3873,8 @@ inherited F01003: TF01003
           B84917196C03C9B35E8577178C35E1A75C922547BECF764522FF8E07537E0141
           824BFE608F1F5E0000000049454E44AE426082}
       end>
-    Left = 524
-    Top = 275
+    Left = 500
+    Top = 323
     Bitmap = {}
   end
   object PngImageList2: TPngImageList

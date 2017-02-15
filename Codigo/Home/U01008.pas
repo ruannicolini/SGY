@@ -43,6 +43,9 @@ type
     DBEditBeleza1: TDBEditBeleza;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
+    procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
     { Private declarations }
   public
@@ -60,6 +63,13 @@ procedure TF01008.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
   inherited;
   ClientDataSet1idusuario.AsInteger := DModule.buscaProximoParametro('usuario');
+end;
+
+procedure TF01008.ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
+  E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+begin
+  inherited;
+  ShowMessage(e.Message);
 end;
 
 procedure TF01008.DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);

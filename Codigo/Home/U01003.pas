@@ -24,20 +24,12 @@ type
     ClientDataSet1descricaoEquipamento: TStringField;
     Label1: TLabel;
     Label2: TLabel;
-    cxDBTextEdit1: TcxDBTextEdit;
     DBEdit1: TDBEdit;
     ImgListEquipamento: TImageList;
-    ListView: TListView;
-    FDQuery1imgEquipamento: TIntegerField;
-    ClientDataSet1imgEquipamento: TIntegerField;
-    Label3: TLabel;
     PngImageList1: TPngImageList;
     PngImageList2: TPngImageList;
+    DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
-    procedure ListViewSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
-    procedure BPesquisarClick(Sender: TObject);
-    procedure DSDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -52,50 +44,10 @@ implementation
 
 {$R *.dfm}
 
-procedure TF01003.BPesquisarClick(Sender: TObject);
-var
-  Cont, I : Integer;
-  ListItem : TListItem;
-begin
-  //CARREGA IMAGENS PRIMEIRO
-  Cont := ImgListEquipamento.Count;
-  for I := 0 to Cont - 1 do
-  begin
-    ListItem := ListView.Items.Add;
-    ListItem.ImageIndex:= I;
-    ListItem.Caption := IntToStr(I);
-  end;
-
-  //CHAMA FUNÇÕES PRE DEFINIDAS
-  inherited;
-end;
-
 procedure TF01003.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
   inherited;
   ClientDataSet1idEquipamento.AsInteger := DModule.buscaProximoParametro('equipamento');
-end;
-
-procedure TF01003.DSDataChange(Sender: TObject; Field: TField);
-begin
-  inherited;
-  ListView.Items.Item[CLIENTDATASET1IMGEQUIPAMENTO.ASINTEGER].Selected := TRUE;
-end;
-
-procedure TF01003.ListViewSelectItem(Sender: TObject; Item: TListItem;
-  Selected: Boolean);
-begin
-  inherited;
-  IF((ds.DataSet.State = dsEdit) OR (ds.DataSet.State = dsInsert))THEN
-  BEGIN
-    if Item.Caption <> UltSelecionado then
-    begin
-      ClientDataSet1imgEquipamento.AsInteger := strtoint(Item.Caption);
-      UltSelecionado := Item.Caption;
-    end;
-  END;
-
-
 end;
 
 Initialization

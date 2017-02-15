@@ -112,8 +112,7 @@ PRIMARY KEY (idAluno,idPatologia)
 
 create table Equipamento(
 idEquipamento int primary key not null,
-descricaoEquipamento varchar(50),
-imgEquipamento int
+descricaoEquipamento varchar(50)
 );
 
 create table GrupoExercicio(
@@ -133,12 +132,20 @@ idEquipamento int,
 idGrupoExercicio int not null
 );
 
-/*
-create table Ficha(
-idAluno int primary key not null,
-dataComposicao date
+create table FichaPreDefinida(
+idFichaPreDefinida int primary key not null,
+descricaoFicha varchar(50),
+dataComposicao Date
 );
-*/
+
+create table FichaPreDefinidaSerie(
+idFichaPreDefinida int not null,
+idTreino int not null,
+idExercicio int not null,
+qtdSerie int,
+qtdRepeticao int,
+PRIMARY KEY (idFichaPreDefinida,idTreino,idExercicio)
+);
 
 create table serie(
 idAluno int not null,
@@ -226,6 +233,7 @@ INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('equipamento',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('exercicio',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('grupoexercicio',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('ficha',1);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('fichaPreDefinida',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('serie',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('AlunoPatologia',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idAlunoModalidade',1);
