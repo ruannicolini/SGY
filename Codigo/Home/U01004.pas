@@ -26,6 +26,7 @@ type
     DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure BExcluirClick(Sender: TObject);
+    procedure BSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,6 +54,18 @@ begin
     //Executa exclusão
     inherited;
   end;
+end;
+
+procedure TF01004.BSalvarClick(Sender: TObject);
+begin
+  if TRIM(DBEdit2.Text) <> '' then
+  begin
+      inherited;
+  end else
+  begin
+    ShowMessage('PREENCHA A DESCRIÇÃO');
+  end;
+
 end;
 
 procedure TF01004.ClientDataSet1AfterInsert(DataSet: TDataSet);

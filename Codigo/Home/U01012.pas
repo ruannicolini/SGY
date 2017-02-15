@@ -29,6 +29,8 @@ type
     DBEdit2: TDBEdit;
     DBEdit3: TDBEdit;
     Panel3: TPanel;
+    procedure BExcluirClick(Sender: TObject);
+    procedure BSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +43,50 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF01012.BExcluirClick(Sender: TObject);
+begin
+  DModule.qAux.SQL.Text := 'SELECT * FROM ALUNOMODALIDADE AM where AM.idMODALIDADE =:idM';
+  DModule.qAux.ParamByName('idM').AsInteger := ClientDataSet1idModalidade.AsInteger;
+  DModule.qAux.Close;
+  DModule.qAux.open;
+  if(DModule.qAux.IsEmpty)then
+  begin
+        DModule.qAux.SQL.Text := 'SELECT * FROM PAGAMENTO P where P.idMODALIDADE =:idM';
+        DModule.qAux.ParamByName('idM').AsInteger := ClientDataSet1idModalidade.AsInteger;
+        DModule.qAux.Close;
+        DModule.qAux.open;
+        if(DModule.qAux.IsEmpty)then
+        begin
+            inherited;
+        end ELSE
+        BEGIN
+              showmessage('MODALIDADE VINCULADA A MENSALIDADE. NÃO É POSSÍVEL EXCLUIR.');
+        END;
+  end else
+  begin
+    showmessage('MODALIDADE VINCULADA A ALUNO. NÃO É POSSÍVEL EXCLUIR.');
+  end;
+
+end;
+
+procedure TF01012.BSalvarClick(Sender: TObject);
+begin
+
+  if TRIM(DBEdit3.Text) <> '' then
+  begin
+      if TRIM(DBEdit1.Text) <> '' then
+      begin
+          inherited;
+      end else
+      begin
+        ShowMessage('INFORME VALOR');
+      end;
+  end else
+  begin
+    ShowMessage('INFORME DESCRIÇÃO');
+  end;
+end;
 
 Initialization
   RegisterClass(TF01012);

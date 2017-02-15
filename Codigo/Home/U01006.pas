@@ -42,6 +42,7 @@ type
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure BExcluirClick(Sender: TObject);
+    procedure BSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,6 +78,32 @@ begin
   end else
   begin
     showmessage('EXERCÍCIO VINCULADO A FICHA DE ALUNO. NÃO É POSSÍVEL EXCLUIR.')
+  end;
+
+end;
+
+procedure TF01006.BSalvarClick(Sender: TObject);
+begin
+  if TRIM(DBEdit2.Text) <> '' then
+  begin
+      if TRIM(DBEdit3.Text) <> '' then
+      begin
+          if TRIM(DBEdit4.Text) <> '' then
+          begin
+              inherited;
+          end else
+          begin
+            ShowMessage('INFORME O GRUPO');
+          end;
+
+      end else
+      begin
+        ShowMessage('INFORME O EQUIPAMENTO PADRÃO UTILIZADO');
+      end;
+
+  end else
+  begin
+    ShowMessage('INFORME A DESCRIÇÃO DO EXERCÍCIO');
   end;
 
 end;

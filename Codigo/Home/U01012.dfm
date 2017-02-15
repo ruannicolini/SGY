@@ -1,6 +1,5 @@
 inherited F01012: TF01012
   Caption = 'F01012'
-  ExplicitLeft = -25
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -69,13 +68,13 @@ inherited F01012: TF01012
             Width = 85
             Height = 25
             Align = alClient
-            BiDiMode = bdRightToLeft
+            BiDiMode = bdLeftToRight
             Color = clWhite
             DataField = 'valor'
             DataSource = DS
             ParentBiDiMode = False
             TabOrder = 0
-            ExplicitTop = 1
+            ExplicitHeight = 21
           end
         end
       end
@@ -153,7 +152,7 @@ inherited F01012: TF01012
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00A00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00A40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

@@ -16,6 +16,7 @@
   inherited PageControl: TPageControl
     Width = 829
     Height = 706
+    TabStop = False
     ExplicitWidth = 829
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
@@ -46,6 +47,7 @@
           ParentColor = False
           ParentFont = False
           TabOrder = 0
+          TabStop = False
           Properties.ActivePage = pag1
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
@@ -64,6 +66,8 @@
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
+            ExplicitLeft = -3
+            ExplicitTop = 32
             object camera: TdxCameraControl
               Left = 756
               Top = 111
@@ -154,7 +158,7 @@
             end
             object cxDBMaskEdit1: TcxDBMaskEdit
               Left = 447
-              Top = 292
+              Top = 286
               DataBinding.DataField = 'cep'
               DataBinding.DataSource = DS
               Properties.EditMask = '00000-000;0'
@@ -299,18 +303,20 @@
                 Top = 55
                 Width = 57
                 Height = 24
+                TabStop = False
                 DataField = 'idAluno'
                 DataSource = DS
                 ReadOnly = True
-                TabOrder = 1
+                TabOrder = 7
               end
               object cxDBSpinEdit1: TcxDBSpinEdit
                 Left = 430
                 Top = 112
+                TabStop = False
                 DataBinding.DataField = 'idade'
                 DataBinding.DataSource = DS
                 Properties.ReadOnly = True
-                TabOrder = 2
+                TabOrder = 9
                 Width = 193
               end
               object cxLabel1: TcxLabel
@@ -323,8 +329,8 @@
                 Top = 112
                 DataBinding.DataField = 'dataNascimento'
                 DataBinding.DataSource = DS
-                Properties.OnChange = cxDBDateEdit1PropertiesChange
-                TabOrder = 4
+                TabOrder = 1
+                OnExit = cxDBDateEdit1Exit
                 Width = 192
               end
               object cxLabel2: TcxLabel
@@ -338,7 +344,7 @@
                 DataBinding.DataField = 'cpf'
                 DataBinding.DataSource = DS
                 Properties.EditMask = '000.000.000-00;0'
-                TabOrder = 6
+                TabOrder = 2
                 Width = 193
               end
               object cxDBRadioGroup1: TcxDBRadioGroup
@@ -357,13 +363,14 @@
                     Caption = 'FEMININO'
                     Value = 'F'
                   end>
-                TabOrder = 7
+                TabOrder = 3
                 Height = 45
                 Width = 193
               end
               object cxDBImage1: TcxDBImage
                 Left = 15
                 Top = 34
+                TabStop = False
                 DataBinding.DataField = 'foto'
                 DataBinding.DataSource = DS
                 Properties.FitMode = ifmProportionalStretch
@@ -378,7 +385,7 @@
                 DataBinding.DataField = 'tel1'
                 DataBinding.DataSource = DS
                 Properties.EditMask = '!\(99\)0000-99999;1;_'
-                TabOrder = 9
+                TabOrder = 4
                 Width = 193
               end
               object cxDBMaskEdit4: TcxDBMaskEdit
@@ -387,7 +394,7 @@
                 DataBinding.DataField = 'tel2'
                 DataBinding.DataSource = DS
                 Properties.EditMask = '!\(99\)0000-99999;1;_'
-                TabOrder = 10
+                TabOrder = 5
                 Width = 193
               end
               object cxDBTextEdit2: TcxDBTextEdit
@@ -395,7 +402,7 @@
                 Top = 218
                 DataBinding.DataField = 'email'
                 DataBinding.DataSource = DS
-                TabOrder = 11
+                TabOrder = 6
                 Width = 193
               end
             end
@@ -478,7 +485,7 @@
                 DataBinding.DataField = 'qtdHorasSono'
                 DataBinding.DataSource = DS
                 Properties.MinValue = 1.000000000000000000
-                TabOrder = 1
+                TabOrder = 3
                 Width = 140
               end
               object cxDBCheckBox2: TcxDBCheckBox
@@ -487,7 +494,7 @@
                 Caption = 'SUPLEMENTA'#199#195'O'
                 DataBinding.DataField = 'suplementacao'
                 DataBinding.DataSource = DS
-                TabOrder = 2
+                TabOrder = 7
                 Width = 134
               end
               object cxDBCheckBox3: TcxDBCheckBox
@@ -496,7 +503,7 @@
                 Caption = 'DIETA'
                 DataBinding.DataField = 'dieta'
                 DataBinding.DataSource = DS
-                TabOrder = 3
+                TabOrder = 6
                 Width = 134
               end
               object cxDBCheckBox4: TcxDBCheckBox
@@ -505,7 +512,7 @@
                 Caption = 'FUMANTE'
                 DataBinding.DataField = 'fumante'
                 DataBinding.DataSource = DS
-                TabOrder = 4
+                TabOrder = 8
                 Width = 134
               end
               object cxDBCheckBox5: TcxDBCheckBox
@@ -514,7 +521,7 @@
                 Caption = 'USO B. ALC'#211'OLICA'
                 DataBinding.DataField = 'consomeBebidaAlcoolica'
                 DataBinding.DataSource = DS
-                TabOrder = 5
+                TabOrder = 9
                 Width = 134
               end
               object cxDBMemo1: TcxDBMemo
@@ -522,7 +529,7 @@
                 Top = 147
                 DataBinding.DataField = 'informacaoAdicional'
                 DataBinding.DataSource = DS
-                TabOrder = 6
+                TabOrder = 5
                 Height = 73
                 Width = 469
               end
@@ -536,7 +543,7 @@
                 Properties.MaxValue = 3.000000000000000000
                 Properties.MinValue = 1.000000000000000000
                 Properties.ValueType = vtFloat
-                TabOrder = 7
+                TabOrder = 2
                 Width = 140
               end
               object cxDBSpinEdit7: TcxDBSpinEdit
@@ -550,17 +557,18 @@
                 Properties.MinValue = 1.000000000000000000
                 Properties.Nullstring = '0'
                 Properties.ValueType = vtFloat
-                TabOrder = 8
+                TabOrder = 1
                 Width = 140
               end
               object cxDBMaskEdit6: TcxDBMaskEdit
                 Left = 479
                 Top = 41
+                TabStop = False
                 DataBinding.DataField = 'IMC'
                 DataBinding.DataSource = DS
                 Properties.EditMask = '99,99;1'
                 Properties.ReadOnly = True
-                TabOrder = 9
+                TabOrder = 10
                 Width = 140
               end
               object DBEdit2: TDBEdit
@@ -568,6 +576,7 @@
                 Top = 96
                 Width = 24
                 Height = 21
+                TabStop = False
                 Color = 15132390
                 DataField = 'idObjetivo'
                 DataSource = DS
@@ -577,7 +586,7 @@
                 Font.Name = 'Tahoma'
                 Font.Style = []
                 ParentFont = False
-                TabOrder = 10
+                TabOrder = 11
               end
               object DBEditBeleza1: TDBEditBeleza
                 Left = 195
@@ -593,7 +602,7 @@
                 Font.Name = 'Tahoma'
                 Font.Style = []
                 ParentFont = False
-                TabOrder = 11
+                TabOrder = 4
                 OnKeyPress = EditBTreinoKeyPress
                 Ativar_Pesquisa = True
                 mostrar_Botao = True
@@ -722,6 +731,7 @@
                 object cxDBMemo2: TcxDBMemo
                   Left = 2
                   Top = 21
+                  TabStop = False
                   Align = alClient
                   DataBinding.DataField = 'observacaoMedica'
                   DataBinding.DataSource = DSPAtologia
@@ -759,6 +769,7 @@
                   Top = 16
                   Width = 30
                   Height = 21
+                  TabStop = False
                   Color = 15461355
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
@@ -766,7 +777,7 @@
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  TabOrder = 0
+                  TabOrder = 1
                 end
                 object EditBeleza1: TEditBeleza
                   Left = 35
@@ -780,7 +791,7 @@
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  TabOrder = 1
+                  TabOrder = 0
                   OnKeyPress = EditBTreinoKeyPress
                   Ativar_Pesquisa = True
                   Ativar_MultiSelecao = False
@@ -896,6 +907,7 @@
                     Top = 33
                     Width = 29
                     Height = 21
+                    TabStop = False
                     Color = 15461355
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
@@ -904,7 +916,7 @@
                     Font.Style = []
                     ParentFont = False
                     ReadOnly = True
-                    TabOrder = 0
+                    TabOrder = 5
                   end
                   object EditBTreino: TEditBeleza
                     Left = 41
@@ -918,7 +930,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 1
+                    TabOrder = 0
                     OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
@@ -948,7 +960,7 @@
                     MaxValue = 10
                     MinValue = 1
                     ParentFont = False
-                    TabOrder = 2
+                    TabOrder = 3
                     Value = 1
                   end
                   object Editgrupo: TEdit
@@ -956,6 +968,7 @@
                     Top = 33
                     Width = 29
                     Height = 21
+                    TabStop = False
                     Color = 15461355
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
@@ -963,7 +976,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 3
+                    TabOrder = 6
                     OnChange = EditgrupoChange
                   end
                   object EditBGrupo: TEditBeleza
@@ -978,7 +991,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 4
+                    TabOrder = 1
                     OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
@@ -1000,6 +1013,7 @@
                     Top = 33
                     Width = 29
                     Height = 21
+                    TabStop = False
                     Color = 15461355
                     Enabled = False
                     Font.Charset = DEFAULT_CHARSET
@@ -1008,7 +1022,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 5
+                    TabOrder = 7
                   end
                   object EditBExercicio: TEditBeleza
                     Left = 340
@@ -1023,7 +1037,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 6
+                    TabOrder = 2
                     OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
@@ -1057,7 +1071,7 @@
                     MaxValue = 200
                     MinValue = 1
                     ParentFont = False
-                    TabOrder = 7
+                    TabOrder = 4
                     Value = 1
                   end
                 end
@@ -1246,6 +1260,7 @@
                     Top = 32
                     Width = 29
                     Height = 21
+                    TabStop = False
                     Color = 15461355
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
@@ -1254,7 +1269,7 @@
                     Font.Style = []
                     ParentFont = False
                     ReadOnly = True
-                    TabOrder = 0
+                    TabOrder = 1
                   end
                   object editBModalidade: TEditBeleza
                     Left = 43
@@ -1268,7 +1283,7 @@
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
-                    TabOrder = 1
+                    TabOrder = 0
                     OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
                     Ativar_MultiSelecao = False
@@ -2232,7 +2247,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00640210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00680210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

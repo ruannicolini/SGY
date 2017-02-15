@@ -64,10 +64,37 @@ uses uFuncao;
 
 procedure TF01008.BSalvarClick(Sender: TObject);
 begin
-  //criptografia
-  ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
-  // salva
-  inherited;
+
+  if TRIM(DBEdit2.Text) <> '' then
+  begin
+      if TRIM(DBEdit3.Text) <> '' then
+      begin
+            if TRIM(DBEdit4.Text) <> '' then
+            begin
+                if TRIM(DBEdit5.Text) <> '' then
+                begin
+                    //criptografia
+                    ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
+                    // salva
+                    inherited;
+                end else
+                begin
+                  ShowMessage('INFORME TIPO DE USUÁRIO');
+                end;
+            end else
+            begin
+              ShowMessage('INFORME SENHA');
+            end;
+      end else
+      begin
+        ShowMessage('INFORME USERNAME');
+      end;
+  end else
+  begin
+    ShowMessage('INFORME NOME DO USUÁRIO');
+  end;
+
+
 end;
 
 procedure TF01008.ClientDataSet1AfterInsert(DataSet: TDataSet);

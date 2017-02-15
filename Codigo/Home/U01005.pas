@@ -128,16 +128,23 @@ end;
 
 procedure TF01005.BSalvarClick(Sender: TObject);
 begin
-  inherited;
-  //limpa campos da ficha;
-  Edittreino.Clear;
-  EditBTreino.Clear;
-  Editgrupo.Clear;
-  EditBGrupo.Clear;
-  Editexercicio.Clear;
-  EditBExercicio.Clear;
-  editSerie.Clear;
-  editRepeticoes.Clear;
+  if TRIM(DBEdit2.Text) <> '' then
+  begin
+      inherited;
+      //limpa campos da ficha;
+      Edittreino.Clear;
+      EditBTreino.Clear;
+      Editgrupo.Clear;
+      EditBGrupo.Clear;
+      Editexercicio.Clear;
+      EditBExercicio.Clear;
+      editSerie.Clear;
+      editRepeticoes.Clear;
+  end else
+  begin
+    ShowMessage('INFORME DESCRIÇÃO');
+  end;
+  
 end;
 
 procedure TF01005.btnLimparFichaClick(Sender: TObject);

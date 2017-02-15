@@ -374,7 +374,6 @@ type
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
     procedure BSalvarClick(Sender: TObject);
-    procedure cxDBDateEdit1PropertiesChange(Sender: TObject);
     procedure ClientDataSet1CalcFields(DataSet: TDataSet);
     procedure ClientDataSet1AfterPost(DataSet: TDataSet);
     procedure SpeedButton1Click(Sender: TObject);
@@ -428,6 +427,8 @@ type
     procedure Action5Execute(Sender: TObject);
     procedure DSPAtologiaDataChange(Sender: TObject; Field: TField);
     procedure BExcluirClick(Sender: TObject);
+    procedure BInserirClick(Sender: TObject);
+    procedure cxDBDateEdit1Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -516,6 +517,18 @@ begin
   end;
 end;
 
+procedure TF01001.BInserirClick(Sender: TObject);
+begin
+  inherited;
+  ClientDataSet1sexo.AsString := 'M';
+  ClientDataSet1idade.Clear;
+  cxDBSpinEdit1.Clear;
+  cxDBCheckBox2.Checked := FALSE;
+  cxDBCheckBox3.Checked := FALSE;
+  cxDBCheckBox4.Checked := FALSE;
+  cxDBCheckBox5.Checked := FALSE;
+end;
+
 procedure TF01001.bRelatorioClick(Sender: TObject);
 var
   q: TFDQuery;
@@ -549,37 +562,43 @@ procedure TF01001.BSalvarClick(Sender: TObject);
 VAR
   aDest : TBitmap;
 begin
-
-  // SALVA FOTO DO ALUNO
-  IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
-  BEGIN
-    aDest:= tbitmap.create;
-    aDest.Width := 200;
-    aDest.Height := 113;
-    aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
-    //ClientDataSet1foto.Assign(camera.CapturedBitmap);
-    ClientDataSet1foto.Assign(aDest);
-  END;
-
-  //CONFIRMA ALTERAÇÃO NO DADO
-  inherited;
-
-  //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
-  IF(cdsPatologia.State = dsEdit)THEN
+  if TRIM(cxDBTextEdit7.Text) <> '' then
   begin
-      cdsPatologia.Post;
+      // SALVA FOTO DO ALUNO
+      IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
+      BEGIN
+        aDest:= tbitmap.create;
+        aDest.Width := 200;
+        aDest.Height := 113;
+        aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
+        //ClientDataSet1foto.Assign(camera.CapturedBitmap);
+        ClientDataSet1foto.Assign(aDest);
+      END;
+
+      //CONFIRMA ALTERAÇÃO NO DADO
+      inherited;
+
+      //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
+      IF(cdsPatologia.State = dsEdit)THEN
+      begin
+          cdsPatologia.Post;
+      end;
+
+      //limpa campos da ficha;
+      Edittreino.Clear;
+      EditBTreino.Clear;
+      Editgrupo.Clear;
+      EditBGrupo.Clear;
+      Editexercicio.Clear;
+      EditBExercicio.Clear;
+      editSerie.Clear;
+      editRepeticoes.Clear;
+
+
+  end else
+  begin
+      ShowMessage('INFORME NOME DO ALUNO');
   end;
-
-  //limpa campos da ficha;
-  Edittreino.Clear;
-  EditBTreino.Clear;
-  Editgrupo.Clear;
-  EditBGrupo.Clear;
-  Editexercicio.Clear;
-  EditBExercicio.Clear;
-  editSerie.Clear;
-  editRepeticoes.Clear;
-
 end;
 
 procedure TF01001.BTNALTERARClick(Sender: TObject);
@@ -892,12 +911,18 @@ begin
 end;
 
 
-procedure TF01001.cxDBDateEdit1PropertiesChange(Sender: TObject);
+procedure TF01001.cxDBDateEdit1Exit(Sender: TObject);
 begin
   inherited;
   IF((ClientDataSet1.State = dsEdit) OR (ClientDataSet1.State = dsInsert))THEN
   BEGIN
-    ClientDataSet1idade.AsInteger := (DateUtils.YearsBetween(DATE, cxDBDateEdit1.Date));
+    IF trim(cxDBDateEdit1.Text) <> '' THEN
+    BEGIN
+      ClientDataSet1idade.AsInteger := (DateUtils.YearsBetween(DATE, cxDBDateEdit1.Date));
+    END ELSE
+    BEGIN
+      ClientDataSet1idade.AsInteger := 0;
+    END;
   END;
 end;
 

@@ -30,6 +30,7 @@ type
     DBEdit2: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure BExcluirClick(Sender: TObject);
+    procedure BSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,6 +57,18 @@ begin
   end else
   begin
     showmessage('PATOLOGIA POSSUI REGISTRO DE USO EM ANAMNESE DE ALUNO. NÃO É POSSÍVEL EXCLUIR.')
+  end;
+
+end;
+
+procedure TF01007.BSalvarClick(Sender: TObject);
+begin
+  if TRIM(DBEdit2.Text) <> '' then
+  begin
+      inherited;
+  end else
+  begin
+    ShowMessage('INFORME DESCRIÇÃO');
   end;
 
 end;
