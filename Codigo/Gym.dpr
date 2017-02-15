@@ -20,7 +20,8 @@ uses
   U01009 in 'Home\U01009.pas' {F01009},
   u_relatorios in 'u_relatorios.pas' {FRelatorios},
   U01005 in 'Home\U01005.pas' {F01005},
-  uFuncao in 'uFuncao.pas';
+  uFuncao in 'uFuncao.pas',
+  U01012 in 'Home\U01012.pas' {F01012};
 
 {$R *.res}
 

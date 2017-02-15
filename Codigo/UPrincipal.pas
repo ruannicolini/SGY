@@ -30,6 +30,7 @@ type
     btnPatologias: TSpeedButton;
     btnUsuario: TSpeedButton;
     bntBackUp: TSpeedButton;
+    btnModalidade: TSpeedButton;
     procedure btnPagamentoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
@@ -43,6 +44,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure bntBackUpClick(Sender: TObject);
     procedure btnFichaClick(Sender: TObject);
+    procedure btnModalidadeClick(Sender: TObject);
   private
     // Rotina de backup
     procedure ExecutaBackupBD();
@@ -100,6 +102,11 @@ end;
 procedure TFPrincipal.btnGrupoClick(Sender: TObject);
 begin
   CriarForm('F01004', 'Grupo de Exercício');
+end;
+
+procedure TFPrincipal.btnModalidadeClick(Sender: TObject);
+begin
+    CriarForm('F01012', 'Modalidade');
 end;
 
 procedure TFPrincipal.btnPagamentoClick(Sender: TObject);
