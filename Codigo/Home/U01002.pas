@@ -76,7 +76,7 @@ type
     btnisencao: TcxButton;
     btnCancelar: TcxButton;
     EditPESQSITUA플O: TEditBeleza;
-    EditIDSituacao: TEdit;
+    EditPesqIDSituacao: TEdit;
     cbxPesqSituacao: TCheckBox;
     cbxPesqAluno: TCheckBox;
     EditPesqIDAluno: TEdit;
@@ -108,6 +108,8 @@ type
     procedure EditPesqAlunoChange(Sender: TObject);
     procedure dataPesqVencimentoInicioPropertiesChange(Sender: TObject);
     procedure dataPesqPagamentoInicioPropertiesChange(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure BtnLimparFiltrosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -175,6 +177,42 @@ begin
   END;
 end;
 
+procedure TF01002.btnFiltrarClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'select p.*, a.nomeAluno, A.CPF, m.descricaoModalidade, sp.descricaostatusPagamento from pagamento p '+
+  'left outer join Aluno a on a.idAluno = p.idAluno '+
+  'left outer join modalidade m on m.idModalidade = p.idModalidade '+
+  'left outer join statusPagamento sp on sp.idstatusPagamento = p.idstatusPagamento '+
+  'WHERE 1=1 ';
+
+  if(cbxPesqAluno.Checked = true)then
+    FDQuery1.SQL.Add(' AND P.IDALUNO =' + EditPesqIDAluno.Text);
+  if(cbxPesqModalidade.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' AND P.IDMODALIDADE =' + editPesqidModalidade.Text);
+  END;
+  if(cbxPesqSituacao.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' AND P.IDSTATUSPAGAMENTO =' + EditPESQIDSituacao.Text);
+  END;
+  if(cbxPesqDataVencimento.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' AND ((P.dataVencimento >= "'+ FormatDateTime('yyyy-mm-dd',dataPesqVencimentoInicio.Date) +'") and (p.dataVencimento <= "'+ FormatDateTime('yyyy-mm-dd',dataPesqVencimentoFim.Date) +'" ))');
+  END;
+  if(cbxPesqDataPagamento.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' AND ((P.dataPagamento >= "'+ FormatDateTime('yyyy-mm-dd',dataPesqPagamentoInicio.Date) +'") and (p.dataPagamento <= "'+ FormatDateTime('yyyy-mm-dd',dataPesqPagamentoFim.Date) +'" ))');
+  END;
+
+  FDQuery1.SQL.Add('ORDER BY (P.DATAVENCIMENTO) ');
+
+  FDQuery1.Open;
+  BPesquisar.Click;
+
+end;
+
 procedure TF01002.btnisencaoClick(Sender: TObject);
 begin
   inherited;
@@ -210,6 +248,19 @@ begin
   end;
 
 
+end;
+
+procedure TF01002.BtnLimparFiltrosClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'select p.*, a.nomeAluno, A.CPF, m.descricaoModalidade, sp.descricaostatusPagamento from pagamento p '+
+  'left outer join Aluno a on a.idAluno = p.idAluno '+
+  'left outer join modalidade m on m.idModalidade = p.idModalidade '+
+  'left outer join statusPagamento sp on sp.idstatusPagamento = p.idstatusPagamento '+
+  'ORDER BY (P.DATAVENCIMENTO) ';
+  FDQuery1.Open;
+  BPesquisar.Click;
 end;
 
 procedure TF01002.btnPagamentoClick(Sender: TObject);
@@ -407,7 +458,7 @@ begin
   if((EditPESQSITUA플O.Text = '')or (EditPESQSITUA플O.Text = ' '))then
   begin
     cbxPesqSituacao.Checked := false;
-    EditIDSituacao.Clear;
+    EditPESQSITUA플O.Clear;
   end else
     cbxPesqSituacao.Checked := true;
 end;

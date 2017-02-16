@@ -465,6 +465,7 @@
         ExplicitWidth = 1000
         inherited btnFiltrar: TButton
           Left = 949
+          OnClick = btnFiltrarClick
         end
         object EditPESQSITUAÇÃO: TEditBeleza
           Left = 410
@@ -491,12 +492,12 @@
           database = 'gym'
           campo = 'DESCRICAOSTATUSPAGAMENTO'
           Sempre_Mostrar_Janela = False
-          Outro_Edit = EditIDSituacao
+          Outro_Edit = EditPesqIDSituacao
           campo_outro_edit = 'IDSTATUSPAGAMENTO'
           CorBorda = clGray
           NovoLayout = False
         end
-        object EditIDSituacao: TEdit
+        object EditPesqIDSituacao: TEdit
           Left = 386
           Top = 38
           Width = 25
@@ -623,6 +624,7 @@
         object dataPesqVencimentoInicio: TcxDateEdit
           Left = 573
           Top = 38
+          Properties.AssignedValues.EditFormat = True
           Properties.OnChange = dataPesqVencimentoInicioPropertiesChange
           Style.BorderColor = clWindowFrame
           Style.BorderStyle = ebsUltraFlat
