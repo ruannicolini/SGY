@@ -2,6 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 829
+  ExplicitTop = -365
   ExplicitWidth = 845
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -16,6 +17,7 @@
   inherited PageControl: TPageControl
     Width = 829
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 829
     ExplicitHeight = 706
@@ -66,8 +68,6 @@
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
-            ExplicitLeft = -3
-            ExplicitTop = 32
             object camera: TdxCameraControl
               Left = 756
               Top = 111
@@ -678,6 +678,7 @@
                   ClickTituloOrdenar = True
                   MarcarLinhaInteira = True
                   CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clGreen
                   BloquearExportacoes = False
                   Columns = <
                     item
@@ -1105,6 +1106,7 @@
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
+                  OnDrawColumnCell = DBGridBeleza3DrawColumnCell
                   OnKeyDown = DBGridBeleza3KeyDown
                   Cor_2 = 16382457
                   Direcao_Cor2 = dg_Horiz
@@ -1112,6 +1114,7 @@
                   ClickTituloOrdenar = True
                   MarcarLinhaInteira = True
                   CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clBlack
                   BloquearExportacoes = False
                   Columns = <
                     item
@@ -1317,7 +1320,7 @@
                   Color = clWhite
                   DataSource = DSModalidade
                   DrawingStyle = gdsGradient
-                  FixedColor = 16762447
+                  FixedColor = 16763594
                   GradientEndColor = 16382457
                   GradientStartColor = clInactiveCaption
                   Font.Charset = DEFAULT_CHARSET
@@ -1341,6 +1344,7 @@
                   ClickTituloOrdenar = True
                   MarcarLinhaInteira = True
                   CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clGreen
                   BloquearExportacoes = False
                   Columns = <
                     item
@@ -1490,6 +1494,7 @@
                   ClickTituloOrdenar = True
                   MarcarLinhaInteira = True
                   CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clGreen
                   BloquearExportacoes = False
                   Columns = <
                     item
@@ -2247,7 +2252,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00680210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00800210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

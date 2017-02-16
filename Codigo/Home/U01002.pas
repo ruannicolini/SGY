@@ -310,6 +310,8 @@ begin
           end;
       end;
   end;
+
+
 end;
 
 procedure TF01002.DSDataChange(Sender: TObject; Field: TField);

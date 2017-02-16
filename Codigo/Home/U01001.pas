@@ -429,6 +429,8 @@ type
     procedure BExcluirClick(Sender: TObject);
     procedure BInserirClick(Sender: TObject);
     procedure cxDBDateEdit1Exit(Sender: TObject);
+    procedure DBGridBeleza3DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -961,6 +963,22 @@ begin
         cdsPatologia.Delete;
      end;
   end;
+end;
+
+procedure TF01001.DBGridBeleza3DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  inherited;
+  {
+  if DBGridBeleza3.MarcarLinhaInteira then
+      if Rect.Top = TStringGrid(Self).CellRect(DataCol, TStringGrid(Self).Row).Top then
+      begin
+          DBGridBeleza3.Canvas.Brush.Color := DBGridBeleza3.CorLinhaMarcada;
+          //DBGridBeleza3.canvas.Font.Color := clBlack; // Ruan colocou isso aqui!!
+          DBGridBeleza3.Canvas.FillRect(Rect);
+          DBGridBeleza3.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+      end;
+      }
 end;
 
 procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
