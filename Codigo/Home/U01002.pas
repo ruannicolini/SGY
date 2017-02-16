@@ -17,7 +17,7 @@ uses
   cxSchedulerCustomControls, cxSchedulerDateNavigator, cxDateNavigator,
   Edit_Calendario, cxDBExtLookupComboBox, cxLookupEdit, cxDBLookupEdit,
   cxDBLookupComboBox, cxImageComboBox, Vcl.FileCtrl, Vcl.Menus, cxButtons,
-  EditBeleza;
+  EditBeleza, dxCore, cxDateUtils;
 
 type
   TF01002 = class(TFBase)
@@ -78,6 +78,18 @@ type
     EditPESQSITUAÇÃO: TEditBeleza;
     EditIDSituacao: TEdit;
     cbxPesqSituacao: TCheckBox;
+    cbxPesqAluno: TCheckBox;
+    EditPesqIDAluno: TEdit;
+    EditPesqAluno: TEditBeleza;
+    cbxPesqModalidade: TCheckBox;
+    editPesqidModalidade: TEdit;
+    EditPesqModalidade: TEditBeleza;
+    cbxPesqDataVencimento: TCheckBox;
+    dataPesqVencimentoInicio: TcxDateEdit;
+    dataPesqVencimentoFim: TcxDateEdit;
+    cbxPesqDataPagamento: TCheckBox;
+    dataPesqPagamentoInicio: TcxDateEdit;
+    dataPesqPagamentoFim: TcxDateEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEdit6Change(Sender: TObject);
     procedure DSDataChange(Sender: TObject; Field: TField);
@@ -92,10 +104,15 @@ type
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure BExcluirClick(Sender: TObject);
     procedure EditPESQSITUAÇÃOChange(Sender: TObject);
+    procedure EditPesqModalidadeChange(Sender: TObject);
+    procedure EditPesqAlunoChange(Sender: TObject);
+    procedure dataPesqVencimentoInicioPropertiesChange(Sender: TObject);
+    procedure dataPesqPagamentoInicioPropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    function VerificaData( Texto : String) : Boolean;
   end;
 
 var
@@ -244,6 +261,32 @@ begin
   ShowMessage(e.Message);
 end;
 
+procedure TF01002.dataPesqPagamentoInicioPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  if (VerificaData(dataPesqPagamentoInicio.Text) = TRUE) AND
+  (VerificaData(dataPesqPagamentoFim.Text)= TRUE) then
+  begin
+      cbxPesqDataPagamento.Checked := TRUE;
+  end ELSE
+  BEGIN
+      cbxPesqDataPagamento.Checked := FALSE;
+  END;
+end;
+
+procedure TF01002.dataPesqVencimentoInicioPropertiesChange(Sender: TObject);
+begin
+  inherited;
+  if (VerificaData(dataPesqVencimentoInicio.Text) = TRUE) AND
+  (VerificaData(dataPesqVencimentoFIM.Text)= TRUE) then
+  begin
+      cbxPesqDataVencimento.Checked := TRUE;
+  end ELSE
+  BEGIN
+      cbxPesqDataVencimento.Checked := FALSE;
+  END;
+end;
+
 procedure TF01002.DBEdit6Change(Sender: TObject);
 begin
   inherited;
@@ -335,6 +378,29 @@ begin
   END;
 end;
 
+procedure TF01002.EditPesqAlunoChange(Sender: TObject);
+begin
+  inherited;
+  if((EditPesqAluno.Text = '')or (EditPesqAluno.Text = ' '))then
+  begin
+    cbxPesqAluno.Checked := false;
+    EditPesqIDAluno.Clear;
+  end else
+    cbxPesqAluno.Checked := true;
+end;
+
+procedure TF01002.EditPesqModalidadeChange(Sender: TObject);
+begin
+  inherited;
+  if((EditPesqModalidade.Text = '')or (EditPesqModalidade.Text = ' '))then
+  begin
+    cbxPesqModalidade.Checked := false;
+    editPesqidModalidade.Clear;
+  end else
+    cbxPesqModalidade.Checked := true;
+end;
+
+
 procedure TF01002.EditPESQSITUAÇÃOChange(Sender: TObject);
 begin
   inherited;
@@ -344,6 +410,28 @@ begin
     EditIDSituacao.Clear;
   end else
     cbxPesqSituacao.Checked := true;
+end;
+
+function TF01002.VerificaData(Texto: String): Boolean;
+var
+   Data : String;
+begin
+    Data := TEXTO;
+    try
+      {IF(Length(TEXTO)=10)THEN
+      BEGIN
+        StrToDate(Data);
+        Result := True;
+      END ELSE
+      BEGIN
+        Result := False;
+      END; }
+      StrToDate(Data);
+      Result := True;
+
+    except
+       Result := False;
+    end;
 end;
 
 Initialization

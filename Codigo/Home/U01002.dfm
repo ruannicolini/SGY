@@ -1,16 +1,20 @@
 ﻿inherited F01002: TF01002
   Caption = 'F01002'
-  ExplicitWidth = 834
+  ClientWidth = 1008
+  ExplicitLeft = -242
+  ExplicitWidth = 1024
   ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
+    Width = 1008
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 810
       ExplicitHeight = 455
       inherited grDados: TGroupBox
+        Width = 1000
         object Label1: TLabel
           Left = 24
           Top = 41
@@ -277,7 +281,17 @@
       ExplicitTop = 24
       ExplicitWidth = 810
       ExplicitHeight = 455
+      inherited GBFiltros: TGroupBox
+        Width = 1000
+        inherited Panel1: TPanel
+          Width = 991
+          inherited BtnLimparFiltros: TButton
+            Left = 946
+          end
+        end
+      end
       inherited DBGridBeleza1: TDBGridBeleza
+        Width = 1000
         Height = 298
         OnDrawColumnCell = DBGridBeleza1DrawColumnCell
         CorFonteLinhaMarcada = clWindow
@@ -446,10 +460,16 @@
           end>
       end
       inherited PanelFiltros: TPanel
+        Width = 1000
+        ExplicitTop = 2
+        ExplicitWidth = 1000
+        inherited btnFiltrar: TButton
+          Left = 949
+        end
         object EditPESQSITUAÇÃO: TEditBeleza
-          Left = 333
-          Top = 32
-          Width = 200
+          Left = 410
+          Top = 38
+          Width = 150
           Height = 21
           Color = 14079702
           Font.Charset = DEFAULT_CHARSET
@@ -477,8 +497,8 @@
           NovoLayout = False
         end
         object EditIDSituacao: TEdit
-          Left = 309
-          Top = 32
+          Left = 386
+          Top = 38
           Width = 25
           Height = 21
           Color = 14079702
@@ -486,25 +506,191 @@
           TabOrder = 2
         end
         object cbxPesqSituacao: TCheckBox
-          Left = 309
-          Top = 12
-          Width = 224
+          Left = 386
+          Top = 18
+          Width = 174
           Height = 17
           Caption = 'SITUA'#199#195'O DA MENSALIDADE'
           TabOrder = 3
+        end
+        object cbxPesqAluno: TCheckBox
+          Left = 11
+          Top = 18
+          Width = 224
+          Height = 17
+          Caption = 'ALUNO'
+          TabOrder = 4
+        end
+        object EditPesqIDAluno: TEdit
+          Left = 11
+          Top = 38
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 5
+        end
+        object EditPesqAluno: TEditBeleza
+          Left = 35
+          Top = 38
+          Width = 150
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 6
+          OnChange = EditPesqAlunoChange
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idALUNO, P.NOMEALUNO from ALUNO P where P.NOMEALUNO lik' +
+              'e :varDescricao')
+          database = 'gym'
+          campo = 'NOMEALUNO'
+          Sempre_Mostrar_Janela = False
+          Outro_Edit = EditPesqIDAluno
+          campo_outro_edit = 'IDALUNO'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object cbxPesqModalidade: TCheckBox
+          Left = 199
+          Top = 18
+          Width = 97
+          Height = 17
+          Caption = 'MODALIDADE'
+          TabOrder = 7
+        end
+        object editPesqidModalidade: TEdit
+          Left = 199
+          Top = 38
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 8
+        end
+        object EditPesqModalidade: TEditBeleza
+          Left = 223
+          Top = 38
+          Width = 150
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 9
+          OnChange = EditPesqModalidadeChange
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idMODALIDADE, P.DESCRICAOMODALIDADE from MODALIDADE P w' +
+              'here P.DESCRICAOMODALIDADE like :varDescricao')
+          database = 'gym'
+          campo = 'DESCRICAOMODALIDADE'
+          Sempre_Mostrar_Janela = False
+          Marcar_CheckBox = cbxPesqModalidade
+          Outro_Edit = editPesqidModalidade
+          campo_outro_edit = 'IDMODALIDADE'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object cbxPesqDataVencimento: TCheckBox
+          Left = 573
+          Top = 18
+          Width = 80
+          Height = 17
+          Caption = 'VENCIMENTO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 10
+        end
+        object dataPesqVencimentoInicio: TcxDateEdit
+          Left = 573
+          Top = 38
+          Properties.OnChange = dataPesqVencimentoInicioPropertiesChange
+          Style.BorderColor = clWindowFrame
+          Style.BorderStyle = ebsUltraFlat
+          Style.Color = 14540253
+          Style.ButtonStyle = btsDefault
+          TabOrder = 11
+          Width = 86
+        end
+        object dataPesqVencimentoFim: TcxDateEdit
+          Left = 660
+          Top = 38
+          Properties.OnChange = dataPesqVencimentoInicioPropertiesChange
+          Style.BorderColor = clWindowFrame
+          Style.BorderStyle = ebsUltraFlat
+          Style.Color = 14540253
+          Style.ButtonStyle = btsDefault
+          TabOrder = 12
+          Width = 86
+        end
+        object cbxPesqDataPagamento: TCheckBox
+          Left = 760
+          Top = 18
+          Width = 80
+          Height = 17
+          Caption = 'PAGAMENTO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 13
+        end
+        object dataPesqPagamentoInicio: TcxDateEdit
+          Left = 760
+          Top = 38
+          Properties.OnChange = dataPesqPagamentoInicioPropertiesChange
+          Style.BorderColor = clWindowFrame
+          Style.BorderStyle = ebsUltraFlat
+          Style.Color = 14540253
+          Style.ButtonStyle = btsDefault
+          TabOrder = 14
+          Width = 86
+        end
+        object dataPesqPagamentoFim: TcxDateEdit
+          Left = 847
+          Top = 38
+          Properties.OnChange = dataPesqPagamentoInicioPropertiesChange
+          Style.BorderColor = clWindowFrame
+          Style.BorderStyle = ebsUltraFlat
+          Style.Color = 14540253
+          Style.ButtonStyle = btsDefault
+          TabOrder = 15
+          Width = 86
         end
       end
       object Panel5: TPanel
         Left = 0
         Top = 409
-        Width = 810
+        Width = 1000
         Height = 46
         Align = alBottom
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 3
+        ExplicitWidth = 810
         object btnPagamento: TcxButton
-          Left = 594
+          Left = 784
           Top = -1
           Width = 200
           Height = 37
@@ -514,9 +700,10 @@
           Enabled = False
           TabOrder = 0
           OnClick = btnPagamentoClick
+          ExplicitLeft = 594
         end
         object btnisencao: TcxButton
-          Left = 389
+          Left = 579
           Top = -1
           Width = 200
           Height = 37
@@ -526,9 +713,10 @@
           Enabled = False
           TabOrder = 1
           OnClick = btnisencaoClick
+          ExplicitLeft = 389
         end
         object btnCancelar: TcxButton
-          Left = 184
+          Left = 374
           Top = -1
           Width = 200
           Height = 37
@@ -538,11 +726,13 @@
           Enabled = False
           TabOrder = 2
           OnClick = btnCancelarClick
+          ExplicitLeft = 184
         end
       end
     end
   end
   inherited Panel2: TPanel
+    Width = 1008
     inherited BInserir: TSpeedButton
       Left = 422
       Visible = False
@@ -567,6 +757,9 @@
     inherited BPesquisar: TSpeedButton
       Left = 76
       ExplicitLeft = 76
+    end
+    inherited BFechar: TSpeedButton
+      Left = 974
     end
     inherited BFirst: TSpeedButton
       Left = 110
