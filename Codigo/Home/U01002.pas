@@ -16,7 +16,8 @@ uses
   cxSpinEdit, DBEditBeleza, cxStyles, cxSchedulerStorage,
   cxSchedulerCustomControls, cxSchedulerDateNavigator, cxDateNavigator,
   Edit_Calendario, cxDBExtLookupComboBox, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxImageComboBox, Vcl.FileCtrl, Vcl.Menus, cxButtons;
+  cxDBLookupComboBox, cxImageComboBox, Vcl.FileCtrl, Vcl.Menus, cxButtons,
+  EditBeleza;
 
 type
   TF01002 = class(TFBase)
@@ -74,6 +75,9 @@ type
     btnPagamento: TcxButton;
     btnisencao: TcxButton;
     btnCancelar: TcxButton;
+    EditPESQSITUA플O: TEditBeleza;
+    EditIDSituacao: TEdit;
+    cbxPesqSituacao: TCheckBox;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEdit6Change(Sender: TObject);
     procedure DSDataChange(Sender: TObject; Field: TField);
@@ -87,6 +91,7 @@ type
       var Action: TReconcileAction);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure BExcluirClick(Sender: TObject);
+    procedure EditPESQSITUA플OChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -328,6 +333,17 @@ begin
       btnIsencao.Enabled := FALSE;
       btnCancelar.Enabled := true;
   END;
+end;
+
+procedure TF01002.EditPESQSITUA플OChange(Sender: TObject);
+begin
+  inherited;
+  if((EditPESQSITUA플O.Text = '')or (EditPESQSITUA플O.Text = ' '))then
+  begin
+    cbxPesqSituacao.Checked := false;
+    EditIDSituacao.Clear;
+  end else
+    cbxPesqSituacao.Checked := true;
 end;
 
 Initialization

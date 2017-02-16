@@ -368,6 +368,15 @@ type
     CDSRelFichaidObjetivo: TIntegerField;
     CDSRelFichadataComposicaoFicha: TDateField;
     CDSRelFichaDESCRICAOOBJETIVO: TStringField;
+    EditPesqModalidade: TEditBeleza;
+    cbxPesqModalidade: TCheckBox;
+    editPesqidModalidade: TEdit;
+    EditPesqNome: TEdit;
+    cbxPesqNome: TCheckBox;
+    cbxPesqSemFichaExercicios: TCheckBox;
+    cbxPesqSemMatriculaAtiva: TCheckBox;
+    cbxPesqFichaVencida: TCheckBox;
+    cbxPesqPagamentoEmAtraso: TCheckBox;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -429,8 +438,10 @@ type
     procedure BExcluirClick(Sender: TObject);
     procedure BInserirClick(Sender: TObject);
     procedure cxDBDateEdit1Exit(Sender: TObject);
-    procedure DBGridBeleza3DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure EditPesqModalidadeChange(Sender: TObject);
+    procedure EditPesqNomeChange(Sender: TObject);
+    procedure BtnLimparFiltrosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -724,6 +735,41 @@ begin
   REPORT_FICHA.ShowReport(TRUE);
 end;
 
+procedure TF01001.btnFiltrarClick(Sender: TObject);
+begin
+  inherited;
+
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO FROM ALUNO A ' +
+  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO WHERE 1=1 ';
+
+  if(cbxPesqNome.Checked = true)then
+    FDQuery1.SQL.Add(' and a.nomeAluno like "%' + EditPesqNome.Text +'%"');
+  if(cbxPesqModalidade.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add('  and a.idaluno in (select idaluno from alunomodalidade where idmodalidade = ' + editPesqidModalidade.Text + ') ');
+  END;
+  if(cbxPesqSemMatriculaAtiva.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' and a.idaluno not in (select idaluno from alunomodalidade)');
+  END;
+  if(cbxPesqPagamentoEmAtraso.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' and a.idaluno in (select idaluno from pagamento where curdate() > dataVencimento and idStatusPagamento = 1 group by idaluno) ');
+  END;
+  if(cbxPesqSemFichaExercicios.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' and a.idaluno not in (select idaluno from serie group by idAluno)');
+  END;
+  if(cbxPesqFichaVencida.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' AND curdate() > DATE_ADD(a.dataComposicaoficha, INTERVAL (select p.valor from parametros p where p.parametro = "duracaoFichaEmMeses") MONTH)' );
+  END;
+  FDQuery1.Open;
+  BPesquisar.Click;
+
+end;
+
 procedure TF01001.btnFotoClick(Sender: TObject);
 var
 aDest : TBitmap;
@@ -965,22 +1011,6 @@ begin
   end;
 end;
 
-procedure TF01001.DBGridBeleza3DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-begin
-  inherited;
-  {
-  if DBGridBeleza3.MarcarLinhaInteira then
-      if Rect.Top = TStringGrid(Self).CellRect(DataCol, TStringGrid(Self).Row).Top then
-      begin
-          DBGridBeleza3.Canvas.Brush.Color := DBGridBeleza3.CorLinhaMarcada;
-          //DBGridBeleza3.canvas.Font.Color := clBlack; // Ruan colocou isso aqui!!
-          DBGridBeleza3.Canvas.FillRect(Rect);
-          DBGridBeleza3.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-      end;
-      }
-end;
-
 procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -1145,6 +1175,30 @@ procedure TF01001.EditBeleza1ButtonClick(Sender: TObject;
 begin
   inherited;
   query_result.ParamByName('idA').Value := (ClientDataSet1idAluno.AsInteger);
+end;
+
+procedure TF01001.EditPesqModalidadeChange(Sender: TObject);
+begin
+  inherited;
+  if(  (EditPesqModalidade.Text = '')or (EditPesqModalidade.Text = ' ')
+
+  )then
+  begin
+    cbxPesqModalidade.Checked := false;
+      editPesqidModalidade.Clear;
+  end else
+    cbxPesqModalidade.Checked := true;
+end;
+
+
+procedure TF01001.EditPesqNomeChange(Sender: TObject);
+begin
+  inherited;
+  if( TRIM(EditPesqNome.Text) <> '')then
+  begin
+    cbxPesqNome.Checked := true;
+  end else
+    cbxPesqNome.Checked := false;
 end;
 
 procedure TF01001.EditBExercicioButtonClick(Sender: TObject;
@@ -1488,6 +1542,17 @@ begin
         END;
       END;
   end;
+end;
+
+procedure TF01001.BtnLimparFiltrosClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO FROM ALUNO A ' +
+  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO';
+  FDQuery1.Open;
+  BPesquisar.Click;
+
 end;
 
 procedure TF01001.btnCancelaMatriculaClick(Sender: TObject);

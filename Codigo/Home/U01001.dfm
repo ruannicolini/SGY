@@ -1,9 +1,8 @@
 ﻿inherited F01001: TF01001
   Caption = 'F01001'
   ClientHeight = 741
-  ClientWidth = 829
-  ExplicitTop = -365
-  ExplicitWidth = 845
+  ClientWidth = 929
+  ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
   TextHeight = 13
@@ -15,9 +14,8 @@
     Caption = 'TEL'
   end
   inherited PageControl: TPageControl
-    Width = 829
+    Width = 929
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 829
     ExplicitHeight = 706
@@ -27,14 +25,14 @@
       ExplicitWidth = 821
       ExplicitHeight = 678
       inherited grDados: TGroupBox
-        Width = 821
+        Width = 921
         Height = 678
         ExplicitWidth = 821
         ExplicitHeight = 678
         object cxPageControl1: TcxPageControl
           Left = 2
           Top = 15
-          Width = 817
+          Width = 917
           Height = 661
           Align = alClient
           BiDiMode = bdLeftToRight
@@ -60,14 +58,16 @@
           LookAndFeel.Kind = lfUltraFlat
           LookAndFeel.NativeStyle = True
           TabSlants.Positions = [spLeft, spRight]
+          ExplicitWidth = 817
           ClientRectBottom = 630
-          ClientRectRight = 817
+          ClientRectRight = 917
           ClientRectTop = 0
           object pag1: TcxTabSheet
             Caption = 'PERFIL'
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
+            ExplicitWidth = 817
             object camera: TdxCameraControl
               Left = 756
               Top = 111
@@ -410,6 +410,7 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
+            ExplicitWidth = 817
             object cxGroupBox3: TcxGroupBox
               Left = 16
               Top = 0
@@ -819,6 +820,7 @@
           object pag3: TcxTabSheet
             Caption = 'FICHA DE EXERCICIOS'
             ImageIndex = 2
+            ExplicitWidth = 817
             object cxGroupBox10: TcxGroupBox
               Left = 16
               Top = 0
@@ -1106,7 +1108,6 @@
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
-                  OnDrawColumnCell = DBGridBeleza3DrawColumnCell
                   OnKeyDown = DBGridBeleza3KeyDown
                   Cor_2 = 16382457
                   Direcao_Cor2 = dg_Horiz
@@ -1202,6 +1203,7 @@
           object pag4: TcxTabSheet
             Caption = 'MODALIDADES'
             ImageIndex = 4
+            ExplicitWidth = 817
             object cxGroupBox11: TcxGroupBox
               Left = 16
               Top = 0
@@ -1415,6 +1417,7 @@
           object pagMensalidades: TcxTabSheet
             Caption = 'MENSALIDADES'
             ImageIndex = 3
+            ExplicitWidth = 817
             object cxGroupBox14: TcxGroupBox
               Left = 16
               Top = 0
@@ -1494,7 +1497,7 @@
                   ClickTituloOrdenar = True
                   MarcarLinhaInteira = True
                   CorLinhaMarcada = 15854564
-                  CorFonteLinhaMarcada = clGreen
+                  CorFonteLinhaMarcada = clBlack
                   BloquearExportacoes = False
                   Columns = <
                     item
@@ -1615,19 +1618,19 @@
       ExplicitWidth = 821
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
-        Width = 821
+        Width = 921
         ExplicitWidth = 821
         inherited Panel1: TPanel
-          Width = 812
+          Width = 912
           ExplicitWidth = 812
           inherited BtnLimparFiltros: TButton
-            Left = 767
+            Left = 867
             ExplicitLeft = 767
           end
         end
       end
       inherited DBGridBeleza1: TDBGridBeleza
-        Width = 821
+        Width = 921
         Height = 567
         Columns = <
           item
@@ -1826,20 +1829,118 @@
           end>
       end
       inherited PanelFiltros: TPanel
-        Width = 821
-        ExplicitWidth = 821
+        Width = 921
+        ExplicitLeft = 2
+        ExplicitTop = 2
+        ExplicitWidth = 921
         inherited btnFiltrar: TButton
-          Left = 770
+          Left = 870
+          OnClick = btnFiltrarClick
           ExplicitLeft = 770
+        end
+        object EditPesqModalidade: TEditBeleza
+          Left = 288
+          Top = 31
+          Width = 188
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          OnChange = EditPesqModalidadeChange
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idMODALIDADE, P.DESCRICAOMODALIDADE from MODALIDADE P w' +
+              'here P.DESCRICAOMODALIDADE like :varDescricao')
+          database = 'gym'
+          campo = 'DESCRICAOMODALIDADE'
+          Sempre_Mostrar_Janela = False
+          Marcar_CheckBox = cbxPesqModalidade
+          Outro_Edit = editPesqidModalidade
+          campo_outro_edit = 'IDMODALIDADE'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object cbxPesqModalidade: TCheckBox
+          Left = 264
+          Top = 11
+          Width = 97
+          Height = 17
+          Caption = 'MODALIDADE'
+          TabOrder = 2
+        end
+        object editPesqidModalidade: TEdit
+          Left = 264
+          Top = 31
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 3
+        end
+        object EditPesqNome: TEdit
+          Left = 12
+          Top = 31
+          Width = 238
+          Height = 21
+          TabOrder = 4
+          OnChange = EditPesqNomeChange
+        end
+        object cbxPesqNome: TCheckBox
+          Left = 12
+          Top = 9
+          Width = 172
+          Height = 17
+          Caption = 'NOME'
+          TabOrder = 5
+        end
+        object cbxPesqSemFichaExercicios: TCheckBox
+          Left = 647
+          Top = 12
+          Width = 150
+          Height = 17
+          Caption = 'SEM FICHA DE EXERC'#205'CIOS'
+          TabOrder = 6
+        end
+        object cbxPesqSemMatriculaAtiva: TCheckBox
+          Left = 491
+          Top = 13
+          Width = 150
+          Height = 13
+          Caption = 'SEM MATR'#205'CULA ATIVA'
+          TabOrder = 7
+        end
+        object cbxPesqFichaVencida: TCheckBox
+          Left = 647
+          Top = 35
+          Width = 150
+          Height = 17
+          Caption = 'FICHA VENCIDA'
+          TabOrder = 8
+        end
+        object cbxPesqPagamentoEmAtraso: TCheckBox
+          Left = 491
+          Top = 37
+          Width = 150
+          Height = 13
+          Caption = 'PAGAMENTO EM ATRASO'
+          TabOrder = 9
         end
       end
     end
   end
   inherited Panel2: TPanel
-    Width = 829
+    Width = 929
     ExplicitWidth = 829
     inherited BFechar: TSpeedButton
-      Left = 795
+      Left = 895
       ExplicitLeft = 792
     end
   end
@@ -2252,7 +2353,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00800210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00940210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

@@ -1,4 +1,4 @@
-inherited F01002: TF01002
+﻿inherited F01002: TF01002
   Caption = 'F01002'
   ExplicitWidth = 834
   ExplicitHeight = 557
@@ -445,6 +445,55 @@ inherited F01002: TF01002
             Visible = False
           end>
       end
+      inherited PanelFiltros: TPanel
+        object EditPESQSITUAÇÃO: TEditBeleza
+          Left = 333
+          Top = 32
+          Width = 200
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          OnChange = EditPESQSITUAÇÃOChange
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idSTATUSPAGAMENTO, P.DESCRICAOSTATUSPAGAMENTO from STAT' +
+              'USPAGAMENTO P where P.DESCRICAOSTATUSPAGAMENTO like :varDescrica' +
+              'o')
+          database = 'gym'
+          campo = 'DESCRICAOSTATUSPAGAMENTO'
+          Sempre_Mostrar_Janela = False
+          Outro_Edit = EditIDSituacao
+          campo_outro_edit = 'IDSTATUSPAGAMENTO'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object EditIDSituacao: TEdit
+          Left = 309
+          Top = 32
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object cbxPesqSituacao: TCheckBox
+          Left = 309
+          Top = 12
+          Width = 224
+          Height = 17
+          Caption = 'SITUA'#199#195'O DA MENSALIDADE'
+          TabOrder = 3
+        end
+      end
       object Panel5: TPanel
         Left = 0
         Top = 409
@@ -684,7 +733,7 @@ inherited F01002: TF01002
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00D80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00DC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
