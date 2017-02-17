@@ -1,20 +1,21 @@
 ﻿inherited F01002: TF01002
   Caption = 'F01002'
   ClientWidth = 1008
-  ExplicitLeft = -242
   ExplicitWidth = 1024
   ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     Width = 1008
+    ExplicitWidth = 1008
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
+      ExplicitWidth = 1000
       ExplicitHeight = 455
       inherited grDados: TGroupBox
         Width = 1000
+        ExplicitWidth = 1000
         object Label1: TLabel
           Left = 24
           Top = 41
@@ -279,14 +280,17 @@
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
+      ExplicitWidth = 1000
       ExplicitHeight = 455
       inherited GBFiltros: TGroupBox
         Width = 1000
+        ExplicitWidth = 1000
         inherited Panel1: TPanel
           Width = 991
+          ExplicitWidth = 991
           inherited BtnLimparFiltros: TButton
             Left = 946
+            ExplicitLeft = 946
           end
         end
       end
@@ -461,11 +465,11 @@
       end
       inherited PanelFiltros: TPanel
         Width = 1000
-        ExplicitTop = 2
         ExplicitWidth = 1000
         inherited btnFiltrar: TButton
           Left = 949
           OnClick = btnFiltrarClick
+          ExplicitLeft = 949
         end
         object EditPESQSITUAÇÃO: TEditBeleza
           Left = 410
@@ -690,7 +694,6 @@
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 3
-        ExplicitWidth = 810
         object btnPagamento: TcxButton
           Left = 784
           Top = -1
@@ -702,7 +705,6 @@
           Enabled = False
           TabOrder = 0
           OnClick = btnPagamentoClick
-          ExplicitLeft = 594
         end
         object btnisencao: TcxButton
           Left = 579
@@ -715,7 +717,6 @@
           Enabled = False
           TabOrder = 1
           OnClick = btnisencaoClick
-          ExplicitLeft = 389
         end
         object btnCancelar: TcxButton
           Left = 374
@@ -728,13 +729,13 @@
           Enabled = False
           TabOrder = 2
           OnClick = btnCancelarClick
-          ExplicitLeft = 184
         end
       end
     end
   end
   inherited Panel2: TPanel
     Width = 1008
+    ExplicitWidth = 1008
     inherited BInserir: TSpeedButton
       Left = 422
       Visible = False
@@ -762,6 +763,7 @@
     end
     inherited BFechar: TSpeedButton
       Left = 974
+      ExplicitLeft = 974
     end
     inherited BFirst: TSpeedButton
       Left = 110
@@ -928,7 +930,7 @@
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00DC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

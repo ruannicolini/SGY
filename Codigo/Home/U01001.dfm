@@ -17,17 +17,17 @@
     Width = 929
     Height = 706
     TabStop = False
-    ExplicitWidth = 829
+    ExplicitWidth = 929
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 821
+      ExplicitWidth = 921
       ExplicitHeight = 678
       inherited grDados: TGroupBox
         Width = 921
         Height = 678
-        ExplicitWidth = 821
+        ExplicitWidth = 921
         ExplicitHeight = 678
         object cxPageControl1: TcxPageControl
           Left = 2
@@ -58,7 +58,6 @@
           LookAndFeel.Kind = lfUltraFlat
           LookAndFeel.NativeStyle = True
           TabSlants.Positions = [spLeft, spRight]
-          ExplicitWidth = 817
           ClientRectBottom = 630
           ClientRectRight = 917
           ClientRectTop = 0
@@ -67,7 +66,6 @@
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
-            ExplicitWidth = 817
             object camera: TdxCameraControl
               Left = 756
               Top = 111
@@ -410,7 +408,6 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
-            ExplicitWidth = 817
             object cxGroupBox3: TcxGroupBox
               Left = 16
               Top = 0
@@ -820,7 +817,6 @@
           object pag3: TcxTabSheet
             Caption = 'FICHA DE EXERCICIOS'
             ImageIndex = 2
-            ExplicitWidth = 817
             object cxGroupBox10: TcxGroupBox
               Left = 16
               Top = 0
@@ -1203,7 +1199,6 @@
           object pag4: TcxTabSheet
             Caption = 'MODALIDADES'
             ImageIndex = 4
-            ExplicitWidth = 817
             object cxGroupBox11: TcxGroupBox
               Left = 16
               Top = 0
@@ -1417,7 +1412,6 @@
           object pagMensalidades: TcxTabSheet
             Caption = 'MENSALIDADES'
             ImageIndex = 3
-            ExplicitWidth = 817
             object cxGroupBox14: TcxGroupBox
               Left = 16
               Top = 0
@@ -1615,17 +1609,17 @@
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 821
+      ExplicitWidth = 921
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
         Width = 921
-        ExplicitWidth = 821
+        ExplicitWidth = 921
         inherited Panel1: TPanel
           Width = 912
-          ExplicitWidth = 812
+          ExplicitWidth = 912
           inherited BtnLimparFiltros: TButton
             Left = 867
-            ExplicitLeft = 767
+            ExplicitLeft = 867
           end
         end
       end
@@ -1830,13 +1824,11 @@
       end
       inherited PanelFiltros: TPanel
         Width = 921
-        ExplicitLeft = 2
-        ExplicitTop = 2
         ExplicitWidth = 921
         inherited btnFiltrar: TButton
           Left = 870
           OnClick = btnFiltrarClick
-          ExplicitLeft = 770
+          ExplicitLeft = 870
         end
         object EditPesqModalidade: TEditBeleza
           Left = 288
@@ -1938,7 +1930,7 @@
   end
   inherited Panel2: TPanel
     Width = 929
-    ExplicitWidth = 829
+    ExplicitWidth = 929
     inherited BFechar: TSpeedButton
       Left = 895
       ExplicitLeft = 792
@@ -2353,7 +2345,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00940210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00980210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

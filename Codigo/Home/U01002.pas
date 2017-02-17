@@ -110,6 +110,7 @@ type
     procedure dataPesqPagamentoInicioPropertiesChange(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure BtnLimparFiltrosClick(Sender: TObject);
+    procedure bRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -124,12 +125,39 @@ implementation
 
 {$R *.dfm}
 
-uses U01010;
+uses U01010, u_relatorios;
 
 procedure TF01002.BExcluirClick(Sender: TObject);
 begin
   //inherited;
   ShowMessage('FUNÇÃO NÃO PERMITIDA.')
+end;
+
+procedure TF01002.bRelatorioClick(Sender: TObject);
+begin
+  inherited;
+  if NOT(Ds.DataSet.IsEmpty)then
+  begin
+      frelatorios := tfrelatorios.Create(self);
+      with frelatorios do
+      begin
+          try
+              visible := false;
+              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, nil, 'idAluno', '');
+
+              //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              ShowModal;
+          finally
+              Relatorios_sis.close;
+              relats_usur.close;
+              Free;
+          end;
+      end;
+  end else
+  begin
+    ShowMessage('Relatório necessita de pesquisa');
+  end;
+
 end;
 
 procedure TF01002.btnCancelarClick(Sender: TObject);

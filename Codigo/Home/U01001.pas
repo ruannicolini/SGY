@@ -543,8 +543,6 @@ begin
 end;
 
 procedure TF01001.bRelatorioClick(Sender: TObject);
-var
-  q: TFDQuery;
 begin
   inherited;
 
