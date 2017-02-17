@@ -74,6 +74,8 @@ type
     CDSSerieFichadescricaoGrupoExercicio: TStringField;
     CDSSerieFichaidequipamento: TIntegerField;
     CDSSerieFichadescricaoequipamento: TStringField;
+    cbxPesqDescricao: TCheckBox;
+    EditPesqDescricao: TEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure CDSSerieFichaAfterCancel(DataSet: TDataSet);
     procedure CDSSerieFichaAfterDelete(DataSet: TDataSet);
@@ -91,6 +93,10 @@ type
     procedure BSalvarClick(Sender: TObject);
     procedure Action5Execute(Sender: TObject);
     procedure DsSerieFichaDataChange(Sender: TObject; Field: TField);
+    procedure EditPesqDescricaoChange(Sender: TObject);
+    procedure BtnLimparFiltrosClick(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure bRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,6 +109,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses u_relatorios;
 
 procedure TF01005.Action5Execute(Sender: TObject);
 begin
@@ -126,6 +134,32 @@ begin
   editRepeticoes.Clear;
 end;
 
+procedure TF01005.bRelatorioClick(Sender: TObject);
+begin
+  inherited;
+  if NOT(Ds.DataSet.IsEmpty)then
+  begin
+      frelatorios := tfrelatorios.Create(self);
+      with frelatorios do
+      begin
+          try
+              visible := false;
+              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, DsSerieFicha.DataSet, 'idFichaPreDefinida', 'idFichaPreDefinida');
+
+              //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DsSerieFicha.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              ShowModal;
+          finally
+              Relatorios_sis.close;
+              relats_usur.close;
+              Free;
+          end;
+      end;
+  end else
+  begin
+    ShowMessage('Relatório necessita de pesquisa');
+  end;
+end;
+
 procedure TF01005.BSalvarClick(Sender: TObject);
 begin
   if TRIM(DBEdit2.Text) <> '' then
@@ -145,6 +179,19 @@ begin
     ShowMessage('INFORME DESCRIÇÃO');
   end;
   
+end;
+
+procedure TF01005.btnFiltrarClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.SQL.Text := 'select * from fichaPreDefinida where 1=1 ';
+  if(cbxPesqDescricao.Checked = true)then
+  begin
+    FDQuery1.SQL.Add(' and descricaoficha like "%' + EditPesqDescricao.Text +'%"');
+  end;
+  FDQuery1.Open;
+  BPesquisar.Click;
+
 end;
 
 procedure TF01005.btnLimparFichaClick(Sender: TObject);
@@ -170,6 +217,15 @@ begin
         END;
       END;
   end;
+end;
+
+procedure TF01005.BtnLimparFiltrosClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'select * from fichaPreDefinida ';
+  FDQuery1.Open;
+  BPesquisar.Click;
 end;
 
 procedure TF01005.CDSSerieFichaAfterCancel(DataSet: TDataSet);
@@ -264,6 +320,16 @@ begin
     EditBExercicio.Clear;
     Editexercicio.Clear;
   END;
+end;
+
+procedure TF01005.EditPesqDescricaoChange(Sender: TObject);
+begin
+  inherited;
+  if( TRIM(EditPesqDescricao.Text) <> '')then
+  begin
+    cbxPesqDescricao.Checked := true;
+  end else
+    cbxPesqDescricao.Checked := false;
 end;
 
 procedure TF01005.SpeedButton2Click(Sender: TObject);

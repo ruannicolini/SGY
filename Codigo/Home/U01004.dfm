@@ -1,11 +1,11 @@
 inherited F01004: TF01004
   Caption = 'F01004'
+  ExplicitLeft = -47
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
-    ActivePage = TbDados
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
@@ -82,6 +82,27 @@ inherited F01004: TF01004
             Visible = True
           end>
       end
+      inherited PanelFiltros: TPanel
+        inherited btnFiltrar: TButton
+          OnClick = btnFiltrarClick
+        end
+        object cbxPesqDescricao: TCheckBox
+          Left = 12
+          Top = 10
+          Width = 172
+          Height = 17
+          Caption = 'DESCRI'#199#195'O'
+          TabOrder = 1
+        end
+        object EditPesqDescricao: TEdit
+          Left = 12
+          Top = 32
+          Width = 238
+          Height = 21
+          TabOrder = 2
+          OnChange = EditPesqDescricaoChange
+        end
+      end
     end
   end
   inherited ClientDataSet1: TClientDataSet
@@ -114,7 +135,7 @@ inherited F01004: TF01004
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00A80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00AC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

@@ -28,9 +28,15 @@ type
     DBMemo1: TDBMemo;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
+    cbxPesqDescricao: TCheckBox;
+    EditPesqDescricao: TEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure BExcluirClick(Sender: TObject);
     procedure BSalvarClick(Sender: TObject);
+    procedure EditPesqDescricaoChange(Sender: TObject);
+    procedure BtnLimparFiltrosClick(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure bRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +49,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses u_relatorios;
 
 procedure TF01007.BExcluirClick(Sender: TObject);
 begin
@@ -61,6 +69,32 @@ begin
 
 end;
 
+procedure TF01007.bRelatorioClick(Sender: TObject);
+begin
+  inherited;
+  if NOT(Ds.DataSet.IsEmpty)then
+  begin
+      frelatorios := tfrelatorios.Create(self);
+      with frelatorios do
+      begin
+          try
+              visible := false;
+              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, nil, '', '');
+
+              //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              ShowModal;
+          finally
+              Relatorios_sis.close;
+              relats_usur.close;
+              Free;
+          end;
+      end;
+  end else
+  begin
+    ShowMessage('Relatório necessita de pesquisa');
+  end;
+end;
+
 procedure TF01007.BSalvarClick(Sender: TObject);
 begin
   if TRIM(DBEdit2.Text) <> '' then
@@ -73,10 +107,42 @@ begin
 
 end;
 
+procedure TF01007.btnFiltrarClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.SQL.Text := 'select * from patologia where 1=1 ';
+  if(cbxPesqDescricao.Checked = true)then
+  begin
+    FDQuery1.SQL.Add(' and nomePatologia like "%' + EditPesqDescricao.Text +'%"');
+  end;
+  FDQuery1.Open;
+  BPesquisar.Click;
+
+end;
+
+procedure TF01007.BtnLimparFiltrosClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'select * from patologia ';
+  FDQuery1.Open;
+  BPesquisar.Click;
+end;
+
 procedure TF01007.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
   inherited;
   ClientDataSet1idpatologia.AsInteger := DModule.buscaProximoParametro('patologia');
+end;
+
+procedure TF01007.EditPesqDescricaoChange(Sender: TObject);
+begin
+  inherited;
+  if( TRIM(EditPesqDescricao.Text) <> '')then
+  begin
+    cbxPesqDescricao.Checked := true;
+  end else
+    cbxPesqDescricao.Checked := false;
 end;
 
 Initialization
