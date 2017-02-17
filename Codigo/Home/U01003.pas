@@ -14,7 +14,7 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
   cxDropDownEdit, cxBlobEdit, cxDBEdit, cxTextEdit, cxMaskEdit, cxSpinEdit,
   Vcl.Mask, Vcl.DBCtrls, Vcl.ExtDlgs, cxImage, Vcl.Imaging.jpeg, dxCameraControl,
-  Vcl.Menus, cxButtons, PngImageList	;
+  Vcl.Menus, cxButtons, PngImageList, frxClass, frxDBSet	;
 
 type
   TF01003 = class(TFBase)

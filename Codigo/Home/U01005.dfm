@@ -467,6 +467,8 @@ inherited F01005: TF01005
       end
       inherited PanelFiltros: TPanel
         Width = 850
+        ExplicitLeft = 2
+        ExplicitTop = 2
         ExplicitWidth = 850
         inherited btnFiltrar: TButton
           Left = 799
