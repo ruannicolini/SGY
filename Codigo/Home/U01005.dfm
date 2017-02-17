@@ -2,7 +2,6 @@ inherited F01005: TF01005
   Caption = 'F01005'
   ClientHeight = 741
   ClientWidth = 858
-  ExplicitLeft = -87
   ExplicitWidth = 874
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -347,7 +346,7 @@ inherited F01005: TF01005
               ClickTituloOrdenar = True
               MarcarLinhaInteira = True
               CorLinhaMarcada = 15854564
-              CorFonteLinhaMarcada = clGreen
+              CorFonteLinhaMarcada = clBlack
               BloquearExportacoes = False
               Columns = <
                 item
@@ -467,8 +466,6 @@ inherited F01005: TF01005
       end
       inherited PanelFiltros: TPanel
         Width = 850
-        ExplicitLeft = 2
-        ExplicitTop = 2
         ExplicitWidth = 850
         inherited btnFiltrar: TButton
           Left = 799
@@ -554,7 +551,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00B40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00B80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

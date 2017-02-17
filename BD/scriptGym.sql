@@ -323,11 +323,13 @@ DO
 |
 DELIMITER ;
 
-use gym;
+-- Habilida Eventos
 set global event_scheduler = on;
-SHOW events;
-SELECT * FROM INFORMATION_SCHEMA.EVENTS;
-SHOW PROCESSLIST;
+
+-- use gym;
+-- SHOW events;
+-- SELECT * FROM INFORMATION_SCHEMA.EVENTS;
+-- SHOW PROCESSLIST;
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 
 

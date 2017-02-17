@@ -108,7 +108,7 @@ begin
   if(PanelFiltros.Visible = true) then
   begin
        PanelFiltros.Visible := false;
-       BtnLimparFiltros.Click;
+       //BtnLimparFiltros.Click; // VOLTA A CONSULTA TOTAL
   end else
   begin
     PanelFiltros.Visible := true;

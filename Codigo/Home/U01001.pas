@@ -575,6 +575,11 @@ VAR
 begin
   if TRIM(cxDBTextEdit7.Text) <> '' then
   begin
+      IF(DSModalidade.DataSet.RecordCount = 0)THEN
+      BEGIN
+        ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
+      END;
+
       // SALVA FOTO DO ALUNO
       IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
       BEGIN
