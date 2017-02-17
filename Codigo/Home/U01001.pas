@@ -742,7 +742,9 @@ begin
   'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO WHERE 1=1 ';
 
   if(cbxPesqNome.Checked = true)then
+  BEGIN
     FDQuery1.SQL.Add(' and a.nomeAluno like "%' + EditPesqNome.Text +'%"');
+  END;
   if(cbxPesqModalidade.Checked = true)then
   BEGIN
     FDQuery1.SQL.Add('  and a.idaluno in (select idaluno from alunomodalidade where idmodalidade = ' + editPesqidModalidade.Text + ') ');
@@ -1178,9 +1180,7 @@ end;
 procedure TF01001.EditPesqModalidadeChange(Sender: TObject);
 begin
   inherited;
-  if(  (EditPesqModalidade.Text = '')or (EditPesqModalidade.Text = ' ')
-
-  )then
+  if(  (EditPesqModalidade.Text = '')or (EditPesqModalidade.Text = ' '))then
   begin
     cbxPesqModalidade.Checked := false;
       editPesqidModalidade.Clear;

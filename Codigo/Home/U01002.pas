@@ -143,7 +143,7 @@ begin
       begin
           try
               visible := false;
-              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, nil, 'idAluno', '');
+              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, nil, '', '');
 
               //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
               ShowModal;
