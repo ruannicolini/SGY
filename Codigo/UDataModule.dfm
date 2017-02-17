@@ -32,6 +32,7 @@ object DModule: TDModule
       'Password=ruan'
       'Server=192.168.1.200'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnectionBeforeConnect
     Left = 40
@@ -71,22 +72,22 @@ object DModule: TDModule
       Origin = 'idTipoUsuario'
       Required = True
     end
-    object qAcessocadastrar: TShortintField
+    object qAcessocadastrar: TBooleanField
       AutoGenerateValue = arDefault
       FieldName = 'cadastrar'
       Origin = 'cadastrar'
     end
-    object qAcessoalterar: TShortintField
+    object qAcessoalterar: TBooleanField
       AutoGenerateValue = arDefault
       FieldName = 'alterar'
       Origin = 'alterar'
     end
-    object qAcessoconsultar: TShortintField
+    object qAcessoconsultar: TBooleanField
       AutoGenerateValue = arDefault
       FieldName = 'consultar'
       Origin = 'consultar'
     end
-    object qAcessoexcluir: TShortintField
+    object qAcessoexcluir: TBooleanField
       AutoGenerateValue = arDefault
       FieldName = 'excluir'
       Origin = 'excluir'
@@ -95,13 +96,11 @@ object DModule: TDModule
       AutoGenerateValue = arDefault
       FieldName = 'interface'
       Origin = 'idInterface'
-      ProviderFlags = []
     end
     object qAcessomodulo: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'modulo'
       Origin = 'idModulo'
-      ProviderFlags = []
     end
   end
   object pAcesso: TDataSetProvider
@@ -128,16 +127,16 @@ object DModule: TDModule
       FieldName = 'idTipoUsuario'
       Required = True
     end
-    object cdsAcessocadastrar: TShortintField
+    object cdsAcessocadastrar: TBooleanField
       FieldName = 'cadastrar'
     end
-    object cdsAcessoalterar: TShortintField
+    object cdsAcessoalterar: TBooleanField
       FieldName = 'alterar'
     end
-    object cdsAcessoconsultar: TShortintField
+    object cdsAcessoconsultar: TBooleanField
       FieldName = 'consultar'
     end
-    object cdsAcessoexcluir: TShortintField
+    object cdsAcessoexcluir: TBooleanField
       FieldName = 'excluir'
     end
     object cdsAcessointerface: TIntegerField

@@ -253,7 +253,7 @@ idInterface : integer;
 ArqIni: TIniFile;
 nomeInterface : string;
 begin
-
+{
   //Definição de acesso do usuário
   ArqIni := TIniFile.Create( ExtractFilePath(Application.ExeName) + '\user.ini' );
   try
@@ -280,7 +280,7 @@ begin
   finally
     ArqIni.Free;
   end;
-
+           }
 end;
 
 
@@ -291,6 +291,16 @@ begin
     DModule.qAux.Close;
     DModule.qAux.Open;
     DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
+
+
+
+    //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
+    DModule.idTipoUsuario := 1;
+    DModule.idusuario := 1;
+    DModule.username := 'ADMIN';
+    DModule.nomeusuario := 'ADMINISTRADOR';
+    // FIM DE TESTE
+
 
 end;
 

@@ -219,30 +219,30 @@ end;
 
 procedure TFBase.BLastClick(Sender: TObject);
 begin
-  //if(validacao(2) = true)then
-  //begin
+  if(validacao(2) = true)then
+  begin
     DS.DataSet.Last;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.BNextClick(Sender: TObject);
 begin
-  //if(validacao(2) = true)then
-  //begin
+  if(validacao(2) = true)then
+  begin
     DS.DataSet.Next;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.BEditarClick(Sender: TObject);
 begin
-  //if(validacao(3) = true)then
-  //  begin
+  if(validacao(3) = true)then
+    begin
     if ds.DataSet.Active then
     begin
           if not ds.DataSet.IsEmpty then
@@ -253,16 +253,16 @@ begin
               ShowMessage('Não Há Registros para Alteração.');
     end;
 
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.BExcluirClick(Sender: TObject);
 begin
-  //if(validacao(4) = true)then
-  //begin
+  if(validacao(4) = true)then
+  begin
     if ds.DataSet.Active then
     begin
       if not ds.DataSet.IsEmpty then
@@ -275,10 +275,10 @@ begin
       end else
           ShowMessage('Não Há registros');
     end;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 
 
 end;
@@ -290,28 +290,28 @@ end;
 
 procedure TFBase.BFirstClick(Sender: TObject);
 begin
-  //if(validacao(2) = true)then
-  //begin
+  if(validacao(2) = true)then
+  begin
     DS.DataSet.First;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.BInserirClick(Sender: TObject);
 begin
-  //if(validacao(1) = true)then
-  //begin
+  if(validacao(1) = true)then
+  begin
     if not ds.DataSet.Active then
           ds.DataSet.Open;
 
       PageControl.ActivePageIndex := 0;
       ds.DataSet.Append;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.BSalvarClick(Sender: TObject);
@@ -361,25 +361,25 @@ end;
 
 procedure TFBase.BPesquisarClick(Sender: TObject);
 begin
-  {if(validacao(2) = true)then
-    begin }
+  if(validacao(2) = true)then
+    begin
     DS.DataSet.Close;
     DS.DataSet.Open;
-  {end else
+  End else
   begin
     ShowMessage('Permissão Negada');
-  end; }
+  end;
 end;
 
 procedure TFBase.BPriorClick(Sender: TObject);
 begin
-  //if(validacao(2) = true)then
-  //begin
+  if(validacao(2) = true)then
+  begin
     DS.DataSet.Prior;
-  //end else
-  //begin
-  //  ShowMessage('Permissão Negada');
-  //end;
+  end else
+  begin
+    ShowMessage('Permissão Negada');
+  end;
 end;
 
 procedure TFBase.bRelatorioClick(Sender: TObject);
@@ -443,7 +443,7 @@ begin
     DModule.qAcesso.SQL.Text := 'select s.*, i.idinterface as interface, m.idmodulo as modulo from seguranca s ';
     DModule.qAcesso.SQL.Add('left outer join interface i on i.idinterface = s.idinterface ');
     DModule.qAcesso.SQL.Add('left outer join modulo m on m.idmodulo = i.idmodulo ');
-    DModule.qAcesso.SQL.Add('where s.idTipo_usuario =:idTU and s.idInterface =:idInterf');
+    DModule.qAcesso.SQL.Add('where s.idTipousuario =:idTU and s.idInterface =:idInterf');
     DModule.qAcesso.ParamByName('idTU').Value := Dmodule.idTipoUsuario;
     DModule.qAcesso.ParamByName('idInterf').Value := idInterface;
     DModule.qAcesso.Open();
