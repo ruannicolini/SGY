@@ -65,17 +65,23 @@ uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi;
 
 procedure TFPrincipal.bntBackUpClick(Sender: TObject);
 begin
-    try
-        With TF01009.Create(self) do
-        Begin
-          ShowModal;
-        End;
-        ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
-    except
-      ON E: Exception DO
-      begin
-          ShowMessage(E.Message);
-      end;
+    if(DModule.idTipoUsuario = 1)then
+    begin
+        try
+            With TF01009.Create(self) do
+            Begin
+              ShowModal;
+            End;
+            ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+        except
+          ON E: Exception DO
+          begin
+              ShowMessage(E.Message);
+          end;
+        end;
+    end else
+    begin
+        ShowMessage('Permissão Negada');
     end;
 end;
 
@@ -253,6 +259,14 @@ idInterface : integer;
 ArqIni: TIniFile;
 nomeInterface : string;
 begin
+    //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
+    DModule.idTipoUsuario := 1;
+    DModule.idusuario := 1;
+    DModule.username := 'ADMIN';
+    DModule.nomeusuario := 'ADMINISTRADOR';
+    // FIM DE TESTE
+
+
 {
   //Definição de acesso do usuário
   ArqIni := TIniFile.Create( ExtractFilePath(Application.ExeName) + '\user.ini' );
@@ -291,16 +305,6 @@ begin
     DModule.qAux.Close;
     DModule.qAux.Open;
     DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
-
-
-
-    //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
-    DModule.idTipoUsuario := 1;
-    DModule.idusuario := 1;
-    DModule.username := 'ADMIN';
-    DModule.nomeusuario := 'ADMINISTRADOR';
-    // FIM DE TESTE
-
 
 end;
 
