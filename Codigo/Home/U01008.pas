@@ -41,12 +41,22 @@ type
     DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
     DBEditBeleza1: TDBEditBeleza;
+    cbxPesqTipoUsuario: TCheckBox;
+    editPesqidTipoUsuario: TEdit;
+    EditPesqTipoUsuario: TEditBeleza;
+    cbxPesqNome: TCheckBox;
+    EditPesqNome: TEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
     procedure BSalvarClick(Sender: TObject);
+    procedure EditPesqTipoUsuarioChange(Sender: TObject);
+    procedure EditPesqNomeChange(Sender: TObject);
+    procedure BtnLimparFiltrosClick(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
+    procedure bRelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,7 +70,33 @@ implementation
 
 {$R *.dfm}
 
-uses uFuncao;
+uses uFuncao, u_relatorios;
+
+procedure TF01008.bRelatorioClick(Sender: TObject);
+begin
+  inherited;
+  if NOT(Ds.DataSet.IsEmpty)then
+  begin
+      frelatorios := tfrelatorios.Create(self);
+      with frelatorios do
+      begin
+          try
+              visible := false;
+              Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, nil, '', '');
+
+              //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              ShowModal;
+          finally
+              Relatorios_sis.close;
+              relats_usur.close;
+              Free;
+          end;
+      end;
+  end else
+  begin
+    ShowMessage('Relatório necessita de pesquisa');
+  end;
+end;
 
 procedure TF01008.BSalvarClick(Sender: TObject);
 begin
@@ -97,6 +133,35 @@ begin
 
 end;
 
+procedure TF01008.btnFiltrarClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.SQL.Text := 'select u.*, tu.descricaoTipoUsuario from usuario u ' +
+  'left outer join tipoUsuario tu on tu.idTipoUsuario = u.idTipoUsuario where 1=1 ';
+
+  if(cbxPesqNome.Checked = true)then
+  begin
+    FDQuery1.SQL.Add(' and u.nomeusuario like "%' + EditPesqNome.Text +'%"');
+  end;
+  if(cbxPesqTipoUsuario.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add('  and u.idTipoUsuario = ' + editPesqidTipoUsuario.Text );
+  END;
+
+  FDQuery1.Open;
+  BPesquisar.Click;
+end;
+
+procedure TF01008.BtnLimparFiltrosClick(Sender: TObject);
+begin
+  inherited;
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := 'select u.*, tu.descricaoTipoUsuario from usuario u ' +
+  'left outer join tipoUsuario tu on tu.idTipoUsuario = u.idTipoUsuario';
+  FDQuery1.Open;
+  BPesquisar.Click;
+end;
+
 procedure TF01008.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
   inherited;
@@ -119,6 +184,27 @@ begin
     key := #0;
     // o q vc quer fazer no enter
   end;
+end;
+
+procedure TF01008.EditPesqNomeChange(Sender: TObject);
+begin
+  inherited;
+  if( TRIM(EditPesqNome.Text) <> '')then
+  begin
+    cbxPesqNome.Checked := true;
+  end else
+    cbxPesqNome.Checked := false;
+end;
+
+procedure TF01008.EditPesqTipoUsuarioChange(Sender: TObject);
+begin
+  inherited;
+  if(  (EditPesqTipoUsuario.Text = '')or (EditPesqTipoUsuario.Text = ' '))then
+  begin
+    cbxPesqTipoUsuario.Checked := false;
+      editPesqidTipoUsuario.Clear;
+  end else
+    cbxPesqTipoUsuario.Checked := true;
 end;
 
 Initialization

@@ -1,5 +1,6 @@
 inherited F01008: TF01008
   Caption = 'F01008'
+  ExplicitLeft = -47
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -173,6 +174,74 @@ inherited F01008: TF01008
             Visible = True
           end>
       end
+      inherited PanelFiltros: TPanel
+        inherited btnFiltrar: TButton
+          OnClick = btnFiltrarClick
+        end
+        object cbxPesqTipoUsuario: TCheckBox
+          Left = 264
+          Top = 12
+          Width = 212
+          Height = 17
+          Caption = 'TIPO USU'#193'RIO'
+          TabOrder = 1
+        end
+        object editPesqidTipoUsuario: TEdit
+          Left = 264
+          Top = 32
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object EditPesqTipoUsuario: TEditBeleza
+          Left = 288
+          Top = 32
+          Width = 188
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          OnChange = EditPesqTipoUsuarioChange
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idTipoUsuario, P.DESCRICAOTipoUsuario from TipoUsuario ' +
+              'P where P.DESCRICAOTipoUsuario like :varDescricao')
+          database = 'gym'
+          campo = 'DESCRICAOTipoUsuario'
+          Sempre_Mostrar_Janela = False
+          Marcar_CheckBox = cbxPesqTipoUsuario
+          Outro_Edit = editPesqidTipoUsuario
+          campo_outro_edit = 'IDTipoUsuario'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object cbxPesqNome: TCheckBox
+          Left = 12
+          Top = 10
+          Width = 172
+          Height = 17
+          Caption = 'NOME'
+          TabOrder = 4
+        end
+        object EditPesqNome: TEdit
+          Left = 12
+          Top = 32
+          Width = 238
+          Height = 21
+          TabOrder = 5
+          OnChange = EditPesqNomeChange
+        end
+      end
     end
   end
   inherited ClientDataSet1: TClientDataSet
@@ -250,7 +319,7 @@ inherited F01008: TF01008
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00C00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
