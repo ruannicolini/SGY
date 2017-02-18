@@ -20,17 +20,16 @@ type
     PanelLinhaSuperior: TPanel;
     PanelPrincipal: TPanel;
     imgMenu: TImage;
-    btnPagamento: TSpeedButton;
-    btnAluno: TSpeedButton;
-    PainelCentral_Menu: TPanel;
-    btnEquipamento: TSpeedButton;
-    btnGrupo: TSpeedButton;
-    btnFicha: TSpeedButton;
-    btnExercicio: TSpeedButton;
-    btnPatologias: TSpeedButton;
-    btnUsuario: TSpeedButton;
-    bntBackUp: TSpeedButton;
-    btnModalidade: TSpeedButton;
+    PanelMenuImg: TPanel;
+    imgBtnAluno: TImage;
+    imgBtnPagamento: TImage;
+    imgBtnEquipamento: TImage;
+    imgBtnGrupoExercicio: TImage;
+    imgBtnFicha: TImage;
+    imgBtnExercicio: TImage;
+    imgBtnPatologia: TImage;
+    imgBtnUsuario: TImage;
+    imgBtnBackup: TImage;
     procedure btnPagamentoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
@@ -42,9 +41,18 @@ type
     procedure btnExercicioClick(Sender: TObject);
     procedure btnUsuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure bntBackUpClick(Sender: TObject);
+    procedure btnBackUpClick(Sender: TObject);
     procedure btnFichaClick(Sender: TObject);
     procedure btnModalidadeClick(Sender: TObject);
+    procedure imgBtnAlunoClick(Sender: TObject);
+    procedure imgBtnBackupClick(Sender: TObject);
+    procedure imgBtnUsuarioClick(Sender: TObject);
+    procedure imgBtnFichaClick(Sender: TObject);
+    procedure imgBtnExercicioClick(Sender: TObject);
+    procedure imgBtnPatologiaClick(Sender: TObject);
+    procedure imgBtnPagamentoClick(Sender: TObject);
+    procedure imgBtnEquipamentoClick(Sender: TObject);
+    procedure imgBtnGrupoExercicioClick(Sender: TObject);
   private
     // Rotina de backup
     procedure ExecutaBackupBD();
@@ -63,7 +71,7 @@ implementation
 
 uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao;
 
-procedure TFPrincipal.bntBackUpClick(Sender: TObject);
+procedure TFPrincipal.btnBackUpClick(Sender: TObject);
 begin
     if(DModule.idTipoUsuario = 1)then
     begin
@@ -339,6 +347,79 @@ begin
     DModule.qAux.Open;
     DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
 
+end;
+
+procedure TFPrincipal.imgBtnBackupClick(Sender: TObject);
+begin
+  imgBtnBackup.Visible := false;
+  Sleep(20);
+  imgBtnBackup.Visible := true;
+  btnBackUpClick(sender);
+
+end;
+
+procedure TFPrincipal.imgBtnEquipamentoClick(Sender: TObject);
+begin
+  imgBtnEquipamento.Visible := false;
+  Sleep(20);
+  imgBtnEquipamento.Visible := true;
+  btnEquipamentoClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnExercicioClick(Sender: TObject);
+begin
+  imgBtnExercicio.Visible := false;
+  Sleep(20);
+  imgBtnExercicio.Visible := true;
+  btnExercicioClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnFichaClick(Sender: TObject);
+begin
+  imgBtnFicha.Visible := false;
+  Sleep(20);
+  imgBtnFicha.Visible := true;
+  btnFichaClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnGrupoExercicioClick(Sender: TObject);
+begin
+  imgBtnGrupoExercicio.Visible := false;
+  Sleep(20);
+  imgBtnGrupoExercicio.Visible := true;
+  btnGrupoClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnPagamentoClick(Sender: TObject);
+begin
+  imgBtnPagamento.Visible := false;
+  Sleep(20);
+  imgBtnPagamento.Visible := true;
+  btnPagamentoClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnPatologiaClick(Sender: TObject);
+begin
+  imgBtnPatologia.Visible := false;
+  Sleep(20);
+  imgBtnPatologia.Visible := true;
+  btnPatologiasClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnUsuarioClick(Sender: TObject);
+begin
+  imgBtnUsuario.Visible := false;
+  Sleep(20);
+  imgBtnUsuario.Visible := true;
+  btnUsuarioClick(sender);
+end;
+
+procedure TFPrincipal.imgBtnAlunoClick(Sender: TObject);
+begin
+    imgBtnAluno.Visible := false;
+    Sleep(20);
+    imgBtnAluno.Visible := true;
+    btnAlunoClick(sender);
 end;
 
 end.
