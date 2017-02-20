@@ -47,7 +47,6 @@ type
     FDQuery1dataVencimento: TDateField;
     FDQuery1dataPagamento: TDateField;
     FDQuery1idstatusPagamento: TIntegerField;
-    FDQuery1LOGUsuarioResponsavel: TStringField;
     FDQuery1nomeAluno: TStringField;
     FDQuery1descricaoModalidade: TStringField;
     ClientDataSet1idPagamento: TIntegerField;
@@ -58,7 +57,6 @@ type
     ClientDataSet1dataVencimento: TDateField;
     ClientDataSet1dataPagamento: TDateField;
     ClientDataSet1idstatusPagamento: TIntegerField;
-    ClientDataSet1LOGUsuarioResponsavel: TStringField;
     ClientDataSet1nomeAluno: TStringField;
     ClientDataSet1descricaoModalidade: TStringField;
     Label4: TLabel;
@@ -90,6 +88,8 @@ type
     cbxPesqDataPagamento: TCheckBox;
     dataPesqPagamentoInicio: TcxDateEdit;
     dataPesqPagamentoFim: TcxDateEdit;
+    FDQuery1LOGUsuarioResponsavel: TStringField;
+    ClientDataSet1LOGUsuarioResponsavel: TStringField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEdit6Change(Sender: TObject);
     procedure DSDataChange(Sender: TObject; Field: TField);
@@ -177,7 +177,17 @@ begin
           if (Application.MessageBox('Confirma Cancelar Pagamento/Isenção?', 'CANCELAMENTO', MB_YESNO + MB_ICONQUESTION) = id_yes) then
           begin
                   TRY
-                      DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1 WHERE IDPAGAMENTO =:IDP';
+                      if(ClientDataSet1idstatusPagamento.AsInteger = 2)then
+                      begin
+                        DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
+                      end else
+                      begin
+                          if(ClientDataSet1idstatusPagamento.AsInteger = 3)then
+                          begin
+                            DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Isenção cancelada por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
+                          end;
+                      end;
+                      DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
                       DModule.qAux.ParamByName('IDP').AsInteger := ClientDataSet1idPagamento.AsInteger;
                       DModule.qAux.Close;
                       DModule.qAux.ExecSQL;

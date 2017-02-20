@@ -235,12 +235,6 @@ object F01010: TF01010
       FieldName = 'idstatusPagamento'
       Origin = 'idstatusPagamento'
     end
-    object qPagamentoLOGUsuarioResponsavel: TStringField
-      FieldName = 'LOGUsuarioResponsavel'
-      Origin = 'LOGUsuarioResponsavel'
-      Required = True
-      Size = 50
-    end
     object qPagamentodescricaoModalidade: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'descricaoModalidade'
@@ -254,6 +248,12 @@ object F01010: TF01010
       Origin = 'descricaoStatusPagamento'
       ProviderFlags = [pfInUpdate]
       Size = 50
+    end
+    object qPagamentoLOGUsuarioResponsavel: TStringField
+      FieldName = 'LOGUsuarioResponsavel'
+      Origin = 'LOGUsuarioResponsavel'
+      Required = True
+      Size = 200
     end
   end
   object pPagamento: TDataSetProvider
@@ -298,11 +298,6 @@ object F01010: TF01010
     object cdsPagamentoidstatusPagamento: TIntegerField
       FieldName = 'idstatusPagamento'
     end
-    object cdsPagamentoLOGUsuarioResponsavel: TStringField
-      FieldName = 'LOGUsuarioResponsavel'
-      Required = True
-      Size = 50
-    end
     object cdsPagamentodescricaoModalidade: TStringField
       FieldName = 'descricaoModalidade'
       ProviderFlags = [pfInUpdate]
@@ -312,6 +307,11 @@ object F01010: TF01010
       FieldName = 'descricaoStatusPagamento'
       ProviderFlags = [pfInUpdate]
       Size = 50
+    end
+    object cdsPagamentoLOGUsuarioResponsavel: TStringField
+      FieldName = 'LOGUsuarioResponsavel'
+      Required = True
+      Size = 200
     end
   end
   object dsPagamento: TDataSource

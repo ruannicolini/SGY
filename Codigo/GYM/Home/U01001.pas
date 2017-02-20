@@ -269,7 +269,6 @@ type
     qPagamentodataVencimento: TDateField;
     qPagamentodataPagamento: TDateField;
     qPagamentoidstatusPagamento: TIntegerField;
-    qPagamentoLOGUsuarioResponsavel: TStringField;
     qPagamentodescricaoStatusPagamento: TStringField;
     cdsPagamentoidPagamento: TIntegerField;
     cdsPagamentoidAluno: TIntegerField;
@@ -279,7 +278,6 @@ type
     cdsPagamentodataVencimento: TDateField;
     cdsPagamentodataPagamento: TDateField;
     cdsPagamentoidstatusPagamento: TIntegerField;
-    cdsPagamentoLOGUsuarioResponsavel: TStringField;
     cdsPagamentodescricaoStatusPagamento: TStringField;
     qPagamentodescricaoModalidade: TStringField;
     cdsPagamentodescricaoModalidade: TStringField;
@@ -377,6 +375,8 @@ type
     cbxPesqSemMatriculaAtiva: TCheckBox;
     cbxPesqFichaVencida: TCheckBox;
     cbxPesqPagamentoEmAtraso: TCheckBox;
+    qPagamentoLOGUsuarioResponsavel: TStringField;
+    cdsPagamentoLOGUsuarioResponsavel: TStringField;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -684,6 +684,19 @@ begin
           begin
                   TRY
                       cdsPagamento.Edit;
+                      if(cdsPagamentoidstatusPagamento.AsInteger = 2)then
+                      begin
+                          cdsPagamentoLOGUsuarioResponsavel.AsString :=
+                          'Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + DateTostr(DModule.datahoje);
+                      end else
+                      begin
+                          if(cdsPagamentoidstatusPagamento.AsInteger = 3)then
+                          begin
+                              cdsPagamentoLOGUsuarioResponsavel.AsString :=
+                              'Isenção cancelada por ' + DModule.nomeusuario + ' em ' + DateTostr(DModule.datahoje);
+                          end;
+
+                      end;
                       cdsPagamentoidstatusPagamento.AsInteger := 1;
                       cdsPagamentovalorCobrado.Clear;
                       cdsPagamentodataPagamento.Clear;

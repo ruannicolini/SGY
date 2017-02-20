@@ -28,7 +28,6 @@ type
     qPagamentodataVencimento: TDateField;
     qPagamentodataPagamento: TDateField;
     qPagamentoidstatusPagamento: TIntegerField;
-    qPagamentoLOGUsuarioResponsavel: TStringField;
     qPagamentodescricaoModalidade: TStringField;
     qPagamentodescricaoStatusPagamento: TStringField;
     cdsPagamentoidPagamento: TIntegerField;
@@ -39,7 +38,6 @@ type
     cdsPagamentodataVencimento: TDateField;
     cdsPagamentodataPagamento: TDateField;
     cdsPagamentoidstatusPagamento: TIntegerField;
-    cdsPagamentoLOGUsuarioResponsavel: TStringField;
     cdsPagamentodescricaoModalidade: TStringField;
     cdsPagamentodescricaoStatusPagamento: TStringField;
     Label1: TLabel;
@@ -57,6 +55,8 @@ type
     DBEdit4: TDBEdit;
     cxDBSpinEdit6: TcxDBSpinEdit;
     cxDBSpinEdit1: TcxDBSpinEdit;
+    qPagamentoLOGUsuarioResponsavel: TStringField;
+    cdsPagamentoLOGUsuarioResponsavel: TStringField;
     procedure SpeedButton2Click(Sender: TObject);
     procedure cdsPagamentoAfterCancel(DataSet: TDataSet);
     procedure cdsPagamentoAfterDelete(DataSet: TDataSet);

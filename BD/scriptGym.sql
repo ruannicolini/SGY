@@ -39,7 +39,7 @@ valorCobrado float,
 dataVencimento date,
 dataPagamento date,
 idstatusPagamento int,
-LOGUsuarioResponsavel varchar(50) not null
+LOGUsuarioResponsavel varchar(200) not null
 );
 
 create table statusPagamento(

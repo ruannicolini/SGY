@@ -1,6 +1,7 @@
 ﻿inherited F01002: TF01002
   Caption = 'F01002'
   ClientWidth = 1008
+  ExplicitLeft = -224
   ExplicitWidth = 1024
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -818,11 +819,6 @@
     object ClientDataSet1idstatusPagamento: TIntegerField
       FieldName = 'idstatusPagamento'
     end
-    object ClientDataSet1LOGUsuarioResponsavel: TStringField
-      FieldName = 'LOGUsuarioResponsavel'
-      Required = True
-      Size = 50
-    end
     object ClientDataSet1nomeAluno: TStringField
       FieldName = 'nomeAluno'
       Size = 80
@@ -838,6 +834,11 @@
     object ClientDataSet1CPF: TStringField
       FieldName = 'CPF'
       Size = 50
+    end
+    object ClientDataSet1LOGUsuarioResponsavel: TStringField
+      FieldName = 'LOGUsuarioResponsavel'
+      Required = True
+      Size = 200
     end
   end
   inherited FDQuery1: TFDQuery
@@ -893,12 +894,6 @@
       FieldName = 'idstatusPagamento'
       Origin = 'idstatusPagamento'
     end
-    object FDQuery1LOGUsuarioResponsavel: TStringField
-      FieldName = 'LOGUsuarioResponsavel'
-      Origin = 'LOGUsuarioResponsavel'
-      Required = True
-      Size = 50
-    end
     object FDQuery1nomeAluno: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nomeAluno'
@@ -927,10 +922,16 @@
       ProviderFlags = []
       Size = 50
     end
+    object FDQuery1LOGUsuarioResponsavel: TStringField
+      FieldName = 'LOGUsuarioResponsavel'
+      Origin = 'LOGUsuarioResponsavel'
+      Required = True
+      Size = 200
+    end
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00E00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00EC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

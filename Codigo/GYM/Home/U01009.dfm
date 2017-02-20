@@ -35,7 +35,6 @@ object F01009: TF01009
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 394
   end
   object PanelCAPTION: TPanel
     Left = 0
@@ -55,10 +54,6 @@ object F01009: TF01009
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitLeft = 96
-    ExplicitTop = 115
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object SpeedButton1: TSpeedButton
       Left = 160
       Top = 6

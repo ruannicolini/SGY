@@ -401,16 +401,8 @@ inherited F01005: TF01005
             Color = 15329769
             ParentBackground = False
             TabOrder = 1
-            object btnImprimirFicha: TSpeedButton
-              Left = 631
-              Top = 3
-              Width = 151
-              Height = 30
-              Align = alCustom
-              Caption = 'IMPRIMIR FICHA'
-            end
             object btnLimparFicha: TSpeedButton
-              Left = 478
+              Left = 636
               Top = 3
               Width = 151
               Height = 30
@@ -551,7 +543,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00B80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

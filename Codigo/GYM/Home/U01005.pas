@@ -50,7 +50,6 @@ type
     editRepeticoes: TSpinEdit;
     DBGridBeleza3: TDBGridBeleza;
     Panel6: TPanel;
-    btnImprimirFicha: TSpeedButton;
     btnLimparFicha: TSpeedButton;
     qSerieFichaidFichaPreDefinida: TIntegerField;
     qSerieFichaidTreino: TIntegerField;
@@ -274,11 +273,9 @@ begin
   inherited;
   IF(CDSSerieFicha.RecordCount > 0)THEN
   BEGIN
-      btnImprimirFicha.Enabled := TRUE;
       btnLimparFicha.Enabled := TRUE;
   END ELSE
   BEGIN
-      btnImprimirFicha.Enabled := FALSE;
       btnLimparFicha.Enabled := FALSE;
   END;
 end;

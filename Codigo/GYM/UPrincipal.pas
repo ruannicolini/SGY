@@ -30,22 +30,12 @@ type
     imgBtnPatologia: TImage;
     imgBtnUsuario: TImage;
     imgBtnBackup: TImage;
-    procedure btnPagamentoClick(Sender: TObject);
+    imgBtnModalidade: TImage;
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
     procedure CriarForm(Tela, Desc : String);
-    procedure btnAlunoClick(Sender: TObject);
-    procedure btnEquipamentoClick(Sender: TObject);
-    procedure btnGrupoClick(Sender: TObject);
-    procedure btnPatologiasClick(Sender: TObject);
-    procedure btnExercicioClick(Sender: TObject);
-    procedure btnUsuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure btnBackUpClick(Sender: TObject);
-    procedure btnFichaClick(Sender: TObject);
-    procedure btnModalidadeClick(Sender: TObject);
     procedure imgBtnAlunoClick(Sender: TObject);
-    procedure imgBtnBackupClick(Sender: TObject);
     procedure imgBtnUsuarioClick(Sender: TObject);
     procedure imgBtnFichaClick(Sender: TObject);
     procedure imgBtnExercicioClick(Sender: TObject);
@@ -53,6 +43,8 @@ type
     procedure imgBtnPagamentoClick(Sender: TObject);
     procedure imgBtnEquipamentoClick(Sender: TObject);
     procedure imgBtnGrupoExercicioClick(Sender: TObject);
+    procedure imgBtnModalidadeClick(Sender: TObject);
+    procedure imgBtnBackupClick(Sender: TObject);
   private
     // Rotina de backup
     procedure ExecutaBackupBD();
@@ -70,73 +62,6 @@ implementation
 {$R *.dfm}
 
 uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao;
-
-procedure TFPrincipal.btnBackUpClick(Sender: TObject);
-begin
-    if(DModule.idTipoUsuario = 1)then
-    begin
-        try
-            With TF01009.Create(self) do
-            Begin
-              ShowModal;
-            End;
-            ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
-        except
-          ON E: Exception DO
-          begin
-              ShowMessage(E.Message);
-          end;
-        end;
-    end else
-    begin
-        ShowMessage('Permissão Negada');
-    end;
-end;
-
-procedure TFPrincipal.btnAlunoClick(Sender: TObject);
-begin
-  CriarForm('F01001', 'Aluno');
-end;
-
-procedure TFPrincipal.btnEquipamentoClick(Sender: TObject);
-begin
-  CriarForm('F01003', 'Equipamento');
-end;
-
-procedure TFPrincipal.btnExercicioClick(Sender: TObject);
-begin
-  CriarForm('F01006', 'Exercício');
-end;
-
-procedure TFPrincipal.btnFichaClick(Sender: TObject);
-begin
-  CriarForm('F01005', 'Ficha');
-end;
-
-procedure TFPrincipal.btnGrupoClick(Sender: TObject);
-begin
-  CriarForm('F01004', 'Grupo de Exercício');
-end;
-
-procedure TFPrincipal.btnModalidadeClick(Sender: TObject);
-begin
-    CriarForm('F01012', 'Modalidade');
-end;
-
-procedure TFPrincipal.btnPagamentoClick(Sender: TObject);
-begin
-  CriarForm('F01002', 'Pagamento');
-end;
-
-procedure TFPrincipal.btnPatologiasClick(Sender: TObject);
-begin
-  CriarForm('F01007', 'Patologias e Relatos Físicos');
-end;
-
-procedure TFPrincipal.btnUsuarioClick(Sender: TObject);
-begin
-  CriarForm('F01008', 'Usuário');
-end;
 
 procedure TFPrincipal.CriarForm(Tela, Desc: String);
 var
@@ -349,21 +274,12 @@ begin
 
 end;
 
-procedure TFPrincipal.imgBtnBackupClick(Sender: TObject);
-begin
-  imgBtnBackup.Visible := false;
-  Sleep(20);
-  imgBtnBackup.Visible := true;
-  btnBackUpClick(sender);
-
-end;
-
 procedure TFPrincipal.imgBtnEquipamentoClick(Sender: TObject);
 begin
   imgBtnEquipamento.Visible := false;
   Sleep(20);
   imgBtnEquipamento.Visible := true;
-  btnEquipamentoClick(sender);
+  CriarForm('F01003', 'Equipamento');
 end;
 
 procedure TFPrincipal.imgBtnExercicioClick(Sender: TObject);
@@ -371,7 +287,7 @@ begin
   imgBtnExercicio.Visible := false;
   Sleep(20);
   imgBtnExercicio.Visible := true;
-  btnExercicioClick(sender);
+  CriarForm('F01006', 'Exercício');
 end;
 
 procedure TFPrincipal.imgBtnFichaClick(Sender: TObject);
@@ -379,7 +295,7 @@ begin
   imgBtnFicha.Visible := false;
   Sleep(20);
   imgBtnFicha.Visible := true;
-  btnFichaClick(sender);
+  CriarForm('F01005', 'Ficha');
 end;
 
 procedure TFPrincipal.imgBtnGrupoExercicioClick(Sender: TObject);
@@ -387,7 +303,34 @@ begin
   imgBtnGrupoExercicio.Visible := false;
   Sleep(20);
   imgBtnGrupoExercicio.Visible := true;
-  btnGrupoClick(sender);
+  CriarForm('F01004', 'Grupo de Exercício');
+end;
+
+procedure TFPrincipal.imgBtnBackupClick(Sender: TObject);
+begin
+  imgBtnBackup.Visible := false;
+  Sleep(20);
+  imgBtnBackup.Visible := true;
+
+  if(DModule.idTipoUsuario = 1)then
+  begin
+        try
+            With TF01009.Create(self) do
+            Begin
+              ShowModal;
+            End;
+            ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+        except
+          ON E: Exception DO
+          begin
+              ShowMessage(E.Message);
+          end;
+        end;
+  end else
+  begin
+       ShowMessage('Permissão Negada');
+  end;
+
 end;
 
 procedure TFPrincipal.imgBtnPagamentoClick(Sender: TObject);
@@ -395,7 +338,7 @@ begin
   imgBtnPagamento.Visible := false;
   Sleep(20);
   imgBtnPagamento.Visible := true;
-  btnPagamentoClick(sender);
+  CriarForm('F01002', 'Pagamento');
 end;
 
 procedure TFPrincipal.imgBtnPatologiaClick(Sender: TObject);
@@ -403,7 +346,7 @@ begin
   imgBtnPatologia.Visible := false;
   Sleep(20);
   imgBtnPatologia.Visible := true;
-  btnPatologiasClick(sender);
+  CriarForm('F01007', 'Patologias e Relatos Físicos');
 end;
 
 procedure TFPrincipal.imgBtnUsuarioClick(Sender: TObject);
@@ -411,7 +354,7 @@ begin
   imgBtnUsuario.Visible := false;
   Sleep(20);
   imgBtnUsuario.Visible := true;
-  btnUsuarioClick(sender);
+  CriarForm('F01008', 'Usuário');
 end;
 
 procedure TFPrincipal.imgBtnAlunoClick(Sender: TObject);
@@ -419,7 +362,15 @@ begin
     imgBtnAluno.Visible := false;
     Sleep(20);
     imgBtnAluno.Visible := true;
-    btnAlunoClick(sender);
+    CriarForm('F01001', 'Aluno');
+end;
+
+procedure TFPrincipal.imgBtnModalidadeClick(Sender: TObject);
+begin
+  imgBtnModalidade.Visible := false;
+  Sleep(20);
+  imgBtnModalidade.Visible := true;
+  CriarForm('F01012', 'Modalidade');
 end;
 
 end.
