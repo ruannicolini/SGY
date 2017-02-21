@@ -224,7 +224,7 @@ type
     Editexercicio: TEdit;
     EditBExercicio: TEditBeleza;
     editRepeticoes: TSpinEdit;
-    pag4: TcxTabSheet;
+    pagModalidades: TcxTabSheet;
     cxGroupBox11: TcxGroupBox;
     cxGroupBox12: TcxGroupBox;
     cxGroupBox13: TcxGroupBox;
@@ -442,6 +442,7 @@ type
     procedure EditPesqModalidadeChange(Sender: TObject);
     procedure EditPesqNomeChange(Sender: TObject);
     procedure BtnLimparFiltrosClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -466,7 +467,8 @@ implementation
 uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
-{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios;
+{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
+  U01013;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -731,14 +733,26 @@ begin
   inherited;
 
   //IMPORTA OS REGISTROS DA SÉRIE DE UAM FICHA PRÉ CADASTRADA
+  With TF01013.Create(self, ClientDataSet1idAluno.AsInteger) do
+  Begin
+        if(ShowModal = mrOk)then
+        begin
+              //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
+              DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+              DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+              DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+              DModule.qAux.Close;
+              DModule.qAux.ExecSQL;
 
+        end else
+        begin
+              //ShowMessage('Funfô não mano');
+        end;
+        Free;
+  End;
+  cdsSERIE.Close;
+  cdsSerie.Open;
 
-  //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
-  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno := idA';
-  DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-  DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
-  DModule.qAux.Close;
-  DModule.qAux.ExecSQL;
 end;
 
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
@@ -1106,7 +1120,6 @@ begin
   qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSSerie.DataSet.close;
   DSSerie.DataSet.open;
-  
 
   //PESQUISA Modalidade
   QMODALIDADE.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
@@ -1215,6 +1228,22 @@ begin
     cbxPesqNome.Checked := true;
   end else
     cbxPesqNome.Checked := false;
+end;
+
+procedure TF01001.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  //Apenas o administrador pode ver a tabs Modalidade e Mensalidade
+  if(DModule.idTipoUsuario = 1)then
+  begin
+    pagMensalidades.TabVisible := true;
+    pagModalidades.TabVisible := true;
+  end else
+  begin
+    pagMensalidades.TabVisible := false;
+    pagModalidades.TabVisible := false;
+  end;
 end;
 
 procedure TF01001.EditBExercicioButtonClick(Sender: TObject;
@@ -1611,17 +1640,6 @@ begin
                   end;
                   Free;
             End;
-
-
-            {
-            VAR iMensagem: Integer;
-            iMensagem := MsgDlgButtonPersonal('Aluno possui ' + inttostr(DModule.qAux.RecordCount) + ' mensalidade(s) em atraso. Essas mensalidades serão excluidas automaticamente pelo sistema.', mtConfirmation, [mbYes,mbNo,mbOK],
-            ['VISUALIZAR','CANCELAR', 'OK']);
-            case iMensagem of
-               6: //ShowMessage('VISUALIZAR');
-               7: //ShowMessage('CANCELAR');
-               1: // ShowMessage('OK');
-            end;}
 
         end else
         begin

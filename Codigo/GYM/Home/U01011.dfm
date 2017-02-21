@@ -101,6 +101,7 @@ object F01011: TF01011
         ClickTituloOrdenar = True
         MarcarLinhaInteira = True
         CorLinhaMarcada = clTeal
+        CorFonteLinhaMarcada = clWhite
         BloquearExportacoes = False
         Columns = <
           item
@@ -192,7 +193,6 @@ object F01011: TF01011
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 547
     end
   end
   object PanelStatus: TPanel
@@ -214,7 +214,6 @@ object F01011: TF01011
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitTop = -6
   end
   object QUERY: TFDQuery
     Connection = DModule.FDConnection

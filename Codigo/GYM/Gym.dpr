@@ -21,7 +21,8 @@ uses
   u_relatorios in 'u_relatorios.pas' {FRelatorios},
   U01005 in 'Home\U01005.pas' {F01005},
   uFuncao in 'uFuncao.pas',
-  U01012 in 'Home\U01012.pas' {F01012};
+  U01012 in 'Home\U01012.pas' {F01012},
+  U01013 in 'Home\U01013.pas' {F01013};
 
 {$R *.res}
 
@@ -33,5 +34,6 @@ begin
   Application.CreateForm(TFLogin, FLogin);
   Application.CreateForm(TFBase, FBase);
   Application.CreateForm(TFRelatorios, FRelatorios);
+  Application.CreateForm(TF01013, F01013);
   Application.Run;
 end.

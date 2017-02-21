@@ -2,6 +2,7 @@
   Caption = 'F01001'
   ClientHeight = 741
   ClientWidth = 929
+  OnCreate = FormCreate
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -1196,7 +1197,7 @@
               end
             end
           end
-          object pag4: TcxTabSheet
+          object pagModalidades: TcxTabSheet
             Caption = 'MODALIDADES'
             ImageIndex = 4
             object cxGroupBox11: TcxGroupBox
@@ -1639,7 +1640,7 @@
             Expanded = False
             FieldName = 'nomeAluno'
             Title.Caption = 'ALUNO'
-            Width = 805
+            Width = 792
             Visible = True
           end
           item
@@ -2345,7 +2346,7 @@
     Left = 776
     Top = 336
     Bitmap = {
-      494C01010F002C00B00210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00BC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

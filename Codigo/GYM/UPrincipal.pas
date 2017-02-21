@@ -12,7 +12,7 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.ComCtrls, System.Actions, Vcl.ActnList,
   Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus,
   Vcl.PlatformDefaultStyleActnCtrls, VCLTee.TeCanvas, Vcl.Buttons, XiButton,
-  Vcl.XPMan, dxGDIPlusClasses, PngSpeedButton;
+  Vcl.XPMan, dxGDIPlusClasses, PngSpeedButton, Vcl.AppEvnts;
 
 type
   TFPrincipal = class(TForm)
@@ -31,6 +31,7 @@ type
     imgBtnUsuario: TImage;
     imgBtnBackup: TImage;
     imgBtnModalidade: TImage;
+    ApplicationEvents1: TApplicationEvents;
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
     procedure CriarForm(Tela, Desc : String);
@@ -45,6 +46,7 @@ type
     procedure imgBtnGrupoExercicioClick(Sender: TObject);
     procedure imgBtnModalidadeClick(Sender: TObject);
     procedure imgBtnBackupClick(Sender: TObject);
+    procedure ApplicationEvents1Exception(Sender: TObject; E: Exception);
   private
     // Rotina de backup
     procedure ExecutaBackupBD();
@@ -62,6 +64,19 @@ implementation
 {$R *.dfm}
 
 uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao;
+
+procedure TFPrincipal.ApplicationEvents1Exception(Sender: TObject;
+  E: Exception);
+begin
+  //
+  if E is EConvertError then
+     ShowMessage('Erro de conversão de dados.');
+  if E is EZeroDivide then
+     ShowMessage('Divisão por Zero Não Permitida.');
+  if E is Exception then
+    ShowMessage(e.Message);
+
+end;
 
 procedure TFPrincipal.CriarForm(Tela, Desc: String);
 var

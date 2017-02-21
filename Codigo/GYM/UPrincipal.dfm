@@ -23063,4 +23063,9 @@ object FPrincipal: TFPrincipal
       end
     end
   end
+  object ApplicationEvents1: TApplicationEvents
+    OnException = ApplicationEvents1Exception
+    Left = 864
+    Top = 579
+  end
 end
