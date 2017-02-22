@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitLeft = -135
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -412,7 +411,19 @@
               Top = 0
               Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
               Properties.OnChange = cxImage1PropertiesChange
-              Style.BorderStyle = ebsUltraFlat
+              Style.BorderStyle = ebsSingle
+              Style.Edges = [bLeft, bTop, bRight, bBottom]
+              Style.HotTrack = True
+              Style.LookAndFeel.Kind = lfUltraFlat
+              Style.LookAndFeel.NativeStyle = False
+              Style.Shadow = False
+              Style.TransparentBorder = True
+              StyleDisabled.LookAndFeel.Kind = lfUltraFlat
+              StyleDisabled.LookAndFeel.NativeStyle = False
+              StyleFocused.LookAndFeel.Kind = lfUltraFlat
+              StyleFocused.LookAndFeel.NativeStyle = False
+              StyleHot.LookAndFeel.Kind = lfUltraFlat
+              StyleHot.LookAndFeel.NativeStyle = False
               TabOrder = 5
               Height = 161
               Width = 205
@@ -2358,7 +2369,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00C40210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4078,7 +4089,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140024005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140028005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
