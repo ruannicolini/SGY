@@ -80,7 +80,6 @@ fumante tinyint(1),
 consomeBebidaAlcoolica tinyint(1),
 dataCadastro date,
 cpf VARCHAR(50),
-foto blob,
 informacaoAdicional varchar(200),
 idObjetivo int,
 dataComposicaoFicha date

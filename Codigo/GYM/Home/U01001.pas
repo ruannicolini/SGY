@@ -27,10 +27,7 @@ type
     pag2: TcxTabSheet;
     pag3: TcxTabSheet;
     pagMensalidades: TcxTabSheet;
-    cxDBImage1: TcxDBImage;
-    btnFoto: TSpeedButton;
     camera: TdxCameraControl;
-    btnMudarCamera: TSpeedButton;
     DBEdit1: TDBEdit;
     Label3: TLabel;
     cxDBTextEdit2: TcxDBTextEdit;
@@ -92,7 +89,7 @@ type
     FDQuery1email: TStringField;
     FDQuery1sexo: TStringField;
     FDQuery1cidade: TStringField;
-    FDQuery1bairro: TStringField;
+    f: TStringField;
     FDQuery1rua: TStringField;
     FDQuery1numero: TIntegerField;
     FDQuery1cep: TIntegerField;
@@ -112,7 +109,6 @@ type
     FDQuery1consomeBebidaAlcoolica: TBooleanField;
     FDQuery1dataCadastro: TDateField;
     FDQuery1cpf: TStringField;
-    FDQuery1foto: TBlobField;
     FDQuery1informacaoAdicional: TStringField;
     FDQuery1idObjetivo: TIntegerField;
     ClientDataSet1idAluno: TIntegerField;
@@ -142,7 +138,6 @@ type
     ClientDataSet1consomeBebidaAlcoolica: TBooleanField;
     ClientDataSet1dataCadastro: TDateField;
     ClientDataSet1cpf: TStringField;
-    ClientDataSet1foto: TBlobField;
     ClientDataSet1informacaoAdicional: TStringField;
     ClientDataSet1idObjetivo: TIntegerField;
     FDQuery1DESCRICAOOBJETIVO: TStringField;
@@ -379,8 +374,6 @@ type
     cdsPagamentoLOGUsuarioResponsavel: TStringField;
     cxImage1: TcxImage;
     ImageListAUX: TImageList;
-    procedure btnFotoClick(Sender: TObject);
-    procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -831,25 +824,6 @@ begin
 
 end;
 
-procedure TF01001.btnFotoClick(Sender: TObject);
-var
-aDest : TBitmap;
-begin
-  inherited;
-  camera.Capture;
-  //imgAluno.Picture.Assign(camera.CapturedBitmap);
-  cxDBImage1.Picture.Assign(camera.CapturedBitmap);
-
-  aDest:= tbitmap.create;
-  aDest.Width := 200;
-  aDest.Height := 113;
-  aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), camera.CapturedBitmap);
-
-  //ClientDataSet1foto.Assign(camera.CapturedBitmap);
-  ClientDataSet1foto.Assign(aDest);
-
-end;
-
 procedure TF01001.btnIsencaoClick(Sender: TObject);
 begin
   inherited;
@@ -880,14 +854,6 @@ begin
       end;
   end;
 end;
-
-procedure TF01001.btnMudarCameraClick(Sender: TObject);
-begin
-  inherited;
-  camera.DeviceIndex := 1 - camera.DeviceIndex;
-end;
-
-
 
 procedure TF01001.cdsModalidadeAfterCancel(DataSet: TDataSet);
 begin

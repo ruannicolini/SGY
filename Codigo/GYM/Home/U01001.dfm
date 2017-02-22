@@ -3,6 +3,7 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
+  ExplicitTop = 0
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -272,23 +273,6 @@
                 Height = 16
                 Caption = 'CEL'
               end
-              object btnFoto: TSpeedButton
-                Left = 341
-                Top = 16
-                Width = 168
-                Height = 24
-                Caption = 'Capturar Imagem'
-                Visible = False
-                OnClick = btnFotoClick
-              end
-              object btnMudarCamera: TSpeedButton
-                Left = 507
-                Top = 16
-                Width = 30
-                Height = 24
-                Visible = False
-                OnClick = btnMudarCameraClick
-              end
               object cxDBTextEdit7: TcxDBTextEdit
                 Left = 223
                 Top = 55
@@ -316,7 +300,7 @@
                 DataBinding.DataField = 'idade'
                 DataBinding.DataSource = DS
                 Properties.ReadOnly = True
-                TabOrder = 9
+                TabOrder = 8
                 Width = 193
               end
               object cxLabel1: TcxLabel
@@ -367,18 +351,6 @@
                 Height = 45
                 Width = 193
               end
-              object cxDBImage1: TcxDBImage
-                Left = 15
-                Top = 34
-                TabStop = False
-                DataBinding.DataField = 'foto'
-                DataBinding.DataSource = DS
-                Properties.FitMode = ifmProportionalStretch
-                Properties.OnAssignPicture = cxDBImage1PropertiesAssignPicture
-                TabOrder = 8
-                Height = 155
-                Width = 193
-              end
               object cxDBMaskEdit2: TcxDBMaskEdit
                 Left = 15
                 Top = 218
@@ -405,28 +377,29 @@
                 TabOrder = 6
                 Width = 193
               end
-            end
-            object cxImage1: TcxImage
-              Left = 660
-              Top = 0
-              Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
-              Properties.OnChange = cxImage1PropertiesChange
-              Style.BorderStyle = ebsSingle
-              Style.Edges = [bLeft, bTop, bRight, bBottom]
-              Style.HotTrack = True
-              Style.LookAndFeel.Kind = lfUltraFlat
-              Style.LookAndFeel.NativeStyle = False
-              Style.Shadow = False
-              Style.TransparentBorder = True
-              StyleDisabled.LookAndFeel.Kind = lfUltraFlat
-              StyleDisabled.LookAndFeel.NativeStyle = False
-              StyleFocused.LookAndFeel.Kind = lfUltraFlat
-              StyleFocused.LookAndFeel.NativeStyle = False
-              StyleHot.LookAndFeel.Kind = lfUltraFlat
-              StyleHot.LookAndFeel.NativeStyle = False
-              TabOrder = 5
-              Height = 161
-              Width = 205
+              object cxImage1: TcxImage
+                Left = 14
+                Top = 34
+                Properties.GraphicTransparency = gtOpaque
+                Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
+                Properties.OnChange = cxImage1PropertiesChange
+                Style.BorderStyle = ebsSingle
+                Style.Edges = [bLeft, bTop, bRight, bBottom]
+                Style.HotTrack = True
+                Style.LookAndFeel.Kind = lfUltraFlat
+                Style.LookAndFeel.NativeStyle = False
+                Style.Shadow = False
+                Style.TransparentBorder = True
+                StyleDisabled.LookAndFeel.Kind = lfUltraFlat
+                StyleDisabled.LookAndFeel.NativeStyle = False
+                StyleFocused.LookAndFeel.Kind = lfUltraFlat
+                StyleFocused.LookAndFeel.NativeStyle = False
+                StyleHot.LookAndFeel.Kind = lfUltraFlat
+                StyleHot.LookAndFeel.NativeStyle = False
+                TabOrder = 11
+                Height = 157
+                Width = 195
+              end
             end
           end
           object pag2: TcxTabSheet
@@ -2118,11 +2091,6 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object ClientDataSet1foto: TBlobField
-      FieldName = 'foto'
-      Origin = 'foto'
-      ProviderFlags = [pfInUpdate]
-    end
     object ClientDataSet1informacaoAdicional: TStringField
       FieldName = 'informacaoAdicional'
       Origin = 'informacaoAdicional'
@@ -2206,7 +2174,7 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object FDQuery1bairro: TStringField
+    object f: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'bairro'
       Origin = 'bairro'
@@ -2334,12 +2302,6 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object FDQuery1foto: TBlobField
-      AutoGenerateValue = arDefault
-      FieldName = 'foto'
-      Origin = 'foto'
-      ProviderFlags = [pfInUpdate]
-    end
     object FDQuery1informacaoAdicional: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'informacaoAdicional'
@@ -2369,7 +2331,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00C80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D00210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4089,7 +4051,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140028005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140030005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
