@@ -86,7 +86,6 @@ procedure TF01013.BTNOKClick(Sender: TObject);
 begin
   //INSERÇÃO NA TABELA SÉRIE (DO ALUNO)
   TRY
-      ShowMessage (inttostr(cdsFichaSerie.RecordCount));
       while NOT(cdsFichaSerie.Eof) do
       BEGIN
           cdsSerie.Append;

@@ -109,7 +109,6 @@ type
     FDQuery1consomeBebidaAlcoolica: TBooleanField;
     FDQuery1dataCadastro: TDateField;
     FDQuery1cpf: TStringField;
-    FDQuery1informacaoAdicional: TStringField;
     FDQuery1idObjetivo: TIntegerField;
     ClientDataSet1idAluno: TIntegerField;
     ClientDataSet1nomeAluno: TStringField;
@@ -138,7 +137,6 @@ type
     ClientDataSet1consomeBebidaAlcoolica: TBooleanField;
     ClientDataSet1dataCadastro: TDateField;
     ClientDataSet1cpf: TStringField;
-    ClientDataSet1informacaoAdicional: TStringField;
     ClientDataSet1idObjetivo: TIntegerField;
     FDQuery1DESCRICAOOBJETIVO: TStringField;
     ClientDataSet1DESCRICAOOBJETIVO: TStringField;
@@ -161,11 +159,9 @@ type
     BTNCANCELAR: TSpeedButton;
     QPATOLOGIAidAluno: TIntegerField;
     QPATOLOGIAidPatologia: TIntegerField;
-    QPATOLOGIAobservacaoMedica: TStringField;
     QPATOLOGIANOMEPATOLOGIA: TStringField;
     cdsPatologiaidAluno: TIntegerField;
     cdsPatologiaidPatologia: TIntegerField;
-    cdsPatologiaobservacaoMedica: TStringField;
     cdsPatologiaNOMEPATOLOGIA: TStringField;
     DBGridBeleza2: TDBGridBeleza;
     cxDBMemo2: TcxDBMemo;
@@ -295,6 +291,23 @@ type
     qRelFicha: TFDQuery;
     pRelFicha: TDataSetProvider;
     CDSRelFicha: TClientDataSet;
+    EditPesqModalidade: TEditBeleza;
+    cbxPesqModalidade: TCheckBox;
+    editPesqidModalidade: TEdit;
+    EditPesqNome: TEdit;
+    cbxPesqNome: TCheckBox;
+    cbxPesqSemFichaExercicios: TCheckBox;
+    cbxPesqSemMatriculaAtiva: TCheckBox;
+    cbxPesqFichaVencida: TCheckBox;
+    cbxPesqPagamentoEmAtraso: TCheckBox;
+    qPagamentoLOGUsuarioResponsavel: TStringField;
+    cdsPagamentoLOGUsuarioResponsavel: TStringField;
+    cxImage1: TcxImage;
+    ImageListAUX: TImageList;
+    FDQuery1informacaoAdicional: TStringField;
+    ClientDataSet1informacaoAdicional: TStringField;
+    QPATOLOGIAobservacaoMedica: TStringField;
+    cdsPatologiaobservacaoMedica: TStringField;
     qRelFichaidAluno: TIntegerField;
     qRelFichanomeAluno: TStringField;
     qRelFichaidade: TIntegerField;
@@ -321,9 +334,7 @@ type
     qRelFichafumante: TBooleanField;
     qRelFichaconsomeBebidaAlcoolica: TBooleanField;
     qRelFichadataCadastro: TDateField;
-    qRelFichaativo: TBooleanField;
     qRelFichacpf: TStringField;
-    qRelFichafoto: TBlobField;
     qRelFichainformacaoAdicional: TStringField;
     qRelFichaidObjetivo: TIntegerField;
     qRelFichadataComposicaoFicha: TDateField;
@@ -354,26 +365,11 @@ type
     CDSRelFichafumante: TBooleanField;
     CDSRelFichaconsomeBebidaAlcoolica: TBooleanField;
     CDSRelFichadataCadastro: TDateField;
-    CDSRelFichaativo: TBooleanField;
     CDSRelFichacpf: TStringField;
-    CDSRelFichafoto: TBlobField;
     CDSRelFichainformacaoAdicional: TStringField;
     CDSRelFichaidObjetivo: TIntegerField;
     CDSRelFichadataComposicaoFicha: TDateField;
     CDSRelFichaDESCRICAOOBJETIVO: TStringField;
-    EditPesqModalidade: TEditBeleza;
-    cbxPesqModalidade: TCheckBox;
-    editPesqidModalidade: TEdit;
-    EditPesqNome: TEdit;
-    cbxPesqNome: TCheckBox;
-    cbxPesqSemFichaExercicios: TCheckBox;
-    cbxPesqSemMatriculaAtiva: TCheckBox;
-    cbxPesqFichaVencida: TCheckBox;
-    cbxPesqPagamentoEmAtraso: TCheckBox;
-    qPagamentoLOGUsuarioResponsavel: TStringField;
-    cdsPagamentoLOGUsuarioResponsavel: TStringField;
-    cxImage1: TcxImage;
-    ImageListAUX: TImageList;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -624,6 +620,9 @@ begin
       begin
           cdsPatologia.Post;
       end;
+      BTNCANCELAR.Enabled := FALSE;
+      BTNALTERAR.Caption := 'ALTERAR';
+      cxDBMemo2.Properties.ReadOnly:= TRUE;
 
       //limpa campos da ficha;
       Edittreino.Clear;
@@ -759,13 +758,21 @@ begin
   Begin
         if(ShowModal = mrOk)then
         begin
-              //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
-              DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
-              DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-              DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
-              DModule.qAux.Close;
-              DModule.qAux.ExecSQL;
-
+              IF(DS.DataSet.State = dsInsert)THEN
+              BEGIN
+                  ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
+              END ELSE
+              BEGIN
+                  IF(DS.DataSet.State = dsEdit)THEN
+                  BEGIN
+                  //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
+                  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+                  DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                  DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+                  DModule.qAux.Close;
+                  DModule.qAux.ExecSQL;
+                  END;
+              END;
         end else
         begin
               //ShowMessage('Funfô não mano');
@@ -780,11 +787,36 @@ end;
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
-  //
-  qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-  DSRelFicha.DataSet.Close;
-  DSRelFicha.DataSet.Open;
-  REPORT_FICHA.ShowReport(TRUE);
+
+  IF(DS.DataSet.State = dsEDIT) THEN
+  BEGIN
+      TRY
+        qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+        DSRelFicha.DataSet.Close;
+        DSRelFicha.DataSet.Open;
+        REPORT_FICHA.ShowReport(TRUE);
+      EXCEPT
+        RAISE;
+      END;
+  END ELSE
+  BEGIN
+      IF(DS.DataSet.State = dsINSERT)THEN
+      BEGIN
+          //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
+          TRY
+          CDSRelFicha.Append;
+          CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
+          CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
+          CDSRelFichadataComposicaoFicha.AsDateTime := ClientDataSet1dataComposicaoFicha.AsDateTime;
+          CDSRelFicha.Post;
+          REPORT_FICHA.ShowReport(TRUE);
+          FINALLY
+            CDSRelFicha.CancelUpdates;
+          END;
+      END;
+
+  END;
+
 end;
 
 procedure TF01001.btnFiltrarClick(Sender: TObject);

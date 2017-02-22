@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitTop = 0
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,7 +17,6 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
@@ -524,6 +522,7 @@
                 Top = 147
                 DataBinding.DataField = 'informacaoAdicional'
                 DataBinding.DataSource = DS
+                Properties.ScrollBars = ssVertical
                 TabOrder = 5
                 Height = 73
                 Width = 469
@@ -703,20 +702,20 @@
                   ParentBackground = False
                   TabOrder = 0
                   object BTNALTERAR: TSpeedButton
-                    Left = 258
+                    Left = 216
                     Top = 0
-                    Width = 175
+                    Width = 217
                     Height = 27
                     Align = alRight
                     Caption = 'ALTERAR'
                     Enabled = False
                     OnClick = BTNALTERARClick
-                    ExplicitLeft = 184
+                    ExplicitLeft = 217
                   end
                   object BTNCANCELAR: TSpeedButton
                     Left = 0
                     Top = 0
-                    Width = 175
+                    Width = 217
                     Height = 27
                     Align = alLeft
                     Caption = 'CANCELAR'
@@ -732,6 +731,7 @@
                   DataBinding.DataField = 'observacaoMedica'
                   DataBinding.DataSource = DSPAtologia
                   Properties.ReadOnly = True
+                  Properties.ScrollBars = ssVertical
                   TabOrder = 1
                   Height = 188
                   Width = 433
@@ -2091,12 +2091,6 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object ClientDataSet1informacaoAdicional: TStringField
-      FieldName = 'informacaoAdicional'
-      Origin = 'informacaoAdicional'
-      ProviderFlags = [pfInUpdate]
-      Size = 200
-    end
     object ClientDataSet1idObjetivo: TIntegerField
       FieldName = 'idObjetivo'
       Origin = 'idObjetivo'
@@ -2114,6 +2108,10 @@
     object ClientDataSet1dataComposicaoFicha: TDateField
       FieldName = 'dataComposicaoFicha'
       Origin = 'dataComposicaoFicha'
+    end
+    object ClientDataSet1informacaoAdicional: TStringField
+      FieldName = 'informacaoAdicional'
+      Size = 500
     end
   end
   inherited DataSetProvider1: TDataSetProvider
@@ -2302,13 +2300,6 @@
       ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object FDQuery1informacaoAdicional: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'informacaoAdicional'
-      Origin = 'informacaoAdicional'
-      ProviderFlags = [pfInUpdate]
-      Size = 200
-    end
     object FDQuery1idObjetivo: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'idObjetivo'
@@ -2326,12 +2317,18 @@
       FieldName = 'dataComposicaoFicha'
       Origin = 'dataComposicaoFicha'
     end
+    object FDQuery1informacaoAdicional: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
+      Size = 500
+    end
   end
   inherited ImageListBase: TImageList
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00D00210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D40210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2896,15 +2893,14 @@
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object cdsPatologiaobservacaoMedica: TStringField
-      FieldName = 'observacaoMedica'
-      ProviderFlags = [pfInUpdate]
-      Size = 200
-    end
     object cdsPatologiaNOMEPATOLOGIA: TStringField
       FieldName = 'NOMEPATOLOGIA'
       ProviderFlags = [pfInUpdate]
       Size = 50
+    end
+    object cdsPatologiaobservacaoMedica: TStringField
+      FieldName = 'observacaoMedica'
+      Size = 700
     end
   end
   object provPatologia: TDataSetProvider
@@ -2939,19 +2935,18 @@
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object QPATOLOGIAobservacaoMedica: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'observacaoMedica'
-      Origin = 'observacaoMedica'
-      ProviderFlags = [pfInUpdate]
-      Size = 200
-    end
     object QPATOLOGIANOMEPATOLOGIA: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'NOMEPATOLOGIA'
       Origin = 'nomePatologia'
       ProviderFlags = [pfInUpdate]
       Size = 50
+    end
+    object QPATOLOGIAobservacaoMedica: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'observacaoMedica'
+      Origin = 'observacaoMedica'
+      Size = 700
     end
   end
   object qSerie: TFDQuery
@@ -3510,7 +3505,7 @@
         end
         object Gradient1: TfrxGradientView
           Left = 151.181200000000000000
-          Top = 56.692950000000000000
+          Top = 56.692949999999990000
           Width = 415.748300000000000000
           Height = 7.559055118110240000
           EndColor = clTeal
@@ -3569,7 +3564,7 @@
         RowCount = 0
         object frxDBDataset2nomeExercicio: TfrxMemoView
           Left = 42.330708660000000000
-          Top = 1.779530000000000000
+          Top = 1.779530000000022000
           Width = 242.267716540000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset2
@@ -3588,7 +3583,7 @@
         end
         object frxDBDataset2idequipamento: TfrxMemoView
           Left = 0.755905510000000000
-          Top = 1.779530000000000000
+          Top = 1.779530000000022000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
           DataField = 'idequipamento'
@@ -3609,7 +3604,7 @@
         end
         object Memo5: TfrxMemoView
           Left = 284.598425200000000000
-          Top = 1.779530000000000000
+          Top = 1.779530000000022000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3675,6 +3670,40 @@
   object frxDBDataset1: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAluno=idAluno'
+      'nomeAluno=nomeAluno'
+      'idade=idade'
+      'dataNascimento=dataNascimento'
+      'email=email'
+      'sexo=sexo'
+      'cidade=cidade'
+      'bairro=bairro'
+      'rua=rua'
+      'numero=numero'
+      'cep=cep'
+      'tel1=tel1'
+      'tel2=tel2'
+      'nomeResponsavel=nomeResponsavel'
+      'parentescoResponsavel=parentescoResponsavel'
+      'telResponsavel=telResponsavel'
+      'peso=peso'
+      'altura=altura'
+      'frequenciaAtividadeFisica=frequenciaAtividadeFisica'
+      'qtdRefeicoesDia=qtdRefeicoesDia'
+      'qtdHorasSono=qtdHorasSono'
+      'suplementacao=suplementacao'
+      'dieta=dieta'
+      'fumante=fumante'
+      'consomeBebidaAlcoolica=consomeBebidaAlcoolica'
+      'dataCadastro=dataCadastro'
+      '-ativo=ativo'
+      'cpf=cpf'
+      '-foto=foto'
+      'informacaoAdicional=informacaoAdicional'
+      'idObjetivo=idObjetivo'
+      'dataComposicaoFicha=dataComposicaoFicha'
+      'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO')
     DataSource = DSRelFicha
     BCDToCurrency = False
     Left = 118
@@ -3877,27 +3906,17 @@
       FieldName = 'dataCadastro'
       Origin = 'dataCadastro'
     end
-    object qRelFichaativo: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'ativo'
-      Origin = 'ativo'
-    end
     object qRelFichacpf: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cpf'
       Origin = 'cpf'
       Size = 50
     end
-    object qRelFichafoto: TBlobField
-      AutoGenerateValue = arDefault
-      FieldName = 'foto'
-      Origin = 'foto'
-    end
     object qRelFichainformacaoAdicional: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'informacaoAdicional'
       Origin = 'informacaoAdicional'
-      Size = 200
+      Size = 500
     end
     object qRelFichaidObjetivo: TIntegerField
       AutoGenerateValue = arDefault
@@ -3922,6 +3941,7 @@
     Top = 642
   end
   object CDSRelFicha: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelFicha'
@@ -3929,119 +3949,144 @@
     Top = 642
     object CDSRelFichaidAluno: TIntegerField
       FieldName = 'idAluno'
+      Origin = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object CDSRelFichanomeAluno: TStringField
       FieldName = 'nomeAluno'
+      Origin = 'nomeAluno'
       Required = True
       Size = 80
     end
     object CDSRelFichaidade: TIntegerField
       FieldName = 'idade'
+      Origin = 'idade'
     end
     object CDSRelFichadataNascimento: TDateField
       FieldName = 'dataNascimento'
+      Origin = 'dataNascimento'
     end
     object CDSRelFichaemail: TStringField
       FieldName = 'email'
+      Origin = 'email'
       Size = 60
     end
     object CDSRelFichasexo: TStringField
       FieldName = 'sexo'
+      Origin = 'sexo'
       FixedChar = True
       Size = 1
     end
     object CDSRelFichacidade: TStringField
       FieldName = 'cidade'
+      Origin = 'cidade'
       Size = 50
     end
     object CDSRelFichabairro: TStringField
       FieldName = 'bairro'
+      Origin = 'bairro'
       Size = 50
     end
     object CDSRelFicharua: TStringField
       FieldName = 'rua'
+      Origin = 'rua'
       Size = 50
     end
     object CDSRelFichanumero: TIntegerField
       FieldName = 'numero'
+      Origin = 'numero'
     end
     object CDSRelFichacep: TIntegerField
       FieldName = 'cep'
+      Origin = 'cep'
     end
     object CDSRelFichatel1: TStringField
       FieldName = 'tel1'
+      Origin = 'tel1'
       Size = 50
     end
     object CDSRelFichatel2: TStringField
       FieldName = 'tel2'
+      Origin = 'tel2'
       Size = 50
     end
     object CDSRelFichanomeResponsavel: TStringField
       FieldName = 'nomeResponsavel'
+      Origin = 'nomeResponsavel'
       Size = 80
     end
     object CDSRelFichaparentescoResponsavel: TStringField
       FieldName = 'parentescoResponsavel'
+      Origin = 'parentescoResponsavel'
       Size = 50
     end
     object CDSRelFichatelResponsavel: TStringField
       FieldName = 'telResponsavel'
+      Origin = 'telResponsavel'
       Size = 50
     end
     object CDSRelFichapeso: TSingleField
       FieldName = 'peso'
+      Origin = 'peso'
     end
     object CDSRelFichaaltura: TSingleField
       FieldName = 'altura'
+      Origin = 'altura'
     end
     object CDSRelFichafrequenciaAtividadeFisica: TIntegerField
       FieldName = 'frequenciaAtividadeFisica'
+      Origin = 'frequenciaAtividadeFisica'
     end
     object CDSRelFichaqtdRefeicoesDia: TIntegerField
       FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
     end
     object CDSRelFichaqtdHorasSono: TIntegerField
       FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
     end
     object CDSRelFichasuplementacao: TBooleanField
       FieldName = 'suplementacao'
+      Origin = 'suplementacao'
     end
     object CDSRelFichadieta: TBooleanField
       FieldName = 'dieta'
+      Origin = 'dieta'
     end
     object CDSRelFichafumante: TBooleanField
       FieldName = 'fumante'
+      Origin = 'fumante'
     end
     object CDSRelFichaconsomeBebidaAlcoolica: TBooleanField
       FieldName = 'consomeBebidaAlcoolica'
+      Origin = 'consomeBebidaAlcoolica'
     end
     object CDSRelFichadataCadastro: TDateField
       FieldName = 'dataCadastro'
-    end
-    object CDSRelFichaativo: TBooleanField
-      FieldName = 'ativo'
+      Origin = 'dataCadastro'
     end
     object CDSRelFichacpf: TStringField
       FieldName = 'cpf'
+      Origin = 'cpf'
       Size = 50
-    end
-    object CDSRelFichafoto: TBlobField
-      FieldName = 'foto'
     end
     object CDSRelFichainformacaoAdicional: TStringField
       FieldName = 'informacaoAdicional'
-      Size = 200
+      Origin = 'informacaoAdicional'
+      Size = 500
     end
     object CDSRelFichaidObjetivo: TIntegerField
       FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
     end
     object CDSRelFichadataComposicaoFicha: TDateField
       FieldName = 'dataComposicaoFicha'
+      Origin = 'dataComposicaoFicha'
     end
     object CDSRelFichaDESCRICAOOBJETIVO: TStringField
       FieldName = 'DESCRICAOOBJETIVO'
+      Origin = 'descricaoObjetivo'
       Size = 50
     end
   end
@@ -4051,7 +4096,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140030005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140034005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

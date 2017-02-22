@@ -80,7 +80,7 @@ fumante tinyint(1),
 consomeBebidaAlcoolica tinyint(1),
 dataCadastro date,
 cpf VARCHAR(50),
-informacaoAdicional varchar(200),
+informacaoAdicional varchar(500),
 idObjetivo int,
 dataComposicaoFicha date
 );
@@ -96,7 +96,7 @@ PRIMARY KEY (idAluno,idModalidade)
 create table AlunoPatologia(
 idAluno int not null,
 idPatologia int not null,
-observacaoMedica varchar(200),
+observacaoMedica varchar(700),
 PRIMARY KEY (idAluno,idPatologia)
 );
 
