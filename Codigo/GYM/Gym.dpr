@@ -34,6 +34,5 @@ begin
   Application.CreateForm(TFLogin, FLogin);
   Application.CreateForm(TFBase, FBase);
   Application.CreateForm(TFRelatorios, FRelatorios);
-  Application.CreateForm(TF01013, F01013);
   Application.Run;
 end.

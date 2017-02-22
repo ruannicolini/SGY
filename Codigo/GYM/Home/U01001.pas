@@ -18,7 +18,7 @@ uses
   cxRadioGroup, cxButtons, DateUtils, cxMemo, Math, DBEditBeleza,
   Vcl.Samples.Spin, ppProd, ppClass, ppReport, ppComm, ppRelatv, ppDB, ppDBPipe,
   ppBands, ppCache, ppDesignLayer, ppParameter, ppCtrls, ppPrnabl, frxClass,
-  frxDBSet, frxGradient, frxExportPDF;
+  frxDBSet, frxGradient, frxExportPDF, ShellAPI;
 
 type
   TF01001 = class(TFBase)
@@ -377,6 +377,8 @@ type
     cbxPesqPagamentoEmAtraso: TCheckBox;
     qPagamentoLOGUsuarioResponsavel: TStringField;
     cdsPagamentoLOGUsuarioResponsavel: TStringField;
+    cxImage1: TcxImage;
+    ImageListAUX: TImageList;
     procedure btnFotoClick(Sender: TObject);
     procedure btnMudarCameraClick(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -443,14 +445,18 @@ type
     procedure EditPesqNomeChange(Sender: TObject);
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure BEditarClick(Sender: TObject);
+    procedure cxImage1PropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    imagemMudou : Boolean;
     procedure QualityResizeBitmap(bmpOrig, bmpDest: TBitmap; newWidth, newHeight: Integer);
     procedure CriarForm(Tela, Desc: String);
     function MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
     Buttons: TMsgDlgButtons; Captions: array of string): Integer;
+
 
   end;
 
@@ -516,6 +522,12 @@ begin
 
 end;
 
+procedure TF01001.BEditarClick(Sender: TObject);
+begin
+  inherited;
+  imagemMudou := false;
+end;
+
 procedure TF01001.BExcluirClick(Sender: TObject);
 begin
   DModule.qAux.SQL.Text := 'SELECT * FROM pagamento p where p.idAluno =:idA and ((p.idstatuspagamento = 2) or(p.idstatuspagamento = 3))';
@@ -577,12 +589,15 @@ VAR
 begin
   if TRIM(cxDBTextEdit7.Text) <> '' then
   begin
+      // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
       IF(DSModalidade.DataSet.RecordCount = 0)THEN
       BEGIN
         ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
       END;
 
-      // SALVA FOTO DO ALUNO
+
+      {
+      // SALVA FOTO DO ALUNO BLOB
       IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
       BEGIN
         aDest:= tbitmap.create;
@@ -592,8 +607,23 @@ begin
         //ClientDataSet1foto.Assign(camera.CapturedBitmap);
         ClientDataSet1foto.Assign(aDest);
       END;
+      }
 
-      //CONFIRMA ALTERAÇÃO NO DADO
+
+      //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
+      if(imagemMudou = true)then
+      begin
+          //SALVA FOTO PASTA
+          IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+          BEGIN
+            CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+          END;
+          cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+      end;
+      imagemMudou := false;
+
+
+      //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
       inherited;
 
       //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
@@ -611,7 +641,6 @@ begin
       EditBExercicio.Clear;
       editSerie.Clear;
       editRepeticoes.Clear;
-
 
   end else
   begin
@@ -1029,6 +1058,15 @@ begin
              }
 end;
 
+procedure TF01001.cxImage1PropertiesChange(Sender: TObject);
+begin
+  inherited;
+  IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
+  begin
+    imagemMudou := true;
+  end;
+end;
+
 procedure TF01001.DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -1103,6 +1141,8 @@ begin
 end;
 
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
+var
+  caminho : string;
 begin
   inherited;
 
@@ -1130,6 +1170,24 @@ begin
   qPagamento.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSPagamento.DataSet.close;
   DSPagamento.DataSet.open;
+
+  if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
+  begin
+        //Se estiver no modo de edição ou inserção, não faz nada!
+  END ELSE
+  BEGIN
+      // Foto na pasta local img_Aluno
+      caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
+
+      cxImage1.Picture := nil;
+      if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
+      begin
+        cxImage1.Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
+      end else
+      begin
+        ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+      end;
+  end;
 
 end;
 
