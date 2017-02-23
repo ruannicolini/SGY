@@ -26,7 +26,7 @@ create table usuario(
 idusuario int primary key not null,
 nomeUsuario varchar(50) not null,
 username varchar(50) not null,
-senha varchar(50) not null,
+senha varchar(150) not null,
 idTipoUsuario int not null
 );
 

@@ -57,6 +57,7 @@ type
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
+    procedure BExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,6 +72,29 @@ implementation
 {$R *.dfm}
 
 uses uFuncao, u_relatorios;
+
+procedure TF01008.BExcluirClick(Sender: TObject);
+begin
+  IF(ClientDataSet1idusuario.AsInteger <> DModule.idusuario)THEN
+  BEGIN
+      DModule.qAux.SQL.Text := 'SELECT * FROM Aluno WHERE idInstrutorFicha =:IDUS';
+      DModule.qAux.ParamByName('idUS').AsInteger := ClientDataSet1idusuario.AsInteger;
+      DModule.qAux.Close;
+      DModule.qAux.open;
+      if(DModule.qAux.IsEmpty)then
+      begin
+        //Executa exclusão
+        inherited;
+      end else
+      begin
+        showmessage('USUÁRIO POSSUI FICHA DE ALUNO VINCULADA A ELE. NÃO É POSSÍVEL EXCLUIR.');
+      end;
+  END ELSE
+  BEGIN
+      ShowMessage('USUÁRIO ATUAL. NÃO É POSSÍVEL EXCLUIR.');
+  END;
+
+end;
 
 procedure TF01008.bRelatorioClick(Sender: TObject);
 begin

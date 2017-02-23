@@ -284,7 +284,6 @@ type
     CDSSerieidequipamento: TIntegerField;
     CDSSeriedescricaoequipamento: TStringField;
     REPORT_FICHA: TfrxReport;
-    frxDBDataset1: TfrxDBDataset;
     frxDBDataset2: TfrxDBDataset;
     frxGradientObject1: TfrxGradientObject;
     frxPDFExport1: TfrxPDFExport;
@@ -340,6 +339,13 @@ type
     qRelFichaidObjetivo: TIntegerField;
     qRelFichadataComposicaoFicha: TDateField;
     qRelFichaDESCRICAOOBJETIVO: TStringField;
+    frxJPEGExport1: TfrxJPEGExport;
+    FDQuery1idInstrutorFicha: TIntegerField;
+    FDQuery1NOMEINSTRUTORFICHA: TStringField;
+    ClientDataSet1idInstrutorFicha: TIntegerField;
+    ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
+    qRelFichaidInstrutorFicha: TIntegerField;
+    qRelFichaNOMEINSTRUTORFICHA: TStringField;
     CDSRelFichaidAluno: TIntegerField;
     CDSRelFichanomeAluno: TStringField;
     CDSRelFichaidade: TIntegerField;
@@ -371,7 +377,9 @@ type
     CDSRelFichaidObjetivo: TIntegerField;
     CDSRelFichadataComposicaoFicha: TDateField;
     CDSRelFichaDESCRICAOOBJETIVO: TStringField;
-    frxJPEGExport1: TfrxJPEGExport;
+    CDSRelFichaidInstrutorFicha: TIntegerField;
+    CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
+    frxDBDataset1: TfrxDBDataset;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -763,14 +771,16 @@ begin
               IF(DS.DataSet.State = dsInsert)THEN
               BEGIN
                   ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
+                  ClientDataSet1idInstrutorFicha.AsInteger := DModule.idusuario;
               END ELSE
               BEGIN
                   IF(DS.DataSet.State = dsEdit)THEN
                   BEGIN
                   //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
-                  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+                  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData, idInstrutorFicha =:idInst where idAluno =:idA';
                   DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
                   DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+                  DModule.qAux.ParamByName('idInst').AsInteger := DModule.idusuario;
                   DModule.qAux.Close;
                   DModule.qAux.ExecSQL;
                   END;
@@ -810,6 +820,8 @@ begin
           CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
           CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
           CDSRelFichadataComposicaoFicha.AsDateTime := ClientDataSet1dataComposicaoFicha.AsDateTime;
+          CDSRelFichaidInstrutorFicha.AsString := ClientDataSet1idInstrutorFicha.AsString;
+          CDSRelFichaNOMEINSTRUTORFICHA.AsString := ClientDataSet1NOMEINSTRUTORFICHA.AsString;
           CDSRelFicha.Post;
           REPORT_FICHA.ShowReport(TRUE);
           FINALLY
@@ -1470,14 +1482,16 @@ begin
               if((ds.DataSet.State = dsInsert))then
               begin
                      ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
+                     ClientDataSet1idInstrutorFicha.AsInteger := DModule.idusuario;
               end else
               begin
                   if (ds.DataSet.State = dsEdit) then
                   begin
                       //SET DATA DE COMPOSIÇÃO DA FICHA
-                      DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData where idAluno =:idA';
+                      DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData, idInstrutorFicha =:idInst where idAluno =:idA';
                       DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
                       DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
+                      DModule.qAux.ParamByName('idInst').AsInteger := DModule.idusuario;
                       DModule.qAux.Close;
                       DModule.qAux.ExecSQL;
                   end;
@@ -1621,22 +1635,34 @@ begin
   inherited;
   if MessageDlg('DESEJA APAGAR FICHA DE EXERCÍCIOS ATUAL DO ALUNO?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
+
       TRY
-        DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
-        DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-        DModule.qAux.Close;
-        DModule.qAux.ExecSQL;
+        if(ds.DataSet.State = dsInsert)then
+        begin
+                ClientDataSet1idInstrutorFicha.Clear;
+                ClientDataSet1dataComposicaoFicha.Clear;
+        end else
+        begin
+            if(ds.DataSet.State = dsEdit)then
+            begin
+                DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
+                DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                DModule.qAux.Close;
+                DModule.qAux.ExecSQL;
 
-        //DATA DE COMPOSIÇÃO DA FICHA = NULL
-        DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null where idAluno =:idA';
-        DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-        DModule.qAux.Close;
-        DModule.qAux.ExecSQL;
+                //DATA DE COMPOSIÇÃO DA FICHA = NULL
+                DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null, idInstrutorFicha= null where idAluno =:idA';
+                DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                DModule.qAux.Close;
+                DModule.qAux.ExecSQL;
 
-        //PESQUISA FICHA DE EXERCICIO
-        qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-        DSSerie.DataSet.close;
-        DSSerie.DataSet.open;
+                //PESQUISA FICHA DE EXERCICIO
+                qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+                DSSerie.DataSet.close;
+                DSSerie.DataSet.open;
+
+            end;
+        end;
 
       EXCEPT
         ON E: EXCEPTION DO

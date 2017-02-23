@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitTop = -343
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,13 +17,10 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -51,7 +47,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pag3
+          Properties.ActivePage = pag1
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -1606,8 +1602,6 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -2115,6 +2109,13 @@
       FieldName = 'informacaoAdicional'
       Size = 500
     end
+    object ClientDataSet1idInstrutorFicha: TIntegerField
+      FieldName = 'idInstrutorFicha'
+    end
+    object ClientDataSet1NOMEINSTRUTORFICHA: TStringField
+      FieldName = 'NOMEINSTRUTORFICHA'
+      Size = 50
+    end
   end
   inherited DataSetProvider1: TDataSetProvider
     Left = 672
@@ -2123,8 +2124,13 @@
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT a.*, OBJ.DESCRICAOOBJETIVO FROM ALUNO A'
-      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO;')
+      
+        'SELECT a.*, OBJ.DESCRICAOOBJETIVO,  INST.NOMEUSUARIO AS NOMEINST' +
+        'RUTORFICHA FROM ALUNO A'
+      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+      
+        'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORF' +
+        'ICHA')
     Left = 648
     Top = 336
     object FDQuery1idAluno: TIntegerField
@@ -2325,12 +2331,23 @@
       Origin = 'informacaoAdicional'
       Size = 500
     end
+    object FDQuery1idInstrutorFicha: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idInstrutorFicha'
+      Origin = 'idInstrutorFicha'
+    end
+    object FDQuery1NOMEINSTRUTORFICHA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEINSTRUTORFICHA'
+      Origin = 'nomeUsuario'
+      Size = 50
+    end
   end
   inherited ImageListBase: TImageList
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00D80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3052,6 +3069,7 @@
     Top = 466
   end
   object CDSSerie: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pSerie'
@@ -3431,7 +3449,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42780.602629537000000000
+    ReportOptions.LastChange = 42789.512585879630000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3654,6 +3672,22 @@
         Height = 22.677180000000000000
         Top = 476.220780000000000000
         Width = 718.110700000000000000
+        object Memo6: TfrxMemoView
+          Left = 0.779530000000000000
+          Top = 3.779530000000022000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'INSTRUTOR: [frxDBDataset1."NOMEINSTRUTORFICHA"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
       end
       object GroupFooter1: TfrxGroupFooter
         FillType = ftBrush
@@ -3668,48 +3702,6 @@
         Width = 349.606525000000000000
       end
     end
-  end
-  object frxDBDataset1: TfrxDBDataset
-    UserName = 'frxDBDataset1'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'idAluno=idAluno'
-      'nomeAluno=nomeAluno'
-      'idade=idade'
-      'dataNascimento=dataNascimento'
-      'email=email'
-      'sexo=sexo'
-      'cidade=cidade'
-      'bairro=bairro'
-      'rua=rua'
-      'numero=numero'
-      'cep=cep'
-      'tel1=tel1'
-      'tel2=tel2'
-      'nomeResponsavel=nomeResponsavel'
-      'parentescoResponsavel=parentescoResponsavel'
-      'telResponsavel=telResponsavel'
-      'peso=peso'
-      'altura=altura'
-      'frequenciaAtividadeFisica=frequenciaAtividadeFisica'
-      'qtdRefeicoesDia=qtdRefeicoesDia'
-      'qtdHorasSono=qtdHorasSono'
-      'suplementacao=suplementacao'
-      'dieta=dieta'
-      'fumante=fumante'
-      'consomeBebidaAlcoolica=consomeBebidaAlcoolica'
-      'dataCadastro=dataCadastro'
-      '-ativo=ativo'
-      'cpf=cpf'
-      '-foto=foto'
-      'informacaoAdicional=informacaoAdicional'
-      'idObjetivo=idObjetivo'
-      'dataComposicaoFicha=dataComposicaoFicha'
-      'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO')
-    DataSource = DSRelFicha
-    BCDToCurrency = False
-    Left = 118
-    Top = 650
   end
   object frxDBDataset2: TfrxDBDataset
     UserName = 'frxDBDataset2'
@@ -3753,8 +3745,13 @@
   object qRelFicha: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT a.*, OBJ.DESCRICAOOBJETIVO FROM ALUNO A'
+      
+        'SELECT a.*, OBJ.DESCRICAOOBJETIVO, INST.NOMEUSUARIO AS NOMEINSTR' +
+        'UTORFICHA FROM ALUNO A'
       'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+      
+        'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORF' +
+        'ICHA'
       'WHERE A.IDALUNO =:IDA')
     Left = 262
     Top = 642
@@ -3936,6 +3933,17 @@
       Origin = 'descricaoObjetivo'
       Size = 50
     end
+    object qRelFichaidInstrutorFicha: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idInstrutorFicha'
+      Origin = 'idInstrutorFicha'
+    end
+    object qRelFichaNOMEINSTRUTORFICHA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEINSTRUTORFICHA'
+      Origin = 'nomeUsuario'
+      Size = 50
+    end
   end
   object pRelFicha: TDataSetProvider
     DataSet = qRelFicha
@@ -4091,6 +4099,15 @@
       Origin = 'descricaoObjetivo'
       Size = 50
     end
+    object CDSRelFichaidInstrutorFicha: TIntegerField
+      FieldName = 'idInstrutorFicha'
+      Origin = 'idInstrutorFicha'
+    end
+    object CDSRelFichaNOMEINSTRUTORFICHA: TStringField
+      FieldName = 'NOMEINSTRUTORFICHA'
+      Origin = 'nomeUsuario'
+      Size = 50
+    end
   end
   object ImageListAUX: TImageList
     Height = 95
@@ -4098,7 +4115,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140038005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014003C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8766,6 +8783,48 @@
     OverwritePrompt = False
     DataOnly = False
     Left = 214
+    Top = 650
+  end
+  object frxDBDataset1: TfrxDBDataset
+    UserName = 'frxDBDataset1'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAluno=idAluno'
+      'nomeAluno=nomeAluno'
+      'idade=idade'
+      'dataNascimento=dataNascimento'
+      'email=email'
+      'sexo=sexo'
+      'cidade=cidade'
+      'bairro=bairro'
+      'rua=rua'
+      'numero=numero'
+      'cep=cep'
+      'tel1=tel1'
+      'tel2=tel2'
+      'nomeResponsavel=nomeResponsavel'
+      'parentescoResponsavel=parentescoResponsavel'
+      'telResponsavel=telResponsavel'
+      'peso=peso'
+      'altura=altura'
+      'frequenciaAtividadeFisica=frequenciaAtividadeFisica'
+      'qtdRefeicoesDia=qtdRefeicoesDia'
+      'qtdHorasSono=qtdHorasSono'
+      'suplementacao=suplementacao'
+      'dieta=dieta'
+      'fumante=fumante'
+      'consomeBebidaAlcoolica=consomeBebidaAlcoolica'
+      'dataCadastro=dataCadastro'
+      'cpf=cpf'
+      'informacaoAdicional=informacaoAdicional'
+      'idObjetivo=idObjetivo'
+      'dataComposicaoFicha=dataComposicaoFicha'
+      'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO'
+      'idInstrutorFicha=idInstrutorFicha'
+      'NOMEINSTRUTORFICHA=NOMEINSTRUTORFICHA')
+    DataSource = DSRelFicha
+    BCDToCurrency = False
+    Left = 118
     Top = 650
   end
 end
