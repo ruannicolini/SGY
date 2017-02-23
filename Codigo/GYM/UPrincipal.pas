@@ -208,15 +208,15 @@ var
   Arquivo: TIniFile;
   username, senha : string;
 begin
-
+{
 //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
+ }
 
-  {
   Hora := HourOf(Now);
   Data := Date();
   //Serial := SerialHD(Serial);
@@ -225,7 +225,7 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   GeradoConfig := Arquivo.ReadString('Login', 'Numero', GeradoConfig);
 
-  ShowMessage('HASH gerado agora:  '+ HashGeradoAgora + #13 + 'arquivo config.ini:  ' + GeradoConfig);
+  //ShowMessage('HASH gerado agora:  '+ HashGeradoAgora + #13 + 'arquivo config.ini:  ' + GeradoConfig);
 
   if ((HashGeradoAgora) <> (GeradoConfig)) then
   begin
@@ -275,7 +275,6 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   Arquivo.EraseSection('Login');
   Arquivo.Free;
-  }
 
 end;
 

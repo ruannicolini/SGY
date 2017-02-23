@@ -1,9 +1,18 @@
 create database gym;
 use gym;
 
+
+-- Cria USUÁRIO PADRÃO DO SOGYM, com permissões para realizar tudo em todas as tabelas do banco de dados
+CREATE USER 'usersogym'@'%' IDENTIFIED BY 'usersogym';
+GRANT ALL ON *.* TO 'usersogym'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+select * from mysql.user;
+
+
 -- habilita banco a receber evento -- SET GLOBAL event_scheduler = 1;        desligar: SET GLOBAL event_scheduler = 0;
 set global event_scheduler = on;
 select @@event_scheduler;
+
 
 create table modalidade(
 idModalidade int primary key not null,

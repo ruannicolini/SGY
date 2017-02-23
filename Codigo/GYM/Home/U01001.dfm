@@ -3,6 +3,8 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
+  ExplicitLeft = -157
+  ExplicitTop = -51
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -21,6 +23,8 @@
     ExplicitWidth = 929
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -1602,6 +1606,8 @@
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1820,8 +1826,10 @@
         ExplicitWidth = 921
         inherited btnFiltrar: TButton
           Left = 870
+          Top = 21
           OnClick = btnFiltrarClick
           ExplicitLeft = 870
+          ExplicitTop = 21
         end
         object EditPesqModalidade: TEditBeleza
           Left = 288
@@ -2347,7 +2355,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E00210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4115,7 +4123,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C0101010014003C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140040005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
