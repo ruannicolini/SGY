@@ -1,6 +1,5 @@
 inherited F01007: TF01007
   Caption = 'F01007'
-  ExplicitLeft = -47
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -81,7 +80,7 @@ inherited F01007: TF01007
           item
             Expanded = False
             FieldName = 'nomePatologia'
-            Title.Caption = 'DESCRI'#199#195'O'
+            Title.Caption = 'PATOLOGIA'
             Width = 1280
             Visible = True
           end
@@ -155,7 +154,7 @@ inherited F01007: TF01007
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00B00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00B40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

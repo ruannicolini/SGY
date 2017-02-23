@@ -436,7 +436,7 @@ inherited F01005: TF01005
         Height = 567
         Columns = <
           item
-            Alignment = taLeftJustify
+            Alignment = taCenter
             Expanded = False
             FieldName = 'idFichaPreDefinida'
             Title.Alignment = taCenter
@@ -446,7 +446,7 @@ inherited F01005: TF01005
           item
             Expanded = False
             FieldName = 'descricaoFicha'
-            Title.Caption = 'DESCRI'#199#195'O'
+            Title.Caption = 'FICHA'
             Width = 1280
             Visible = True
           end
@@ -543,7 +543,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00C00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

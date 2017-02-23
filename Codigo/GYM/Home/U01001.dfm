@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitLeft = -157
   ExplicitTop = -51
   ExplicitWidth = 945
   ExplicitHeight = 780

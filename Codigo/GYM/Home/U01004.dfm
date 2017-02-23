@@ -1,6 +1,5 @@
 inherited F01004: TF01004
   Caption = 'F01004'
-  ExplicitLeft = -47
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -77,7 +76,7 @@ inherited F01004: TF01004
           item
             Expanded = False
             FieldName = 'descricaoGrupoExercicio'
-            Title.Caption = 'DESCRI'#199#195'O'
+            Title.Caption = 'GRUPO'
             Width = 1250
             Visible = True
           end>
@@ -135,7 +134,7 @@ inherited F01004: TF01004
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00AC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00B00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
