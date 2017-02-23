@@ -82,7 +82,8 @@ dataCadastro date,
 cpf VARCHAR(50),
 informacaoAdicional varchar(500),
 idObjetivo int,
-dataComposicaoFicha date
+dataComposicaoFicha date,
+idInstrutorFicha int
 );
 
 create table AlunoModalidade(
@@ -343,7 +344,7 @@ delimiter |
 CREATE EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE 
 ON SCHEDULE  EVERY 1 DAY -- EVERY 13 DAY_HOUR 
 -- ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 DAY
- -- STARTS ALGUMA_DATA_HORA 
+STARTS '2017-02-24 09:40:00' 
 ENABLE
 DO
 	CALL geraMensalidade;
@@ -352,8 +353,9 @@ DELIMITER ;
 
 -- Habilida Eventos
 set global event_scheduler = on;
+-- select @@event_scheduler;
 
--- use gym;
+ -- use gym;
 -- SHOW events;
 -- SELECT * FROM INFORMATION_SCHEMA.EVENTS;
 -- SHOW PROCESSLIST;

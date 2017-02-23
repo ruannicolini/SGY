@@ -18,7 +18,8 @@ uses
   cxRadioGroup, cxButtons, DateUtils, cxMemo, Math, DBEditBeleza,
   Vcl.Samples.Spin, ppProd, ppClass, ppReport, ppComm, ppRelatv, ppDB, ppDBPipe,
   ppBands, ppCache, ppDesignLayer, ppParameter, ppCtrls, ppPrnabl, frxClass,
-  frxDBSet, frxGradient, frxExportPDF, ShellAPI;
+  frxDBSet, frxGradient, frxExportPDF, ShellAPI, System.Bluetooth,
+  System.Bluetooth.Components, frxExportImage;
 
 type
   TF01001 = class(TFBase)
@@ -370,6 +371,7 @@ type
     CDSRelFichaidObjetivo: TIntegerField;
     CDSRelFichadataComposicaoFicha: TDateField;
     CDSRelFichaDESCRICAOOBJETIVO: TStringField;
+    frxJPEGExport1: TfrxJPEGExport;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
