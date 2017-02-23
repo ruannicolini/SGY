@@ -24,48 +24,30 @@ uses
 type
   TF01001 = class(TFBase)
     cxPageControl1: TcxPageControl;
-    pag1: TcxTabSheet;
+    pagPerfil: TcxTabSheet;
     pag2: TcxTabSheet;
     pag3: TcxTabSheet;
     pagMensalidades: TcxTabSheet;
     camera: TdxCameraControl;
     DBEdit1: TDBEdit;
     Label3: TLabel;
-    cxDBTextEdit2: TcxDBTextEdit;
-    cxDBSpinEdit1: TcxDBSpinEdit;
     cxDBDateEdit1: TcxDBDateEdit;
     GroupBox1: TGroupBox;
     Label7: TLabel;
-    cxDBTextEdit4: TcxDBTextEdit;
     Label8: TLabel;
-    cxDBTextEdit5: TcxDBTextEdit;
     Label9: TLabel;
     cxDBSpinEdit2: TcxDBSpinEdit;
     Label10: TLabel;
-    cxDBTextEdit6: TcxDBTextEdit;
     Label11: TLabel;
-    cxDBMaskEdit1: TcxDBMaskEdit;
     Label6: TLabel;
-    cxDBMaskEdit2: TcxDBMaskEdit;
-    cxGroupBox1: TcxGroupBox;
     Label12: TLabel;
-    cxDBMaskEdit3: TcxDBMaskEdit;
     Label13: TLabel;
-    cxDBMaskEdit4: TcxDBMaskEdit;
     Label14: TLabel;
-    cxDBRadioGroup1: TcxDBRadioGroup;
-    cxLabel1: TcxLabel;
-    cxLabel2: TcxLabel;
     Label1: TLabel;
-    cxDBTextEdit1: TcxDBTextEdit;
     Label2: TLabel;
-    cxDBTextEdit3: TcxDBTextEdit;
     Label4: TLabel;
     cxDBMaskEdit5: TcxDBMaskEdit;
-    cxGroupBox2: TcxGroupBox;
     Label5: TLabel;
-    cxDBTextEdit7: TcxDBTextEdit;
-    cxGroupBox3: TcxGroupBox;
     Label15: TLabel;
     Label16: TLabel;
     Label17: TLabel;
@@ -79,7 +61,6 @@ type
     cxDBCheckBox5: TcxDBCheckBox;
     Label20: TLabel;
     Label21: TLabel;
-    cxDBMemo1: TcxDBMemo;
     cxDBSpinEdit6: TcxDBSpinEdit;
     cxDBSpinEdit7: TcxDBSpinEdit;
     cxDBMaskEdit6: TcxDBMaskEdit;
@@ -165,7 +146,6 @@ type
     cdsPatologiaidPatologia: TIntegerField;
     cdsPatologiaNOMEPATOLOGIA: TStringField;
     DBGridBeleza2: TDBGridBeleza;
-    cxDBMemo2: TcxDBMemo;
     cxGroupBox8: TcxGroupBox;
     cxGroupBox9: TcxGroupBox;
     qSerie: TFDQuery;
@@ -380,6 +360,26 @@ type
     CDSRelFichaidInstrutorFicha: TIntegerField;
     CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
     frxDBDataset1: TfrxDBDataset;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    GROUPBOX2: TGroupBox;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    GroupBox_ALUNO: TGroupBox;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
+    DBEdit12: TDBEdit;
+    DBEdit13: TDBEdit;
+    DBRadioGroup1: TDBRadioGroup;
+    Label28: TLabel;
+    Label29: TLabel;
+    GroupBox_PAnamnese: TGroupBox;
+    DBMemo1: TDBMemo;
+    cxDBMemo2: TDBMemo;
+    DBEdit14: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -548,7 +548,7 @@ begin
   inherited;
   ClientDataSet1sexo.AsString := 'M';
   ClientDataSet1idade.Clear;
-  cxDBSpinEdit1.Clear;
+  dbedit14.Clear;
   cxDBCheckBox2.Checked := FALSE;
   cxDBCheckBox3.Checked := FALSE;
   cxDBCheckBox4.Checked := FALSE;
@@ -586,7 +586,7 @@ procedure TF01001.BSalvarClick(Sender: TObject);
 VAR
   aDest : TBitmap;
 begin
-  if TRIM(cxDBTextEdit7.Text) <> '' then
+  if TRIM(DBEdit3.Text) <> '' then
   begin
       // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
       IF(DSModalidade.DataSet.RecordCount = 0)THEN
@@ -632,7 +632,7 @@ begin
       end;
       BTNCANCELAR.Enabled := FALSE;
       BTNALTERAR.Caption := 'ALTERAR';
-      cxDBMemo2.Properties.ReadOnly:= TRUE;
+      cxDBMemo2.ReadOnly:= TRUE;
 
       //limpa campos da ficha;
       Edittreino.Clear;
@@ -665,7 +665,7 @@ begin
         if not DSPAtologia.DataSet.IsEmpty then
         begin
           DSPAtologia.DataSet.Edit;
-          CXDBMEMO2.Properties.ReadOnly := FALSE;
+          CXDBMEMO2.ReadOnly := FALSE;
         end else
            ShowMessage('Não Há Registros para Alteração.');
       end;
@@ -676,7 +676,7 @@ begin
       BEGIN
         BTNALTERAR.Caption := 'ALTERAR';
         BTNCANCELAR.Enabled := FALSE;
-        CXDBMEMO2.Properties.ReadOnly := TRUE;
+        CXDBMEMO2.ReadOnly := TRUE;
         //SALVA
         cdsPatologiaobservacaoMedica.AsString := CXDBMemo2.Text;
         DSPAtologia.DataSet.Post;
@@ -690,7 +690,7 @@ begin
 
   BTNCANCELAR.Enabled := FALSE;
   BTNALTERAR.Caption := 'ALTERAR';
-  cxDBMemo2.Properties.ReadOnly:= TRUE;
+  cxDBMemo2.ReadOnly:= TRUE;
 
   //CANCELA ALTERAÇÕES
   DSPAtologia.DataSet.Cancel;

@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitTop = -51
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -50,7 +49,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pag1
+          Properties.ActivePage = pagPerfil
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -63,11 +62,13 @@
           ClientRectBottom = 630
           ClientRectRight = 917
           ClientRectTop = 0
-          object pag1: TcxTabSheet
+          object pagPerfil: TcxTabSheet
             Caption = 'PERFIL'
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
+            ExplicitLeft = -3
+            ExplicitTop = 72
             object camera: TdxCameraControl
               Left = 836
               Top = 144
@@ -87,7 +88,6 @@
                 Width = 43
                 Height = 16
                 Caption = 'CIDADE'
-                FocusControl = cxDBTextEdit4
               end
               object Label8: TLabel
                 Left = 223
@@ -95,7 +95,6 @@
                 Width = 44
                 Height = 16
                 Caption = 'BAIRRO'
-                FocusControl = cxDBTextEdit5
               end
               object Label9: TLabel
                 Left = 430
@@ -111,7 +110,6 @@
                 Width = 24
                 Height = 16
                 Caption = 'RUA'
-                FocusControl = cxDBTextEdit6
               end
               object Label11: TLabel
                 Left = 430
@@ -120,68 +118,67 @@
                 Height = 16
                 Caption = 'CEP'
               end
-              object cxDBTextEdit4: TcxDBTextEdit
-                Left = 15
-                Top = 26
-                DataBinding.DataField = 'cidade'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 0
-                Width = 193
-              end
-              object cxDBTextEdit5: TcxDBTextEdit
-                Left = 223
-                Top = 26
-                DataBinding.DataField = 'bairro'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 1
-                Width = 193
-              end
               object cxDBSpinEdit2: TcxDBSpinEdit
                 Left = 430
                 Top = 79
                 DataBinding.DataField = 'numero'
                 DataBinding.DataSource = DS
-                TabOrder = 2
+                TabOrder = 0
                 Width = 193
               end
-              object cxDBTextEdit6: TcxDBTextEdit
+              object DBEdit6: TDBEdit
+                Left = 15
+                Top = 26
+                Width = 193
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'cidade'
+                DataSource = DS
+                TabOrder = 1
+              end
+              object DBEdit7: TDBEdit
+                Left = 223
+                Top = 26
+                Width = 193
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'bairro'
+                DataSource = DS
+                TabOrder = 2
+              end
+              object DBEdit8: TDBEdit
                 Left = 15
                 Top = 79
-                DataBinding.DataField = 'rua'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 3
                 Width = 401
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'rua'
+                DataSource = DS
+                TabOrder = 3
+              end
+              object DBEdit13: TDBEdit
+                Left = 430
+                Top = 26
+                Width = 193
+                Height = 24
+                DataField = 'cep'
+                DataSource = DS
+                TabOrder = 4
               end
             end
-            object cxDBMaskEdit1: TcxDBMaskEdit
-              Left = 447
-              Top = 286
-              DataBinding.DataField = 'cep'
-              DataBinding.DataSource = DS
-              Properties.EditMask = '00000-000;0'
-              TabOrder = 2
-              Width = 193
-            end
-            object cxGroupBox1: TcxGroupBox
+            object GROUPBOX2: TGroupBox
               Left = 16
               Top = 379
-              Caption = 'RESPONS'#193'VEL'
-              ParentColor = False
-              Style.BorderStyle = ebsUltraFlat
-              Style.Color = 16382457
-              TabOrder = 3
-              Height = 130
               Width = 638
+              Height = 130
+              Caption = 'RESPONS'#193'VEL'
+              TabOrder = 2
               object Label1: TLabel
                 Left = 15
                 Top = 19
                 Width = 34
                 Height = 16
                 Caption = 'NOME'
-                FocusControl = cxDBTextEdit1
               end
               object Label2: TLabel
                 Left = 15
@@ -189,7 +186,6 @@
                 Width = 78
                 Height = 16
                 Caption = 'PARENTESCO'
-                FocusControl = cxDBTextEdit3
               end
               object Label4: TLabel
                 Left = 326
@@ -198,24 +194,6 @@
                 Height = 16
                 Caption = 'TEL'
               end
-              object cxDBTextEdit1: TcxDBTextEdit
-                Left = 15
-                Top = 40
-                DataBinding.DataField = 'nomeResponsavel'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 0
-                Width = 608
-              end
-              object cxDBTextEdit3: TcxDBTextEdit
-                Left = 15
-                Top = 93
-                DataBinding.DataField = 'parentescoResponsavel'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 1
-                Width = 297
-              end
               object cxDBMaskEdit5: TcxDBMaskEdit
                 Left = 326
                 Top = 93
@@ -223,26 +201,37 @@
                 DataBinding.DataSource = DS
                 Properties.CharCase = ecUpperCase
                 Properties.EditMask = '!\(99\)0000-99999;1;_'
-                TabOrder = 2
+                TabOrder = 0
                 Width = 297
               end
+              object DBEdit4: TDBEdit
+                Left = 15
+                Top = 40
+                Width = 608
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'nomeResponsavel'
+                DataSource = DS
+                TabOrder = 1
+              end
+              object DBEdit5: TDBEdit
+                Left = 16
+                Top = 93
+                Width = 297
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'parentescoResponsavel'
+                DataSource = DS
+                TabOrder = 2
+              end
             end
-            object cxGroupBox2: TcxGroupBox
+            object GroupBox_ALUNO: TGroupBox
               Left = 16
               Top = 0
-              Caption = 'ALUNO'
-              Style.BorderStyle = ebsUltraFlat
-              TabOrder = 4
-              Height = 254
               Width = 638
-              object Label5: TLabel
-                Left = 223
-                Top = 34
-                Width = 34
-                Height = 16
-                Caption = 'NOME'
-                FocusControl = cxDBTextEdit7
-              end
+              Height = 254
+              Caption = 'ALUNO'
+              TabOrder = 3
               object Label12: TLabel
                 Left = 223
                 Top = 144
@@ -263,7 +252,13 @@
                 Width = 35
                 Height = 16
                 Caption = 'EMAIL'
-                FocusControl = cxDBTextEdit2
+              end
+              object Label5: TLabel
+                Left = 223
+                Top = 34
+                Width = 34
+                Height = 16
+                Caption = 'NOME'
               end
               object Label6: TLabel
                 Left = 15
@@ -272,109 +267,29 @@
                 Height = 16
                 Caption = 'CEL'
               end
-              object cxDBTextEdit7: TcxDBTextEdit
-                Left = 223
-                Top = 55
-                DataBinding.DataField = 'nomeAluno'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                TabOrder = 0
-                Width = 344
-              end
-              object DBEdit1: TDBEdit
-                Left = 566
-                Top = 55
-                Width = 57
-                Height = 24
-                TabStop = False
-                DataField = 'idAluno'
-                DataSource = DS
-                ReadOnly = True
-                TabOrder = 7
-              end
-              object cxDBSpinEdit1: TcxDBSpinEdit
+              object Label28: TLabel
                 Left = 430
-                Top = 112
-                TabStop = False
-                DataBinding.DataField = 'idade'
-                DataBinding.DataSource = DS
-                Properties.ReadOnly = True
-                TabOrder = 8
-                Width = 193
-              end
-              object cxLabel1: TcxLabel
-                Left = 430
-                Top = 87
+                Top = 89
+                Width = 35
+                Height = 16
+                Alignment = taCenter
                 Caption = 'IDADE'
+              end
+              object Label29: TLabel
+                Left = 223
+                Top = 89
+                Width = 72
+                Height = 16
+                Caption = 'DATA NASC.'
               end
               object cxDBDateEdit1: TcxDBDateEdit
                 Left = 223
                 Top = 112
                 DataBinding.DataField = 'dataNascimento'
                 DataBinding.DataSource = DS
-                TabOrder = 1
+                TabOrder = 0
                 OnExit = cxDBDateEdit1Exit
                 Width = 192
-              end
-              object cxLabel2: TcxLabel
-                Left = 223
-                Top = 87
-                Caption = 'DATA NASC.'
-              end
-              object cxDBMaskEdit3: TcxDBMaskEdit
-                Left = 223
-                Top = 165
-                DataBinding.DataField = 'cpf'
-                DataBinding.DataSource = DS
-                Properties.EditMask = '000.000.000-00;0'
-                TabOrder = 2
-                Width = 193
-              end
-              object cxDBRadioGroup1: TcxDBRadioGroup
-                Left = 430
-                Top = 144
-                Caption = 'SEXO'
-                DataBinding.DataField = 'sexo'
-                DataBinding.DataSource = DS
-                Properties.Columns = 2
-                Properties.Items = <
-                  item
-                    Caption = 'MASCULINO'
-                    Value = 'M'
-                  end
-                  item
-                    Caption = 'FEMININO'
-                    Value = 'F'
-                  end>
-                TabOrder = 3
-                Height = 45
-                Width = 193
-              end
-              object cxDBMaskEdit2: TcxDBMaskEdit
-                Left = 15
-                Top = 218
-                DataBinding.DataField = 'tel1'
-                DataBinding.DataSource = DS
-                Properties.EditMask = '!\(99\)0000-99999;1;_'
-                TabOrder = 4
-                Width = 193
-              end
-              object cxDBMaskEdit4: TcxDBMaskEdit
-                Left = 223
-                Top = 218
-                DataBinding.DataField = 'tel2'
-                DataBinding.DataSource = DS
-                Properties.EditMask = '!\(99\)0000-99999;1;_'
-                TabOrder = 5
-                Width = 193
-              end
-              object cxDBTextEdit2: TcxDBTextEdit
-                Left = 430
-                Top = 218
-                DataBinding.DataField = 'email'
-                DataBinding.DataSource = DS
-                TabOrder = 6
-                Width = 193
               end
               object cxImage1: TcxImage
                 Left = 14
@@ -395,225 +310,99 @@
                 StyleFocused.LookAndFeel.NativeStyle = False
                 StyleHot.LookAndFeel.Kind = lfUltraFlat
                 StyleHot.LookAndFeel.NativeStyle = False
-                TabOrder = 11
+                TabOrder = 1
                 Height = 157
                 Width = 195
+              end
+              object DBEdit1: TDBEdit
+                Left = 566
+                Top = 55
+                Width = 57
+                Height = 24
+                TabStop = False
+                DataField = 'idAluno'
+                DataSource = DS
+                ReadOnly = True
+                TabOrder = 2
+              end
+              object DBEdit3: TDBEdit
+                Left = 223
+                Top = 55
+                Width = 344
+                Height = 24
+                CharCase = ecUpperCase
+                DataField = 'nomeAluno'
+                DataSource = DS
+                TabOrder = 3
+              end
+              object DBEdit9: TDBEdit
+                Left = 223
+                Top = 165
+                Width = 193
+                Height = 24
+                DataField = 'cpf'
+                DataSource = DS
+                TabOrder = 4
+              end
+              object DBEdit10: TDBEdit
+                Left = 15
+                Top = 218
+                Width = 193
+                Height = 24
+                DataField = 'tel1'
+                DataSource = DS
+                TabOrder = 5
+              end
+              object DBEdit11: TDBEdit
+                Left = 223
+                Top = 218
+                Width = 193
+                Height = 24
+                DataField = 'tel2'
+                DataSource = DS
+                TabOrder = 6
+              end
+              object DBEdit12: TDBEdit
+                Left = 430
+                Top = 219
+                Width = 193
+                Height = 24
+                DataField = 'email'
+                DataSource = DS
+                TabOrder = 7
+              end
+              object DBRadioGroup1: TDBRadioGroup
+                Left = 430
+                Top = 144
+                Width = 193
+                Height = 45
+                Caption = 'SEXO'
+                Columns = 2
+                DataField = 'sexo'
+                DataSource = DS
+                Items.Strings = (
+                  'MASCULINO'
+                  'FEMININO')
+                TabOrder = 8
+                Values.Strings = (
+                  'M'
+                  'F')
+              end
+              object DBEdit14: TDBEdit
+                Left = 430
+                Top = 112
+                Width = 193
+                Height = 24
+                DataField = 'idade'
+                DataSource = DS
+                ReadOnly = True
+                TabOrder = 9
               end
             end
           end
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
-            object cxGroupBox3: TcxGroupBox
-              Left = 16
-              Top = 0
-              TabOrder = 0
-              Height = 237
-              Width = 638
-              object Label15: TLabel
-                Left = 171
-                Top = 20
-                Width = 31
-                Height = 16
-                Alignment = taCenter
-                Caption = 'PESO'
-              end
-              object Label16: TLabel
-                Left = 325
-                Top = 20
-                Width = 46
-                Height = 16
-                Alignment = taCenter
-                Caption = 'ALTURA'
-              end
-              object Label17: TLabel
-                Left = 479
-                Top = 20
-                Width = 22
-                Height = 16
-                Alignment = taCenter
-                Caption = 'IMC'
-              end
-              object Label18: TLabel
-                Left = 16
-                Top = 20
-                Width = 90
-                Height = 16
-                Caption = 'REFEI'#199#213'ES/DIA'
-                FocusControl = cxDBSpinEdit3
-              end
-              object Label19: TLabel
-                Left = 16
-                Top = 73
-                Width = 104
-                Height = 16
-                Caption = 'HORAS SONO/DIA'
-                FocusControl = cxDBSpinEdit4
-              end
-              object Label20: TLabel
-                Left = 171
-                Top = 73
-                Width = 57
-                Height = 16
-                Caption = 'OBJETIVO'
-              end
-              object Label21: TLabel
-                Left = 16
-                Top = 126
-                Width = 159
-                Height = 16
-                Caption = 'INFORMA'#199#213'ES ADICIONAIS'
-              end
-              object cxDBSpinEdit3: TcxDBSpinEdit
-                Left = 16
-                Top = 41
-                DataBinding.DataField = 'qtdRefeicoesDia'
-                DataBinding.DataSource = DS
-                Properties.MinValue = 1.000000000000000000
-                TabOrder = 0
-                Width = 140
-              end
-              object cxDBSpinEdit4: TcxDBSpinEdit
-                Left = 16
-                Top = 94
-                DataBinding.DataField = 'qtdHorasSono'
-                DataBinding.DataSource = DS
-                Properties.MinValue = 1.000000000000000000
-                TabOrder = 3
-                Width = 140
-              end
-              object cxDBCheckBox2: TcxDBCheckBox
-                Left = 491
-                Top = 163
-                Caption = 'SUPLEMENTA'#199#195'O'
-                DataBinding.DataField = 'suplementacao'
-                DataBinding.DataSource = DS
-                TabOrder = 7
-                Width = 134
-              end
-              object cxDBCheckBox3: TcxDBCheckBox
-                Left = 491
-                Top = 144
-                Caption = 'DIETA'
-                DataBinding.DataField = 'dieta'
-                DataBinding.DataSource = DS
-                TabOrder = 6
-                Width = 134
-              end
-              object cxDBCheckBox4: TcxDBCheckBox
-                Left = 491
-                Top = 182
-                Caption = 'FUMANTE'
-                DataBinding.DataField = 'fumante'
-                DataBinding.DataSource = DS
-                TabOrder = 8
-                Width = 134
-              end
-              object cxDBCheckBox5: TcxDBCheckBox
-                Left = 491
-                Top = 200
-                Caption = 'USO B. ALC'#211'OLICA'
-                DataBinding.DataField = 'consomeBebidaAlcoolica'
-                DataBinding.DataSource = DS
-                TabOrder = 9
-                Width = 134
-              end
-              object cxDBMemo1: TcxDBMemo
-                Left = 16
-                Top = 147
-                DataBinding.DataField = 'informacaoAdicional'
-                DataBinding.DataSource = DS
-                Properties.ScrollBars = ssVertical
-                TabOrder = 5
-                Height = 73
-                Width = 469
-              end
-              object cxDBSpinEdit6: TcxDBSpinEdit
-                Left = 325
-                Top = 41
-                DataBinding.DataField = 'altura'
-                DataBinding.DataSource = DS
-                Properties.DisplayFormat = '0.00'
-                Properties.EditFormat = '0.00'
-                Properties.MaxValue = 3.000000000000000000
-                Properties.MinValue = 1.000000000000000000
-                Properties.ValueType = vtFloat
-                TabOrder = 2
-                Width = 140
-              end
-              object cxDBSpinEdit7: TcxDBSpinEdit
-                Left = 171
-                Top = 41
-                DataBinding.DataField = 'peso'
-                DataBinding.DataSource = DS
-                Properties.AssignedValues.MaxValue = True
-                Properties.DisplayFormat = '#.##'
-                Properties.EditFormat = '#.##'
-                Properties.MinValue = 1.000000000000000000
-                Properties.Nullstring = '0'
-                Properties.ValueType = vtFloat
-                TabOrder = 1
-                Width = 140
-              end
-              object cxDBMaskEdit6: TcxDBMaskEdit
-                Left = 479
-                Top = 41
-                TabStop = False
-                DataBinding.DataField = 'IMC'
-                DataBinding.DataSource = DS
-                Properties.EditMask = '99,99;1'
-                Properties.ReadOnly = True
-                TabOrder = 10
-                Width = 140
-              end
-              object DBEdit2: TDBEdit
-                Left = 171
-                Top = 96
-                Width = 24
-                Height = 21
-                TabStop = False
-                Color = 15132390
-                DataField = 'idObjetivo'
-                DataSource = DS
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 11
-              end
-              object DBEditBeleza1: TDBEditBeleza
-                Left = 195
-                Top = 96
-                Width = 424
-                Height = 21
-                Color = 15132390
-                DataField = 'DESCRICAOOBJETIVO'
-                DataSource = DS
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 4
-                OnKeyPress = EditBTreinoKeyPress
-                Ativar_Pesquisa = True
-                mostrar_Botao = True
-                sql.Strings = (
-                  
-                    'select idobjetivo, DESCRICAOOBJETIVO from objetivo where DESCRIC' +
-                    'AOOBJETIVO like :varDescricao')
-                database = 'GYM'
-                campo = 'DESCRICAOOBJETIVO'
-                Sempre_Mostrar_Janela = False
-                Outro_Edit = DBEdit2
-                campo_outro_edit = 'IDOBJETIVO'
-                CorBorda = clGray
-                NovoLayout = False
-              end
-            end
             object cxGroupBox4: TcxGroupBox
               Left = 16
               Top = 240
@@ -624,7 +413,7 @@
               Caption = 'PATOLOGIAS E RELATOS F'#205'SICOS'
               PanelStyle.OfficeBackgroundKind = pobkGradient
               Style.Edges = [bLeft, bTop, bRight, bBottom]
-              TabOrder = 1
+              TabOrder = 0
               Height = 315
               Width = 638
               object cxGroupBox5: TcxGroupBox
@@ -724,18 +513,20 @@
                     OnClick = BTNCANCELARClick
                   end
                 end
-                object cxDBMemo2: TcxDBMemo
+                object cxDBMemo2: TDBMemo
                   Left = 2
                   Top = 21
-                  TabStop = False
-                  Align = alClient
-                  DataBinding.DataField = 'observacaoMedica'
-                  DataBinding.DataSource = DSPAtologia
-                  Properties.ReadOnly = True
-                  Properties.ScrollBars = ssVertical
-                  TabOrder = 1
-                  Height = 188
                   Width = 433
+                  Height = 188
+                  Align = alClient
+                  DataField = 'observacaoMedica'
+                  DataSource = DSPAtologia
+                  ScrollBars = ssVertical
+                  TabOrder = 1
+                  ExplicitLeft = 160
+                  ExplicitTop = 51
+                  ExplicitWidth = 185
+                  ExplicitHeight = 89
                 end
               end
               object cxGroupBox7: TcxGroupBox
@@ -809,6 +600,216 @@
                   NovoLayout = False
                   OnButtonClick = EditBeleza1ButtonClick
                 end
+              end
+            end
+            object GroupBox_PAnamnese: TGroupBox
+              Left = 16
+              Top = 8
+              Width = 638
+              Height = 229
+              TabOrder = 1
+              object Label15: TLabel
+                Left = 171
+                Top = 20
+                Width = 31
+                Height = 16
+                Alignment = taCenter
+                Caption = 'PESO'
+              end
+              object Label16: TLabel
+                Left = 325
+                Top = 20
+                Width = 46
+                Height = 16
+                Alignment = taCenter
+                Caption = 'ALTURA'
+              end
+              object Label17: TLabel
+                Left = 479
+                Top = 20
+                Width = 22
+                Height = 16
+                Alignment = taCenter
+                Caption = 'IMC'
+              end
+              object Label18: TLabel
+                Left = 16
+                Top = 20
+                Width = 90
+                Height = 16
+                Caption = 'REFEI'#199#213'ES/DIA'
+                FocusControl = cxDBSpinEdit3
+              end
+              object Label19: TLabel
+                Left = 16
+                Top = 73
+                Width = 104
+                Height = 16
+                Caption = 'HORAS SONO/DIA'
+                FocusControl = cxDBSpinEdit4
+              end
+              object Label20: TLabel
+                Left = 171
+                Top = 73
+                Width = 57
+                Height = 16
+                Caption = 'OBJETIVO'
+              end
+              object Label21: TLabel
+                Left = 16
+                Top = 126
+                Width = 159
+                Height = 16
+                Caption = 'INFORMA'#199#213'ES ADICIONAIS'
+              end
+              object cxDBCheckBox2: TcxDBCheckBox
+                Left = 491
+                Top = 163
+                Caption = 'SUPLEMENTA'#199#195'O'
+                DataBinding.DataField = 'suplementacao'
+                DataBinding.DataSource = DS
+                TabOrder = 0
+                Width = 134
+              end
+              object cxDBCheckBox3: TcxDBCheckBox
+                Left = 491
+                Top = 144
+                Caption = 'DIETA'
+                DataBinding.DataField = 'dieta'
+                DataBinding.DataSource = DS
+                TabOrder = 1
+                Width = 134
+              end
+              object cxDBCheckBox4: TcxDBCheckBox
+                Left = 491
+                Top = 182
+                Caption = 'FUMANTE'
+                DataBinding.DataField = 'fumante'
+                DataBinding.DataSource = DS
+                TabOrder = 2
+                Width = 134
+              end
+              object cxDBCheckBox5: TcxDBCheckBox
+                Left = 491
+                Top = 200
+                Caption = 'USO B. ALC'#211'OLICA'
+                DataBinding.DataField = 'consomeBebidaAlcoolica'
+                DataBinding.DataSource = DS
+                TabOrder = 3
+                Width = 134
+              end
+              object cxDBMaskEdit6: TcxDBMaskEdit
+                Left = 479
+                Top = 41
+                TabStop = False
+                DataBinding.DataField = 'IMC'
+                DataBinding.DataSource = DS
+                Properties.EditMask = '99,99;1'
+                Properties.ReadOnly = True
+                TabOrder = 4
+                Width = 140
+              end
+              object cxDBSpinEdit3: TcxDBSpinEdit
+                Left = 16
+                Top = 41
+                DataBinding.DataField = 'qtdRefeicoesDia'
+                DataBinding.DataSource = DS
+                Properties.MinValue = 1.000000000000000000
+                TabOrder = 5
+                Width = 140
+              end
+              object cxDBSpinEdit4: TcxDBSpinEdit
+                Left = 16
+                Top = 94
+                DataBinding.DataField = 'qtdHorasSono'
+                DataBinding.DataSource = DS
+                Properties.MinValue = 1.000000000000000000
+                TabOrder = 6
+                Width = 140
+              end
+              object cxDBSpinEdit6: TcxDBSpinEdit
+                Left = 325
+                Top = 41
+                DataBinding.DataField = 'altura'
+                DataBinding.DataSource = DS
+                Properties.DisplayFormat = '0.00'
+                Properties.EditFormat = '0.00'
+                Properties.MaxValue = 3.000000000000000000
+                Properties.MinValue = 1.000000000000000000
+                Properties.ValueType = vtFloat
+                TabOrder = 7
+                Width = 140
+              end
+              object cxDBSpinEdit7: TcxDBSpinEdit
+                Left = 171
+                Top = 41
+                DataBinding.DataField = 'peso'
+                DataBinding.DataSource = DS
+                Properties.AssignedValues.MaxValue = True
+                Properties.DisplayFormat = '#.##'
+                Properties.EditFormat = '#.##'
+                Properties.MinValue = 1.000000000000000000
+                Properties.Nullstring = '0'
+                Properties.ValueType = vtFloat
+                TabOrder = 8
+                Width = 140
+              end
+              object DBEdit2: TDBEdit
+                Left = 171
+                Top = 96
+                Width = 24
+                Height = 21
+                TabStop = False
+                Color = 15132390
+                DataField = 'idObjetivo'
+                DataSource = DS
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 9
+              end
+              object DBEditBeleza1: TDBEditBeleza
+                Left = 195
+                Top = 96
+                Width = 424
+                Height = 21
+                Color = 15132390
+                DataField = 'DESCRICAOOBJETIVO'
+                DataSource = DS
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 10
+                OnKeyPress = EditBTreinoKeyPress
+                Ativar_Pesquisa = True
+                mostrar_Botao = True
+                sql.Strings = (
+                  
+                    'select idobjetivo, DESCRICAOOBJETIVO from objetivo where DESCRIC' +
+                    'AOOBJETIVO like :varDescricao')
+                database = 'GYM'
+                campo = 'DESCRICAOOBJETIVO'
+                Sempre_Mostrar_Janela = False
+                Outro_Edit = DBEdit2
+                campo_outro_edit = 'IDOBJETIVO'
+                CorBorda = clGray
+                NovoLayout = False
+              end
+              object DBMemo1: TDBMemo
+                Left = 16
+                Top = 147
+                Width = 469
+                Height = 73
+                DataField = 'informacaoAdicional'
+                DataSource = DS
+                ScrollBars = ssVertical
+                TabOrder = 11
               end
             end
           end
@@ -2007,17 +2008,20 @@
       FieldName = 'cep'
       Origin = 'cep'
       ProviderFlags = [pfInUpdate]
+      EditFormat = '00000-000;0'
     end
     object ClientDataSet1tel1: TStringField
       FieldName = 'tel1'
       Origin = 'tel1'
       ProviderFlags = [pfInUpdate]
+      EditMask = '!\(99\)0000-99999;1;_'
       Size = 50
     end
     object ClientDataSet1tel2: TStringField
       FieldName = 'tel2'
       Origin = 'tel2'
       ProviderFlags = [pfInUpdate]
+      EditMask = '!\(99\)0000-99999;1;_'
       Size = 50
     end
     object ClientDataSet1nomeResponsavel: TStringField
@@ -2092,6 +2096,7 @@
       FieldName = 'cpf'
       Origin = 'cpf'
       ProviderFlags = [pfInUpdate]
+      EditMask = '000.000.000-00;0'
       Size = 50
     end
     object ClientDataSet1idObjetivo: TIntegerField
@@ -2347,6 +2352,7 @@
       AutoGenerateValue = arDefault
       FieldName = 'NOMEINSTRUTORFICHA'
       Origin = 'nomeUsuario'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
   end
@@ -2354,7 +2360,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00E00210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4122,7 +4128,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140040005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140048005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
