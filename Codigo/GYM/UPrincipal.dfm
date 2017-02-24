@@ -20747,7 +20747,6 @@ object FPrincipal: TFPrincipal
     ParentBackground = False
     TabOrder = 0
     Visible = False
-    ExplicitWidth = 1004
   end
   object PanelPrincipal: TPanel
     Left = 0
@@ -20757,8 +20756,6 @@ object FPrincipal: TFPrincipal
     Align = alClient
     Color = clMoneyGreen
     TabOrder = 1
-    ExplicitWidth = 1004
-    ExplicitHeight = 685
     object PanelMenuImg: TPanel
       Left = 35
       Top = 117
@@ -20768,8 +20765,6 @@ object FPrincipal: TFPrincipal
       Anchors = []
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 30
-      ExplicitTop = 112
       object imgMenu: TImage
         Left = 0
         Top = 0

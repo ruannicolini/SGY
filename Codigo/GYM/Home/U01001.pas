@@ -1002,7 +1002,6 @@ procedure TF01001.ClientDataSet1CalcFields(DataSet: TDataSet);
 begin
   inherited;
   //
-
   if NOT(ClientDataSet1peso.IsNull) and NOT(ClientDataSet1altura.IsNull) then
   begin
     ClientDataSet1IMC.AsFloat := ClientDataSet1peso.AsFloat/ (ClientDataSet1altura.AsFloat * ClientDataSet1altura.AsFloat) ;

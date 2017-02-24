@@ -3,7 +3,8 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitTop = -365
+  ExplicitLeft = -158
+  ExplicitTop = -162
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,7 +19,6 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
@@ -631,7 +631,6 @@
                 Height = 45
                 Align = alTop
                 TabOrder = 0
-                ExplicitTop = 21
                 object SpeedButton1: TSpeedButton
                   Left = 581
                   Top = 12
@@ -697,8 +696,6 @@
                 Align = alLeft
                 Caption = 'DESCRI'#199#195'O'
                 TabOrder = 1
-                ExplicitTop = 21
-                ExplicitHeight = 292
                 object DBGridBeleza2: TDBGridBeleza
                   AlignWithMargins = True
                   Left = 5
@@ -754,10 +751,6 @@
                 Align = alClient
                 Caption = 'OBSERVA'#199#213'ES M'#201'DICAS'
                 TabOrder = 2
-                ExplicitLeft = 2
-                ExplicitTop = 21
-                ExplicitWidth = 634
-                ExplicitHeight = 292
                 object cxDBMemo2: TDBMemo
                   Left = 2
                   Top = 18
@@ -768,8 +761,6 @@
                   DataSource = DSPAtologia
                   ScrollBars = ssVertical
                   TabOrder = 0
-                  ExplicitLeft = 3
-                  ExplicitTop = 12
                 end
                 object Panel3: TPanel
                   Left = 2
@@ -781,8 +772,6 @@
                   Color = 14737632
                   ParentBackground = False
                   TabOrder = 1
-                  ExplicitTop = 263
-                  ExplicitWidth = 630
                   object BTNALTERAR: TSpeedButton
                     Left = 222
                     Top = 0
@@ -1933,12 +1922,12 @@
     end
   end
   inherited DS: TDataSource
-    Left = 720
+    Left = 784
     Top = 336
   end
   inherited ClientDataSet1: TClientDataSet
     OnCalcFields = ClientDataSet1CalcFields
-    Left = 728
+    Left = 696
     Top = 336
     object ClientDataSet1idAluno: TIntegerField
       FieldName = 'idAluno'
@@ -2125,7 +2114,7 @@
     end
   end
   inherited DataSetProvider1: TDataSetProvider
-    Left = 704
+    Left = 720
     Top = 336
   end
   inherited FDQuery1: TFDQuery
@@ -2355,7 +2344,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00EC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00F40210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4121,7 +4110,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C0101010014004C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140054005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
