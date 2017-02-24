@@ -3,6 +3,7 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
+  ExplicitTop = -365
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -17,6 +18,7 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
@@ -67,8 +69,6 @@
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
-            ExplicitLeft = -3
-            ExplicitTop = 72
             object camera: TdxCameraControl
               Left = 836
               Top = 144
@@ -403,211 +403,12 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
-            object cxGroupBox4: TcxGroupBox
-              Left = 16
-              Top = 240
-              Margins.Left = 0
-              Margins.Top = 0
-              Margins.Right = 0
-              Margins.Bottom = 0
-              Caption = 'PATOLOGIAS E RELATOS F'#205'SICOS'
-              PanelStyle.OfficeBackgroundKind = pobkGradient
-              Style.Edges = [bLeft, bTop, bRight, bBottom]
-              TabOrder = 0
-              Height = 315
-              Width = 638
-              object cxGroupBox5: TcxGroupBox
-                AlignWithMargins = True
-                Left = 5
-                Top = 72
-                Align = alLeft
-                Caption = 'DESCRI'#199#195'O'
-                TabOrder = 0
-                Height = 238
-                Width = 185
-                object DBGridBeleza2: TDBGridBeleza
-                  AlignWithMargins = True
-                  Left = 5
-                  Top = 24
-                  Width = 175
-                  Height = 209
-                  Hint = 'Clique no Titulo da Coluna para Ordenar'
-                  Align = alClient
-                  BorderStyle = bsNone
-                  Color = clWhite
-                  DataSource = DSPAtologia
-                  DrawingStyle = gdsGradient
-                  FixedColor = 16762447
-                  GradientEndColor = 16382457
-                  GradientStartColor = clInactiveCaption
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -12
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-                  ParentFont = False
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 0
-                  TitleFont.Charset = DEFAULT_CHARSET
-                  TitleFont.Color = clBlack
-                  TitleFont.Height = -11
-                  TitleFont.Name = 'Tahoma'
-                  TitleFont.Style = []
-                  OnKeyDown = DBGridBeleza2KeyDown
-                  Cor_2 = 16382457
-                  Direcao_Cor2 = dg_Horiz
-                  Direcao_Enter = dg_Horiz
-                  ClickTituloOrdenar = True
-                  MarcarLinhaInteira = True
-                  CorLinhaMarcada = 15854564
-                  CorFonteLinhaMarcada = clBlack
-                  BloquearExportacoes = False
-                  Columns = <
-                    item
-                      Expanded = False
-                      FieldName = 'NOMEPATOLOGIA'
-                      Visible = True
-                    end>
-                end
-              end
-              object cxGroupBox6: TcxGroupBox
-                AlignWithMargins = True
-                Left = 196
-                Top = 72
-                Align = alClient
-                Caption = 'OBSERVA'#199#213'ES M'#201'DICAS'
-                TabOrder = 1
-                Height = 238
-                Width = 437
-                object Panel3: TPanel
-                  Left = 2
-                  Top = 209
-                  Width = 433
-                  Height = 27
-                  Align = alBottom
-                  BevelOuter = bvNone
-                  Color = 14737632
-                  ParentBackground = False
-                  TabOrder = 0
-                  object BTNALTERAR: TSpeedButton
-                    Left = 216
-                    Top = 0
-                    Width = 217
-                    Height = 27
-                    Align = alRight
-                    Caption = 'ALTERAR'
-                    Enabled = False
-                    OnClick = BTNALTERARClick
-                    ExplicitLeft = 217
-                  end
-                  object BTNCANCELAR: TSpeedButton
-                    Left = 0
-                    Top = 0
-                    Width = 217
-                    Height = 27
-                    Align = alLeft
-                    Caption = 'CANCELAR'
-                    Enabled = False
-                    OnClick = BTNCANCELARClick
-                  end
-                end
-                object cxDBMemo2: TDBMemo
-                  Left = 2
-                  Top = 21
-                  Width = 433
-                  Height = 188
-                  Align = alClient
-                  DataField = 'observacaoMedica'
-                  DataSource = DSPAtologia
-                  ScrollBars = ssVertical
-                  TabOrder = 1
-                  ExplicitLeft = 160
-                  ExplicitTop = 51
-                  ExplicitWidth = 185
-                  ExplicitHeight = 89
-                end
-              end
-              object cxGroupBox7: TcxGroupBox
-                AlignWithMargins = True
-                Left = 5
-                Top = 21
-                Margins.Top = 0
-                Align = alTop
-                TabOrder = 2
-                Height = 45
-                Width = 628
-                object SpeedButton1: TSpeedButton
-                  AlignWithMargins = True
-                  Left = 560
-                  Top = 14
-                  Width = 63
-                  Height = 25
-                  Margins.Top = 9
-                  Margins.Bottom = 4
-                  Align = alRight
-                  Caption = 'ADD'
-                  OnClick = SpeedButton1Click
-                  ExplicitLeft = 479
-                  ExplicitTop = 9
-                end
-                object Edit1: TEdit
-                  Left = 5
-                  Top = 16
-                  Width = 30
-                  Height = 21
-                  TabStop = False
-                  Color = 15461355
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -11
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 1
-                end
-                object EditBeleza1: TEditBeleza
-                  Left = 35
-                  Top = 16
-                  Width = 523
-                  Height = 21
-                  Color = 15461355
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -11
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 0
-                  OnKeyPress = EditBTreinoKeyPress
-                  Ativar_Pesquisa = True
-                  Ativar_MultiSelecao = False
-                  mostrar_Botao = True
-                  sql.Strings = (
-                    
-                      'select P.idPatologia, P.nomePatologia from Patologia P where P.n' +
-                      'omePatologia like :varDescricao AND'
-                    
-                      'P.idPatologia NOT IN (SELECT DISTINCT idPatologia FROM ALUNOPATO' +
-                      'LOGIA where idAluno =:idA)')
-                  database = 'GYM'
-                  campo = 'nomePATOLOGIA'
-                  Sempre_Mostrar_Janela = False
-                  Outro_Edit = Edit1
-                  campo_outro_edit = 'IDPATOLOGIA'
-                  CorBorda = clGray
-                  NovoLayout = False
-                  OnButtonClick = EditBeleza1ButtonClick
-                end
-              end
-            end
             object GroupBox_PAnamnese: TGroupBox
               Left = 16
               Top = 8
               Width = 638
               Height = 229
-              TabOrder = 1
+              TabOrder = 0
               object Label15: TLabel
                 Left = 171
                 Top = 20
@@ -662,42 +463,6 @@
                 Height = 16
                 Caption = 'INFORMA'#199#213'ES ADICIONAIS'
               end
-              object cxDBCheckBox2: TcxDBCheckBox
-                Left = 491
-                Top = 163
-                Caption = 'SUPLEMENTA'#199#195'O'
-                DataBinding.DataField = 'suplementacao'
-                DataBinding.DataSource = DS
-                TabOrder = 0
-                Width = 134
-              end
-              object cxDBCheckBox3: TcxDBCheckBox
-                Left = 491
-                Top = 144
-                Caption = 'DIETA'
-                DataBinding.DataField = 'dieta'
-                DataBinding.DataSource = DS
-                TabOrder = 1
-                Width = 134
-              end
-              object cxDBCheckBox4: TcxDBCheckBox
-                Left = 491
-                Top = 182
-                Caption = 'FUMANTE'
-                DataBinding.DataField = 'fumante'
-                DataBinding.DataSource = DS
-                TabOrder = 2
-                Width = 134
-              end
-              object cxDBCheckBox5: TcxDBCheckBox
-                Left = 491
-                Top = 200
-                Caption = 'USO B. ALC'#211'OLICA'
-                DataBinding.DataField = 'consomeBebidaAlcoolica'
-                DataBinding.DataSource = DS
-                TabOrder = 3
-                Width = 134
-              end
               object cxDBMaskEdit6: TcxDBMaskEdit
                 Left = 479
                 Top = 41
@@ -706,7 +471,7 @@
                 DataBinding.DataSource = DS
                 Properties.EditMask = '99,99;1'
                 Properties.ReadOnly = True
-                TabOrder = 4
+                TabOrder = 0
                 Width = 140
               end
               object cxDBSpinEdit3: TcxDBSpinEdit
@@ -715,7 +480,7 @@
                 DataBinding.DataField = 'qtdRefeicoesDia'
                 DataBinding.DataSource = DS
                 Properties.MinValue = 1.000000000000000000
-                TabOrder = 5
+                TabOrder = 1
                 Width = 140
               end
               object cxDBSpinEdit4: TcxDBSpinEdit
@@ -724,7 +489,7 @@
                 DataBinding.DataField = 'qtdHorasSono'
                 DataBinding.DataSource = DS
                 Properties.MinValue = 1.000000000000000000
-                TabOrder = 6
+                TabOrder = 2
                 Width = 140
               end
               object cxDBSpinEdit6: TcxDBSpinEdit
@@ -737,7 +502,7 @@
                 Properties.MaxValue = 3.000000000000000000
                 Properties.MinValue = 1.000000000000000000
                 Properties.ValueType = vtFloat
-                TabOrder = 7
+                TabOrder = 3
                 Width = 140
               end
               object cxDBSpinEdit7: TcxDBSpinEdit
@@ -751,7 +516,7 @@
                 Properties.MinValue = 1.000000000000000000
                 Properties.Nullstring = '0'
                 Properties.ValueType = vtFloat
-                TabOrder = 8
+                TabOrder = 4
                 Width = 140
               end
               object DBEdit2: TDBEdit
@@ -769,7 +534,7 @@
                 Font.Name = 'Tahoma'
                 Font.Style = []
                 ParentFont = False
-                TabOrder = 9
+                TabOrder = 5
               end
               object DBEditBeleza1: TDBEditBeleza
                 Left = 195
@@ -785,7 +550,7 @@
                 Font.Name = 'Tahoma'
                 Font.Style = []
                 ParentFont = False
-                TabOrder = 10
+                TabOrder = 6
                 OnKeyPress = EditBTreinoKeyPress
                 Ativar_Pesquisa = True
                 mostrar_Botao = True
@@ -809,7 +574,237 @@
                 DataField = 'informacaoAdicional'
                 DataSource = DS
                 ScrollBars = ssVertical
+                TabOrder = 7
+              end
+              object DBckbDIETA: TDBCheckBox
+                Left = 495
+                Top = 144
+                Width = 134
+                Height = 24
+                Caption = 'DIETA'
+                DataField = 'dieta'
+                DataSource = DS
+                TabOrder = 8
+              end
+              object DBCkBSUPLEMENTACAO: TDBCheckBox
+                Left = 495
+                Top = 163
+                Width = 134
+                Height = 24
+                Caption = 'SUPLEMENTA'#199#195'O'
+                DataField = 'suplementacao'
+                DataSource = DS
+                TabOrder = 9
+              end
+              object DBCKBFUMANTE: TDBCheckBox
+                Left = 495
+                Top = 182
+                Width = 134
+                Height = 23
+                Caption = 'FUMANTE'
+                DataField = 'fumante'
+                DataSource = DS
+                TabOrder = 10
+              end
+              object DBckbBebidaAlcoolica: TDBCheckBox
+                Left = 495
+                Top = 201
+                Width = 134
+                Height = 24
+                Caption = 'USO B. ALC'#211'OLICA'
+                DataField = 'consomeBebidaAlcoolica'
+                DataSource = DS
                 TabOrder = 11
+              end
+            end
+            object GroupBox6: TGroupBox
+              Left = 16
+              Top = 240
+              Width = 638
+              Height = 315
+              Caption = 'PATOLOGIAS E RELATOS F'#205'SICOS'
+              TabOrder = 1
+              object GroupBox3: TGroupBox
+                Left = 2
+                Top = 18
+                Width = 634
+                Height = 45
+                Align = alTop
+                TabOrder = 0
+                ExplicitTop = 21
+                object SpeedButton1: TSpeedButton
+                  Left = 581
+                  Top = 12
+                  Width = 46
+                  Height = 23
+                  Caption = 'ADD'
+                  OnClick = SpeedButton1Click
+                end
+                object Edit1: TEdit
+                  Left = 8
+                  Top = 13
+                  Width = 30
+                  Height = 21
+                  TabStop = False
+                  Color = 15461355
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 0
+                end
+                object EditBeleza1: TEditBeleza
+                  Left = 37
+                  Top = 13
+                  Width = 542
+                  Height = 21
+                  Color = 15461355
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 1
+                  OnKeyPress = EditBTreinoKeyPress
+                  Ativar_Pesquisa = True
+                  Ativar_MultiSelecao = False
+                  mostrar_Botao = True
+                  sql.Strings = (
+                    
+                      'select P.idPatologia, P.nomePatologia from Patologia P where P.n' +
+                      'omePatologia like :varDescricao AND'
+                    
+                      'P.idPatologia NOT IN (SELECT DISTINCT idPatologia FROM ALUNOPATO' +
+                      'LOGIA where idAluno =:idA)')
+                  database = 'GYM'
+                  campo = 'nomePATOLOGIA'
+                  Sempre_Mostrar_Janela = False
+                  Outro_Edit = Edit1
+                  campo_outro_edit = 'IDPATOLOGIA'
+                  CorBorda = clGray
+                  NovoLayout = False
+                  OnButtonClick = EditBeleza1ButtonClick
+                end
+              end
+              object GroupBox4: TGroupBox
+                Left = 2
+                Top = 63
+                Width = 185
+                Height = 250
+                Align = alLeft
+                Caption = 'DESCRI'#199#195'O'
+                TabOrder = 1
+                ExplicitTop = 21
+                ExplicitHeight = 292
+                object DBGridBeleza2: TDBGridBeleza
+                  AlignWithMargins = True
+                  Left = 5
+                  Top = 21
+                  Width = 175
+                  Height = 224
+                  Hint = 'Clique no Titulo da Coluna para Ordenar'
+                  Align = alClient
+                  BorderStyle = bsNone
+                  Color = clWhite
+                  DataSource = DSPAtologia
+                  DrawingStyle = gdsGradient
+                  FixedColor = 16762447
+                  GradientEndColor = 16382457
+                  GradientStartColor = clInactiveCaption
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -12
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                  ParentFont = False
+                  ParentShowHint = False
+                  ShowHint = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clBlack
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  OnKeyDown = DBGridBeleza2KeyDown
+                  Cor_2 = 16382457
+                  Direcao_Cor2 = dg_Horiz
+                  Direcao_Enter = dg_Horiz
+                  ClickTituloOrdenar = True
+                  MarcarLinhaInteira = True
+                  CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clBlack
+                  BloquearExportacoes = False
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'NOMEPATOLOGIA'
+                      Visible = True
+                    end>
+                end
+              end
+              object GroupBox5: TGroupBox
+                Left = 187
+                Top = 63
+                Width = 449
+                Height = 250
+                Align = alClient
+                Caption = 'OBSERVA'#199#213'ES M'#201'DICAS'
+                TabOrder = 2
+                ExplicitLeft = 2
+                ExplicitTop = 21
+                ExplicitWidth = 634
+                ExplicitHeight = 292
+                object cxDBMemo2: TDBMemo
+                  Left = 2
+                  Top = 18
+                  Width = 445
+                  Height = 203
+                  Align = alClient
+                  DataField = 'observacaoMedica'
+                  DataSource = DSPAtologia
+                  ScrollBars = ssVertical
+                  TabOrder = 0
+                  ExplicitLeft = 3
+                  ExplicitTop = 12
+                end
+                object Panel3: TPanel
+                  Left = 2
+                  Top = 221
+                  Width = 445
+                  Height = 27
+                  Align = alBottom
+                  BevelOuter = bvNone
+                  Color = 14737632
+                  ParentBackground = False
+                  TabOrder = 1
+                  ExplicitTop = 263
+                  ExplicitWidth = 630
+                  object BTNALTERAR: TSpeedButton
+                    Left = 222
+                    Top = 0
+                    Width = 223
+                    Height = 27
+                    Align = alRight
+                    Caption = 'ALTERAR'
+                    Enabled = False
+                    OnClick = BTNALTERARClick
+                    ExplicitLeft = 223
+                  end
+                  object BTNCANCELAR: TSpeedButton
+                    Left = 0
+                    Top = 0
+                    Width = 223
+                    Height = 27
+                    Align = alLeft
+                    Caption = 'CANCELAR'
+                    Enabled = False
+                    OnClick = BTNCANCELARClick
+                  end
+                end
               end
             end
           end
@@ -1943,7 +1938,7 @@
   end
   inherited ClientDataSet1: TClientDataSet
     OnCalcFields = ClientDataSet1CalcFields
-    Left = 696
+    Left = 728
     Top = 336
     object ClientDataSet1idAluno: TIntegerField
       FieldName = 'idAluno'
@@ -2130,7 +2125,7 @@
     end
   end
   inherited DataSetProvider1: TDataSetProvider
-    Left = 672
+    Left = 704
     Top = 336
   end
   inherited FDQuery1: TFDQuery
@@ -2143,7 +2138,7 @@
       
         'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORF' +
         'ICHA')
-    Left = 648
+    Left = 672
     Top = 336
     object FDQuery1idAluno: TIntegerField
       FieldName = 'idAluno'
@@ -2360,7 +2355,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00E80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00EC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3082,7 +3077,6 @@
     Top = 466
   end
   object CDSSerie: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pSerie'
@@ -3162,7 +3156,7 @@
     Connection = DModule.FDConnection
     SQL.Strings = (
       'select * from treino')
-    Left = 640
+    Left = 672
     Top = 396
     object qTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
@@ -3179,14 +3173,14 @@
   end
   object pTreino: TDataSetProvider
     DataSet = qTreino
-    Left = 672
+    Left = 704
     Top = 395
   end
   object CDSTreino: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pTreino'
-    Left = 704
+    Left = 728
     Top = 394
     object CDSTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
@@ -3200,7 +3194,7 @@
   end
   object DSTreino: TDataSource
     DataSet = CDSTreino
-    Left = 736
+    Left = 760
     Top = 393
   end
   object DSModalidade: TDataSource
@@ -3964,7 +3958,6 @@
     Top = 642
   end
   object CDSRelFicha: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelFicha'
@@ -4128,7 +4121,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140048005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014004C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

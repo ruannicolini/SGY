@@ -55,10 +55,6 @@ type
     cxDBSpinEdit3: TcxDBSpinEdit;
     Label19: TLabel;
     cxDBSpinEdit4: TcxDBSpinEdit;
-    cxDBCheckBox2: TcxDBCheckBox;
-    cxDBCheckBox3: TcxDBCheckBox;
-    cxDBCheckBox4: TcxDBCheckBox;
-    cxDBCheckBox5: TcxDBCheckBox;
     Label20: TLabel;
     Label21: TLabel;
     cxDBSpinEdit6: TcxDBSpinEdit;
@@ -125,16 +121,11 @@ type
     ClientDataSet1IMC: TFloatField;
     DBEdit2: TDBEdit;
     DBEditBeleza1: TDBEditBeleza;
-    cxGroupBox4: TcxGroupBox;
-    cxGroupBox5: TcxGroupBox;
-    cxGroupBox6: TcxGroupBox;
-    cxGroupBox7: TcxGroupBox;
     DSPAtologia: TDataSource;
     cdsPatologia: TClientDataSet;
     provPatologia: TDataSetProvider;
     QPATOLOGIA: TFDQuery;
     Edit1: TEdit;
-    SpeedButton1: TSpeedButton;
     EditBeleza1: TEditBeleza;
     Panel3: TPanel;
     BTNALTERAR: TSpeedButton;
@@ -380,13 +371,21 @@ type
     DBMemo1: TDBMemo;
     cxDBMemo2: TDBMemo;
     DBEdit14: TDBEdit;
+    GroupBox3: TGroupBox;
+    SpeedButton1: TSpeedButton;
+    GroupBox4: TGroupBox;
+    GroupBox5: TGroupBox;
+    GroupBox6: TGroupBox;
+    DBckbDIETA: TDBCheckBox;
+    DBCkBSUPLEMENTACAO: TDBCheckBox;
+    DBCKBFUMANTE: TDBCheckBox;
+    DBckbBebidaAlcoolica: TDBCheckBox;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
     procedure BSalvarClick(Sender: TObject);
     procedure ClientDataSet1CalcFields(DataSet: TDataSet);
     procedure ClientDataSet1AfterPost(DataSet: TDataSet);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure cdsPatologiaReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
@@ -446,6 +445,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
     procedure cxImage1PropertiesChange(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -549,10 +549,10 @@ begin
   ClientDataSet1sexo.AsString := 'M';
   ClientDataSet1idade.Clear;
   dbedit14.Clear;
-  cxDBCheckBox2.Checked := FALSE;
-  cxDBCheckBox3.Checked := FALSE;
-  cxDBCheckBox4.Checked := FALSE;
-  cxDBCheckBox5.Checked := FALSE;
+  DBCkBSUPLEMENTACAO.Checked := FALSE;
+  DBckbDIETA.Checked := FALSE;
+  DBCKBFUMANTE.Checked := FALSE;
+  DBckbBebidaAlcoolica.Checked := FALSE;
 end;
 
 procedure TF01001.bRelatorioClick(Sender: TObject);
@@ -1264,10 +1264,10 @@ begin
   inherited;
   if (ds.DataSet.State = dsInsert) then
   begin
-    cxDBCheckBox2.Checked := false;
-    cxDBCheckBox3.Checked := false;
-    cxDBCheckBox4.Checked := false;
-    cxDBCheckBox5.Checked := false;
+    DBCkBSUPLEMENTACAO.Checked := false;
+    DBckbDIETA.Checked := false;
+    DBCKBFUMANTE.Checked := false;
+    DBckbBebidaAlcoolica.Checked := false;
   end;
 end;
 
@@ -1445,7 +1445,7 @@ end;
 procedure TF01001.SpeedButton1Click(Sender: TObject);
 begin
   inherited;
-  // ADCIONAR NOVA PATOLOGIA
+    // ADCIONAR NOVA PATOLOGIA
   if not DSPAtologia.DataSet.Active then
     DSPAtologia.DataSet.Open;
 

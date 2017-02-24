@@ -362,14 +362,13 @@ DELIMITER ;
 
 -- Habilida Eventos
 set global event_scheduler = on;
--- select @@event_scheduler;
+ select @@event_scheduler;
 
- -- use gym;
+-- use gym;
 -- SHOW events;
 -- SELECT * FROM INFORMATION_SCHEMA.EVENTS;
 -- SHOW PROCESSLIST;
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
-
 
 -- Exclui alunoPatologia, alunoModalidade, serie e pagamento em aberto do Aluno excluído
 DELIMITER //
@@ -416,7 +415,6 @@ BEGIN
 END //
 DELIMITER ;
 
-show;
 -- drop trigger TRIGGER_Modalidade_Update;
 
 
