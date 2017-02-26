@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, iniFiles, DateUtils,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Zlib, ShellAPI;
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Zlib, ShellAPI, midaslib;
 
   procedure configurarDB(Arquivo : TIniFile);
   procedure executarAplicacao(Arquivo : TIniFile);
@@ -18,6 +18,8 @@ type
     edtLogin: TEdit;
     Image1: TImage;
     procedure btnEntrarClick(Sender: TObject);
+    procedure edtSenhaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
   public
@@ -149,6 +151,15 @@ begin
 
   end;
 
+end;
+
+procedure TfrmLogin.edtSenhaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key = 13) then
+  begin
+    btnEntrarClick(Sender);
+  end;
 end;
 
 end.

@@ -446,6 +446,7 @@ type
     procedure BEditarClick(Sender: TObject);
     procedure cxImage1PropertiesChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -1289,6 +1290,17 @@ begin
 end;
 
 
+procedure TF01001.EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //Silencia a tecla enter no Windows
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
+end;
+
 procedure TF01001.EditPesqNomeChange(Sender: TObject);
 begin
   inherited;
@@ -1679,7 +1691,7 @@ begin
   FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO,  INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
   'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORFICHA';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 
 end;
 

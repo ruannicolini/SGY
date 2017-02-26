@@ -85,6 +85,7 @@ begin
   PClass := GetClass('T' + trim(Tela));
   if (PCLass <> nil) then
   begin
+    FPrincipal.caption :='SOGYM - Software de Gestão para Academia - ' + DESC;
     with tFormClass(PClass).Create(Application) do
       try
         Name := Tela;
@@ -115,6 +116,7 @@ begin
         //Mostra
         ShowModal;
       finally
+        FPrincipal.Caption := 'SOGYM - Software de Gestão para Academia';
         Free;
         tFormClass(PClass) := nil;
       end;
@@ -209,15 +211,15 @@ var
   Arquivo: TIniFile;
   username, senha : string;
 begin
-         {
+   {
 //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
+  }
 
-   }
 
   Hora := HourOf(Now);
   Data := Date();

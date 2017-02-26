@@ -321,9 +321,33 @@ DS.OnDataChange(Sender, nil);
 end;
 
 procedure TFBase.BtnLimparFiltrosClick(Sender: TObject);
+var
+cont, i : integer;
 begin
-//
-  ClientDataSet1.Filtered := false;
+
+  cont := PanelFiltros.ControlCount;
+
+  for I := 0 to PanelFiltros.ControlCount-1 do
+  begin
+    if( PanelFiltros.Controls[i].ClassType = TCheckbox )then
+    begin
+        (PanelFiltros.Controls[i] as TCheckbox).Checked := false;
+    end else
+    begin
+        if( PanelFiltros.Controls[i].ClassType = TEDIT)then
+        begin
+            (PanelFiltros.Controls[i] as TEdit).Clear;
+        end else
+        begin
+            if( PanelFiltros.Controls[i].ClassType = TEDITBELEZA)then
+            begin
+              (PanelFiltros.Controls[i] as TEDITBELEZA).Clear;
+            end;
+        end;
+    end;
+
+  end;
+
 end;
 
 procedure TFBase.btnRelatoriosClick(Sender: TObject);
@@ -400,7 +424,15 @@ begin
   BNext.Enabled := (e=2) and not (DS.DataSet.IsEmpty);
   BFirst.Enabled := (e=2) and not (DS.DataSet.IsEmpty);
   BLast.Enabled := (e=2) and not (DS.DataSet.IsEmpty);
-  BFechar.Enabled := (e=2) and not (DS.DataSet.IsEmpty);
+
+  //BFechar.Enabled := (e=2) and not (DS.DataSet.IsEmpty);
+  if(ds.dataset.State = dsinsert) or (ds.dataset.State = dsEdit) then
+  begin
+      BFechar.Enabled := false;
+  end else
+  begin
+      BFechar.Enabled := true;
+  end;
 
   BInserir.Enabled := e=2;
 

@@ -111,6 +111,7 @@ type
     procedure btnFiltrarClick(Sender: TObject);
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
+    procedure EditPesqAlunoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -298,7 +299,7 @@ begin
   'left outer join statusPagamento sp on sp.idstatusPagamento = p.idstatusPagamento '+
   'ORDER BY (P.DATAVENCIMENTO) ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01002.btnPagamentoClick(Sender: TObject);
@@ -476,6 +477,17 @@ begin
     EditPesqIDAluno.Clear;
   end else
     cbxPesqAluno.Checked := true;
+end;
+
+procedure TF01002.EditPesqAlunoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //Silencia a tecla enter no Windows
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
 end;
 
 procedure TF01002.EditPesqModalidadeChange(Sender: TObject);

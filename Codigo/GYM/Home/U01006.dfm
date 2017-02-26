@@ -248,6 +248,7 @@ inherited F01006: TF01006
           ParentFont = False
           TabOrder = 3
           OnChange = EditPesqEquipamentoChange
+          OnKeyPress = EditPesqEquipamentoKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -295,6 +296,7 @@ inherited F01006: TF01006
           ParentFont = False
           TabOrder = 6
           OnChange = EditPesqGrupoChange
+          OnKeyPress = EditPesqEquipamentoKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -410,7 +412,7 @@ inherited F01006: TF01006
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00C80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

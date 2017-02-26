@@ -126,7 +126,7 @@ begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select * from patologia ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01007.ClientDataSet1AfterInsert(DataSet: TDataSet);

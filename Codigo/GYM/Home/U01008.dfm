@@ -1,9 +1,15 @@
 inherited F01008: TF01008
   Caption = 'F01008'
+  ExplicitWidth = 834
+  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited grDados: TGroupBox
         object Label1: TLabel
           Left = 16
@@ -84,7 +90,7 @@ inherited F01008: TF01008
           Top = 208
           Width = 47
           Height = 21
-          Color = 13361867
+          Color = 14079702
           DataField = 'idTipoUsuario'
           DataSource = DS
           ReadOnly = True
@@ -95,7 +101,7 @@ inherited F01008: TF01008
           Top = 208
           Width = 259
           Height = 21
-          Color = 13361867
+          Color = 14079702
           DataField = 'descricaoTipoUsuario'
           DataSource = DS
           Font.Charset = DEFAULT_CHARSET
@@ -123,6 +129,10 @@ inherited F01008: TF01008
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited DBGridBeleza1: TDBGridBeleza
         Columns = <
           item
@@ -198,6 +208,7 @@ inherited F01008: TF01008
           ParentFont = False
           TabOrder = 3
           OnChange = EditPesqTipoUsuarioChange
+          OnKeyPress = EditPesqTipoUsuarioKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -308,7 +319,7 @@ inherited F01008: TF01008
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00C80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

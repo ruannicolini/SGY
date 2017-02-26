@@ -141,7 +141,7 @@ begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select * from modalidade ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01012.EditPesqDescricaoChange(Sender: TObject);

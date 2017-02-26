@@ -3,8 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitLeft = -158
-  ExplicitTop = -162
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -403,6 +401,8 @@
           object pag2: TcxTabSheet
             Caption = 'ANAMNESE'
             ImageIndex = 1
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox_PAnamnese: TGroupBox
               Left = 16
               Top = 8
@@ -1182,6 +1182,8 @@
           object pagModalidades: TcxTabSheet
             Caption = 'MODALIDADES'
             ImageIndex = 4
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object cxGroupBox11: TcxGroupBox
               Left = 16
               Top = 0
@@ -1395,6 +1397,8 @@
           object pagMensalidades: TcxTabSheet
             Caption = 'MENSALIDADES'
             ImageIndex = 3
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object cxGroupBox14: TcxGroupBox
               Left = 16
               Top = 0
@@ -1829,6 +1833,7 @@
           ParentFont = False
           TabOrder = 1
           OnChange = EditPesqModalidadeChange
+          OnKeyPress = EditPesqModalidadeKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -2344,7 +2349,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00F40210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00000310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4110,7 +4115,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140054005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140060005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

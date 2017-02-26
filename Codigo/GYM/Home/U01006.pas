@@ -57,6 +57,7 @@ type
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
+    procedure EditPesqEquipamentoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -183,7 +184,7 @@ begin
   'left outer join equipamento eq on eq.idEquipamento = ex.idEquipamento '+
   'left outer join grupoExercicio ge on ge.idGrupoExercicio = ex.idgrupoExercicio ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01006.ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -222,6 +223,17 @@ begin
       editPesqidEquipamento.Clear;
   end else
     cbxPesqEquipamento.Checked := true;
+end;
+
+procedure TF01006.EditPesqEquipamentoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //Silencia a tecla enter no Windows
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
 end;
 
 procedure TF01006.EditPesqGrupoChange(Sender: TObject);

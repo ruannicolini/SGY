@@ -58,6 +58,7 @@ type
     procedure btnFiltrarClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
     procedure BExcluirClick(Sender: TObject);
+    procedure EditPesqTipoUsuarioKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -183,7 +184,7 @@ begin
   FDQuery1.SQL.Text := 'select u.*, tu.descricaoTipoUsuario from usuario u ' +
   'left outer join tipoUsuario tu on tu.idTipoUsuario = u.idTipoUsuario';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01008.ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -229,6 +230,17 @@ begin
       editPesqidTipoUsuario.Clear;
   end else
     cbxPesqTipoUsuario.Checked := true;
+end;
+
+procedure TF01008.EditPesqTipoUsuarioKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  //Silencia a tecla enter no Windows
+  if key = #13 then
+  begin
+    key := #0;
+    // o q vc quer fazer no enter
+  end;
 end;
 
 Initialization

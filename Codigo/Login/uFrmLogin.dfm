@@ -971,6 +971,7 @@ object frmLogin: TfrmLogin
     MaxLength = 20
     PasswordChar = '*'
     TabOrder = 1
+    OnKeyDown = edtSenhaKeyDown
   end
   object btnEntrar: TBitBtn
     Left = 295

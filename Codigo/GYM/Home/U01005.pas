@@ -224,7 +224,7 @@ begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select * from fichaPreDefinida ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01005.CDSSerieFichaAfterCancel(DataSet: TDataSet);

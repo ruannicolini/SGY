@@ -121,7 +121,7 @@ begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select * from grupoExercicio ';
   FDQuery1.Open;
-  BPesquisar.Click;
+  //BPesquisar.Click;
 end;
 
 procedure TF01004.ClientDataSet1AfterInsert(DataSet: TDataSet);

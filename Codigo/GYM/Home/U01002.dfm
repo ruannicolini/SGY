@@ -1,6 +1,7 @@
 ﻿inherited F01002: TF01002
   Caption = 'F01002'
   ClientWidth = 1008
+  ExplicitLeft = -237
   ExplicitWidth = 1024
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -485,6 +486,7 @@
           ParentFont = False
           TabOrder = 1
           OnChange = EditPESQSITUAÇÃOChange
+          OnKeyPress = EditPesqAlunoKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -549,6 +551,7 @@
           ParentFont = False
           TabOrder = 6
           OnChange = EditPesqAlunoChange
+          OnKeyPress = EditPesqAlunoKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -595,6 +598,7 @@
           ParentFont = False
           TabOrder = 9
           OnChange = EditPesqModalidadeChange
+          OnKeyPress = EditPesqAlunoKeyPress
           Ativar_Pesquisa = True
           Ativar_MultiSelecao = False
           mostrar_Botao = True
@@ -930,7 +934,7 @@
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00F00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00F80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
