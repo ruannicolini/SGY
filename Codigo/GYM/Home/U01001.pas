@@ -447,6 +447,7 @@ type
     procedure cxImage1PropertiesChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
+    procedure BCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -520,6 +521,13 @@ begin
     editSerie.Clear;
     editRepeticoes.Clear;
 
+end;
+
+procedure TF01001.BCancelarClick(Sender: TObject);
+begin
+  inherited;
+  //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+  cxPageControl1.ActivePageIndex := 0;
 end;
 
 procedure TF01001.BEditarClick(Sender: TObject);
@@ -621,6 +629,9 @@ begin
           cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
       end;
       imagemMudou := false;
+
+      //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+      cxPageControl1.ActivePageIndex := 0;
 
 
       //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
@@ -804,12 +815,16 @@ begin
   IF(DS.DataSet.State = dsEDIT) THEN
   BEGIN
       TRY
-        qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-        DSRelFicha.DataSet.Close;
-        DSRelFicha.DataSet.Open;
-        REPORT_FICHA.ShowReport(TRUE);
-      EXCEPT
-        RAISE;
+          TRY
+            qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+            DSRelFicha.DataSet.Close;
+            DSRelFicha.DataSet.Open;
+            REPORT_FICHA.ShowReport(TRUE);
+          EXCEPT
+            RAISE;
+          END;
+      FINALLY
+          DSRelFicha.DataSet.Close;
       END;
   END ELSE
   BEGIN
@@ -817,6 +832,9 @@ begin
       BEGIN
           //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
           TRY
+          CDSRelFicha.close;
+          CDSRelFicha.open;
+          CDSRelFicha.EmptyDataSet;
           CDSRelFicha.Append;
           CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
           CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
@@ -824,9 +842,12 @@ begin
           CDSRelFichaidInstrutorFicha.AsString := ClientDataSet1idInstrutorFicha.AsString;
           CDSRelFichaNOMEINSTRUTORFICHA.AsString := ClientDataSet1NOMEINSTRUTORFICHA.AsString;
           CDSRelFicha.Post;
+
           REPORT_FICHA.ShowReport(TRUE);
           FINALLY
+            CDSRelFicha.Cancel;
             CDSRelFicha.CancelUpdates;
+            CDSRelFicha.close;
           END;
       END;
 
@@ -1650,8 +1671,20 @@ begin
       TRY
         if(ds.DataSet.State = dsInsert)then
         begin
+                DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
+                DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+                DModule.qAux.Close;
+                DModule.qAux.ExecSQL;
+
+                //DATA DE COMPOSIÇÃO DA FICHA = NULL
                 ClientDataSet1idInstrutorFicha.Clear;
                 ClientDataSet1dataComposicaoFicha.Clear;
+
+                //PESQUISA FICHA DE EXERCICIO
+                qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+                DSSerie.DataSet.close;
+                DSSerie.DataSet.open;
+
         end else
         begin
             if(ds.DataSet.State = dsEdit)then

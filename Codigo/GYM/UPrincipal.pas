@@ -211,7 +211,8 @@ var
   Arquivo: TIniFile;
   username, senha : string;
 begin
-   {
+
+{
 //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
@@ -274,6 +275,7 @@ begin
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
   end;
+
 
   //Apaga Numero de acesso Gerado
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');

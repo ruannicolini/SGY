@@ -364,9 +364,9 @@ DELIMITER ;
 set global event_scheduler = on;
  select @@event_scheduler;
 
-use gym;
+-- use gym;
 -- SHOW events;
- SELECT * FROM INFORMATION_SCHEMA.EVENTS;
+-- SELECT * FROM INFORMATION_SCHEMA.EVENTS;
 -- SHOW PROCESSLIST;
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 
