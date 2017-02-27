@@ -223,16 +223,15 @@ begin
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
 }
+
   //Obtem Serial HD
   with GetHPI(Application.ExeName[1]) do
   begin
     serial := SerialNumber;
   end;
-  ShowMessage(serial);
 
   Hora := HourOf(Now);
   Data := Date();
-  //Serial := SerialHD(Serial);
   HashGeradoAgora := MD5(IntToStr(Hora) + DateToStr(Data) + Serial);
 
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
