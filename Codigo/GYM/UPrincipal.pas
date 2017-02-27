@@ -63,7 +63,8 @@ implementation
 
 {$R *.dfm}
 
-uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao;
+uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao,
+  UHPI;
 
 procedure TFPrincipal.ApplicationEvents1Exception(Sender: TObject;
   E: Exception);
@@ -210,7 +211,9 @@ var
   HashGeradoAgora, geradoConfig, Serial : String;
   Arquivo: TIniFile;
   username, senha : string;
+
 begin
+
 
 {
 //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
@@ -219,8 +222,13 @@ begin
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
-  }
-
+}
+  //Obtem Serial HD
+  with GetHPI(Application.ExeName[1]) do
+  begin
+    serial := SerialNumber;
+  end;
+  ShowMessage(serial);
 
   Hora := HourOf(Now);
   Data := Date();
@@ -275,7 +283,6 @@ begin
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
   end;
-
 
   //Apaga Numero de acesso Gerado
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');

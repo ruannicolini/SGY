@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   uFrmLogin in 'uFrmLogin.pas' {frmLogin},
   uFrmPrincipal in 'uFrmPrincipal.pas' {frmPrincipal},
-  uFuncao in 'uFuncao.pas';
+  uFuncao in 'uFuncao.pas',
+  UHPI in 'UHPI.pas';
 
 {$R *.res}
 

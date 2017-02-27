@@ -32,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-uses dataModule, uFuncao, uFrmAtualizacao, uFrmAtualizar;
+uses dataModule, uFuncao, uFrmAtualizacao, uFrmAtualizar, UHPI;
 
 
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
@@ -109,7 +109,12 @@ begin
 
     Hora := HourOf(Now);
     Data := Date();
-    //Serial := SerialHD(Serial);
+
+    //Serial HD
+    with GetHPI(Application.ExeName[1]) do
+    begin
+      serial := SerialNumber;
+    end;
 
     Hash := IntToStr(Hora) + DateToStr(Data) + Serial;
 

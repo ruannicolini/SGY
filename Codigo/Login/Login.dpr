@@ -6,7 +6,8 @@ uses
   dataModule in 'dataModule.pas' {dmPadrao: TDataModule},
   uFuncao in 'uFuncao.pas',
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  UHPI in 'UHPI.pas';
 
 {$R *.res}
 
