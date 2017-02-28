@@ -448,6 +448,8 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
     procedure BCancelarClick(Sender: TObject);
+    procedure DBEdit9Change(Sender: TObject);
+    procedure DBEdit9Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -475,7 +477,7 @@ uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013;
+  U01013, ValidaCPF;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -528,6 +530,9 @@ begin
   inherited;
   //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
   cxPageControl1.ActivePageIndex := 0;
+
+  //COR DO CAMPO CPF
+  DBEdit9.Font.Color := clblack;
 end;
 
 procedure TF01001.BEditarClick(Sender: TObject);
@@ -663,6 +668,9 @@ begin
       EditBExercicio.Clear;
       editSerie.Clear;
       editRepeticoes.Clear;
+
+      //COR DO CAMPO CPF
+      DBEdit9.Font.Color := clblack;
 
   end else
   begin
@@ -1106,6 +1114,92 @@ begin
   begin
     imagemMudou := true;
   end;
+end;
+
+procedure TF01001.DBEdit9Change(Sender: TObject);
+var
+  CPF:string;
+  STATUS: BOOLEAN;
+begin
+  inherited;
+
+  TRY
+      IF (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
+      begin
+            CPF := DBEdit9.Text;
+            CPF := StringReplace(CPF, '-', ' ', [rfReplaceAll, rfIgnoreCase]);
+            CPF := StringReplace(CPF, '.', ' ', [rfReplaceAll, rfIgnoreCase]);
+            CPF := StringReplace(CPF, '_', ' ', [rfReplaceAll, rfIgnoreCase]);
+            CPF := StringReplace(CPF, ' ', EmptyStr, [rfReplaceAll]);
+
+            //VERIFICA SE É UM CPF VÁLIDO
+            STATUS := isCPF(CPF);
+            if (STATUS = false) then
+            begin
+                DBEdit9.Font.Color := clRED;
+                IF(LENGTH(CPF) = 11)THEN
+                BEGIN
+                  ShowMessage('ERRO: CPF INVÁLIDO');
+                  ClientDataSet1CPF.Clear;
+                END;
+
+            end else
+            begin
+                // NESSE CASO O CPF É VÁLIDO!
+                //AGORA, VERIFICA SE ESSE CPF JÁ ESTA SENDO UTILIZADO POR OUTRO ALUNO
+                DModule.qAux.SQL.Text := 'select A.* From ALUNO A where A.CPF =:IDCPF';
+                DModule.qAux.ParamByName('IDCPF').AsString := DBEdit9.Text;
+                DModule.qAux.Close;
+                DModule.qAux.Open;
+
+                if NOT(DModule.qAux.IsEmpty)then
+                begin
+                    IF(DModule.qAux.FieldByName('IDALUNO').AsINTEGER <> ClientDataSet1idAluno.AsInteger)THEN
+                    BEGIN
+                      ShowMessage('ERRO: ' +'CPF JA REGISTRADO NO SISTEMA. ' + #13 + #13 + 'ALUNO: '+ DModule.qAux.FieldByName('NOMEALUNO').AsString);
+                      DBEdit9.Font.Color := clRED;
+                      ClientDataSet1CPF.Clear;
+                    END ELSE
+                    BEGIN
+                      DBEdit9.Font.Color := clblack;
+                    END;
+                end ELSE
+                BEGIN
+                    DBEdit9.Font.Color := clblack;
+                END;
+
+            end;
+
+      end;
+
+  EXCEPT
+  ON E : Exception do
+      ShowMessage('ERRO: '+ E.ClassName+#13+E.Message);
+  END;
+
+
+end;
+
+procedure TF01001.DBEdit9Exit(Sender: TObject);
+VAR
+  CPF: STRING;
+begin
+
+  //SE AO SAIR DO CAMPO CPF, LENGTH(CPF) < 11, APAGA TODO O CAMPO.
+  IF (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
+  begin
+      CPF := DBEdit9.Text;
+      CPF := StringReplace(CPF, '-', ' ', [rfReplaceAll, rfIgnoreCase]);
+      CPF := StringReplace(CPF, '.', ' ', [rfReplaceAll, rfIgnoreCase]);
+      CPF := StringReplace(CPF, '_', ' ', [rfReplaceAll, rfIgnoreCase]);
+      CPF := StringReplace(CPF, ' ', EmptyStr, [rfReplaceAll]);
+      IF(LENGTH(CPF) < 11)THEN
+      BEGIN
+          ClientDataSet1CPF.Clear;
+      END;
+  end;
+
+  inherited;
 end;
 
 procedure TF01001.DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;

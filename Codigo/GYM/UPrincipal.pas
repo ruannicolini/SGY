@@ -222,8 +222,8 @@ begin
   end;
 
 
-{
-  //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
+ {
+  //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
     DModule.username := 'ADMIN';

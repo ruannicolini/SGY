@@ -341,6 +341,8 @@
                 DataField = 'cpf'
                 DataSource = DS
                 TabOrder = 4
+                OnChange = DBEdit9Change
+                OnExit = DBEdit9Exit
               end
               object DBEdit10: TDBEdit
                 Left = 15
@@ -1926,7 +1928,7 @@
   end
   inherited ClientDataSet1: TClientDataSet
     OnCalcFields = ClientDataSet1CalcFields
-    Left = 696
+    Left = 728
     Top = 336
     object ClientDataSet1idAluno: TIntegerField
       FieldName = 'idAluno'
@@ -1991,7 +1993,6 @@
       FieldName = 'cep'
       Origin = 'cep'
       ProviderFlags = [pfInUpdate]
-      EditFormat = '00000-000;0'
     end
     object ClientDataSet1tel1: TStringField
       FieldName = 'tel1'
@@ -2079,7 +2080,7 @@
       FieldName = 'cpf'
       Origin = 'cpf'
       ProviderFlags = [pfInUpdate]
-      EditMask = '000.000.000-00;0'
+      EditMask = '999.999.999-99;1;_'
       Size = 50
     end
     object ClientDataSet1idObjetivo: TIntegerField
@@ -2113,7 +2114,7 @@
     end
   end
   inherited DataSetProvider1: TDataSetProvider
-    Left = 720
+    Left = 704
     Top = 336
   end
   inherited FDQuery1: TFDQuery
@@ -2343,7 +2344,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C000C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00140310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -4109,7 +4110,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C0101010014006C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140074005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
