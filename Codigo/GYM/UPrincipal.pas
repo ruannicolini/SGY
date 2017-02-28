@@ -213,10 +213,17 @@ var
   username, senha : string;
 
 begin
+  {IMPEDE QUE DUAS INSTANCIAS DO MESMO PROGRAMA SEJAM CRIADAS}
+  CreateMutex(nil, False, 'SoftCast.OnlyOne'); //cria um mutex usando um nome único
+  if GetLastError = ERROR_ALREADY_EXISTS then  //verifica se houve erro na criação
+  begin
+    MessageBox(0, 'Este programa já está sendo executado','Aviso', MB_ICONSTOP);
+    Halt(0); // cancela execução
+  end;
 
 
 {
-//ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
+  //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
     DModule.username := 'ADMIN';
