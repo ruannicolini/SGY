@@ -35,7 +35,7 @@ implementation
 
 {$R *.dfm}
 
-uses uFrmLogin, uFuncao;
+uses uFrmLogin, uFuncao, UHPI;
 
 
 procedure TfrmPrincipal.btnFecharClick(Sender: TObject);
@@ -46,8 +46,14 @@ end;
 procedure TfrmPrincipal.btnSalvarClick(Sender: TObject);
 var
   Arquivo : TIniFile;
-  Caminho, Login, Senha : TCaption;
+  Caminho, Login, Senha, serial : TCaption;
 begin
+
+  //Serial HD
+  with GetHPI(Application.ExeName[1]) do
+  begin
+      serial := SerialNumber;
+  end;
 
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
 
@@ -62,6 +68,7 @@ begin
   Arquivo.WriteString('Config', Crip('Caminho'), Caminho );
   Arquivo.WriteString('Config', Crip('Login'), Login);
   Arquivo.WriteString('Config', Crip('Senha'), Senha);
+  Arquivo.WriteString('Config', Crip('Serial'), Serial);
 
   FileSetAttr(GetCurrentDir+'\Config.ini', FileGetAttr(GetCurrentDir+'\Config.ini') or 2);
   Arquivo.Free;

@@ -104,23 +104,33 @@ procedure ExecutarAplicacao(Arquivo : TIniFile);
 var
   Hora: Integer;
   Data : TDateTime;
-  Hash, Serial : String;
+  Hash, Serial, SerialAtual : String;
 begin
 
     Hora := HourOf(Now);
     Data := Date();
-
-    //Serial HD
+    //Serial HD detectado no momento da criação do Arquivo .ini no Gerenciador
+    Serial := Arquivo.ReadString('Config', Crip('Serial'), Serial);
+    //Obtem Serial HD do computador Atual
     with GetHPI(Application.ExeName[1]) do
     begin
-      serial := SerialNumber;
+      SerialAtual := SerialNumber;
     end;
 
-    Hash := IntToStr(Hora) + DateToStr(Data) + Serial;
 
+    Hash := IntToStr(Hora) + DateToStr(Data) + Serial;
     Arquivo.WriteString('Login', 'Numero', MD5(Hash));
 
-    AtualizarExecutavel;
+
+    //Verificação do serial.
+    if(serial = SerialAtual)then
+    begin
+      AtualizarExecutavel;
+    end else
+    begin
+      ShowMessage('Autenticidade do arquivo Config comprometida');
+    end;
+
 
     try
     begin

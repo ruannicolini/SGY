@@ -558,10 +558,18 @@ begin
   ClientDataSet1sexo.AsString := 'M';
   ClientDataSet1idade.Clear;
   dbedit14.Clear;
-  DBCkBSUPLEMENTACAO.Checked := FALSE;
-  DBckbDIETA.Checked := FALSE;
-  DBCKBFUMANTE.Checked := FALSE;
-  DBckbBebidaAlcoolica.Checked := FALSE;
+
+  //DBCkBSUPLEMENTACAO.Checked := FALSE;
+  ClientDataSet1suplementacao.AsBoolean:= false;
+
+  //DBckbDIETA.Checked := FALSE;
+  ClientDataSet1dieta.AsBoolean:= false;
+
+  //DBCKBFUMANTE.Checked := FALSE;
+  ClientDataSet1fumante.AsBoolean:= false;
+
+  //DBckbBebidaAlcoolica.Checked := FALSE;
+  ClientDataSet1consomeBebidaAlcoolica.AsBoolean:= false;
 end;
 
 procedure TF01001.bRelatorioClick(Sender: TObject);
