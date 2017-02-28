@@ -3,7 +3,7 @@
 O SOGYM é formado por 3 projetos:
 
 *Gerenciador: Executado apenas uma vez, ele é responsável por gerar o arquivo config.ini que guarda as
-informações do banco de dados: IP, UsuárioBD e SenhaBD. O arquivo config.ini gerado deve ser colocado na mesma pasta do projeto Login e GYM.
+informações do banco de dados: IP, SERIAL_HD da máquina e UsuárioBD e SenhaBD. O arquivo config.ini gerado deve ser colocado na mesma pasta do projeto Login e GYM.
 Para executar o gerenciador use o login padrão: admin-admin
 
 *Login: O login acessa as informações de caminho, userBD e senha BD presentes no arquivo config.ini gerado pelo gerenciador e verifica se username e senha informados na tela login existem na tabela usuário dentro do BD gym. O login deve ser executado toda vez que se deseja acessar o sistema.
@@ -11,3 +11,4 @@ Uma vez que o usuário existe, ele valida e vai para a função ExecutarAplicacao. 
 
 
 *GYM: Dentro do create do FormPrincipal é gerado uma chave MD5 usando dados específicos do computador do usuário, que se bater com a chave gerada pelo login, abre a Aplicação.
+obs: O serial_HD da maquina deve ser o mesmo capturado na criação do aquivo Confi, caso contrário o programa não executa.
