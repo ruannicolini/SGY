@@ -229,7 +229,7 @@ begin
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
-}
+ }
 
   //Obtem Serial HD
   with GetHPI(Application.ExeName[1]) do
