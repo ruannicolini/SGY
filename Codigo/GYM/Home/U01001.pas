@@ -450,6 +450,7 @@ type
     procedure BCancelarClick(Sender: TObject);
     procedure DBEdit9Change(Sender: TObject);
     procedure DBEdit9Exit(Sender: TObject);
+    procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -522,6 +523,47 @@ begin
     EditBExercicio.Clear;
     editSerie.Clear;
     editRepeticoes.Clear;
+
+end;
+
+procedure TF01001.ActionReajustarDBGridBeleza1Execute(Sender: TObject);
+var
+  I: Integer;
+  somaLarguraTotal, porcentagemColuna : integer;
+begin
+  inherited;
+
+  //REAJUSTA DBGRIDBELEZA1 EM RELAÇÃO AO TAMANHO DA TELA
+  for I := 0 to DBGridBeleza1.Columns.Count-1 do
+  begin
+      if(   (DBGridBeleza1.Columns[i].Visible = true) and (DBGridBeleza1.Columns[i].FieldName = 'nomeAluno')  )then
+      begin
+            if(Screen.Width >= 1366)then
+            begin
+                  //mantem definições padrão, PROPORCIONALMENTE;
+
+            end else
+            begin
+                if(Screen.Width >= 1360)then
+                begin
+                      DBGridBeleza1.Columns[i].Width := 788; // nomeAluno
+                end else
+                begin
+                      if(Screen.Width >= 1280)then
+                      begin
+                            DBGridBeleza1.Columns[i].Width := 708; // nomeAluno
+                      end else
+                      begin
+                            if(Screen.Width >= 1024)then
+                            begin
+                                DBGridBeleza1.Columns[i].Width := 450; // nomeAluno
+                            end;
+                      end;
+                end;
+            end;
+      end;
+  end;
+
 
 end;
 
@@ -1436,6 +1478,7 @@ end;
 
 procedure TF01001.FormCreate(Sender: TObject);
 begin
+
   inherited;
 
   //Apenas o administrador pode ver a tabs Modalidade e Mensalidade

@@ -112,6 +112,7 @@ type
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
     procedure EditPesqAlunoKeyPress(Sender: TObject; var Key: Char);
+    procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -127,6 +128,106 @@ implementation
 {$R *.dfm}
 
 uses U01010, u_relatorios;
+
+procedure TF01002.ActionReajustarDBGridBeleza1Execute(Sender: TObject);
+var
+  I: Integer;
+begin
+  inherited;
+
+  if(Screen.Width >= 1366)then
+  begin
+        //mantem definições padrão;
+
+  end else
+  begin
+        if(Screen.Width >= 1360)then
+        begin
+              for I := 0 to DBGridBeleza1.Columns.Count-1 do
+              BEGIN
+                  IF(DBGridBeleza1.Columns[i].FieldName = 'nomeAluno')THEN
+                  BEGIN
+                    DBGridBeleza1.Columns[i].Width := 333; // nomeAluno
+                  END;
+              END;
+        end else
+        begin
+              if(Screen.Width >= 1280)then
+              begin
+                  for I := 0 to DBGridBeleza1.Columns.Count-1 do
+                  BEGIN
+                      IF(DBGridBeleza1.Columns[i].FieldName = 'nomeAluno')THEN
+                      BEGIN
+                        DBGridBeleza1.Columns[i].Width := 254; // nomeAluno
+                      END;
+                  END;
+              end else
+              begin
+                  if(Screen.Width >= 1024)then
+                  begin
+                      for I := 0 to DBGridBeleza1.Columns.Count-1 do
+                      BEGIN
+                          IF(DBGridBeleza1.Columns[i].FieldName = 'idPagamento')THEN
+                          BEGIN
+                            DBGridBeleza1.Columns[i].Width := 60; // cod
+                          END ELSE
+                          BEGIN
+
+                              IF(DBGridBeleza1.Columns[i].FieldName = 'idAluno')THEN
+                              BEGIN
+                                DBGridBeleza1.Columns[i].Width := 80; // COD-ALUNO
+                                DBGridBeleza1.Columns[i].Visible := FALSE;
+                              END ELSE
+                              BEGIN
+
+                                  IF(DBGridBeleza1.Columns[i].FieldName = 'nomeAluno')THEN
+                                  BEGIN
+                                    DBGridBeleza1.Columns[i].Width := 183; // nomeAluno
+                                  END ELSE
+                                  BEGIN
+
+                                      IF(DBGridBeleza1.Columns[i].FieldName = 'descricaoModalidade')THEN
+                                      BEGIN
+                                        DBGridBeleza1.Columns[i].Width := 120; // MODALIDADE
+                                      END ELSE
+                                      BEGIN
+
+                                          IF(DBGridBeleza1.Columns[i].FieldName = 'valorModalidade')THEN
+                                          BEGIN
+                                            DBGridBeleza1.Columns[i].Width := 90; // valorModalidade
+                                          END ELSE
+                                          BEGIN
+
+                                              IF(DBGridBeleza1.Columns[i].FieldName = 'dataVencimento')THEN
+                                              BEGIN
+                                                DBGridBeleza1.Columns[i].Width := 100; // dataVencimento
+                                              END ELSE
+                                              BEGIN
+
+                                                  IF(DBGridBeleza1.Columns[i].FieldName = 'valorCobrado')THEN
+                                                  BEGIN
+                                                    DBGridBeleza1.Columns[i].Width := 120; // valorCobrado
+                                                  END ELSE
+                                                  BEGIN
+
+                                                      IF(DBGridBeleza1.Columns[i].FieldName = 'dataPagamento')THEN
+                                                      BEGIN
+                                                        DBGridBeleza1.Columns[i].Width := 90; // dataVencimento
+                                                      END;
+                                                  END;
+                                              END;
+                                          END;
+                                     END;
+                                  END;
+                              END;
+                          END;
+                      END;
+                  end;
+              end;
+        end;
+  end;
+
+end;
 
 procedure TF01002.BExcluirClick(Sender: TObject);
 begin

@@ -5,16 +5,14 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{EDFD3924-7599-48A5-AA67-83A70CA91E51}
+AppId={{F40F620E-5E20-49E2-ADA5-599DAAB6E091}
 AppName=SOGYM
 AppVerName=SOGYM 1.0
 AppPublisher=RN, Inc.
 DefaultDirName=C:\SOGYM
 DisableDirPage=yes
 DefaultGroupName=SOGYM
-DisableProgramGroupPage=yes
-OutputDir=C:\Users\Ruan\Documents\Embarcadero\Studio\Projects\AcademiaNorte\Instalador
-OutputBaseFilename=setupSOGYM
+OutputBaseFilename=INSTALADOR_SOGYM_CLIENTE
 Compression=lzma
 SolidCompression=yes
 
@@ -22,8 +20,8 @@ SolidCompression=yes
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Files]
-Source: "C:\Users\Ruan\Documents\Embarcadero\Studio\Projects\AcademiaNorte\Instalador\SOGYM BASE\SOGYM.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Ruan\Documents\Embarcadero\Studio\Projects\AcademiaNorte\Instalador\SOGYM BASE\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ruan\Documents\Embarcadero\Studio\Projects\AcademiaNorte\Instalador\BASE SOGYM\SOGYM.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Ruan\Documents\Embarcadero\Studio\Projects\AcademiaNorte\Instalador\BASE SOGYM\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

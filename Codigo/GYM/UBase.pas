@@ -48,6 +48,7 @@ type
     btnFiltrar: TButton;
     bRelatorio: TSpeedButton;
     ActionExcluir: TAction;
+    ActionReajustarDBGridBeleza1: TAction;
 
     procedure ClientDataSet1AfterCancel(DataSet: TDataSet);
     procedure ClientDataSet1AfterDelete(DataSet: TDataSet);
@@ -211,6 +212,7 @@ end;
 
 procedure TFBase.FormShow(Sender: TObject);
 begin
+  ActionReajustarDBGridBeleza1.Execute;
   ArredondarComponente(btnFiltrar, 60);
   ArredondarComponente(BtnLimparFiltros, 60);
   BSalvar.Enabled := false;
