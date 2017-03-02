@@ -221,8 +221,8 @@ begin
     Halt(0); // cancela execução
   end;
 
+   {
 
- {
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
