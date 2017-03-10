@@ -12,7 +12,7 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.ComCtrls, System.Actions, Vcl.ActnList,
   Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus,
   Vcl.PlatformDefaultStyleActnCtrls, VCLTee.TeCanvas, Vcl.Buttons, XiButton,
-  Vcl.XPMan, dxGDIPlusClasses, PngSpeedButton, Vcl.AppEvnts;
+  Vcl.XPMan, dxGDIPlusClasses,   Vcl.AppEvnts;
 
 type
   TFPrincipal = class(TForm)
@@ -211,6 +211,7 @@ var
   HashGeradoAgora, geradoConfig, Serial : String;
   Arquivo: TIniFile;
   username, senha : string;
+  CaminhoDB, LoginDB, SenhaDB : String;
 
 begin
   {IMPEDE QUE DUAS INSTANCIAS DO MESMO PROGRAMA SEJAM CRIADAS}
@@ -252,7 +253,15 @@ begin
       Application.Terminate;
   end else
   begin
-      //Controle de Acesso
+      //Login - MySQL (user e password)
+      CaminhoDB := Arquivo.ReadString('Config', Crip('Caminho'), CaminhoDB);
+      LoginDB := Arquivo.ReadString('Config', Crip('Login'), LoginDB);
+      SenhaDB := Arquivo.ReadString('Config', Crip('Senha'), SenhaDB);
+      DModule.FDConnection.Params.Values['SERVER'] :=  Crip(CaminhoDB);
+      DMODULE.FDConnection.Params.UserName := Crip(LoginDB);
+      DMODULE.FDConnection.Params.Password := Crip(SenhaDB);
+
+      // LOGIN - Controle de Acesso DE USUÁRIO
       username := CRIP(Arquivo.ReadString('Login', 'username', username));
       senha := MD5(CRIP(Arquivo.ReadString('Login', 'userpassword', senha)));
 

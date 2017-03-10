@@ -94,7 +94,8 @@ begin
   Login := Arquivo.ReadString('Config', Crip('Login'), Login);
   Senha := Arquivo.ReadString('Config', Crip('Senha'), Senha);
 
-  dmPadrao.FDConnection.Params.Add('Server=' + Crip(Caminho));
+
+  dmPadrao.FDConnection.Params.Values['SERVER'] :=  Crip(Caminho);
   dmPadrao.FDConnection.Params.UserName := Crip(Login);
   dmPadrao.FDConnection.Params.Password := Crip(Senha);
 

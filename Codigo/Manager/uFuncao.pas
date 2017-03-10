@@ -47,7 +47,7 @@ function Crip(wStri: String): String;
 var Simbolos : array [0..4] of String;
 x            : Integer;
 begin
-  Simbolos[1]:='ABCDEFGHIJLMNOPQRSTUVXZYWK ~!@#$%^&*()';
+  Simbolos[1]:='.ABCDEFGHIJLMNOPQRSTUVXZYWK ~!@#$%^&*()';
   Simbolos[2]:= 'ÂÀ©Øû×ƒçêùÿ5Üø£úñÑªº¿®¬¼ëèïÙıÄÅÉæÆôöò»Á';
   Simbolos[3]:= 'abcdefghijlmnopqrstuvxzywk1234567890';
   Simbolos[4]:= 'áâäàåíóÇüé¾¶§÷ÎÏ-+ÌÓß¸°¨·¹³²Õµşîì¡«½';
