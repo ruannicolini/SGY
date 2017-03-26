@@ -14,7 +14,7 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
   cxDropDownEdit, cxBlobEdit, cxDBEdit, cxTextEdit, cxMaskEdit, cxSpinEdit,
   Vcl.Mask, Vcl.DBCtrls, Vcl.ExtDlgs, cxImage, Vcl.Imaging.jpeg, dxCameraControl,
-  Vcl.Menus, cxButtons, PngImageList, frxClass, frxDBSet	;
+  Vcl.Menus, cxButtons,  frxClass, frxDBSet	;
 
 type
   TF01003 = class(TFBase)
@@ -26,8 +26,6 @@ type
     Label2: TLabel;
     DBEdit1: TDBEdit;
     ImgListEquipamento: TImageList;
-    PngImageList1: TPngImageList;
-    PngImageList2: TPngImageList;
     DBEdit2: TDBEdit;
     cbxPesqDescricao: TCheckBox;
     EditPesqDescricao: TEdit;

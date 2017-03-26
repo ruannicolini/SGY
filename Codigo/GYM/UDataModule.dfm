@@ -15,7 +15,6 @@ object DModule: TDModule
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'MySQL'
-    VendorLib = 'libmysql.dll'
     Left = 296
     Top = 40
   end
@@ -28,11 +27,10 @@ object DModule: TDModule
     ConnectionName = 'gym'
     Params.Strings = (
       'Database=gym'
-      'User_Name=ruan'
-      'Password=ruan'
-      'Server=192.168.1.200'
+      'Server='
+      'User_Name=ro'
+      'Password=ro'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnectionBeforeConnect
     Left = 40

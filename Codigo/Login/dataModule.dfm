@@ -5,11 +5,8 @@ object dmPadrao: TdmPadrao
   object FDConnection: TFDConnection
     Params.Strings = (
       'Database=gym'
-      'User_Name=ruan'
-      'Password=ruan'
-      'Server=192.168.1.200'
+      'Server='
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32
