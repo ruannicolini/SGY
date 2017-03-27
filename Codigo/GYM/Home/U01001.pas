@@ -138,27 +138,10 @@ type
     cdsPatologiaNOMEPATOLOGIA: TStringField;
     DBGridBeleza2: TDBGridBeleza;
     cxGroupBox8: TcxGroupBox;
-    cxGroupBox9: TcxGroupBox;
-    qSerie: TFDQuery;
-    pSerie: TDataSetProvider;
-    CDSSerie: TClientDataSet;
-    DSSerie: TDataSource;
-    FDQuery1dataComposicaoFicha: TDateField;
-    ClientDataSet1dataComposicaoFicha: TDateField;
-    qSerieidAluno: TIntegerField;
-    qSerieidTreino: TIntegerField;
-    qSerieidExercicio: TIntegerField;
-    qSerieqtdSerie: TIntegerField;
-    qSerieqtdRepeticao: TIntegerField;
-    qSeriedescricaoTreino: TStringField;
-    qSerienomeExercicio: TStringField;
-    CDSSerieidAluno: TIntegerField;
-    CDSSerieidTreino: TIntegerField;
-    CDSSerieidExercicio: TIntegerField;
-    CDSSerieqtdSerie: TIntegerField;
-    CDSSerieqtdRepeticao: TIntegerField;
-    CDSSeriedescricaoTreino: TStringField;
-    CDSSerienomeExercicio: TStringField;
+    qFichaAluno: TFDQuery;
+    pFichaAluno: TDataSetProvider;
+    CDSFichaAluno: TClientDataSet;
+    DSFichaAluno: TDataSource;
     qTreino: TFDQuery;
     pTreino: TDataSetProvider;
     CDSTreino: TClientDataSet;
@@ -168,25 +151,7 @@ type
     CDSTreinodescricaoTreino: TStringField;
     cxGroupBox10: TcxGroupBox;
     DBGridBeleza3: TDBGridBeleza;
-    qSerieidgrupoExercicio: TIntegerField;
-    qSeriedescricaoGrupoExercicio: TStringField;
-    CDSSerieidgrupoExercicio: TIntegerField;
-    CDSSeriedescricaoGrupoExercicio: TStringField;
     DSTreino: TDataSource;
-    SpeedButton2: TSpeedButton;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
-    Label25: TLabel;
-    Label26: TLabel;
-    Edittreino: TEdit;
-    EditBTreino: TEditBeleza;
-    editSerie: TSpinEdit;
-    Editgrupo: TEdit;
-    EditBGrupo: TEditBeleza;
-    Editexercicio: TEdit;
-    EditBExercicio: TEditBeleza;
-    editRepeticoes: TSpinEdit;
     pagModalidades: TcxTabSheet;
     cxGroupBox11: TcxGroupBox;
     cxGroupBox12: TcxGroupBox;
@@ -248,12 +213,7 @@ type
     btnCancelarPI: TSpeedButton;
     Panel6: TPanel;
     btnImprimirFicha: TSpeedButton;
-    btnLimparFicha: TSpeedButton;
-    btnImportarFicha: TSpeedButton;
-    qSerieidequipamento: TIntegerField;
-    qSeriedescricaoequipamento: TStringField;
-    CDSSerieidequipamento: TIntegerField;
-    CDSSeriedescricaoequipamento: TStringField;
+    btnNovoFicha: TSpeedButton;
     REPORT_FICHA: TfrxReport;
     frxDBDataset2: TfrxDBDataset;
     frxGradientObject1: TfrxGradientObject;
@@ -311,10 +271,6 @@ type
     qRelFichadataComposicaoFicha: TDateField;
     qRelFichaDESCRICAOOBJETIVO: TStringField;
     frxJPEGExport1: TfrxJPEGExport;
-    FDQuery1idInstrutorFicha: TIntegerField;
-    FDQuery1NOMEINSTRUTORFICHA: TStringField;
-    ClientDataSet1idInstrutorFicha: TIntegerField;
-    ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
     qRelFichaidInstrutorFicha: TIntegerField;
     qRelFichaNOMEINSTRUTORFICHA: TStringField;
     CDSRelFichaidAluno: TIntegerField;
@@ -380,6 +336,24 @@ type
     DBCkBSUPLEMENTACAO: TDBCheckBox;
     DBCKBFUMANTE: TDBCheckBox;
     DBckbBebidaAlcoolica: TDBCheckBox;
+    FDQuery1idInstrutor: TIntegerField;
+    ClientDataSet1idInstrutor: TIntegerField;
+    qFichaAlunoidFichaAluno: TIntegerField;
+    qFichaAlunoidAluno: TIntegerField;
+    qFichaAlunodataComposicao: TDateField;
+    qFichaAlunonomeInstrutor: TStringField;
+    CDSFichaAlunoidFichaAluno: TIntegerField;
+    CDSFichaAlunoidAluno: TIntegerField;
+    CDSFichaAlunodataComposicao: TDateField;
+    CDSFichaAlunonomeInstrutor: TStringField;
+    cxGroupBox9: TcxGroupBox;
+    DBEditBInstrutor: TDBEditBeleza;
+    DBEditInstrutor: TDBEdit;
+    Label22: TLabel;
+    FDQuery1NOMEINSTRUTORFICHA: TStringField;
+    ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
+    qFichaAlunodataVencimento: TDateField;
+    CDSFichaAlunodataVencimento: TDateField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -395,13 +369,9 @@ type
     procedure DSDataChange(Sender: TObject; Field: TField);
     procedure BTNALTERARClick(Sender: TObject);
     procedure BTNCANCELARClick(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
-    procedure CDSSerieAfterCancel(DataSet: TDataSet);
-    procedure CDSSerieAfterDelete(DataSet: TDataSet);
-    procedure CDSSerieAfterPost(DataSet: TDataSet);
-    procedure EditgrupoChange(Sender: TObject);
-    procedure EditBExercicioButtonClick(Sender: TObject;
-      var query_result: TFDQuery);
+    procedure CDSFichaAlunoAfterCancel(DataSet: TDataSet);
+    procedure CDSFichaAlunoAfterDelete(DataSet: TDataSet);
+    procedure CDSFichaAlunoAfterPost(DataSet: TDataSet);
     procedure DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure SpeedButton3Click(Sender: TObject);
@@ -423,10 +393,8 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure btnImprimirFichaClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
-    procedure btnLimparFichaClick(Sender: TObject);
-    procedure DSSerieDataChange(Sender: TObject; Field: TField);
+    procedure DSFichaAlunoDataChange(Sender: TObject; Field: TField);
     procedure DSModalidadeDataChange(Sender: TObject; Field: TField);
-    procedure btnImportarFichaClick(Sender: TObject);
     procedure DSStateChange(Sender: TObject);
     procedure EditBTreinoKeyPress(Sender: TObject; var Key: Char);
     procedure EditBeleza1ButtonClick(Sender: TObject;
@@ -451,6 +419,8 @@ type
     procedure DBEdit9Change(Sender: TObject);
     procedure DBEdit9Exit(Sender: TObject);
     procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
+    procedure DBGridBeleza3DblClick(Sender: TObject);
+    procedure btnNovoFichaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -478,7 +448,7 @@ uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013, ValidaCPF;
+  U01013, ValidaCPF, U01014;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -501,7 +471,7 @@ begin
       DModule.qAux.ExecSQL;
 
       // SÉRIE (FICHA DE EXERCÍCIOS)
-      DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE idALUNO =:IDA';
+      DModule.qAux.SQL.Text := 'DELETE FROM FICHAALUNO WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
       DModule.qAux.ExecSQL;
@@ -513,16 +483,6 @@ begin
       DModule.qAux.ExecSQL;
 
     END;
-
-    //limpa campos da ficha;
-    Edittreino.Clear;
-    EditBTreino.Clear;
-    Editgrupo.Clear;
-    EditBGrupo.Clear;
-    Editexercicio.Clear;
-    EditBExercicio.Clear;
-    editSerie.Clear;
-    editRepeticoes.Clear;
 
 end;
 
@@ -632,7 +592,7 @@ begin
               visible := false;
               //Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, DSSerie.DataSet, 'idAluno', 'idAluno');
 
-              Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSSerie.DataSet,'idAluno', 'idAluno', 'idAluno');
+              Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSFichaAluno.DataSet,'idAluno', 'idAluno', 'idAluno');
               ShowModal;
           finally
               Relatorios_sis.close;
@@ -700,16 +660,6 @@ begin
       BTNCANCELAR.Enabled := FALSE;
       BTNALTERAR.Caption := 'ALTERAR';
       cxDBMemo2.ReadOnly:= TRUE;
-
-      //limpa campos da ficha;
-      Edittreino.Clear;
-      EditBTreino.Clear;
-      Editgrupo.Clear;
-      EditBGrupo.Clear;
-      Editexercicio.Clear;
-      EditBExercicio.Clear;
-      editSerie.Clear;
-      editRepeticoes.Clear;
 
       //COR DO CAMPO CPF
       DBEdit9.Font.Color := clblack;
@@ -829,43 +779,6 @@ begin
   END;
 end;
 
-procedure TF01001.btnImportarFichaClick(Sender: TObject);
-begin
-  inherited;
-
-  //IMPORTA OS REGISTROS DA SÉRIE DE UAM FICHA PRÉ CADASTRADA
-  With TF01013.Create(self, ClientDataSet1idAluno.AsInteger) do
-  Begin
-        if(ShowModal = mrOk)then
-        begin
-              IF(DS.DataSet.State = dsInsert)THEN
-              BEGIN
-                  ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
-                  ClientDataSet1idInstrutorFicha.AsInteger := DModule.idusuario;
-              END ELSE
-              BEGIN
-                  IF(DS.DataSet.State = dsEdit)THEN
-                  BEGIN
-                  //ALTERA A DATA DE COMPOSIÇÃO DA FICHA NO REGISTRO DO ALUNO
-                  DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData, idInstrutorFicha =:idInst where idAluno =:idA';
-                  DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                  DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
-                  DModule.qAux.ParamByName('idInst').AsInteger := DModule.idusuario;
-                  DModule.qAux.Close;
-                  DModule.qAux.ExecSQL;
-                  END;
-              END;
-        end else
-        begin
-              //ShowMessage('Funfô não mano');
-        end;
-        Free;
-  End;
-  cdsSERIE.Close;
-  cdsSerie.Open;
-
-end;
-
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
@@ -896,8 +809,8 @@ begin
           CDSRelFicha.Append;
           CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
           CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
-          CDSRelFichadataComposicaoFicha.AsDateTime := ClientDataSet1dataComposicaoFicha.AsDateTime;
-          CDSRelFichaidInstrutorFicha.AsString := ClientDataSet1idInstrutorFicha.AsString;
+          //v2.0//CDSRelFichadataComposicaoFicha.AsDateTime := ClientDataSet1dataComposicaoFicha.AsDateTime;
+          //v2.0//CDSRelFichaidInstrutorFicha.AsString := ClientDataSet1idInstrutorFicha.AsString;
           CDSRelFichaNOMEINSTRUTORFICHA.AsString := ClientDataSet1NOMEINSTRUTORFICHA.AsString;
           CDSRelFicha.Post;
 
@@ -1048,22 +961,22 @@ begin
   ShowMessage(E.Message);
 end;
 
-procedure TF01001.CDSSerieAfterCancel(DataSet: TDataSet);
+procedure TF01001.CDSFichaAlunoAfterCancel(DataSet: TDataSet);
 begin
   inherited;
-  CDSSerie.CancelUpdates;
+  CDSFichaAluno.CancelUpdates;
 end;
 
-procedure TF01001.CDSSerieAfterDelete(DataSet: TDataSet);
+procedure TF01001.CDSFichaAlunoAfterDelete(DataSet: TDataSet);
 begin
   inherited;
-  CDSSerie.ApplyUpdates(-1);
+  CDSFichaAluno.ApplyUpdates(-1);
 end;
 
-procedure TF01001.CDSSerieAfterPost(DataSet: TDataSet);
+procedure TF01001.CDSFichaAlunoAfterPost(DataSet: TDataSet);
 begin
   inherited;
-  CDSSerie.ApplyUpdates(-1);
+  CDSFichaAluno.ApplyUpdates(-1);
 end;
 
 procedure TF01001.ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -1258,30 +1171,29 @@ begin
   end;
 end;
 
+procedure TF01001.DBGridBeleza3DblClick(Sender: TObject);
+begin
+  inherited;
+  With TF01014.CreateCONSULTA(self, CDSFichaAlunoidFichaAluno.AsInteger) do
+  Begin
+    ShowModal;
+    Free;
+  End;
+end;
+
 procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  inherited;
-  if (key = 46) then
-  //Deleta Batida
-  begin
-    if MessageDlg('Deseja Apagar Item [' + CDSSerienomeExercicio.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-     begin
-        CDSSerie.Delete;
-
-        // SE APAGOU TODOS OS REGISTROS
-        IF(CDSSerie.IsEmpty)THEN
-        BEGIN
-            //DATA DE COMPOSIÇÃO DA FICHA = NULL
-            DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null where idAluno =:idA';
-            DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-            DModule.qAux.Close;
-            DModule.qAux.ExecSQL;
-        END;
-
-     end;
+    inherited;
+    if (key = 46) then
+    //Deleta Ficha de Exercícios
+    begin
+      if MessageDlg('Deseja Apagar Item [COD:' + CDSFichaAlunoidFichaAluno.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
+          CDSFichaAluno.Delete;
+      end;
+    end;
   end;
-end;
 
 procedure TF01001.DBGridBeleza5DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -1334,9 +1246,9 @@ begin
     BTNALTERAR.Enabled := FALSE;
 
   //PESQUISA FICHA DE EXERCICIO
-  qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-  DSSerie.DataSet.close;
-  DSSerie.DataSet.open;
+  qFichaAluno.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+  DSFichaAluno.DataSet.close;
+  DSFichaAluno.DataSet.open;
 
   //PESQUISA Modalidade
   QMODALIDADE.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
@@ -1360,9 +1272,11 @@ begin
       if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
       begin
         cxImage1.Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
+        //cxImage1.Style.Color := $00515128;//$002E2E2E;
       end else
       begin
         ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+        cxImage1.Style.Color := clWindow;
       end;
   end;
 
@@ -1408,20 +1322,18 @@ begin
   END;
 end;
 
-procedure TF01001.DSSerieDataChange(Sender: TObject; Field: TField);
+procedure TF01001.DSFichaAlunoDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  IF(CDSSerie.RecordCount > 0)THEN
+
+  IF(CDSFichaAluno.RecordCount > 0)THEN
   BEGIN
       btnImprimirFicha.Enabled := TRUE;
-      btnLimparFicha.Enabled := TRUE;
-      btnImportarFicha.Enabled := FALSE;
   END ELSE
   BEGIN
       btnImprimirFicha.Enabled := FALSE;
-      btnLimparFicha.Enabled := FALSE;
-      btnImportarFicha.Enabled := TRUE;
   END;
+
 end;
 
 procedure TF01001.DSStateChange(Sender: TObject);
@@ -1493,14 +1405,6 @@ begin
   end;
 end;
 
-procedure TF01001.EditBExercicioButtonClick(Sender: TObject;
-  var query_result: TFDQuery);
-begin
-  inherited;
-  query_result.ParamByName('idG').Value := strtoint(Editgrupo.Text);
-  query_result.ParamByName('idA').Value := (ClientDataSet1idAluno.AsInteger);
-end;
-
 procedure TF01001.editBModalidadeButtonClick(Sender: TObject;
   var query_result: TFDQuery);
 begin
@@ -1519,26 +1423,6 @@ begin
     // o q vc quer fazer no enter
   end;
 
-end;
-
-procedure TF01001.EditgrupoChange(Sender: TObject);
-begin
-  inherited;
-
-  //FAZ CONTROLE ENTRE EDITBGRUPO E EDITBEXERCICIO
-  IF TRIM(Editgrupo.Text) <> '' THEN
-  BEGIN
-    EditBExercicio.Enabled := TRUE;
-    Editexercicio.Enabled := TRUE;
-    EditBExercicio.Clear;
-    Editexercicio.Clear;
-  END ELSE
-  BEGIN
-    EditBExercicio.Enabled := FALSE;
-    Editexercicio.Enabled := FALSE;
-    EditBExercicio.Clear;
-    Editexercicio.Clear;
-  END;
 end;
 
 function TF01001.MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
@@ -1640,74 +1524,6 @@ begin
   EditBeleza1.Clear;
 end;
 
-procedure TF01001.SpeedButton2Click(Sender: TObject);
-begin
-  inherited;
-
-  if not DSSerie.DataSet.Active then
-  DSSerie.DataSet.Open;
-
-  IF trim(Edittreino.Text ) <> '' THEN
-  BEGIN
-    IF trim(Editexercicio.Text ) <> '' THEN
-    BEGIN
-      IF (trim(editSerie.Text ) <> '') AND (trim(editRepeticoes.Text ) <> '') THEN
-      BEGIN
-          // SE APAGOU TODOS OS REGISTROS
-          IF(CDSSerie.RecordCount = 0)THEN
-          BEGIN
-              if((ds.DataSet.State = dsInsert))then
-              begin
-                     ClientDataSet1dataComposicaoFicha.AsDateTime := DModule.datahoje;
-                     ClientDataSet1idInstrutorFicha.AsInteger := DModule.idusuario;
-              end else
-              begin
-                  if (ds.DataSet.State = dsEdit) then
-                  begin
-                      //SET DATA DE COMPOSIÇÃO DA FICHA
-                      DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha=:idData, idInstrutorFicha =:idInst where idAluno =:idA';
-                      DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                      DModule.qAux.ParamByName('idData').AsDate := DModule.datahoje;
-                      DModule.qAux.ParamByName('idInst').AsInteger := DModule.idusuario;
-                      DModule.qAux.Close;
-                      DModule.qAux.ExecSQL;
-                  end;
-              end;
-          END;
-
-          //INCLUI REGISTRO
-          DSSerie.DataSet.Append;
-          CDSSerieidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
-          CDSSerieidTreino.AsInteger := strtoint(Edittreino.Text);
-          CDSSerieidExercicio.AsInteger := strtoint(Editexercicio.Text);
-          CDSSerieqtdSerie.AsInteger := strtoint(editSerie.Text);
-          CDSSerieqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
-          CDSSerie.Post;
-
-          //REFRESH
-          qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-          DSSerie.DataSet.close;
-          DSSerie.DataSet.open;
-      END ELSE
-      BEGIN
-          ShowMessage('INFORME QUANTIDADE DE SÉRIES E REPETIÇÕES');
-      END;
-
-    END ELSE
-    BEGIN
-        ShowMessage('SELECIONE UM EXERCÍCIO');
-    END;
-
-  END ELSE
-  BEGIN
-      ShowMessage('SELECIONE UMA OPÇÃO DE TREINO');
-  END;
-
-
-
-
-end;
-
 procedure TF01001.SpeedButton3Click(Sender: TObject);
 var
   I: INTEGER;
@@ -1807,61 +1623,6 @@ begin
 
 end;
 
-procedure TF01001.btnLimparFichaClick(Sender: TObject);
-begin
-  inherited;
-  if MessageDlg('DESEJA APAGAR FICHA DE EXERCÍCIOS ATUAL DO ALUNO?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-  begin
-
-      TRY
-        if(ds.DataSet.State = dsInsert)then
-        begin
-                DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
-                DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                DModule.qAux.Close;
-                DModule.qAux.ExecSQL;
-
-                //DATA DE COMPOSIÇÃO DA FICHA = NULL
-                ClientDataSet1idInstrutorFicha.Clear;
-                ClientDataSet1dataComposicaoFicha.Clear;
-
-                //PESQUISA FICHA DE EXERCICIO
-                qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-                DSSerie.DataSet.close;
-                DSSerie.DataSet.open;
-
-        end else
-        begin
-            if(ds.DataSet.State = dsEdit)then
-            begin
-                DModule.qAux.SQL.Text := 'DELETE FROM SERIE WHERE IDALUNO =:IDA';
-                DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                DModule.qAux.Close;
-                DModule.qAux.ExecSQL;
-
-                //DATA DE COMPOSIÇÃO DA FICHA = NULL
-                DModule.qAux.SQL.Text := 'UPDATE aluno SET dataComposicaoFicha= null, idInstrutorFicha= null where idAluno =:idA';
-                DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
-                DModule.qAux.Close;
-                DModule.qAux.ExecSQL;
-
-                //PESQUISA FICHA DE EXERCICIO
-                qSerie.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-                DSSerie.DataSet.close;
-                DSSerie.DataSet.open;
-
-            end;
-        end;
-
-      EXCEPT
-        ON E: EXCEPTION DO
-        BEGIN
-          ShowMessage(E.Message);
-        END;
-      END;
-  end;
-end;
-
 procedure TF01001.BtnLimparFiltrosClick(Sender: TObject);
 begin
   inherited;
@@ -1956,6 +1717,16 @@ begin
     ShowMessage('Nenhuma Modalidade Selecionada.');
   END;
 
+end;
+
+procedure TF01001.btnNovoFichaClick(Sender: TObject);
+begin
+  inherited;
+  With TF01014.CreateNOVO(self, ClientDataSet1idAluno.AsInteger, ClientDataSet1NOMEAluno.ASSTRING) do
+  Begin
+    ShowModal;
+    Free;
+  End;
 end;
 
 procedure TF01001.btnPagamentoClick(Sender: TObject);

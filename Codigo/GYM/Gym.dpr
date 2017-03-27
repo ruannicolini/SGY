@@ -24,7 +24,8 @@ uses
   U01012 in 'Home\U01012.pas' {F01012},
   U01013 in 'Home\U01013.pas' {F01013},
   UHPI in 'UHPI.pas',
-  ValidaCPF in 'ValidaCPF.pas';
+  ValidaCPF in 'ValidaCPF.pas',
+  U01014 in 'Home\U01014.pas' {F01014};
 
 {$R *.res}
 

@@ -3,7 +3,7 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitLeft = -5
+  ExplicitLeft = -60
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,12 +18,11 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -50,7 +49,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pagPerfil
+          Properties.ActivePage = pag3
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -821,6 +820,81 @@
                 TabOrder = 0
                 Height = 508
                 Width = 790
+                object DBGridBeleza3: TDBGridBeleza
+                  AlignWithMargins = True
+                  Left = 5
+                  Top = 78
+                  Width = 780
+                  Height = 425
+                  Hint = 'Clique no Titulo da Coluna para Ordenar'
+                  Align = alClient
+                  BorderStyle = bsNone
+                  Color = clWhite
+                  DataSource = DSFichaAluno
+                  DrawingStyle = gdsGradient
+                  FixedColor = 16762447
+                  GradientEndColor = 16382457
+                  GradientStartColor = clInactiveCaption
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -12
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                  ParentFont = False
+                  ParentShowHint = False
+                  ShowHint = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clBlack
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  OnDblClick = DBGridBeleza3DblClick
+                  OnKeyDown = DBGridBeleza3KeyDown
+                  Cor_2 = 16382457
+                  Direcao_Cor2 = dg_Horiz
+                  Direcao_Enter = dg_Horiz
+                  ClickTituloOrdenar = True
+                  MarcarLinhaInteira = True
+                  CorLinhaMarcada = 15854564
+                  CorFonteLinhaMarcada = clBlack
+                  BloquearExportacoes = False
+                  Columns = <
+                    item
+                      Alignment = taCenter
+                      Expanded = False
+                      FieldName = 'idFichaAluno'
+                      Title.Alignment = taCenter
+                      Title.Caption = 'COD'
+                      Visible = True
+                    end
+                    item
+                      Alignment = taCenter
+                      Expanded = False
+                      FieldName = 'dataComposicao'
+                      Title.Alignment = taCenter
+                      Title.Caption = 'COMPOSICAO'
+                      Width = 100
+                      Visible = True
+                    end
+                    item
+                      Alignment = taCenter
+                      Expanded = False
+                      FieldName = 'dataVencimento'
+                      Title.Alignment = taCenter
+                      Title.Caption = 'VENCIMENTO'
+                      Width = 100
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'nomeInstrutor'
+                      Title.Caption = ' AUTOR'
+                      Width = 500
+                      Visible = True
+                    end>
+                end
                 object cxGroupBox9: TcxGroupBox
                   Left = 2
                   Top = 5
@@ -839,74 +913,24 @@
                   StyleFocused.LookAndFeel.NativeStyle = False
                   StyleHot.LookAndFeel.Kind = lfUltraFlat
                   StyleHot.LookAndFeel.NativeStyle = False
-                  TabOrder = 0
+                  TabOrder = 1
                   Height = 70
                   Width = 786
-                  object SpeedButton2: TSpeedButton
-                    Left = 704
-                    Top = 15
-                    Width = 71
-                    Height = 40
-                    Caption = 'ADD'
-                    OnClick = SpeedButton2Click
-                  end
                   object Label22: TLabel
-                    Left = 13
-                    Top = 15
-                    Width = 44
+                    Left = 10
+                    Top = 10
+                    Width = 69
                     Height = 16
-                    Caption = 'TREINO'
+                    Caption = 'INSTRUTOR'
                   end
-                  object Label23: TLabel
-                    Left = 125
-                    Top = 15
-                    Width = 40
-                    Height = 16
-                    Caption = 'GRUPO'
-                  end
-                  object Label24: TLabel
-                    Left = 312
-                    Top = 15
-                    Width = 63
-                    Height = 16
-                    Caption = 'EXERCICIO'
-                  end
-                  object Label25: TLabel
-                    Left = 530
-                    Top = 15
-                    Width = 34
-                    Height = 16
-                    Caption = 'S'#201'RIE'
-                  end
-                  object Label26: TLabel
-                    Left = 619
-                    Top = 15
-                    Width = 73
-                    Height = 16
-                    Caption = 'REPETI'#199#213'ES'
-                  end
-                  object Edittreino: TEdit
-                    Left = 13
-                    Top = 33
-                    Width = 29
+                  object DBEditBInstrutor: TDBEditBeleza
+                    Left = 33
+                    Top = 30
+                    Width = 266
                     Height = 21
-                    TabStop = False
-                    Color = 15461355
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    ParentFont = False
-                    ReadOnly = True
-                    TabOrder = 5
-                  end
-                  object EditBTreino: TEditBeleza
-                    Left = 41
-                    Top = 33
-                    Width = 75
-                    Height = 21
-                    Color = 15461355
+                    Color = 15132390
+                    DataField = 'NOMEINSTRUTORFICHA'
+                    DataSource = DS
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -11
@@ -914,60 +938,30 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 0
-                    OnKeyPress = EditBTreinoKeyPress
                     Ativar_Pesquisa = True
-                    Ativar_MultiSelecao = False
                     mostrar_Botao = True
                     sql.Strings = (
                       
-                        'select idTREINO, DESCRICAOTREINO from TREINO where DESCRICAOTREI' +
-                        'NO like :varDescricao')
+                        'select idusuario, nomeusuario, idTipoUsuario from usuario where ' +
+                        'nomeusuario like :varDescricao and (idtipousuario = 2 or idtipou' +
+                        'suario =1);')
                     database = 'GYM'
-                    campo = 'DESCRICAOTREINO'
+                    campo = 'nomeusuario'
                     Sempre_Mostrar_Janela = False
-                    Outro_Edit = Edittreino
-                    campo_outro_edit = 'IDTREINO'
+                    Outro_Edit = DBEditInstrutor
+                    campo_outro_edit = 'IDUSUARIO'
                     CorBorda = clGray
                     NovoLayout = False
                   end
-                  object editSerie: TSpinEdit
-                    Left = 530
-                    Top = 33
-                    Width = 79
-                    Height = 22
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    MaxValue = 10
-                    MinValue = 1
-                    ParentFont = False
-                    TabOrder = 3
-                    Value = 1
-                  end
-                  object Editgrupo: TEdit
-                    Left = 125
-                    Top = 33
-                    Width = 29
+                  object DBEditInstrutor: TDBEdit
+                    Left = 10
+                    Top = 30
+                    Width = 24
                     Height = 21
                     TabStop = False
-                    Color = 15461355
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    ParentFont = False
-                    TabOrder = 6
-                    OnChange = EditgrupoChange
-                  end
-                  object EditBGrupo: TEditBeleza
-                    Left = 153
-                    Top = 33
-                    Width = 150
-                    Height = 21
-                    Color = 15461355
+                    Color = 15132390
+                    DataField = 'idInstrutor'
+                    DataSource = DS
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -11
@@ -975,169 +969,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 1
-                    OnKeyPress = EditBTreinoKeyPress
-                    Ativar_Pesquisa = True
-                    Ativar_MultiSelecao = False
-                    mostrar_Botao = True
-                    sql.Strings = (
-                      
-                        'select idGrupoExercicio, descricaoGrupoExercicio from GrupoExerc' +
-                        'icio where descricaoGrupoExercicio like :varDescricao')
-                    database = 'GYM'
-                    campo = 'descricaoGrupoExercicio'
-                    Sempre_Mostrar_Janela = False
-                    Outro_Edit = Editgrupo
-                    campo_outro_edit = 'IDGrupoExercicio'
-                    CorBorda = clGray
-                    NovoLayout = False
                   end
-                  object Editexercicio: TEdit
-                    Left = 312
-                    Top = 33
-                    Width = 29
-                    Height = 21
-                    TabStop = False
-                    Color = 15461355
-                    Enabled = False
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    ParentFont = False
-                    TabOrder = 7
-                  end
-                  object EditBExercicio: TEditBeleza
-                    Left = 340
-                    Top = 33
-                    Width = 182
-                    Height = 21
-                    Color = 15461355
-                    Enabled = False
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    ParentFont = False
-                    TabOrder = 2
-                    OnKeyPress = EditBTreinoKeyPress
-                    Ativar_Pesquisa = True
-                    Ativar_MultiSelecao = False
-                    mostrar_Botao = True
-                    sql.Strings = (
-                      
-                        'select ex.idExercicio, ex.idGrupoExercicio, ex.nomeExercicio fro' +
-                        'm Exercicio ex where ex.nomeExercicio like :varDescricao AND '
-                      
-                        ' ex.idGrupoExercicio =:idG and ex.idexercicio not in (select dis' +
-                        'tinct idexercicio from serie where idAluno =:idA)')
-                    database = 'gym'
-                    campo = 'NOMEEXERCICIO'
-                    Sempre_Mostrar_Janela = False
-                    Outro_Edit = Editexercicio
-                    campo_outro_edit = 'IDEXERCICIO'
-                    CorBorda = clGray
-                    NovoLayout = False
-                    OnButtonClick = EditBExercicioButtonClick
-                  end
-                  object editRepeticoes: TSpinEdit
-                    Left = 619
-                    Top = 33
-                    Width = 79
-                    Height = 22
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    MaxValue = 200
-                    MinValue = 1
-                    ParentFont = False
-                    TabOrder = 4
-                    Value = 1
-                  end
-                end
-                object DBGridBeleza3: TDBGridBeleza
-                  AlignWithMargins = True
-                  Left = 5
-                  Top = 78
-                  Width = 780
-                  Height = 425
-                  Hint = 'Clique no Titulo da Coluna para Ordenar'
-                  Align = alClient
-                  BorderStyle = bsNone
-                  Color = clWhite
-                  DataSource = DSSerie
-                  DrawingStyle = gdsGradient
-                  FixedColor = 16762447
-                  GradientEndColor = 16382457
-                  GradientStartColor = clInactiveCaption
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -12
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-                  ParentFont = False
-                  ParentShowHint = False
-                  ShowHint = True
-                  TabOrder = 1
-                  TitleFont.Charset = DEFAULT_CHARSET
-                  TitleFont.Color = clBlack
-                  TitleFont.Height = -11
-                  TitleFont.Name = 'Tahoma'
-                  TitleFont.Style = []
-                  OnKeyDown = DBGridBeleza3KeyDown
-                  Cor_2 = 16382457
-                  Direcao_Cor2 = dg_Horiz
-                  Direcao_Enter = dg_Horiz
-                  ClickTituloOrdenar = True
-                  MarcarLinhaInteira = True
-                  CorLinhaMarcada = 15854564
-                  CorFonteLinhaMarcada = clBlack
-                  BloquearExportacoes = False
-                  Columns = <
-                    item
-                      Alignment = taCenter
-                      Expanded = False
-                      FieldName = 'descricaoTreino'
-                      Title.Alignment = taCenter
-                      Title.Caption = 'TREINO'
-                      Width = 50
-                      Visible = True
-                    end
-                    item
-                      Expanded = False
-                      FieldName = 'descricaoGrupoExercicio'
-                      Title.Caption = 'GRUPO'
-                      Width = 200
-                      Visible = True
-                    end
-                    item
-                      Expanded = False
-                      FieldName = 'nomeExercicio'
-                      Title.Caption = 'EXERCICIO'
-                      Width = 345
-                      Visible = True
-                    end
-                    item
-                      Alignment = taCenter
-                      Expanded = False
-                      FieldName = 'qtdSerie'
-                      Title.Alignment = taCenter
-                      Title.Caption = 'SERIE'
-                      Visible = True
-                    end
-                    item
-                      Alignment = taCenter
-                      Expanded = False
-                      FieldName = 'qtdRepeticao'
-                      Title.Alignment = taCenter
-                      Title.Caption = 'REPETI'#199#213'ES'
-                      Width = 84
-                      Visible = True
-                    end>
                 end
               end
               object Panel6: TPanel
@@ -1159,23 +991,14 @@
                   Caption = 'IMPRIMIR FICHA'
                   OnClick = btnImprimirFichaClick
                 end
-                object btnLimparFicha: TSpeedButton
+                object btnNovoFicha: TSpeedButton
                   Left = 478
                   Top = 3
                   Width = 151
                   Height = 30
                   Align = alCustom
-                  Caption = 'LIMPAR'
-                  OnClick = btnLimparFichaClick
-                end
-                object btnImportarFicha: TSpeedButton
-                  Left = 321
-                  Top = 3
-                  Width = 151
-                  Height = 30
-                  Align = alCustom
-                  Caption = 'IMPORTAR'
-                  OnClick = btnImportarFichaClick
+                  Caption = 'NOVO'
+                  OnClick = btnNovoFichaClick
                 end
               end
             end
@@ -2098,16 +1921,12 @@
       FieldKind = fkInternalCalc
       FieldName = 'IMC'
     end
-    object ClientDataSet1dataComposicaoFicha: TDateField
-      FieldName = 'dataComposicaoFicha'
-      Origin = 'dataComposicaoFicha'
-    end
     object ClientDataSet1informacaoAdicional: TStringField
       FieldName = 'informacaoAdicional'
       Size = 500
     end
-    object ClientDataSet1idInstrutorFicha: TIntegerField
-      FieldName = 'idInstrutorFicha'
+    object ClientDataSet1idInstrutor: TIntegerField
+      FieldName = 'idInstrutor'
     end
     object ClientDataSet1NOMEINSTRUTORFICHA: TStringField
       FieldName = 'NOMEINSTRUTORFICHA'
@@ -2125,9 +1944,7 @@
         'SELECT a.*, OBJ.DESCRICAOOBJETIVO,  INST.NOMEUSUARIO AS NOMEINST' +
         'RUTORFICHA FROM ALUNO A'
       'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
-      
-        'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORF' +
-        'ICHA')
+      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTOR')
     Left = 672
     Top = 336
     object FDQuery1idAluno: TIntegerField
@@ -2317,27 +2134,22 @@
       ProviderFlags = []
       Size = 50
     end
-    object FDQuery1dataComposicaoFicha: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'dataComposicaoFicha'
-      Origin = 'dataComposicaoFicha'
-    end
     object FDQuery1informacaoAdicional: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'informacaoAdicional'
       Origin = 'informacaoAdicional'
       Size = 500
     end
-    object FDQuery1idInstrutorFicha: TIntegerField
+    object FDQuery1idInstrutor: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'idInstrutorFicha'
-      Origin = 'idInstrutorFicha'
+      FieldName = 'idInstrutor'
+      Origin = 'idInstrutor'
     end
     object FDQuery1NOMEINSTRUTORFICHA: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'NOMEINSTRUTORFICHA'
       Origin = 'nomeUsuario'
-      ProviderFlags = [pfInUpdate]
+      ProviderFlags = []
       Size = 50
     end
   end
@@ -2345,7 +2157,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C001C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C002C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2969,23 +2781,12 @@
       Size = 700
     end
   end
-  object qSerie: TFDQuery
+  object qFichaAluno: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
       
-        'select s.*, t.descricaoTreino, e.nomeExercicio, e.idgrupoExercic' +
-        'io, ge.descricaoGrupoExercicio, '
-      'eq.idequipamento, eq.descricaoequipamento from serie s '
-      'left outer join treino t on t.idTreino = s.idTreino '
-      'left outer join exercicio e on e.idexercicio = s.idExercicio '
-      
-        'left outer join equipamento eq on eq.idequipamento = e.idequipam' +
-        'ento '
-      
-        'left outer join grupoExercicio ge on ge.idGrupoExercicio = e.idg' +
-        'rupoExercicio '
-      'where s.idAluno =:idA '
-      'ORDER BY S.IDTREINO,  e.idgrupoExercicio;')
+        'select fa.* from fichaAluno fa where fa.idAluno =:idA order by d' +
+        'atacomposicao DESC;')
     Left = 648
     Top = 466
     ParamData = <
@@ -2995,153 +2796,71 @@
         ParamType = ptInput
         Value = Null
       end>
-    object qSerieidAluno: TIntegerField
+    object qFichaAlunoidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
+      Origin = 'idFichaAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qFichaAlunoidAluno: TIntegerField
       FieldName = 'idAluno'
       Origin = 'idAluno'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qSerieidTreino: TIntegerField
-      FieldName = 'idTreino'
-      Origin = 'idTreino'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qSerieidExercicio: TIntegerField
-      FieldName = 'idExercicio'
-      Origin = 'idExercicio'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object qSerieqtdSerie: TIntegerField
+    object qFichaAlunodataComposicao: TDateField
       AutoGenerateValue = arDefault
-      FieldName = 'qtdSerie'
-      Origin = 'qtdSerie'
+      FieldName = 'dataComposicao'
+      Origin = 'dataComposicao'
     end
-    object qSerieqtdRepeticao: TIntegerField
+    object qFichaAlunonomeInstrutor: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'qtdRepeticao'
-      Origin = 'qtdRepeticao'
+      FieldName = 'nomeInstrutor'
+      Origin = 'nomeInstrutor'
+      Size = 100
     end
-    object qSeriedescricaoTreino: TStringField
+    object qFichaAlunodataVencimento: TDateField
       AutoGenerateValue = arDefault
-      FieldName = 'descricaoTreino'
-      Origin = 'descricaoTreino'
-      ProviderFlags = []
-      Size = 50
-    end
-    object qSerienomeExercicio: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nomeExercicio'
-      Origin = 'nomeExercicio'
-      ProviderFlags = []
-      Size = 50
-    end
-    object qSerieidgrupoExercicio: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idgrupoExercicio'
-      Origin = 'idGrupoExercicio'
-      ProviderFlags = [pfInUpdate]
-    end
-    object qSeriedescricaoGrupoExercicio: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'descricaoGrupoExercicio'
-      Origin = 'descricaoGrupoExercicio'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object qSerieidequipamento: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idequipamento'
-      Origin = 'idEquipamento'
-      ProviderFlags = [pfInUpdate]
-    end
-    object qSeriedescricaoequipamento: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'descricaoequipamento'
-      Origin = 'descricaoEquipamento'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
+      FieldName = 'dataVencimento'
+      Origin = 'dataVencimento'
     end
   end
-  object pSerie: TDataSetProvider
-    DataSet = qSerie
+  object pFichaAluno: TDataSetProvider
+    DataSet = qFichaAluno
     Left = 672
     Top = 466
   end
-  object CDSSerie: TClientDataSet
+  object CDSFichaAluno: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'pSerie'
-    AfterPost = CDSSerieAfterPost
-    AfterCancel = CDSSerieAfterCancel
-    AfterDelete = CDSSerieAfterDelete
+    ProviderName = 'pFichaAluno'
+    AfterPost = CDSFichaAlunoAfterPost
+    AfterCancel = CDSFichaAlunoAfterCancel
+    AfterDelete = CDSFichaAlunoAfterDelete
     Left = 704
     Top = 466
-    object CDSSerieidAluno: TIntegerField
+    object CDSFichaAlunoidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSFichaAlunoidAluno: TIntegerField
       FieldName = 'idAluno'
-      Origin = 'idAluno'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object CDSSerieidTreino: TIntegerField
-      FieldName = 'idTreino'
-      Origin = 'idTreino'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
+    object CDSFichaAlunodataComposicao: TDateField
+      FieldName = 'dataComposicao'
     end
-    object CDSSerieidExercicio: TIntegerField
-      FieldName = 'idExercicio'
-      Origin = 'idExercicio'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
+    object CDSFichaAlunonomeInstrutor: TStringField
+      FieldName = 'nomeInstrutor'
+      Size = 100
     end
-    object CDSSerieqtdSerie: TIntegerField
-      FieldName = 'qtdSerie'
-      Origin = 'qtdSerie'
-    end
-    object CDSSerieqtdRepeticao: TIntegerField
-      FieldName = 'qtdRepeticao'
-      Origin = 'qtdRepeticao'
-    end
-    object CDSSeriedescricaoTreino: TStringField
-      FieldName = 'descricaoTreino'
-      Origin = 'descricaoTreino'
-      ProviderFlags = []
-      Size = 50
-    end
-    object CDSSerienomeExercicio: TStringField
-      FieldName = 'nomeExercicio'
-      Origin = 'nomeExercicio'
-      ProviderFlags = []
-      Size = 50
-    end
-    object CDSSerieidgrupoExercicio: TIntegerField
-      FieldName = 'idgrupoExercicio'
-      Origin = 'idGrupoExercicio'
-      ProviderFlags = [pfInUpdate]
-    end
-    object CDSSeriedescricaoGrupoExercicio: TStringField
-      FieldName = 'descricaoGrupoExercicio'
-      Origin = 'descricaoGrupoExercicio'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object CDSSerieidequipamento: TIntegerField
-      FieldName = 'idequipamento'
-      Origin = 'idEquipamento'
-      ProviderFlags = [pfInUpdate]
-    end
-    object CDSSeriedescricaoequipamento: TStringField
-      FieldName = 'descricaoequipamento'
-      Origin = 'descricaoEquipamento'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
+    object CDSFichaAlunodataVencimento: TDateField
+      FieldName = 'dataVencimento'
     end
   end
-  object DSSerie: TDataSource
-    DataSet = CDSSerie
-    OnDataChange = DSSerieDataChange
+  object DSFichaAluno: TDataSource
+    DataSet = CDSFichaAluno
+    OnDataChange = DSFichaAlunoDataChange
     Left = 736
     Top = 466
   end
@@ -3439,7 +3158,7 @@
     end
   end
   object REPORT_FICHA: TfrxReport
-    Version = '5.2.3'
+    Version = '5.1.5'
     DataSet = frxDBDataset1
     DataSetName = 'frxDBDataset1'
     DotMatrixReport = False
@@ -3706,7 +3425,7 @@
   object frxDBDataset2: TfrxDBDataset
     UserName = 'frxDBDataset2'
     CloseDataSource = False
-    DataSource = DSSerie
+    DataSource = DSFichaAluno
     BCDToCurrency = False
     Left = 142
     Top = 650
@@ -3725,6 +3444,7 @@
     Background = False
     HTMLTags = True
     Quality = 95
+    Transparency = False
     Author = 'FastReport'
     Subject = 'FastReport PDF export'
     ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
@@ -3734,6 +3454,7 @@
     FitWindow = False
     CenterWindow = False
     PrintScaling = False
+    PdfA = False
     Left = 190
     Top = 650
   end
@@ -4114,7 +3835,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C0101010014007C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014008C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

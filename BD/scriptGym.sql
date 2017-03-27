@@ -91,8 +91,7 @@ dataCadastro date,
 cpf VARCHAR(50),
 informacaoAdicional varchar(500),
 idObjetivo int,
-dataComposicaoFicha date,
-idInstrutorFicha int
+idInstrutor int
 );
 
 create table AlunoModalidade(
@@ -147,13 +146,22 @@ qtdRepeticao int,
 PRIMARY KEY (idFichaPreDefinida,idTreino,idExercicio)
 );
 
-create table serie(
+create table FixaAluno(
+idFichaAluno int not null,
 idAluno int not null,
+dataComposicao date,
+dataVencimento date,
+nomeInstrutor varchar(100),
+PRIMARY KEY (idFichaAluno)
+);
+
+create table serieFichaAluno(
+idFichaAluno int not null,
 idTreino int not null,
 idExercicio int not null,
 qtdSerie int,
 qtdRepeticao int,
-PRIMARY KEY (idAluno,idTreino,idExercicio)
+PRIMARY KEY (idFichaAluno,idTreino,idExercicio)
 );
 
 Create table modulo(
@@ -250,6 +258,9 @@ INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR,
 -- F01012
 INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(17,12,1,1,1,1,1);
 INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(18,12,2,0,0,0,0);
+-- F01014
+INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(19,14,1,1,1,1,1);
+INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(20,14,2,1,1,1,1);
 
 
 -- CADASTRA Objetivos +
@@ -271,9 +282,10 @@ INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('exercicio',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('grupoexercicio',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('ficha',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('fichaPreDefinida',1);
-INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('serie',1);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('serie',1); /*?*/
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('AlunoPatologia',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idAlunoModalidade',1);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idFichaAluno',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('duracaoFichaEmMeses',3);
 
 delimiter |

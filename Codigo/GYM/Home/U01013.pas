@@ -44,20 +44,20 @@ type
     cdsFichaSerieidExercicio: TIntegerField;
     cdsFichaSerieqtdSerie: TIntegerField;
     cdsFichaSerieqtdRepeticao: TIntegerField;
-    qSerie: TFDQuery;
-    pSerie: TDataSetProvider;
+    qSerieFICHAALUNO: TFDQuery;
+    pSerieFICHAALUNO: TDataSetProvider;
     cdsSerie: TClientDataSet;
-    qSerieidAluno: TIntegerField;
-    qSerieidTreino: TIntegerField;
-    qSerieidExercicio: TIntegerField;
-    qSerieqtdSerie: TIntegerField;
-    qSerieqtdRepeticao: TIntegerField;
-    cdsSerieidAluno: TIntegerField;
+    DSSERIEFICHAALUNO: TDataSource;
+    qSerieFICHAALUNOidFichaAluno: TIntegerField;
+    qSerieFICHAALUNOidTreino: TIntegerField;
+    qSerieFICHAALUNOidExercicio: TIntegerField;
+    qSerieFICHAALUNOqtdSerie: TIntegerField;
+    qSerieFICHAALUNOqtdRepeticao: TIntegerField;
+    cdsSerieidFichaAluno: TIntegerField;
     cdsSerieidTreino: TIntegerField;
     cdsSerieidExercicio: TIntegerField;
     cdsSerieqtdSerie: TIntegerField;
     cdsSerieqtdRepeticao: TIntegerField;
-    DSSERIE: TDataSource;
     procedure btnCANCELARClick(Sender: TObject);
     procedure BTNOKClick(Sender: TObject);
     procedure DATASOURCEDataChange(Sender: TObject; Field: TField);
@@ -65,13 +65,13 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent; IDA: INTEGER);
+    constructor Create(AOwner: TComponent; IDFA: INTEGER);
 
   end;
 
 var
   F01013: TF01013;
-  IDALUNO : INTEGER;
+  IDFICHAALUNO : INTEGER;
 
 implementation
 
@@ -90,7 +90,7 @@ begin
       BEGIN
           cdsSerie.Append;
 
-          cdsSerieidAluno.AsInteger := IDALUNO;
+          cdsSerieidFichaAluno.AsInteger := IDFICHAALUNO;
           cdsSerieidTreino.AsInteger := cdsFichaSerieidTreino.AsInteger;
           cdsSerieidExercicio.AsInteger := cdsFichaSerieidExercicio.AsInteger;
           cdsSerieqtdSerie.AsInteger := cdsFichaSerieqtdSerie.AsInteger;
@@ -107,20 +107,20 @@ begin
   ModalResult := mrOk;
 end;
 
-constructor TF01013.Create(AOwner: TComponent; IDA: INTEGER);
+constructor TF01013.Create(AOwner: TComponent; IDFA: INTEGER);
 begin
   //
   inherited Create(AOwner);
-  IDALUNO := IDA;
+  IDFICHAALUNO := IDFA;
 
   //ABRE DATASET FICHA PREDEFINIDA
   DATASOURCE.DataSet.Close;
   DATASOURCE.DataSet.Open;
 
   // ABRE DATASET SERIE DO ALUNO
-  qSerie.Parambyname('IDA').AsInteger := IDALUNO;
-  dsSerie.DataSet.close;
-  dsSerie.DataSet.open;
+  qSerieFICHAALUNO.Parambyname('IDFA').AsInteger := IDFICHAALUNO;
+  dsSerieFICHAALUNO.DataSet.close;
+  dsSerieFICHAALUNO.DataSet.open;
 end;
 
 procedure TF01013.DATASOURCEDataChange(Sender: TObject; Field: TField);

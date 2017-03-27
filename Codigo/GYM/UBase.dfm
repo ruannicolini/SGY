@@ -28,10 +28,6 @@ object FBase: TFBase
     TabOrder = 0
     object TbDados: TTabSheet
       Caption = 'Dados'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object grDados: TGroupBox
         Left = 0
         Top = 0
@@ -48,10 +44,6 @@ object FBase: TFBase
     object TbFiltros: TTabSheet
       Caption = 'Filtros'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GBFiltros: TGroupBox
         Left = 0
         Top = 73
@@ -929,7 +921,7 @@ object FBase: TFBase
     Left = 616
     Top = 192
     Bitmap = {
-      494C01010F002C00BC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

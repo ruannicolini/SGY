@@ -300,61 +300,61 @@ object F01013: TF01013
       Origin = 'qtdRepeticao'
     end
   end
-  object qSerie: TFDQuery
+  object qSerieFICHAALUNO: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'select s.* from serie s where s.idAluno =:idA;')
+      'select s.* from serieFICHAALUNO s where s.idFICHAAluno =:idFA;')
     Left = 104
     Top = 234
     ParamData = <
       item
-        Name = 'IDA'
+        Name = 'IDFA'
         DataType = ftInteger
         ParamType = ptInput
         Value = Null
       end>
-    object qSerieidAluno: TIntegerField
-      FieldName = 'idAluno'
-      Origin = 'idAluno'
+    object qSerieFICHAALUNOidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
+      Origin = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qSerieidTreino: TIntegerField
+    object qSerieFICHAALUNOidTreino: TIntegerField
       FieldName = 'idTreino'
       Origin = 'idTreino'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qSerieidExercicio: TIntegerField
+    object qSerieFICHAALUNOidExercicio: TIntegerField
       FieldName = 'idExercicio'
       Origin = 'idExercicio'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object qSerieqtdSerie: TIntegerField
+    object qSerieFICHAALUNOqtdSerie: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'qtdSerie'
       Origin = 'qtdSerie'
     end
-    object qSerieqtdRepeticao: TIntegerField
+    object qSerieFICHAALUNOqtdRepeticao: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'qtdRepeticao'
       Origin = 'qtdRepeticao'
     end
   end
-  object pSerie: TDataSetProvider
-    DataSet = qSerie
+  object pSerieFICHAALUNO: TDataSetProvider
+    DataSet = qSerieFICHAALUNO
     Left = 136
     Top = 234
   end
   object cdsSerie: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'pSerie'
+    ProviderName = 'pSerieFICHAALUNO'
     Left = 160
     Top = 234
-    object cdsSerieidAluno: TIntegerField
-      FieldName = 'idAluno'
+    object cdsSerieidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
@@ -375,7 +375,7 @@ object F01013: TF01013
       FieldName = 'qtdRepeticao'
     end
   end
-  object DSSERIE: TDataSource
+  object DSSERIEFICHAALUNO: TDataSource
     DataSet = cdsSerie
     Left = 192
     Top = 234

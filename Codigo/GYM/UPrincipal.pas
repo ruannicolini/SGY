@@ -12,7 +12,7 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.ComCtrls, System.Actions, Vcl.ActnList,
   Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus,
   Vcl.PlatformDefaultStyleActnCtrls, VCLTee.TeCanvas, Vcl.Buttons, XiButton,
-  Vcl.XPMan, dxGDIPlusClasses,   Vcl.AppEvnts;
+  Vcl.XPMan, dxGDIPlusClasses,   Vcl.AppEvnts, cxClasses, dxTaskbarProgress;
 
 type
   TFPrincipal = class(TForm)
@@ -222,7 +222,7 @@ begin
     Halt(0); // cancela execução
   end;
 
-   {
+
 
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
@@ -230,7 +230,11 @@ begin
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
     // FIM DE TESTE
- }
+
+
+    {
+
+
 
   //Obtem Serial HD
   with GetHPI(Application.ExeName[1]) do
@@ -303,6 +307,7 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   Arquivo.EraseSection('Login');
   Arquivo.Free;
+  }
 
 end;
 

@@ -28,8 +28,8 @@ object DModule: TDModule
     Params.Strings = (
       'Database=gym'
       'Server='
-      'User_Name=ro'
-      'Password=ro'
+      'User_Name=root'
+      'Password=root'
       'DriverID=MySQL')
     LoginPrompt = False
     BeforeConnect = FDConnectionBeforeConnect
