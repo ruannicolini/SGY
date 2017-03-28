@@ -103,6 +103,10 @@ type
     procedure Action5Execute(Sender: TObject);
     procedure btnImportarFichaClick(Sender: TObject);
     procedure btnLimparFichaClick(Sender: TObject);
+    procedure CDSserieFichaAlunoReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -115,6 +119,7 @@ var
   F01014: TF01014;
   IDFICHAALUNO : INTEGER;
   IDALUNO : INTEGER;
+  NOMEALUNOF : STRING;
 
 implementation
 
@@ -191,9 +196,6 @@ procedure TF01014.btnAddExercicioClick(Sender: TObject);
 begin
   inherited;
 
-  if not DSserieFichaAluno.DataSet.Active then
-  DSserieFichaAluno.DataSet.Open;
-
   IF trim(Edittreino.Text ) <> '' THEN
   BEGIN
     IF trim(Editexercicio.Text ) <> '' THEN
@@ -205,19 +207,26 @@ begin
           DSserieFichaAluno.DataSet.Append;
           CDSserieFichaAlunoidFichaAluno .AsInteger := ClientDataSet1idFichaAluno.AsInteger;
           CDSserieFichaAlunoidTreino.AsInteger := strtoint(Edittreino.Text);
+          //CDSserieFichaAlunodescricaoTreino.AsString := EditBTreino.Text;
+
           CDSserieFichaAlunoidExercicio.AsInteger := strtoint(Editexercicio.Text);
+          //CDSserieFichaAlunonomeExercicio.AsString := EditBExercicio.Text;
+
           CDSserieFichaAlunoqtdSerie.AsInteger := strtoint(editSerie.Text);
           CDSserieFichaAlunoqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
-          CDSserieFichaAluno.Post;
 
-          //REFRESH
-          qserieFichaAluno.Params[0].AsInteger := ClientDataSet1idFichaAluno.AsInteger;
-          DSserieFichaAluno.DataSet.close;
-          DSserieFichaAluno.DataSet.open;
+          //CDSserieFichaAlunodescricaoGrupoExercicio.AsString := EditBGrupo.Text;
 
           //Limpa EditBelezaExercicio
           Editexercicio.Clear;
           EditBexercicio.Clear;
+
+          //Grava Dados
+          CDSserieFichaAluno.Post;
+
+          CDSserieFichaAluno.Close;
+          CDSserieFichaAluno.Open;
+
       END ELSE
       BEGIN
           ShowMessage('INFORME QUANTIDADE DE SÉRIES E REPETIÇÕES');
@@ -232,7 +241,6 @@ begin
   BEGIN
       ShowMessage('SELECIONE UMA OPÇÃO DE TREINO');
   END;
-
 
 end;
 
@@ -251,15 +259,17 @@ begin
         end;
         Free;
   End;
+
   CDSserieFichaAluno.Close;
-  CDSserieFichaAluno.Open;
+  CDSserieFichaAluno.Open;;
+
 
 end;
 
 procedure TF01014.btnLimparFichaClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('DESEJA APAGAR SÉRIE DE EXERCÍCIOS DO ALUNO?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('DESEJA APAGAR TODOS OS EXERCÍCIOS DA FICHA?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
 
       TRY
@@ -282,6 +292,17 @@ begin
   end;
 end;
 
+procedure TF01014.Button1Click(Sender: TObject);
+begin
+  inherited;
+  DSserieFichaAluno.DataSet.close;
+  //PESQUISA FICHA DE EXERCICIO
+  qserieFichaAluno.Params[0].AsInteger := ClientDataSet1idfichaAluno.AsInteger;
+  DSserieFichaAluno.DataSet.close;
+  DSserieFichaAluno.DataSet.open;
+
+end;
+
 procedure TF01014.CDSserieFichaAlunoAfterCancel(DataSet: TDataSet);
 begin
   inherited;
@@ -297,7 +318,23 @@ end;
 procedure TF01014.CDSserieFichaAlunoAfterPost(DataSet: TDataSet);
 begin
   inherited;
-  CDSserieFichaAluno.ApplyUpdates(-1);
+  try
+    CDSserieFichaAluno.ApplyUpdates(-1);
+  except
+    on E:exception do
+    begin
+      ShowMessage(e.Message);
+    end;
+
+  end;
+end;
+
+procedure TF01014.CDSserieFichaAlunoReconcileError(
+  DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
+  var Action: TReconcileAction);
+begin
+  inherited;
+  ShowMessage(e.Message);
 end;
 
 procedure TF01014.ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -341,6 +378,7 @@ begin
   //DS.DataSet.Open;
 
   IDALUNO := IDA;
+  NOMEALUNOF := NOMEALUNO;
 
   BSALVAR.Visible := TRUE;
   BSALVAR.ENABLED := TRUE;
@@ -375,17 +413,19 @@ end;
 procedure TF01014.DSDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  //
-
+   DSserieFichaAluno.DataSet.close;
   //PESQUISA FICHA DE EXERCICIO
   qserieFichaAluno.Params[0].AsInteger := ClientDataSet1idfichaAluno.AsInteger;
   DSserieFichaAluno.DataSet.close;
   DSserieFichaAluno.DataSet.open;
+
 end;
 
 procedure TF01014.DSserieFichaAlunoDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
+
+  //Controle dos botões
   IF(CDSserieFichaAluno.RecordCount > 0)THEN
   BEGIN
       btnLimparFicha.Enabled := TRUE;
@@ -406,10 +446,7 @@ begin
     ClientDataSet1idAluno.AsInteger := IDALUNO;
 
     //NomeAluno
-    DModule.qAux.SQL.Text := 'SELECT NOMEALUNO FROM ALUNO WHERE IDALUNO = ' + INTTOSTR(IDALUNO);
-    DModule.qAux.Close;
-    DModule.qAux.Open;
-    ClientDataSet1NOMEALUNO.AsString := DModule.qAux.FieldByName('NOMEALUNO').AsString;
+    ClientDataSet1NOMEALUNO.AsString := NOMEALUNOF;
 
     //DataComposicao
     ClientDataSet1dataComposicao.AsDateTime := DModule.datahoje;
@@ -422,6 +459,7 @@ begin
 
     //NomeInstrutor
     ClientDataSet1nomeInstrutor.AsString := DModule.nomeusuario;
+
   END;
 end;
 
@@ -443,6 +481,7 @@ begin
     key := #0;
     // o q vc quer fazer no enter
   end;
+
 end;
 
 procedure TF01014.EditgrupoChange(Sender: TObject);

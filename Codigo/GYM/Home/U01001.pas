@@ -62,7 +62,6 @@ type
     cxDBMaskEdit6: TcxDBMaskEdit;
     FDQuery1idAluno: TIntegerField;
     FDQuery1nomeAluno: TStringField;
-    FDQuery1idade: TIntegerField;
     FDQuery1dataNascimento: TDateField;
     FDQuery1email: TStringField;
     FDQuery1sexo: TStringField;
@@ -90,7 +89,6 @@ type
     FDQuery1idObjetivo: TIntegerField;
     ClientDataSet1idAluno: TIntegerField;
     ClientDataSet1nomeAluno: TStringField;
-    ClientDataSet1idade: TIntegerField;
     ClientDataSet1dataNascimento: TDateField;
     ClientDataSet1email: TStringField;
     ClientDataSet1sexo: TStringField;
@@ -239,73 +237,7 @@ type
     ClientDataSet1informacaoAdicional: TStringField;
     QPATOLOGIAobservacaoMedica: TStringField;
     cdsPatologiaobservacaoMedica: TStringField;
-    qRelFichaidAluno: TIntegerField;
-    qRelFichanomeAluno: TStringField;
-    qRelFichaidade: TIntegerField;
-    qRelFichadataNascimento: TDateField;
-    qRelFichaemail: TStringField;
-    qRelFichasexo: TStringField;
-    qRelFichacidade: TStringField;
-    qRelFichabairro: TStringField;
-    qRelFicharua: TStringField;
-    qRelFichanumero: TIntegerField;
-    qRelFichacep: TIntegerField;
-    qRelFichatel1: TStringField;
-    qRelFichatel2: TStringField;
-    qRelFichanomeResponsavel: TStringField;
-    qRelFichaparentescoResponsavel: TStringField;
-    qRelFichatelResponsavel: TStringField;
-    qRelFichapeso: TSingleField;
-    qRelFichaaltura: TSingleField;
-    qRelFichafrequenciaAtividadeFisica: TIntegerField;
-    qRelFichaqtdRefeicoesDia: TIntegerField;
-    qRelFichaqtdHorasSono: TIntegerField;
-    qRelFichasuplementacao: TBooleanField;
-    qRelFichadieta: TBooleanField;
-    qRelFichafumante: TBooleanField;
-    qRelFichaconsomeBebidaAlcoolica: TBooleanField;
-    qRelFichadataCadastro: TDateField;
-    qRelFichacpf: TStringField;
-    qRelFichainformacaoAdicional: TStringField;
-    qRelFichaidObjetivo: TIntegerField;
-    qRelFichadataComposicaoFicha: TDateField;
-    qRelFichaDESCRICAOOBJETIVO: TStringField;
     frxJPEGExport1: TfrxJPEGExport;
-    qRelFichaidInstrutorFicha: TIntegerField;
-    qRelFichaNOMEINSTRUTORFICHA: TStringField;
-    CDSRelFichaidAluno: TIntegerField;
-    CDSRelFichanomeAluno: TStringField;
-    CDSRelFichaidade: TIntegerField;
-    CDSRelFichadataNascimento: TDateField;
-    CDSRelFichaemail: TStringField;
-    CDSRelFichasexo: TStringField;
-    CDSRelFichacidade: TStringField;
-    CDSRelFichabairro: TStringField;
-    CDSRelFicharua: TStringField;
-    CDSRelFichanumero: TIntegerField;
-    CDSRelFichacep: TIntegerField;
-    CDSRelFichatel1: TStringField;
-    CDSRelFichatel2: TStringField;
-    CDSRelFichanomeResponsavel: TStringField;
-    CDSRelFichaparentescoResponsavel: TStringField;
-    CDSRelFichatelResponsavel: TStringField;
-    CDSRelFichapeso: TSingleField;
-    CDSRelFichaaltura: TSingleField;
-    CDSRelFichafrequenciaAtividadeFisica: TIntegerField;
-    CDSRelFichaqtdRefeicoesDia: TIntegerField;
-    CDSRelFichaqtdHorasSono: TIntegerField;
-    CDSRelFichasuplementacao: TBooleanField;
-    CDSRelFichadieta: TBooleanField;
-    CDSRelFichafumante: TBooleanField;
-    CDSRelFichaconsomeBebidaAlcoolica: TBooleanField;
-    CDSRelFichadataCadastro: TDateField;
-    CDSRelFichacpf: TStringField;
-    CDSRelFichainformacaoAdicional: TStringField;
-    CDSRelFichaidObjetivo: TIntegerField;
-    CDSRelFichadataComposicaoFicha: TDateField;
-    CDSRelFichaDESCRICAOOBJETIVO: TStringField;
-    CDSRelFichaidInstrutorFicha: TIntegerField;
-    CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
     frxDBDataset1: TfrxDBDataset;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
@@ -326,7 +258,6 @@ type
     GroupBox_PAnamnese: TGroupBox;
     DBMemo1: TDBMemo;
     cxDBMemo2: TDBMemo;
-    DBEdit14: TDBEdit;
     GroupBox3: TGroupBox;
     SpeedButton1: TSpeedButton;
     GroupBox4: TGroupBox;
@@ -354,6 +285,102 @@ type
     ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
     qFichaAlunodataVencimento: TDateField;
     CDSFichaAlunodataVencimento: TDateField;
+    qserieFichaAluno: TFDQuery;
+    qserieFichaAlunoidFichaAluno: TIntegerField;
+    qserieFichaAlunoidTreino: TIntegerField;
+    qserieFichaAlunoidExercicio: TIntegerField;
+    qserieFichaAlunoqtdSerie: TIntegerField;
+    qserieFichaAlunoqtdRepeticao: TIntegerField;
+    qserieFichaAlunodescricaoTreino: TStringField;
+    qserieFichaAlunonomeExercicio: TStringField;
+    qserieFichaAlunoidgrupoExercicio: TIntegerField;
+    qserieFichaAlunodescricaoGrupoExercicio: TStringField;
+    qserieFichaAlunoidequipamento: TIntegerField;
+    qserieFichaAlunodescricaoequipamento: TStringField;
+    pserieFichaAluno: TDataSetProvider;
+    CDSserieFichaAluno: TClientDataSet;
+    CDSserieFichaAlunoidFichaAluno: TIntegerField;
+    CDSserieFichaAlunoidTreino: TIntegerField;
+    CDSserieFichaAlunoidExercicio: TIntegerField;
+    CDSserieFichaAlunoqtdSerie: TIntegerField;
+    CDSserieFichaAlunoqtdRepeticao: TIntegerField;
+    CDSserieFichaAlunodescricaoTreino: TStringField;
+    CDSserieFichaAlunonomeExercicio: TStringField;
+    CDSserieFichaAlunoidgrupoExercicio: TIntegerField;
+    CDSserieFichaAlunodescricaoGrupoExercicio: TStringField;
+    CDSserieFichaAlunoidequipamento: TIntegerField;
+    CDSserieFichaAlunodescricaoequipamento: TStringField;
+    DSserieFichaAluno: TDataSource;
+    qRelFichaidAluno: TIntegerField;
+    qRelFichanomeAluno: TStringField;
+    qRelFichadataNascimento: TDateField;
+    qRelFichaemail: TStringField;
+    qRelFichasexo: TStringField;
+    qRelFichacidade: TStringField;
+    qRelFichabairro: TStringField;
+    qRelFicharua: TStringField;
+    qRelFichanumero: TIntegerField;
+    qRelFichacep: TIntegerField;
+    qRelFichatel1: TStringField;
+    qRelFichatel2: TStringField;
+    qRelFichanomeResponsavel: TStringField;
+    qRelFichaparentescoResponsavel: TStringField;
+    qRelFichatelResponsavel: TStringField;
+    qRelFichapeso: TSingleField;
+    qRelFichaaltura: TSingleField;
+    qRelFichafrequenciaAtividadeFisica: TIntegerField;
+    qRelFichaqtdRefeicoesDia: TIntegerField;
+    qRelFichaqtdHorasSono: TIntegerField;
+    qRelFichasuplementacao: TBooleanField;
+    qRelFichadieta: TBooleanField;
+    qRelFichafumante: TBooleanField;
+    qRelFichaconsomeBebidaAlcoolica: TBooleanField;
+    qRelFichadataCadastro: TDateField;
+    qRelFichacpf: TStringField;
+    qRelFichainformacaoAdicional: TStringField;
+    qRelFichaidObjetivo: TIntegerField;
+    qRelFichaidInstrutor: TIntegerField;
+    qRelFichaDESCRICAOOBJETIVO: TStringField;
+    qRelFichaNOMEINSTRUTORFICHA: TStringField;
+    qRelFichaDATACOMPOSICAO: TDateField;
+    qRelFichaDATAVENCIMENTO: TDateField;
+    qRelFichaCODFICHA: TIntegerField;
+    CDSRelFichaidAluno: TIntegerField;
+    CDSRelFichanomeAluno: TStringField;
+    CDSRelFichadataNascimento: TDateField;
+    CDSRelFichaemail: TStringField;
+    CDSRelFichasexo: TStringField;
+    CDSRelFichacidade: TStringField;
+    CDSRelFichabairro: TStringField;
+    CDSRelFicharua: TStringField;
+    CDSRelFichanumero: TIntegerField;
+    CDSRelFichacep: TIntegerField;
+    CDSRelFichatel1: TStringField;
+    CDSRelFichatel2: TStringField;
+    CDSRelFichanomeResponsavel: TStringField;
+    CDSRelFichaparentescoResponsavel: TStringField;
+    CDSRelFichatelResponsavel: TStringField;
+    CDSRelFichapeso: TSingleField;
+    CDSRelFichaaltura: TSingleField;
+    CDSRelFichafrequenciaAtividadeFisica: TIntegerField;
+    CDSRelFichaqtdRefeicoesDia: TIntegerField;
+    CDSRelFichaqtdHorasSono: TIntegerField;
+    CDSRelFichasuplementacao: TBooleanField;
+    CDSRelFichadieta: TBooleanField;
+    CDSRelFichafumante: TBooleanField;
+    CDSRelFichaconsomeBebidaAlcoolica: TBooleanField;
+    CDSRelFichadataCadastro: TDateField;
+    CDSRelFichacpf: TStringField;
+    CDSRelFichainformacaoAdicional: TStringField;
+    CDSRelFichaidObjetivo: TIntegerField;
+    CDSRelFichaidInstrutor: TIntegerField;
+    CDSRelFichaDESCRICAOOBJETIVO: TStringField;
+    CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
+    CDSRelFichaDATACOMPOSICAO: TDateField;
+    CDSRelFichaDATAVENCIMENTO: TDateField;
+    CDSRelFichaCODFICHA: TIntegerField;
+    ClientDataSet1IDADE: TIntegerField;
+    DBEdit14: TDBEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -404,7 +431,6 @@ type
     procedure Action5Execute(Sender: TObject);
     procedure DSPAtologiaDataChange(Sender: TObject; Field: TField);
     procedure BExcluirClick(Sender: TObject);
-    procedure BInserirClick(Sender: TObject);
     procedure cxDBDateEdit1Exit(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure EditPesqModalidadeChange(Sender: TObject);
@@ -421,6 +447,7 @@ type
     procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
     procedure DBGridBeleza3DblClick(Sender: TObject);
     procedure btnNovoFichaClick(Sender: TObject);
+    procedure DBEditInstrutorChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -545,7 +572,8 @@ end;
 
 procedure TF01001.BExcluirClick(Sender: TObject);
 begin
-  DModule.qAux.SQL.Text := 'SELECT * FROM pagamento p where p.idAluno =:idA and ((p.idstatuspagamento = 2) or(p.idstatuspagamento = 3))';
+  DModule.qAux.SQL.Text := 'SELECT * FROM pagamento p where p.idAluno =:idA '+
+  'and ((p.idstatuspagamento = 2) or(p.idstatuspagamento = 3))';
   DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
   DModule.qAux.Close;
   DModule.qAux.open;
@@ -557,26 +585,6 @@ begin
     //Executa exclusão
     inherited;
   end;
-end;
-
-procedure TF01001.BInserirClick(Sender: TObject);
-begin
-  inherited;
-  ClientDataSet1sexo.AsString := 'M';
-  ClientDataSet1idade.Clear;
-  dbedit14.Clear;
-
-  //DBCkBSUPLEMENTACAO.Checked := FALSE;
-  ClientDataSet1suplementacao.AsBoolean:= false;
-
-  //DBckbDIETA.Checked := FALSE;
-  ClientDataSet1dieta.AsBoolean:= false;
-
-  //DBCKBFUMANTE.Checked := FALSE;
-  ClientDataSet1fumante.AsBoolean:= false;
-
-  //DBckbBebidaAlcoolica.Checked := FALSE;
-  ClientDataSet1consomeBebidaAlcoolica.AsBoolean:= false;
 end;
 
 procedure TF01001.bRelatorioClick(Sender: TObject);
@@ -612,58 +620,66 @@ VAR
 begin
   if TRIM(DBEdit3.Text) <> '' then
   begin
-      // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
-      IF(DSModalidade.DataSet.RecordCount = 0)THEN
+
+      IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
       BEGIN
-        ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
-      END;
 
-
-      {
-      // SALVA FOTO DO ALUNO BLOB
-      IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
-      BEGIN
-        aDest:= tbitmap.create;
-        aDest.Width := 200;
-        aDest.Height := 113;
-        aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
-        //ClientDataSet1foto.Assign(camera.CapturedBitmap);
-        ClientDataSet1foto.Assign(aDest);
-      END;
-      }
-
-
-      //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
-      if(imagemMudou = true)then
-      begin
-          //SALVA FOTO PASTA
-          IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+          // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
+          IF(DSModalidade.DataSet.RecordCount = 0)THEN
           BEGIN
-            CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+            ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
           END;
-          cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
-      end;
-      imagemMudou := false;
-
-      //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
-      cxPageControl1.ActivePageIndex := 0;
 
 
-      //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
-      inherited;
+          {
+          // SALVA FOTO DO ALUNO BLOB
+          IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
+          BEGIN
+            aDest:= tbitmap.create;
+            aDest.Width := 200;
+            aDest.Height := 113;
+            aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
+            //ClientDataSet1foto.Assign(camera.CapturedBitmap);
+            ClientDataSet1foto.Assign(aDest);
+          END;
+          }
 
-      //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
-      IF(cdsPatologia.State = dsEdit)THEN
-      begin
-          cdsPatologia.Post;
-      end;
-      BTNCANCELAR.Enabled := FALSE;
-      BTNALTERAR.Caption := 'ALTERAR';
-      cxDBMemo2.ReadOnly:= TRUE;
 
-      //COR DO CAMPO CPF
-      DBEdit9.Font.Color := clblack;
+          //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
+          if(imagemMudou = true)then
+          begin
+              //SALVA FOTO PASTA
+              IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+              BEGIN
+                CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+              END;
+              cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+          end;
+          imagemMudou := false;
 
+          //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+          cxPageControl1.ActivePageIndex := 0;
+
+
+          //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
+          inherited;
+
+          //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
+          IF(cdsPatologia.State = dsEdit)THEN
+          begin
+              cdsPatologia.Post;
+          end;
+          BTNCANCELAR.Enabled := FALSE;
+          BTNALTERAR.Caption := 'ALTERAR';
+          cxDBMemo2.ReadOnly:= TRUE;
+
+          //COR DO CAMPO CPF
+          DBEdit9.Font.Color := clblack;
+
+      END ELSE
+      BEGIN
+        ShowMessage('INFORME A DATA DE NASCIMENTO DO ALUNO');
+      END;
   end else
   begin
       ShowMessage('INFORME NOME DO ALUNO');
@@ -787,7 +803,7 @@ begin
   BEGIN
       TRY
           TRY
-            qRelFicha.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
+            qRelFicha.ParamByName('IDFA').AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
             DSRelFicha.DataSet.Close;
             DSRelFicha.DataSet.Open;
             REPORT_FICHA.ShowReport(TRUE);
@@ -809,6 +825,11 @@ begin
           CDSRelFicha.Append;
           CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
           CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
+
+          CDSRelFichaCODFICHA.AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+          CDSRelFichaDATACOMPOSICAO.AsDateTime := CDSFichaAlunodataComposicao.AsDateTime;
+          CDSRelFichaDATAVENCIMENTO.AsDateTime := CDSFichaAlunodataVencimento.AsDateTime;
+
           //v2.0//CDSRelFichadataComposicaoFicha.AsDateTime := ClientDataSet1dataComposicaoFicha.AsDateTime;
           //v2.0//CDSRelFichaidInstrutorFicha.AsString := ClientDataSet1idInstrutorFicha.AsString;
           CDSRelFichaNOMEINSTRUTORFICHA.AsString := ClientDataSet1NOMEINSTRUTORFICHA.AsString;
@@ -832,7 +853,7 @@ begin
 
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
-  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORFICHA WHERE 1=1 ';
+  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR WHERE 1=1 ';
 
   if(cbxPesqNome.Checked = true)then
   BEGIN
@@ -850,14 +871,17 @@ begin
   BEGIN
     FDQuery1.SQL.Add(' and a.idaluno in (select idaluno from pagamento where curdate() > dataVencimento and idStatusPagamento = 1 group by idaluno) ');
   END;
+
   if(cbxPesqSemFichaExercicios.Checked = true)then
   BEGIN
-    FDQuery1.SQL.Add(' and a.idaluno not in (select idaluno from serie group by idAluno)');
+    FDQuery1.SQL.Add(' and a.idaluno not in (select idaluno from FICHAALUNO group by idAluno)');
   END;
   if(cbxPesqFichaVencida.Checked = true)then
   BEGIN
-    FDQuery1.SQL.Add(' AND curdate() > DATE_ADD(a.dataComposicaoficha, INTERVAL (select p.valor from parametros p where p.parametro = "duracaoFichaEmMeses") MONTH)' );
+    FDQuery1.SQL.Add(' AND curdate() > (SELECT FA.DATAVENCIMENTO FROM FICHAALUNO FA WHERE FA.IDFICHAALUNO = (SELECT MAX(IDFICHAALUNO) FROM FICHAALUNO WHERE IDALUNO = A.IDALUNO))');
   END;
+
+
   FDQuery1.Open;
   BPesquisar.Click;
 
@@ -994,11 +1018,18 @@ end;
 procedure TF01001.ClientDataSet1CalcFields(DataSet: TDataSet);
 begin
   inherited;
-  //
+
+  //CALCULA IMC
   if NOT(ClientDataSet1peso.IsNull) and NOT(ClientDataSet1altura.IsNull) then
   begin
     ClientDataSet1IMC.AsFloat := ClientDataSet1peso.AsFloat/ (ClientDataSet1altura.AsFloat * ClientDataSet1altura.AsFloat) ;
   end;
+
+  // CALCULA IDADE DO ALUNO
+  IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
+  BEGIN
+    ClientDataSet1idADE.AsInteger := (DateUtils.YearsBetween(DATE, ClientDataSet1dataNascimento.AsDateTime));
+  END;
 
 end;
 
@@ -1032,6 +1063,26 @@ begin
     IF trim(cxDBDateEdit1.Text) <> '' THEN
     BEGIN
       ClientDataSet1idade.AsInteger := (DateUtils.YearsBetween(DATE, cxDBDateEdit1.Date));
+
+      // CONTROLE DE PAINEL DADOS-RESPONSÁVEL
+      if(ClientDataSet1idade.AsInteger >= 18)then
+      begin
+          DBEdit4.Enabled := false;
+          DBEdit5.Enabled := false;
+          cxDBMaskEdit5.Enabled := false;
+          DBEdit4.Clear;
+          DBEdit5.Clear;
+          cxDBMaskEdit5.Clear;
+      end else
+      begin
+          if(ClientDataSet1idade.AsInteger < 18)then
+          begin
+              DBEdit4.Enabled := true;
+              DBEdit5.Enabled := true;
+              cxDBMaskEdit5.Enabled := true;
+          end;
+      end;
+
     END ELSE
     BEGIN
       ClientDataSet1idade.AsInteger := 0;
@@ -1157,6 +1208,20 @@ begin
   inherited;
 end;
 
+procedure TF01001.DBEditInstrutorChange(Sender: TObject);
+begin
+  inherited;
+  //
+  IF TRIM(DBEditInstrutor.Text) <> '' THEN
+  BEGIN
+    btnNovoFicha.Enabled := TRUE;
+  END ELSE
+  BEGIN
+    btnNovoFicha.Enabled := FALSE;
+  END;
+
+end;
+
 procedure TF01001.DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -1179,6 +1244,8 @@ begin
     ShowModal;
     Free;
   End;
+  CDSFichaAluno.CLOSE;
+  CDSFichaAluno.OPEN;
 end;
 
 procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
@@ -1334,6 +1401,11 @@ begin
       btnImprimirFicha.Enabled := FALSE;
   END;
 
+  //PESQUISA FICHA DE EXERCICIO
+  qserieFichaAluno.Params[0].AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+  DSserieFichaAluno.DataSet.close;
+  DSserieFichaAluno.DataSet.open;
+
 end;
 
 procedure TF01001.DSStateChange(Sender: TObject);
@@ -1341,10 +1413,31 @@ begin
   inherited;
   if (ds.DataSet.State = dsInsert) then
   begin
+    ClientDataSet1sexo.AsString := 'M';
+
+    //DBCkBSUPLEMENTACAO.Checked := FALSE;
+    ClientDataSet1suplementacao.AsBoolean:= false;
+
+    //DBckbDIETA.Checked := FALSE;
+    ClientDataSet1dieta.AsBoolean:= false;
+
+    //DBCKBFUMANTE.Checked := FALSE;
+    ClientDataSet1fumante.AsBoolean:= false;
+
+    //DBckbBebidaAlcoolica.Checked := FALSE;
+    ClientDataSet1consomeBebidaAlcoolica.AsBoolean:= false;
+
     DBCkBSUPLEMENTACAO.Checked := false;
     DBckbDIETA.Checked := false;
     DBCKBFUMANTE.Checked := false;
     DBckbBebidaAlcoolica.Checked := false;
+
+    // IMAGEM ALUNO DEFAULT
+    cxImage1.Picture.Bitmap := NIL;
+    ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+    cxImage1.Style.Color := clWindow;
+    imagemMudou := FALSE;
+
   end;
 end;
 
@@ -1628,7 +1721,7 @@ begin
   inherited;
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO,  INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
-  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORFICHA';
+  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR';
   FDQuery1.Open;
   //BPesquisar.Click;
 
@@ -1722,11 +1815,18 @@ end;
 procedure TF01001.btnNovoFichaClick(Sender: TObject);
 begin
   inherited;
-  With TF01014.CreateNOVO(self, ClientDataSet1idAluno.AsInteger, ClientDataSet1NOMEAluno.ASSTRING) do
+  With TF01014.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
   Begin
     ShowModal;
     Free;
   End;
+
+  // REFRESH DBGRIDBELEZA3
+  CDSFichaAluno.CLOSE;
+  CDSFichaAluno.OPEN;
+
+
+
 end;
 
 procedure TF01001.btnPagamentoClick(Sender: TObject);

@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 929
   OnCreate = FormCreate
-  ExplicitLeft = -60
   ExplicitWidth = 945
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -18,11 +17,12 @@
   inherited PageControl: TPageControl
     Width = 929
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 929
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 921
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -49,7 +49,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pag3
+          Properties.ActivePage = pagPerfil
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -198,7 +198,7 @@
                 DataBinding.DataField = 'telResponsavel'
                 DataBinding.DataSource = DS
                 Properties.CharCase = ecUpperCase
-                Properties.EditMask = '!\(99\)0000-99999;1;_'
+                Properties.EditMask = '!\(99\)9999-99999;1;_'
                 TabOrder = 0
                 Width = 297
               end
@@ -393,9 +393,8 @@
                 Top = 112
                 Width = 193
                 Height = 24
-                DataField = 'idade'
+                DataField = 'IDADE'
                 DataSource = DS
-                ReadOnly = True
                 TabOrder = 9
               end
             end
@@ -969,6 +968,7 @@
                     Font.Style = []
                     ParentFont = False
                     TabOrder = 1
+                    OnChange = DBEditInstrutorChange
                   end
                 end
               end
@@ -989,6 +989,7 @@
                   Height = 30
                   Align = alCustom
                   Caption = 'IMPRIMIR FICHA'
+                  Enabled = False
                   OnClick = btnImprimirFichaClick
                 end
                 object btnNovoFicha: TSpeedButton
@@ -998,6 +999,7 @@
                   Height = 30
                   Align = alCustom
                   Caption = 'NOVO'
+                  Enabled = False
                   OnClick = btnNovoFichaClick
                 end
               end
@@ -1505,7 +1507,7 @@
           end
           item
             Expanded = False
-            FieldName = 'idade'
+            FieldName = 'IDADE'
             Visible = False
           end
           item
@@ -1767,11 +1769,6 @@
       Required = True
       Size = 80
     end
-    object ClientDataSet1idade: TIntegerField
-      FieldName = 'idade'
-      Origin = 'idade'
-      ProviderFlags = [pfInUpdate]
-    end
     object ClientDataSet1dataNascimento: TDateField
       FieldName = 'dataNascimento'
       Origin = 'dataNascimento'
@@ -1822,14 +1819,14 @@
       FieldName = 'tel1'
       Origin = 'tel1'
       ProviderFlags = [pfInUpdate]
-      EditMask = '!\(99\)0000-99999;1;_'
+      EditMask = '!\(99\)9999-99999;1;_'
       Size = 50
     end
     object ClientDataSet1tel2: TStringField
       FieldName = 'tel2'
       Origin = 'tel2'
       ProviderFlags = [pfInUpdate]
-      EditMask = '!\(99\)0000-99999;1;_'
+      EditMask = '!\(99\)9999-99999;1;_'
       Size = 50
     end
     object ClientDataSet1nomeResponsavel: TStringField
@@ -1932,6 +1929,10 @@
       FieldName = 'NOMEINSTRUTORFICHA'
       Size = 50
     end
+    object ClientDataSet1IDADE: TIntegerField
+      FieldKind = fkInternalCalc
+      FieldName = 'IDADE'
+    end
   end
   inherited DataSetProvider1: TDataSetProvider
     Left = 704
@@ -1959,12 +1960,6 @@
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 80
-    end
-    object FDQuery1idade: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idade'
-      Origin = 'idade'
-      ProviderFlags = [pfInUpdate]
     end
     object FDQuery1dataNascimento: TDateField
       AutoGenerateValue = arDefault
@@ -2157,7 +2152,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C002C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00380310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2702,8 +2697,8 @@
   object DSPAtologia: TDataSource
     DataSet = cdsPatologia
     OnDataChange = DSPAtologiaDataChange
-    Left = 734
-    Top = 533
+    Left = 766
+    Top = 453
   end
   object cdsPatologia: TClientDataSet
     Aggregates = <>
@@ -2713,8 +2708,8 @@
     AfterCancel = cdsPatologiaAfterCancel
     AfterDelete = cdsPatologiaAfterDelete
     OnReconcileError = cdsPatologiaReconcileError
-    Left = 702
-    Top = 533
+    Left = 734
+    Top = 453
     object cdsPatologiaidAluno: TIntegerField
       FieldName = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2737,8 +2732,8 @@
   end
   object provPatologia: TDataSetProvider
     DataSet = QPATOLOGIA
-    Left = 670
-    Top = 533
+    Left = 702
+    Top = 453
   end
   object QPATOLOGIA: TFDQuery
     Connection = DModule.FDConnection
@@ -2746,8 +2741,8 @@
       'SELECT AP.*, P.NOMEPATOLOGIA FROM ALUNOPATOLOGIA AP '
       'LEFT OUTER JOIN PATOLOGIA P ON P.IDPATOLOGIA = AP.IDPATOLOGIA '
       'WHERE AP.IDALUNO =:IDA')
-    Left = 638
-    Top = 533
+    Left = 670
+    Top = 453
     ParamData = <
       item
         Name = 'IDA'
@@ -2786,9 +2781,9 @@
     SQL.Strings = (
       
         'select fa.* from fichaAluno fa where fa.idAluno =:idA order by d' +
-        'atacomposicao DESC;')
-    Left = 648
-    Top = 466
+        'atacomposicao DESC, IDFICHAALUNO DESC;')
+    Left = 672
+    Top = 514
     ParamData = <
       item
         Name = 'IDA'
@@ -2826,8 +2821,8 @@
   end
   object pFichaAluno: TDataSetProvider
     DataSet = qFichaAluno
-    Left = 672
-    Top = 466
+    Left = 696
+    Top = 514
   end
   object CDSFichaAluno: TClientDataSet
     Aggregates = <>
@@ -2836,8 +2831,8 @@
     AfterPost = CDSFichaAlunoAfterPost
     AfterCancel = CDSFichaAlunoAfterCancel
     AfterDelete = CDSFichaAlunoAfterDelete
-    Left = 704
-    Top = 466
+    Left = 728
+    Top = 514
     object CDSFichaAlunoidFichaAluno: TIntegerField
       FieldName = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2861,8 +2856,8 @@
   object DSFichaAluno: TDataSource
     DataSet = CDSFichaAluno
     OnDataChange = DSFichaAlunoDataChange
-    Left = 736
-    Top = 466
+    Left = 760
+    Top = 514
   end
   object qTreino: TFDQuery
     Connection = DModule.FDConnection
@@ -3167,8 +3162,8 @@
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42789.512585879630000000
+    ReportOptions.CreateDate = 42779.735011747700000000
+    ReportOptions.LastChange = 42821.756040601900000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3244,7 +3239,7 @@
         end
         object Gradient1: TfrxGradientView
           Left = 151.181200000000000000
-          Top = 56.692949999999990000
+          Top = 56.692950000000000000
           Width = 415.748300000000000000
           Height = 7.559055118110240000
           EndColor = clTeal
@@ -3265,7 +3260,7 @@
           Frame.Width = 0.100000000000000000
           Fill.BackColor = clWhite
           Memo.UTF8W = (
-            ' INICIO DA FICHA: [frxDBDataset1."dataComposicaoFicha"]')
+            ' INICIO DA FICHA: [frxDBDataset1."DATACOMPOSICAO"]')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -3303,7 +3298,7 @@
         RowCount = 0
         object frxDBDataset2nomeExercicio: TfrxMemoView
           Left = 42.330708660000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000020000
           Width = 242.267716540000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset2
@@ -3322,7 +3317,7 @@
         end
         object frxDBDataset2idequipamento: TfrxMemoView
           Left = 0.755905510000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000020000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
           DataField = 'idequipamento'
@@ -3343,7 +3338,7 @@
         end
         object Memo5: TfrxMemoView
           Left = 284.598425200000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000020000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3393,7 +3388,7 @@
         Width = 718.110700000000000000
         object Memo6: TfrxMemoView
           Left = 0.779530000000000000
-          Top = 3.779530000000022000
+          Top = 3.779530000000020000
           Width = 718.110700000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3425,7 +3420,19 @@
   object frxDBDataset2: TfrxDBDataset
     UserName = 'frxDBDataset2'
     CloseDataSource = False
-    DataSource = DSFichaAluno
+    FieldAliases.Strings = (
+      'idFichaAluno=idFichaAluno'
+      'idTreino=idTreino'
+      'idExercicio=idExercicio'
+      'qtdSerie=qtdSerie'
+      'qtdRepeticao=qtdRepeticao'
+      'descricaoTreino=descricaoTreino'
+      'nomeExercicio=nomeExercicio'
+      'idgrupoExercicio=idgrupoExercicio'
+      'descricaoGrupoExercicio=descricaoGrupoExercicio'
+      'idequipamento=idequipamento'
+      'descricaoequipamento=descricaoequipamento')
+    DataSource = DSserieFichaAluno
     BCDToCurrency = False
     Left = 142
     Top = 650
@@ -3460,25 +3467,28 @@
   end
   object DSRelFicha: TDataSource
     DataSet = CDSRelFicha
-    Left = 358
+    Left = 422
     Top = 642
   end
   object qRelFicha: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
       
-        'SELECT a.*, OBJ.DESCRICAOOBJETIVO, INST.NOMEUSUARIO AS NOMEINSTR' +
-        'UTORFICHA FROM ALUNO A'
-      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+        'SELECT a.*, OBJ.DESCRICAOOBJETIVO, FA.NOMEINSTRUTOR AS NOMEINSTR' +
+        'UTORFICHA, '
       
-        'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTORF' +
-        'ICHA'
-      'WHERE A.IDALUNO =:IDA')
-    Left = 262
+        'FA.DATACOMPOSICAO, FA.DATAVENCIMENTO, FA.IDFICHAALUNO AS CODFICH' +
+        'A '
+      'FROM FICHAALUNO FA'
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = FA.IDALUNO '
+      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTOR'
+      'WHERE FA.IDFICHAALUNO =:IDFA')
+    Left = 326
     Top = 642
     ParamData = <
       item
-        Name = 'IDA'
+        Name = 'IDFA'
         DataType = ftInteger
         ParamType = ptInput
         Value = Null
@@ -3487,18 +3497,11 @@
       FieldName = 'idAluno'
       Origin = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object qRelFichanomeAluno: TStringField
       FieldName = 'nomeAluno'
       Origin = 'nomeAluno'
-      Required = True
       Size = 80
-    end
-    object qRelFichaidade: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idade'
-      Origin = 'idade'
     end
     object qRelFichadataNascimento: TDateField
       AutoGenerateValue = arDefault
@@ -3643,55 +3646,58 @@
       FieldName = 'idObjetivo'
       Origin = 'idObjetivo'
     end
-    object qRelFichadataComposicaoFicha: TDateField
+    object qRelFichaidInstrutor: TIntegerField
       AutoGenerateValue = arDefault
-      FieldName = 'dataComposicaoFicha'
-      Origin = 'dataComposicaoFicha'
+      FieldName = 'idInstrutor'
+      Origin = 'idInstrutor'
     end
     object qRelFichaDESCRICAOOBJETIVO: TStringField
-      AutoGenerateValue = arDefault
       FieldName = 'DESCRICAOOBJETIVO'
-      Origin = 'descricaoObjetivo'
+      Origin = 'DESCRICAOOBJETIVO'
       Size = 50
-    end
-    object qRelFichaidInstrutorFicha: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idInstrutorFicha'
-      Origin = 'idInstrutorFicha'
     end
     object qRelFichaNOMEINSTRUTORFICHA: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'NOMEINSTRUTORFICHA'
-      Origin = 'nomeUsuario'
-      Size = 50
+      Origin = 'NOMEINSTRUTORFICHA'
+      Size = 100
+    end
+    object qRelFichaDATACOMPOSICAO: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'DATACOMPOSICAO'
+      Origin = 'DATACOMPOSICAO'
+    end
+    object qRelFichaDATAVENCIMENTO: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'DATAVENCIMENTO'
+      Origin = 'DATAVENCIMENTO'
+    end
+    object qRelFichaCODFICHA: TIntegerField
+      FieldName = 'CODFICHA'
+      Origin = 'CODFICHA'
+      Required = True
     end
   end
   object pRelFicha: TDataSetProvider
     DataSet = qRelFicha
-    Left = 294
+    Left = 358
     Top = 642
   end
   object CDSRelFicha: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelFicha'
-    Left = 326
+    Left = 390
     Top = 642
     object CDSRelFichaidAluno: TIntegerField
       FieldName = 'idAluno'
       Origin = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object CDSRelFichanomeAluno: TStringField
       FieldName = 'nomeAluno'
       Origin = 'nomeAluno'
-      Required = True
       Size = 80
-    end
-    object CDSRelFichaidade: TIntegerField
-      FieldName = 'idade'
-      Origin = 'idade'
     end
     object CDSRelFichadataNascimento: TDateField
       FieldName = 'dataNascimento'
@@ -3810,23 +3816,32 @@
       FieldName = 'idObjetivo'
       Origin = 'idObjetivo'
     end
-    object CDSRelFichadataComposicaoFicha: TDateField
-      FieldName = 'dataComposicaoFicha'
-      Origin = 'dataComposicaoFicha'
+    object CDSRelFichaidInstrutor: TIntegerField
+      FieldName = 'idInstrutor'
+      Origin = 'idInstrutor'
     end
     object CDSRelFichaDESCRICAOOBJETIVO: TStringField
       FieldName = 'DESCRICAOOBJETIVO'
-      Origin = 'descricaoObjetivo'
+      Origin = 'DESCRICAOOBJETIVO'
       Size = 50
-    end
-    object CDSRelFichaidInstrutorFicha: TIntegerField
-      FieldName = 'idInstrutorFicha'
-      Origin = 'idInstrutorFicha'
     end
     object CDSRelFichaNOMEINSTRUTORFICHA: TStringField
       FieldName = 'NOMEINSTRUTORFICHA'
-      Origin = 'nomeUsuario'
-      Size = 50
+      Origin = 'NOMEINSTRUTORFICHA'
+      Size = 100
+    end
+    object CDSRelFichaDATACOMPOSICAO: TDateField
+      FieldName = 'DATACOMPOSICAO'
+      Origin = 'DATACOMPOSICAO'
+    end
+    object CDSRelFichaDATAVENCIMENTO: TDateField
+      FieldName = 'DATAVENCIMENTO'
+      Origin = 'DATAVENCIMENTO'
+    end
+    object CDSRelFichaCODFICHA: TIntegerField
+      FieldName = 'CODFICHA'
+      Origin = 'CODFICHA'
+      Required = True
     end
   end
   object ImageListAUX: TImageList
@@ -3835,7 +3850,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C0101010014008C005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140098005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8511,7 +8526,6 @@
     FieldAliases.Strings = (
       'idAluno=idAluno'
       'nomeAluno=nomeAluno'
-      'idade=idade'
       'dataNascimento=dataNascimento'
       'email=email'
       'sexo=sexo'
@@ -8538,13 +8552,176 @@
       'cpf=cpf'
       'informacaoAdicional=informacaoAdicional'
       'idObjetivo=idObjetivo'
-      'dataComposicaoFicha=dataComposicaoFicha'
+      'idInstrutor=idInstrutor'
       'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO'
-      'idInstrutorFicha=idInstrutorFicha'
-      'NOMEINSTRUTORFICHA=NOMEINSTRUTORFICHA')
+      'NOMEINSTRUTORFICHA=NOMEINSTRUTORFICHA'
+      'DATACOMPOSICAO=DATACOMPOSICAO'
+      'DATAVENCIMENTO=DATAVENCIMENTO'
+      'CODFICHA=CODFICHA')
     DataSource = DSRelFicha
     BCDToCurrency = False
     Left = 118
     Top = 650
+  end
+  object qserieFichaAluno: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      
+        'select s.*, t.descricaoTreino, e.nomeExercicio, e.idgrupoExercic' +
+        'io, '
+      
+        'ge.descricaoGrupoExercicio, eq.idequipamento, eq.descricaoequipa' +
+        'mento '
+      'from seriefichaAluno s '
+      'left outer join treino t on t.idTreino = s.idTreino'
+      'left outer join exercicio e on e.idexercicio = s.idExercicio'
+      
+        'left outer join equipamento eq on eq.idequipamento = e.idequipam' +
+        'ento'
+      
+        'left outer join grupoExercicio ge on ge.idGrupoExercicio = e.idg' +
+        'rupoExercicio'
+      
+        'left outer join fichaAluno fa on fa.idFichaAluno = s.idFichaAlun' +
+        'o  '
+      'where fa.idFichaAluno =:idFA'
+      'ORDER BY S.IDTREINO,  e.idgrupoExercicio;')
+    Left = 540
+    Top = 643
+    ParamData = <
+      item
+        Name = 'IDFA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qserieFichaAlunoidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
+      Origin = 'idFichaAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qserieFichaAlunoidTreino: TIntegerField
+      FieldName = 'idTreino'
+      Origin = 'idTreino'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qserieFichaAlunoidExercicio: TIntegerField
+      FieldName = 'idExercicio'
+      Origin = 'idExercicio'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qserieFichaAlunoqtdSerie: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdSerie'
+      Origin = 'qtdSerie'
+    end
+    object qserieFichaAlunoqtdRepeticao: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdRepeticao'
+      Origin = 'qtdRepeticao'
+    end
+    object qserieFichaAlunodescricaoTreino: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoTreino'
+      Origin = 'descricaoTreino'
+      ProviderFlags = []
+      Size = 50
+    end
+    object qserieFichaAlunonomeExercicio: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeExercicio'
+      Origin = 'nomeExercicio'
+      ProviderFlags = []
+      Size = 50
+    end
+    object qserieFichaAlunoidgrupoExercicio: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idgrupoExercicio'
+      Origin = 'idGrupoExercicio'
+      ProviderFlags = []
+    end
+    object qserieFichaAlunodescricaoGrupoExercicio: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoGrupoExercicio'
+      Origin = 'descricaoGrupoExercicio'
+      ProviderFlags = []
+      Size = 50
+    end
+    object qserieFichaAlunoidequipamento: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idequipamento'
+      Origin = 'idEquipamento'
+      ProviderFlags = []
+    end
+    object qserieFichaAlunodescricaoequipamento: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoequipamento'
+      Origin = 'descricaoEquipamento'
+      ProviderFlags = []
+      Size = 50
+    end
+  end
+  object pserieFichaAluno: TDataSetProvider
+    DataSet = qserieFichaAluno
+    Left = 572
+    Top = 643
+  end
+  object CDSserieFichaAluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pserieFichaAluno'
+    Left = 596
+    Top = 643
+    object CDSserieFichaAlunoidFichaAluno: TIntegerField
+      FieldName = 'idFichaAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSserieFichaAlunoidTreino: TIntegerField
+      FieldName = 'idTreino'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSserieFichaAlunoidExercicio: TIntegerField
+      FieldName = 'idExercicio'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSserieFichaAlunoqtdSerie: TIntegerField
+      FieldName = 'qtdSerie'
+    end
+    object CDSserieFichaAlunoqtdRepeticao: TIntegerField
+      FieldName = 'qtdRepeticao'
+    end
+    object CDSserieFichaAlunodescricaoTreino: TStringField
+      FieldName = 'descricaoTreino'
+      Size = 50
+    end
+    object CDSserieFichaAlunonomeExercicio: TStringField
+      FieldName = 'nomeExercicio'
+      Size = 50
+    end
+    object CDSserieFichaAlunoidgrupoExercicio: TIntegerField
+      FieldName = 'idgrupoExercicio'
+    end
+    object CDSserieFichaAlunodescricaoGrupoExercicio: TStringField
+      FieldName = 'descricaoGrupoExercicio'
+      Size = 50
+    end
+    object CDSserieFichaAlunoidequipamento: TIntegerField
+      FieldName = 'idequipamento'
+    end
+    object CDSserieFichaAlunodescricaoequipamento: TStringField
+      FieldName = 'descricaoequipamento'
+      Size = 50
+    end
+  end
+  object DSserieFichaAluno: TDataSource
+    DataSet = CDSserieFichaAluno
+    Left = 620
+    Top = 643
   end
 end

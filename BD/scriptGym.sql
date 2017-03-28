@@ -404,7 +404,7 @@ set global event_scheduler = on;
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 -- DROP EVENT renovaMatricula;
 
--- Exclui alunoPatologia, alunoModalidade, serie e pagamento em aberto do Aluno excluído
+-- Exclui alunoPatologia, alunoModalidade, fichaaluno e pagamento em aberto do Aluno excluído
 DELIMITER //
 CREATE TRIGGER TRIGGER_Aluno_Delete 
 AFTER DELETE ON aluno for each row
@@ -415,12 +415,23 @@ BEGIN
     -- Delete AlunoModalidade
 	DELETE FROM alunoModalidade WHERE alunomodalidade.idAluno = old.idAluno;
     
-    -- Delete Serie
-	DELETE FROM serie WHERE serie.idAluno = old.idAluno;
+    -- Delete fichaaluno
+	DELETE FROM fichaaluno WHERE fichaaluno.idAluno = old.idAluno;
     
     -- Delete Pagamentos em aberto
 	DELETE FROM pagamento WHERE pagamento.idAluno = old.idAluno and pagamento.idstatusPagamento = 1;
     
+END //
+DELIMITER ;
+
+-- Exclui SERIEFICHAALUNO da FichaAluno Excluída
+DELIMITER //
+CREATE TRIGGER TRIGGER_seriefichaaluno_Delete 
+AFTER DELETE ON fichaaluno for each row
+BEGIN
+	-- Delete fichapredefinidaserie
+	DELETE FROM seriefichaaluno WHERE seriefichaaluno.idFichaaluno = old.idFichaAluno;
+
 END //
 DELIMITER ;
 

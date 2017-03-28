@@ -2,8 +2,6 @@ inherited F01014: TF01014
   Caption = 'F01014'
   ClientHeight = 670
   ClientWidth = 833
-  ExplicitLeft = -62
-  ExplicitTop = -294
   ExplicitWidth = 849
   ExplicitHeight = 709
   PixelsPerInch = 96
@@ -99,7 +97,7 @@ inherited F01014: TF01014
               Width = 786
               object btnAddExercicio: TSpeedButton
                 Left = 704
-                Top = 15
+                Top = 19
                 Width = 71
                 Height = 40
                 Caption = 'ADD'
@@ -417,7 +415,7 @@ inherited F01014: TF01014
               OnClick = btnLimparFichaClick
             end
             object btnImportarFicha: TSpeedButton
-              Left = 478
+              Left = 474
               Top = 3
               Width = 151
               Height = 30
@@ -579,7 +577,7 @@ inherited F01014: TF01014
     Left = 760
     Top = 8
     Bitmap = {
-      494C01010F002C00D00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00DC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -1136,11 +1134,7 @@ inherited F01014: TF01014
       
         'left outer join grupoExercicio ge on ge.idGrupoExercicio = e.idg' +
         'rupoExercicio'
-      
-        'left outer join fichaAluno fa on fa.idFichaAluno = s.idFichaAlun' +
-        'o '
-      'left outer join Aluno a on a.idAluno = fa.idAluno '
-      'where fa.idFichaAluno =:idFA'
+      'where S.idFichaAluno =:idFA'
       'ORDER BY S.IDTREINO,  e.idgrupoExercicio;')
     Left = 596
     Top = 59
@@ -1232,6 +1226,7 @@ inherited F01014: TF01014
     AfterPost = CDSserieFichaAlunoAfterPost
     AfterCancel = CDSserieFichaAlunoAfterCancel
     AfterDelete = CDSserieFichaAlunoAfterDelete
+    OnReconcileError = CDSserieFichaAlunoReconcileError
     Left = 668
     Top = 59
     object CDSserieFichaAlunoidFichaAluno: TIntegerField
