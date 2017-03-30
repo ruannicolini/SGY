@@ -107,6 +107,8 @@ type
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
     procedure Button1Click(Sender: TObject);
+    procedure EditBExercicioDepoisPesquisa(Sender: TObject;
+      var query_result: TDataSet);
   private
     { Private declarations }
   public
@@ -172,24 +174,34 @@ end;
 
 procedure TF01014.BSalvarClick(Sender: TObject);
 begin
-  if(ds.State = dsInsert)then
-  begin
-    inherited;
-    close;
-  end else
-  begin
-    if(ds.State = dsEdit)then
-    begin
-        inherited;
-    end;
-  end;
+  IF(CDSserieFichaAluno.RecordCount > 0)THEN
+  BEGIN
 
-  BFirst.Visible := FALSE;
-  BPrior.Visible := FALSE;
-  BNext.Visible := FALSE;
-  BLast.Visible := FALSE;
-  bRelatorio.Visible := FALSE;
-  tbFiltros.TabVisible := false;
+      if(ds.State = dsInsert)then
+      begin
+        inherited;
+        close;
+      end else
+      begin
+        if(ds.State = dsEdit)then
+        begin
+            inherited;
+        end;
+      end;
+
+      BFirst.Visible := FALSE;
+      BPrior.Visible := FALSE;
+      BNext.Visible := FALSE;
+      BLast.Visible := FALSE;
+      bRelatorio.Visible := FALSE;
+      tbFiltros.TabVisible := false;
+
+  END ELSE
+  BEGIN
+    ShowMessage('INFORME OS EXERCÍCIOS DA FICHA');
+  END;
+
+
 end;
 
 procedure TF01014.btnAddExercicioClick(Sender: TObject);
@@ -207,15 +219,18 @@ begin
           DSserieFichaAluno.DataSet.Append;
           CDSserieFichaAlunoidFichaAluno .AsInteger := ClientDataSet1idFichaAluno.AsInteger;
           CDSserieFichaAlunoidTreino.AsInteger := strtoint(Edittreino.Text);
-          //CDSserieFichaAlunodescricaoTreino.AsString := EditBTreino.Text;
 
           CDSserieFichaAlunoidExercicio.AsInteger := strtoint(Editexercicio.Text);
-          //CDSserieFichaAlunonomeExercicio.AsString := EditBExercicio.Text;
 
-          CDSserieFichaAlunoqtdSerie.AsInteger := strtoint(editSerie.Text);
+          IF(editSerie.Enabled = FALSE)THEN
+          BEGIN
+            //NESSE CASO É UM EXERCICIO COM UNIDADE "TEMPO"
+            CDSserieFichaAlunoqtdSerie.AsInteger := 1;
+          END ELSE
+          BEGIN
+            CDSserieFichaAlunoqtdSerie.AsInteger := strtoint(editSerie.Text);
+          END;
           CDSserieFichaAlunoqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
-
-          //CDSserieFichaAlunodescricaoGrupoExercicio.AsString := EditBGrupo.Text;
 
           //Limpa EditBelezaExercicio
           Editexercicio.Clear;
@@ -226,6 +241,7 @@ begin
 
           CDSserieFichaAluno.Close;
           CDSserieFichaAluno.Open;
+          editSerie.Enabled := TRUE;
 
       END ELSE
       BEGIN
@@ -470,6 +486,21 @@ begin
   query_result.ParamByName('idG').Value := strtoint(Editgrupo.Text);
   query_result.ParamByName('idFA').Value := (ClientDataSet1idFichaAluno.AsInteger);
   query_result.ParamByName('idT').Value := strtoint(Edittreino.Text);
+end;
+
+procedure TF01014.EditBExercicioDepoisPesquisa(Sender: TObject;
+  var query_result: TDataSet);
+begin
+  inherited;
+
+  // CONTROLE DE EDITSERIE
+  IF( query_result.FieldByName('tipomedida').AsString = 'U')THEN
+  BEGIN
+    editSerie.Enabled := TRUE;
+  END ELSE
+  BEGIN
+    editSerie.Enabled := FALSE;
+  END;
 end;
 
 procedure TF01014.EditBTreinoKeyPress(Sender: TObject; var Key: Char);

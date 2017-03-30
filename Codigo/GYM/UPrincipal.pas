@@ -223,7 +223,7 @@ begin
   end;
 
 
-
+     {
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
@@ -232,7 +232,7 @@ begin
     // FIM DE TESTE
 
 
-    {
+    }
 
 
 
@@ -282,6 +282,12 @@ begin
       Dmodule.senha := Dmodule.qAux.FieldByName('senha').AsString;
       Dmodule.idTipoUsuario := Dmodule.qAux.FieldByName('idTipoUsuario').AsInteger;
 
+      if ( Dmodule.qAux.FieldByName('ativo').AsBoolean = FALSE ) then
+      begin
+          ShowMessage('Usuário não está ativo no sistema.');
+          Application.Terminate;
+      end;
+
 
       //showmessage(
       //Dmodule.qAux.FieldByName('idUsuario').AsString + #13 +
@@ -307,7 +313,7 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   Arquivo.EraseSection('Login');
   Arquivo.Free;
-  }
+
 
 end;
 

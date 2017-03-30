@@ -14,7 +14,7 @@ uses
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
   cxDBEdit, cxTextEdit, cxMaskEdit, cxSpinEdit, Vcl.Mask, Vcl.DBCtrls,
   DBEditBeleza, dxBarBuiltInMenu, EditBeleza, cxPC, XiPanel, cxDropDownEdit,
-  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, cxCheckBox;
 
 type
   TF01008 = class(TFBase)
@@ -46,6 +46,9 @@ type
     EditPesqTipoUsuario: TEditBeleza;
     cbxPesqNome: TCheckBox;
     EditPesqNome: TEdit;
+    FDQuery1ativo: TBooleanField;
+    ClientDataSet1ativo: TBooleanField;
+    cxDBCheckBox1: TcxDBCheckBox;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
@@ -59,6 +62,7 @@ type
     procedure bRelatorioClick(Sender: TObject);
     procedure BExcluirClick(Sender: TObject);
     procedure EditPesqTipoUsuarioKeyPress(Sender: TObject; var Key: Char);
+    procedure DSStateChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -209,6 +213,15 @@ begin
     key := #0;
     // o q vc quer fazer no enter
   end;
+end;
+
+procedure TF01008.DSStateChange(Sender: TObject);
+begin
+  inherited;
+  IF(DS.DataSet.State = dsInsert)THEN
+  BEGIN
+    ClientDataSet1ativo.AsBoolean := TRUE;
+  END;
 end;
 
 procedure TF01008.EditPesqNomeChange(Sender: TObject);

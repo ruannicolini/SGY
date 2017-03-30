@@ -1,5 +1,6 @@
 inherited F01006: TF01006
   Caption = 'F01006'
+  ExplicitLeft = -47
   ExplicitWidth = 834
   ExplicitHeight = 557
   PixelsPerInch = 96
@@ -106,9 +107,9 @@ inherited F01006: TF01006
           TabOrder = 3
         end
         object DBEditBeleza1: TDBEditBeleza
-          Left = 74
+          Left = 73
           Top = 129
-          Width = 319
+          Width = 320
           Height = 21
           Color = 15461355
           DataField = 'descricaoEquipamento'
@@ -136,9 +137,9 @@ inherited F01006: TF01006
           NovoLayout = False
         end
         object DBEditBeleza2: TDBEditBeleza
-          Left = 74
+          Left = 73
           Top = 172
-          Width = 319
+          Width = 320
           Height = 21
           Color = 15461355
           DataField = 'descricaoGrupoExercicio'
@@ -164,6 +165,57 @@ inherited F01006: TF01006
           campo_outro_edit = 'idGrupoExercicio'
           CorBorda = clGray
           NovoLayout = False
+        end
+        object GroupBox1: TGroupBox
+          Left = 211
+          Top = 206
+          Width = 182
+          Height = 48
+          Hint = 'TESTE'
+          Caption = 'ID YOUTUBE'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 6
+          object DBEdit5: TDBEdit
+            Left = 8
+            Top = 20
+            Width = 165
+            Height = 21
+            BevelKind = bkFlat
+            DataField = 'idYoutube'
+            DataSource = DS
+            TabOrder = 0
+          end
+        end
+        object cxDBRadioGroup1: TcxDBRadioGroup
+          Left = 24
+          Top = 206
+          Caption = 'MEDIDA'
+          DataBinding.DataField = 'tipoMedida'
+          DataBinding.DataSource = DS
+          Properties.Columns = 2
+          Properties.Items = <
+            item
+              Caption = 'TEMPO'
+              Value = 'T'
+            end
+            item
+              Caption = 'UNIDADE'
+              Value = 'U'
+            end>
+          Style.BorderStyle = ebsUltraFlat
+          Style.Edges = [bLeft, bTop, bRight, bBottom]
+          Style.LookAndFeel.Kind = lfUltraFlat
+          Style.LookAndFeel.NativeStyle = True
+          StyleDisabled.LookAndFeel.Kind = lfUltraFlat
+          StyleDisabled.LookAndFeel.NativeStyle = True
+          StyleFocused.LookAndFeel.Kind = lfUltraFlat
+          StyleFocused.LookAndFeel.NativeStyle = True
+          StyleHot.LookAndFeel.Kind = lfUltraFlat
+          StyleHot.LookAndFeel.NativeStyle = True
+          TabOrder = 7
+          Height = 48
+          Width = 177
         end
       end
     end
@@ -360,6 +412,15 @@ inherited F01006: TF01006
       ProviderFlags = [pfInWhere]
       Size = 50
     end
+    object ClientDataSet1idYoutube: TStringField
+      FieldName = 'idYoutube'
+      Size = 45
+    end
+    object ClientDataSet1tipoMedida: TStringField
+      FieldName = 'tipoMedida'
+      FixedChar = True
+      Size = 1
+    end
   end
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
@@ -409,10 +470,23 @@ inherited F01006: TF01006
       ProviderFlags = []
       Size = 50
     end
+    object FDQuery1idYoutube: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'idYoutube'
+      Origin = 'idYoutube'
+      Size = 45
+    end
+    object FDQuery1tipoMedida: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoMedida'
+      Origin = 'tipoMedida'
+      FixedChar = True
+      Size = 1
+    end
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00D00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

@@ -381,6 +381,12 @@ type
     CDSRelFichaCODFICHA: TIntegerField;
     ClientDataSet1IDADE: TIntegerField;
     DBEdit14: TDBEdit;
+    ClientDataSet1situacao: TStringField;
+    EditPesqIdInstrutor: TEdit;
+    EditPesqInstrutor: TEditBeleza;
+    cbxPesqInstrutor: TCheckBox;
+    qserieFichaAlunotipomedida: TStringField;
+    CDSserieFichaAlunotipomedida: TStringField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -448,6 +454,7 @@ type
     procedure DBGridBeleza3DblClick(Sender: TObject);
     procedure btnNovoFichaClick(Sender: TObject);
     procedure DBEditInstrutorChange(Sender: TObject);
+    procedure EditPesqInstrutorChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -528,22 +535,22 @@ begin
             if(Screen.Width >= 1366)then
             begin
                   //mantem definições padrão, PROPORCIONALMENTE;
-
+                  DBGridBeleza1.Columns[i].Expanded := TRUE;
             end else
             begin
                 if(Screen.Width >= 1360)then
                 begin
-                      DBGridBeleza1.Columns[i].Width := 788; // nomeAluno
+                      DBGridBeleza1.Columns[i].Width := 482; // nomeAluno
                 end else
                 begin
                       if(Screen.Width >= 1280)then
                       begin
-                            DBGridBeleza1.Columns[i].Width := 708; // nomeAluno
+                            DBGridBeleza1.Columns[i].Width := 430; // nomeAluno
                       end else
                       begin
                             if(Screen.Width >= 1024)then
                             begin
-                                DBGridBeleza1.Columns[i].Width := 450; // nomeAluno
+                                DBGridBeleza1.Columns[i].Width := 300; // nomeAluno
                             end;
                       end;
                 end;
@@ -624,57 +631,65 @@ begin
       IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
       BEGIN
 
-          // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
-          IF(DSModalidade.DataSet.RecordCount = 0)THEN
+          IF NOT(ClientDataSet1idInstrutor.IsNull)THEN
           BEGIN
-            ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
-          END;
 
-
-          {
-          // SALVA FOTO DO ALUNO BLOB
-          IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
-          BEGIN
-            aDest:= tbitmap.create;
-            aDest.Width := 200;
-            aDest.Height := 113;
-            aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
-            //ClientDataSet1foto.Assign(camera.CapturedBitmap);
-            ClientDataSet1foto.Assign(aDest);
-          END;
-          }
-
-
-          //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
-          if(imagemMudou = true)then
-          begin
-              //SALVA FOTO PASTA
-              IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+              // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
+              IF(DSModalidade.DataSet.RecordCount = 0)THEN
               BEGIN
-                CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+                ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
               END;
-              cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
-          end;
-          imagemMudou := false;
-
-          //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
-          cxPageControl1.ActivePageIndex := 0;
 
 
-          //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
-          inherited;
+              {
+              // SALVA FOTO DO ALUNO BLOB
+              IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
+              BEGIN
+                aDest:= tbitmap.create;
+                aDest.Width := 200;
+                aDest.Height := 113;
+                aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
+                //ClientDataSet1foto.Assign(camera.CapturedBitmap);
+                ClientDataSet1foto.Assign(aDest);
+              END;
+              }
 
-          //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
-          IF(cdsPatologia.State = dsEdit)THEN
-          begin
-              cdsPatologia.Post;
-          end;
-          BTNCANCELAR.Enabled := FALSE;
-          BTNALTERAR.Caption := 'ALTERAR';
-          cxDBMemo2.ReadOnly:= TRUE;
 
-          //COR DO CAMPO CPF
-          DBEdit9.Font.Color := clblack;
+              //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
+              if(imagemMudou = true)then
+              begin
+                  //SALVA FOTO PASTA
+                  IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+                  BEGIN
+                    CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+                  END;
+                  cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+              end;
+              imagemMudou := false;
+
+              //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+              cxPageControl1.ActivePageIndex := 0;
+
+
+              //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
+              inherited;
+
+              //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
+              IF(cdsPatologia.State = dsEdit)THEN
+              begin
+                  cdsPatologia.Post;
+              end;
+              BTNCANCELAR.Enabled := FALSE;
+              BTNALTERAR.Caption := 'ALTERAR';
+              cxDBMemo2.ReadOnly:= TRUE;
+
+              //COR DO CAMPO CPF
+              DBEdit9.Font.Color := clblack;
+
+          END ELSE
+          BEGIN
+            ShowMessage('INFORME UM INSTRUTOR PARA O ALUNO (ABA FICHA DE EXERCÍCIOS)');
+          END;
 
       END ELSE
       BEGIN
@@ -871,6 +886,10 @@ begin
   BEGIN
     FDQuery1.SQL.Add(' and a.idaluno in (select idaluno from pagamento where curdate() > dataVencimento and idStatusPagamento = 1 group by idaluno) ');
   END;
+  if(cbxPesqInstrutor.Checked = true)then
+  BEGIN
+    FDQuery1.SQL.Add(' and a.idinstrutor = ' + EditPesqIdInstrutor.Text);
+  END;
 
   if(cbxPesqSemFichaExercicios.Checked = true)then
   BEGIN
@@ -1030,6 +1049,18 @@ begin
   BEGIN
     ClientDataSet1idADE.AsInteger := (DateUtils.YearsBetween(DATE, ClientDataSet1dataNascimento.AsDateTime));
   END;
+
+  //SITUAÇÃO DO ALUNO
+  DModule.qAux.SQL.Text := 'SELECT * FROM alunomodalidade where idAluno = ' + ClientDataSet1idAluno.AsString ;
+  DModule.qAux.Close;
+  DModule.qAux.Open;
+  if(DModule.qAux.RecordCount > 0)then
+  begin
+    ClientDataSet1situacao.AsString := 'ATIVO';
+  end else
+  begin
+    ClientDataSet1situacao.AsString := 'INATIVO';
+  end;
 
 end;
 
@@ -1446,6 +1477,17 @@ procedure TF01001.EditBeleza1ButtonClick(Sender: TObject;
 begin
   inherited;
   query_result.ParamByName('idA').Value := (ClientDataSet1idAluno.AsInteger);
+end;
+
+procedure TF01001.EditPesqInstrutorChange(Sender: TObject);
+begin
+  inherited;
+  if(  (EditPesqInstrutor.Text = '')or (EditPesqInstrutor.Text = ' '))then
+  begin
+    cbxPesqInstrutor.Checked := false;
+      EditPesqIdInstrutor.Clear;
+  end else
+    cbxPesqInstrutor.Checked := true;
 end;
 
 procedure TF01001.EditPesqModalidadeChange(Sender: TObject);

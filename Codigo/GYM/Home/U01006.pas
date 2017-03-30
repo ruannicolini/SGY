@@ -13,7 +13,7 @@ uses
   DBGridBeleza, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, cxGraphics,
   cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
   cxDBEdit, cxTextEdit, cxMaskEdit, cxSpinEdit, EditBeleza, DBEditBeleza,
-  Vcl.Mask, Vcl.DBCtrls;
+  Vcl.Mask, Vcl.DBCtrls, cxGroupBox, cxRadioGroup;
 
 type
   TF01006 = class(TFBase)
@@ -47,6 +47,13 @@ type
     EditPesqGrupo: TEditBeleza;
     EditPesqIdGrupo: TEdit;
     cbxPesqGrupo: TCheckBox;
+    GroupBox1: TGroupBox;
+    DBEdit5: TDBEdit;
+    FDQuery1idYoutube: TStringField;
+    ClientDataSet1idYoutube: TStringField;
+    cxDBRadioGroup1: TcxDBRadioGroup;
+    FDQuery1tipoMedida: TStringField;
+    ClientDataSet1tipoMedida: TStringField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure BExcluirClick(Sender: TObject);
@@ -58,6 +65,7 @@ type
     procedure btnFiltrarClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
     procedure EditPesqEquipamentoKeyPress(Sender: TObject; var Key: Char);
+    procedure DSStateChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -202,6 +210,15 @@ begin
     key := #0;
     // o q vc quer fazer no enter
   end;
+end;
+
+procedure TF01006.DSStateChange(Sender: TObject);
+begin
+  inherited;
+  IF(DS.State = dsInsert)THEN
+  BEGIN
+    ClientDataSet1tipoMedida.AsString := 'U';
+  END;
 end;
 
 procedure TF01006.EditPesqDescricaoChange(Sender: TObject);

@@ -79,9 +79,6 @@ type
     procedure CDSSerieFichaAfterCancel(DataSet: TDataSet);
     procedure CDSSerieFichaAfterDelete(DataSet: TDataSet);
     procedure CDSSerieFichaAfterPost(DataSet: TDataSet);
-    procedure CDSSerieFichaReconcileError(DataSet: TCustomClientDataSet;
-      E: EReconcileError; UpdateKind: TUpdateKind;
-      var Action: TReconcileAction);
     procedure EditBExercicioButtonClick(Sender: TObject;
       var query_result: TFDQuery);
     procedure EditgrupoChange(Sender: TObject);
@@ -96,6 +93,12 @@ type
     procedure BtnLimparFiltrosClick(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure bRelatorioClick(Sender: TObject);
+    procedure EdittreinoChange(Sender: TObject);
+    procedure DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure CDSSerieFichaReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
     { Private declarations }
   public
@@ -163,16 +166,23 @@ procedure TF01005.BSalvarClick(Sender: TObject);
 begin
   if TRIM(DBEdit2.Text) <> '' then
   begin
-      inherited;
-      //limpa campos da ficha;
-      Edittreino.Clear;
-      EditBTreino.Clear;
-      Editgrupo.Clear;
-      EditBGrupo.Clear;
-      Editexercicio.Clear;
-      EditBExercicio.Clear;
-      editSerie.Clear;
-      editRepeticoes.Clear;
+    if(CDSSerieFicha.RecordCount > 0)then
+    begin
+        inherited;
+        //limpa campos da ficha;
+        Edittreino.Clear;
+        EditBTreino.Clear;
+        Editgrupo.Clear;
+        EditBGrupo.Clear;
+        Editexercicio.Clear;
+        EditBExercicio.Clear;
+        editSerie.Clear;
+        editRepeticoes.Clear;
+    end else
+  begin
+    ShowMessage('INFORME OS EXERCÍCIOS DA FICHA');
+  end;
+
   end else
   begin
     ShowMessage('INFORME DESCRIÇÃO');
@@ -199,10 +209,19 @@ begin
   if MessageDlg('DESEJA APAGAR TODOS OS EXERCÍCIOS DA FICHA?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
       TRY
+        CDSSerieFicha.First;
+        while not CDSSerieFicha.IsEmpty do
+        BEGIN
+          ShowMessage(INTTOSTR(CDSSerieFicha.RecordCount));
+          CDSSerieFicha.Delete;
+        END;
+        ShowMessage('FIM: ' + INTTOSTR(CDSSerieFicha.RecordCount));
+        {
         DModule.qAux.SQL.Text := 'DELETE FROM FichaPreDefinidaSerie WHERE idFichaPreDefinida =:IDF';
         DModule.qAux.ParamByName('IDF').AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
         DModule.qAux.Close;
         DModule.qAux.ExecSQL;
+        }
 
         //PESQUISA FICHA DE EXERCICIO
         qSerieFicha.Params[0].AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
@@ -249,7 +268,7 @@ procedure TF01005.CDSSerieFichaReconcileError(DataSet: TCustomClientDataSet;
   E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
   inherited;
-  ShowMessage(e.Message);
+  ShowMessage(E.Message);
 end;
 
 procedure TF01005.ClientDataSet1AfterInsert(DataSet: TDataSet);
@@ -257,6 +276,20 @@ begin
   inherited;
   //
   ClientDataSet1idFichaPreDefinida.AsInteger := DModule.buscaProximoParametro('fichaPreDefinida');
+end;
+
+procedure TF01005.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = 46) then
+  //Deleta Exercício da série
+  begin
+    if MessageDlg('Deseja Apagar Item [' + CDSserieFichanomeExercicio.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+        CDSSerieFicha.Delete;
+    end;
+  end;
 end;
 
 procedure TF01005.DSDataChange(Sender: TObject; Field: TField);
@@ -285,8 +318,8 @@ procedure TF01005.EditBExercicioButtonClick(Sender: TObject;
 begin
   inherited;
   query_result.ParamByName('idG').Value := strtoint(Editgrupo.Text);
-  //query_result.ParamByName('idT').Value := strtoint(Edittreino.Text);
-  query_result.ParamByName('idF').Value := (ClientDataSet1idFichaPreDefinida.AsInteger);
+  query_result.ParamByName('idFA').Value := (ClientDataSet1idFichaPreDefinida.AsInteger);
+  query_result.ParamByName('idT').Value := strtoint(Edittreino.Text);
 end;
 
 procedure TF01005.EditBTreinoKeyPress(Sender: TObject; var Key: Char);
@@ -327,6 +360,24 @@ begin
     cbxPesqDescricao.Checked := true;
   end else
     cbxPesqDescricao.Checked := false;
+end;
+
+procedure TF01005.EdittreinoChange(Sender: TObject);
+begin
+  inherited;
+  IF TRIM(Edittreino.Text) <> '' THEN
+  BEGIN
+    EditBExercicio.Enabled := TRUE;
+    Editexercicio.Enabled := TRUE;
+    EditBExercicio.Clear;
+    Editexercicio.Clear;
+  END ELSE
+  BEGIN
+    EditBExercicio.Enabled := FALSE;
+    Editexercicio.Enabled := FALSE;
+    EditBExercicio.Clear;
+    Editexercicio.Clear;
+  END;
 end;
 
 procedure TF01005.SpeedButton2Click(Sender: TObject);
@@ -370,6 +421,10 @@ begin
           CDSSerieFichaqtdSerie.AsInteger := strtoint(editSerie.Text);
           CDSSerieFichaqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
           CDSSerieFicha.Post;
+
+          //Limpa EditBelezaExercicio
+          Editexercicio.Clear;
+          EditBexercicio.Clear;
 
           //REFRESH
           qSerieFicha.Params[0].AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;

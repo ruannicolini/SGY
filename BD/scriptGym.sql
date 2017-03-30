@@ -36,7 +36,8 @@ idusuario int primary key not null,
 nomeUsuario varchar(50) not null,
 username varchar(50) not null,
 senha varchar(150) not null,
-idTipoUsuario int not null
+idTipoUsuario int not null,
+ativo tinyint(1)
 );
 
 create table Pagamento(
@@ -128,7 +129,9 @@ create table Exercicio(
 idExercicio int primary key not null,
 nomeExercicio varchar(50),
 idEquipamento int,
-idGrupoExercicio int not null
+idGrupoExercicio int not null,
+tipoMedida char(1), /* T = Tempo; R = Repe*/
+idYoutube varchar(45)
 );
 
 create table FichaPreDefinida(
@@ -220,7 +223,7 @@ INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(9,
 INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(12,'MODALIDADE','01012', 1);
 
 -- CADATRA USUARIO PADRAO INICIAL
-INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO) VALUES(1,'ADMINISTRADOR', 'admin','21232F297A57A5A743894A0E4A801FC3',1);
+INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO, ATIVO) VALUES(1,'ADMINISTRADOR', 'admin','21232F297A57A5A743894A0E4A801FC3',1,TRUE);
 
 -- CADASTRAR TODOS OS TIPOS DE USUARIO: ADMIN E INSTRUTOR
 INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(1,'ADMINISTRADOR');

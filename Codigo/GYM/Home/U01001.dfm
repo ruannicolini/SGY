@@ -1,9 +1,9 @@
 ﻿inherited F01001: TF01001
   Caption = 'F01001'
   ClientHeight = 741
-  ClientWidth = 929
+  ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitWidth = 945
+  ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
   TextHeight = 13
@@ -15,25 +15,25 @@
     Caption = 'TEL'
   end
   inherited PageControl: TPageControl
-    Width = 929
+    Width = 1008
     Height = 706
     TabStop = False
-    ExplicitWidth = 929
+    ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 921
+      ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
-        Width = 921
+        Width = 1000
         Height = 678
-        ExplicitWidth = 921
+        ExplicitWidth = 1000
         ExplicitHeight = 678
         object cxPageControl1: TcxPageControl
           Left = 2
           Top = 15
-          Width = 917
+          Width = 996
           Height = 661
           Align = alClient
           BiDiMode = bdLeftToRight
@@ -60,7 +60,7 @@
           LookAndFeel.NativeStyle = True
           TabSlants.Positions = [spLeft, spRight]
           ClientRectBottom = 630
-          ClientRectRight = 917
+          ClientRectRight = 996
           ClientRectTop = 0
           object pagPerfil: TcxTabSheet
             Caption = 'PERFIL'
@@ -941,9 +941,9 @@
                     mostrar_Botao = True
                     sql.Strings = (
                       
-                        'select idusuario, nomeusuario, idTipoUsuario from usuario where ' +
-                        'nomeusuario like :varDescricao and (idtipousuario = 2 or idtipou' +
-                        'suario =1);')
+                        'select idusuario, nomeusuario, ativo,  idTipoUsuario from usuari' +
+                        'o where nomeusuario like :varDescricao and ativo = true and (idt' +
+                        'ipousuario = 2 or idtipousuario =1);')
                     database = 'GYM'
                     campo = 'nomeusuario'
                     Sempre_Mostrar_Janela = False
@@ -1418,22 +1418,22 @@
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 921
+      ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
-        Width = 921
-        ExplicitWidth = 921
+        Width = 1000
+        ExplicitWidth = 1000
         inherited Panel1: TPanel
-          Width = 912
-          ExplicitWidth = 912
+          Width = 991
+          ExplicitWidth = 991
           inherited BtnLimparFiltros: TButton
-            Left = 867
-            ExplicitLeft = 867
+            Left = 946
+            ExplicitLeft = 946
           end
         end
       end
       inherited DBGridBeleza1: TDBGridBeleza
-        Width = 921
+        Width = 1000
         Height = 567
         Columns = <
           item
@@ -1448,7 +1448,7 @@
             Expanded = False
             FieldName = 'nomeAluno'
             Title.Caption = 'ALUNO'
-            Width = 792
+            Width = 482
             Visible = True
           end
           item
@@ -1457,7 +1457,7 @@
             FieldName = 'cpf'
             Title.Alignment = taCenter
             Title.Caption = 'CPF'
-            Width = 110
+            Width = 120
             Visible = True
           end
           item
@@ -1466,7 +1466,7 @@
             FieldName = 'tel1'
             Title.Alignment = taCenter
             Title.Caption = 'TEL'
-            Width = 110
+            Width = 120
             Visible = True
           end
           item
@@ -1475,7 +1475,23 @@
             FieldName = 'dataNascimento'
             Title.Alignment = taCenter
             Title.Caption = 'DATA NASC.'
-            Width = 110
+            Width = 120
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'situacao'
+            Title.Alignment = taCenter
+            Title.Caption = 'SITUA'#199#195'O'
+            Width = 120
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NOMEINSTRUTORFICHA'
+            Title.Caption = 'INSTRUTOR'
+            Width = 310
             Visible = True
           end
           item
@@ -1484,8 +1500,7 @@
             FieldName = 'dataComposicaoFicha'
             Title.Alignment = taCenter
             Title.Caption = 'INICIO FICHA'
-            Width = 110
-            Visible = True
+            Visible = False
           end
           item
             Alignment = taCenter
@@ -1632,19 +1647,19 @@
           end>
       end
       inherited PanelFiltros: TPanel
-        Width = 921
-        ExplicitWidth = 921
+        Width = 1000
+        ExplicitWidth = 1000
         inherited btnFiltrar: TButton
-          Left = 870
+          Left = 949
           Top = 21
           OnClick = btnFiltrarClick
-          ExplicitLeft = 870
+          ExplicitLeft = 949
           ExplicitTop = 21
         end
         object EditPesqModalidade: TEditBeleza
-          Left = 288
+          Left = 251
           Top = 31
-          Width = 188
+          Width = 182
           Height = 21
           Color = 14079702
           Font.Charset = DEFAULT_CHARSET
@@ -1673,7 +1688,7 @@
           NovoLayout = False
         end
         object cbxPesqModalidade: TCheckBox
-          Left = 264
+          Left = 227
           Top = 11
           Width = 97
           Height = 17
@@ -1681,7 +1696,7 @@
           TabOrder = 2
         end
         object editPesqidModalidade: TEdit
-          Left = 264
+          Left = 227
           Top = 31
           Width = 25
           Height = 21
@@ -1692,7 +1707,7 @@
         object EditPesqNome: TEdit
           Left = 12
           Top = 31
-          Width = 238
+          Width = 202
           Height = 21
           TabOrder = 4
           OnChange = EditPesqNomeChange
@@ -1706,15 +1721,15 @@
           TabOrder = 5
         end
         object cbxPesqSemFichaExercicios: TCheckBox
-          Left = 647
+          Left = 820
           Top = 12
-          Width = 150
+          Width = 128
           Height = 17
-          Caption = 'SEM FICHA DE EXERC'#205'CIOS'
+          Caption = 'SEM FICHA EXERC'#205'CIO'
           TabOrder = 6
         end
         object cbxPesqSemMatriculaAtiva: TCheckBox
-          Left = 491
+          Left = 667
           Top = 13
           Width = 150
           Height = 13
@@ -1722,29 +1737,78 @@
           TabOrder = 7
         end
         object cbxPesqFichaVencida: TCheckBox
-          Left = 647
+          Left = 820
           Top = 35
-          Width = 150
+          Width = 128
           Height = 17
           Caption = 'FICHA VENCIDA'
           TabOrder = 8
         end
         object cbxPesqPagamentoEmAtraso: TCheckBox
-          Left = 491
+          Left = 667
           Top = 37
           Width = 150
           Height = 13
           Caption = 'PAGAMENTO EM ATRASO'
           TabOrder = 9
         end
+        object EditPesqInstrutor: TEditBeleza
+          Left = 471
+          Top = 31
+          Width = 182
+          Height = 21
+          Color = 14079702
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 10
+          OnChange = EditPesqInstrutorChange
+          OnKeyPress = EditPesqModalidadeKeyPress
+          Ativar_Pesquisa = True
+          Ativar_MultiSelecao = False
+          mostrar_Botao = True
+          sql.Strings = (
+            
+              'select P.idUSUARIO, P.NOMEUSUARIO from USUARIO P where P.NOMEUSU' +
+              'ARIO like :varDescricao AND ((P.IDUSUARIO = 1)OR(P.IDUSUARIO = 2' +
+              '))')
+          database = 'GYM'
+          campo = 'NOMEUSUARIO'
+          Sempre_Mostrar_Janela = False
+          Marcar_CheckBox = cbxPesqInstrutor
+          Outro_Edit = EditPesqIdInstrutor
+          campo_outro_edit = 'IDUSUARIO'
+          CorBorda = clGray
+          NovoLayout = False
+        end
+        object EditPesqIdInstrutor: TEdit
+          Left = 447
+          Top = 31
+          Width = 25
+          Height = 21
+          Color = 14079702
+          ReadOnly = True
+          TabOrder = 11
+        end
+        object cbxPesqInstrutor: TCheckBox
+          Left = 447
+          Top = 9
+          Width = 97
+          Height = 17
+          Caption = 'INSTRUTOR'
+          TabOrder = 12
+        end
       end
     end
   end
   inherited Panel2: TPanel
-    Width = 929
-    ExplicitWidth = 929
+    Width = 1008
+    ExplicitWidth = 1008
     inherited BFechar: TSpeedButton
-      Left = 895
+      Left = 974
       ExplicitLeft = 792
     end
   end
@@ -1932,6 +1996,11 @@
     object ClientDataSet1IDADE: TIntegerField
       FieldKind = fkInternalCalc
       FieldName = 'IDADE'
+    end
+    object ClientDataSet1situacao: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'situacao'
+      Size = 50
     end
   end
   inherited DataSetProvider1: TDataSetProvider
@@ -2152,7 +2221,7 @@
     Left = 824
     Top = 344
     Bitmap = {
-      494C01010F002C00380310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00480310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3162,8 +3231,8 @@
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42779.735011747700000000
-    ReportOptions.LastChange = 42821.756040601900000000
+    ReportOptions.CreateDate = 42779.735011747710000000
+    ReportOptions.LastChange = 42821.756040601890000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3239,7 +3308,7 @@
         end
         object Gradient1: TfrxGradientView
           Left = 151.181200000000000000
-          Top = 56.692950000000000000
+          Top = 56.692949999999990000
           Width = 415.748300000000000000
           Height = 7.559055118110240000
           EndColor = clTeal
@@ -3247,7 +3316,7 @@
           Color = 12632192
         end
         object Memo3: TfrxMemoView
-          Left = 520.795275590000000000
+          Left = 520.795275589999900000
           Top = 76.267780000000000000
           Width = 196.535560000000000000
           Height = 22.299212600000000000
@@ -3298,7 +3367,7 @@
         RowCount = 0
         object frxDBDataset2nomeExercicio: TfrxMemoView
           Left = 42.330708660000000000
-          Top = 1.779530000000020000
+          Top = 1.779530000000022000
           Width = 242.267716540000000000
           Height = 18.897650000000000000
           DataSet = frxDBDataset2
@@ -3317,7 +3386,7 @@
         end
         object frxDBDataset2idequipamento: TfrxMemoView
           Left = 0.755905510000000000
-          Top = 1.779530000000020000
+          Top = 1.779530000000022000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
           DataField = 'idequipamento'
@@ -3338,7 +3407,7 @@
         end
         object Memo5: TfrxMemoView
           Left = 284.598425200000000000
-          Top = 1.779530000000020000
+          Top = 1.779530000000022000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3388,7 +3457,7 @@
         Width = 718.110700000000000000
         object Memo6: TfrxMemoView
           Left = 0.779530000000000000
-          Top = 3.779530000000020000
+          Top = 3.779530000000022000
           Width = 718.110700000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -3431,7 +3500,8 @@
       'idgrupoExercicio=idgrupoExercicio'
       'descricaoGrupoExercicio=descricaoGrupoExercicio'
       'idequipamento=idequipamento'
-      'descricaoequipamento=descricaoequipamento')
+      'descricaoequipamento=descricaoequipamento'
+      'tipomedida=tipomedida')
     DataSource = DSserieFichaAluno
     BCDToCurrency = False
     Left = 142
@@ -3850,7 +3920,7 @@
     Left = 822
     Top = 394
     Bitmap = {
-      494C01010100140098005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101001400A8005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8567,8 +8637,8 @@
     Connection = DModule.FDConnection
     SQL.Strings = (
       
-        'select s.*, t.descricaoTreino, e.nomeExercicio, e.idgrupoExercic' +
-        'io, '
+        'select s.*, t.descricaoTreino, e.nomeExercicio, e.tipomedida, e.' +
+        'idgrupoExercicio, '
       
         'ge.descricaoGrupoExercicio, eq.idequipamento, eq.descricaoequipa' +
         'mento '
@@ -8663,6 +8733,14 @@
       ProviderFlags = []
       Size = 50
     end
+    object qserieFichaAlunotipomedida: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipomedida'
+      Origin = 'tipoMedida'
+      ProviderFlags = []
+      FixedChar = True
+      Size = 1
+    end
   end
   object pserieFichaAluno: TDataSetProvider
     DataSet = qserieFichaAluno
@@ -8717,6 +8795,11 @@
     object CDSserieFichaAlunodescricaoequipamento: TStringField
       FieldName = 'descricaoequipamento'
       Size = 50
+    end
+    object CDSserieFichaAlunotipomedida: TStringField
+      FieldName = 'tipomedida'
+      FixedChar = True
+      Size = 1
     end
   end
   object DSserieFichaAluno: TDataSource

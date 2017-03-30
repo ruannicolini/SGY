@@ -2,7 +2,6 @@ inherited F01005: TF01005
   Caption = 'F01005'
   ClientHeight = 741
   ClientWidth = 858
-  ExplicitLeft = -87
   ExplicitWidth = 874
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -154,6 +153,7 @@ inherited F01005: TF01005
                 ParentFont = False
                 ReadOnly = True
                 TabOrder = 0
+                OnChange = EdittreinoChange
               end
               object EditBTreino: TEditBeleza
                 Left = 41
@@ -281,10 +281,10 @@ inherited F01005: TF01005
                   
                     'select ex.idExercicio, ex.idGrupoExercicio, ex.nomeExercicio fro' +
                     'm Exercicio ex where ex.nomeExercicio like :varDescricao AND '
-                  ' ex.idGrupoExercicio =:idG AND '
                   
-                    ' ex.idexercicio not in (select distinct idexercicio from FichaPr' +
-                    'eDefinidaSerie where idFichaPreDefinida =:idF)')
+                    ' ex.idGrupoExercicio =:idG and ex.idexercicio not in (select dis' +
+                    'tinct idexercicio from fichapredefinidaserie where idFichapredef' +
+                    'inida =:idFA and idTreino =:idT)')
                 database = 'gym'
                 campo = 'NOMEEXERCICIO'
                 Sempre_Mostrar_Janela = False
@@ -341,6 +341,7 @@ inherited F01005: TF01005
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
+              OnKeyDown = DBGridBeleza3KeyDown
               Cor_2 = 16382457
               Direcao_Cor2 = dg_Horiz
               Direcao_Enter = dg_Horiz
@@ -544,7 +545,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00C80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -1143,34 +1144,40 @@ inherited F01005: TF01005
       AutoGenerateValue = arDefault
       FieldName = 'descricaoTreino'
       Origin = 'descricaoTreino'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object qSerieFichanomeExercicio: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nomeExercicio'
       Origin = 'nomeExercicio'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object qSerieFichaidgrupoExercicio: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'idgrupoExercicio'
       Origin = 'idGrupoExercicio'
+      ProviderFlags = [pfInUpdate]
     end
     object qSerieFichadescricaoGrupoExercicio: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'descricaoGrupoExercicio'
       Origin = 'descricaoGrupoExercicio'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object qSerieFichaidequipamento: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'idequipamento'
       Origin = 'idEquipamento'
+      ProviderFlags = [pfInUpdate]
     end
     object qSerieFichadescricaoequipamento: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'descricaoequipamento'
       Origin = 'descricaoEquipamento'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
   end
@@ -1212,10 +1219,12 @@ inherited F01005: TF01005
     end
     object CDSSerieFichadescricaoTreino: TStringField
       FieldName = 'descricaoTreino'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object CDSSerieFichanomeExercicio: TStringField
       FieldName = 'nomeExercicio'
+      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object CDSSerieFichaidgrupoExercicio: TIntegerField
