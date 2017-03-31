@@ -43,12 +43,25 @@ type
   private
     { Private declarations }
   public
+    //USUÁRIO
     idusuario: integer;
     nomeusuario: string;
     username: string;
     senha: string;
     idTipoUsuario: integer;
+
+    //AMBIENTE
     datahoje:TdateTime;
+
+    //CONFIGURAÇÕES
+    confvecimentoFicha : integer;
+    confvideoYoutube : boolean;
+    confAvaAnamnese : boolean;
+    confAvaFisica : boolean;
+    confAvaPostural : boolean;
+    confAvaDadosClinicos : boolean;
+
+    //FUNÇÕES
     function buscaProximoParametro(p: string): integer;
   end;
 

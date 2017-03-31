@@ -307,6 +307,14 @@ begin
       DModule.cdsAcesso.Close;
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
+
+      //OBTEM DADOS DE CONFIGURAÇÃO
+      Dmodule.qAux.close;
+      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
+      Dmodule.qAux.open;
+
+      DMODULE.
+
   end;
 
   //Apaga Numero de acesso Gerado
@@ -315,6 +323,29 @@ begin
   Arquivo.Free;
 }
 
+
+//OBTEM DADOS DE CONFIGURAÇÃO
+      Dmodule.qAux.close;
+      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
+      Dmodule.qAux.open;
+
+      DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
+      DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
+      DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
+      DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
+      DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
+      DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
+
+      {
+      ShowMessage(
+      'confVecimentoFicha: ' + inttostr(DMODULE.confVecimentoFicha) + #13 +
+      'videoYoutube: ' + BoolToStr(DMODULE.confVideoYoutube) + #13 +
+      'Anamnese: ' + BoolToStr(DMODULE.confAvaAnamnese) + #13 +
+      'Física: ' + BoolToStr(DMODULE.confAvaFisica) + #13 +
+      'Postural: ' + BoolToStr(DMODULE.confAvaPostural) + #13 +
+      'Dados Clinicos: ' + BoolToStr(DMODULE.confAvaDadosClinicos)
+      );
+      }
 end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);

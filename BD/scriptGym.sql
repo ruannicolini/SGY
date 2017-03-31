@@ -20,6 +20,20 @@ descricaoModalidade varchar(50) not null,
 valor float
 );
 
+create table configuracaoUnidade(
+idConfiguracaoUnidade int primary key not null,
+cnpj varchar(50) not null,
+razaoSocial varchar(100) not null,
+nomeFantasia varchar(100) not null,
+telefone varchar(50),
+vencimentoFicha int not null,
+videoYoutube tinyint(1) not null
+avaAnamnese tinyint(1) not null,
+avaFisica tinyint(1) not null,
+avaPostural tinyint(1) not null,
+avaDadosClinicos tinyint(1) not null
+);
+
 create table patologia(
 idpatologia int primary key not null,
 nomePatologia varchar(50) not null,

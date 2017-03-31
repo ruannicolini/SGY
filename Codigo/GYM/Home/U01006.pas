@@ -67,6 +67,7 @@ type
     procedure EditPesqEquipamentoKeyPress(Sender: TObject; var Key: Char);
     procedure DSStateChange(Sender: TObject);
     procedure DBGridBeleza1DblClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -217,15 +218,18 @@ procedure TF01006.DBGridBeleza1DblClick(Sender: TObject);
 begin
   inherited;
 
-  IF NOT(ClientDataSet1idYoutube.IsNull)THEN
+  IF(DModule.confvideoYoutube = TRUE)THEN
   BEGIN
-    //CHAMA VIDEO DO YOUTUBE;
-    With TF01015.CreateVideo(Fprincipal, ClientDataSet1idYoutube.AsString) do
-    Begin
-        // O SHOW DO FORM É FEITO DENTRO DO CREATEVIDEO;
-        //OPTEI POR ESSA ABORDAGEM PARA CARREGAR OUTRO VIDEO SERM A NECESSIDADE
-        //DE CRIAR OUTRO FORM.
-    End;
+      IF NOT(ClientDataSet1idYoutube.IsNull)THEN
+      BEGIN
+          //CHAMA VIDEO DO YOUTUBE;
+          With TF01015.CreateVideo(Fprincipal, ClientDataSet1idYoutube.AsString) do
+          Begin
+              // O SHOW DO FORM É FEITO DENTRO DO CREATEVIDEO;
+              //OPTEI POR ESSA ABORDAGEM PARA CARREGAR OUTRO VIDEO SERM A NECESSIDADE
+              //DE CRIAR OUTRO FORM.
+          End;
+      END;
   END;
 
 end;
@@ -280,6 +284,20 @@ begin
       editPesqidGrupo.Clear;
   end else
     cbxPesqGrupo.Checked := true;
+end;
+
+procedure TF01006.FormCreate(Sender: TObject);
+begin
+  inherited;
+  //
+  IF(DModule.confvideoYoutube = FALSE)THEN
+  BEGIN
+    GroupBox1.Visible := FALSE;
+  END ELSE
+  BEGIN
+    GroupBox1.Visible := TRUE;
+  END;
+
 end;
 
 Initialization
