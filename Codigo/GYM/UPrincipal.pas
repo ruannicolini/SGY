@@ -223,7 +223,7 @@ begin
   end;
 
 
-     {
+
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
@@ -232,7 +232,7 @@ begin
     // FIM DE TESTE
 
 
-    }
+    {
 
 
 
@@ -313,7 +313,7 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   Arquivo.EraseSection('Login');
   Arquivo.Free;
-
+}
 
 end;
 

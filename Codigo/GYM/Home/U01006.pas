@@ -66,6 +66,7 @@ type
     procedure bRelatorioClick(Sender: TObject);
     procedure EditPesqEquipamentoKeyPress(Sender: TObject; var Key: Char);
     procedure DSStateChange(Sender: TObject);
+    procedure DBGridBeleza1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -79,7 +80,7 @@ implementation
 
 {$R *.dfm}
 
-uses u_relatorios;
+uses u_relatorios, U01015, UPrincipal;
 
 procedure TF01006.BExcluirClick(Sender: TObject);
 begin
@@ -210,6 +211,23 @@ begin
     key := #0;
     // o q vc quer fazer no enter
   end;
+end;
+
+procedure TF01006.DBGridBeleza1DblClick(Sender: TObject);
+begin
+  inherited;
+
+  IF NOT(ClientDataSet1idYoutube.IsNull)THEN
+  BEGIN
+    //CHAMA VIDEO DO YOUTUBE;
+    With TF01015.CreateVideo(Fprincipal, ClientDataSet1idYoutube.AsString) do
+    Begin
+        // O SHOW DO FORM É FEITO DENTRO DO CREATEVIDEO;
+        //OPTEI POR ESSA ABORDAGEM PARA CARREGAR OUTRO VIDEO SERM A NECESSIDADE
+        //DE CRIAR OUTRO FORM.
+    End;
+  END;
+
 end;
 
 procedure TF01006.DSStateChange(Sender: TObject);
