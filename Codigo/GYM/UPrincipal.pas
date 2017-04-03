@@ -64,7 +64,7 @@ implementation
 {$R *.dfm}
 
 uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao,
-  UHPI;
+  UHPI, math;
 
 procedure TFPrincipal.ApplicationEvents1Exception(Sender: TObject;
   E: Exception);

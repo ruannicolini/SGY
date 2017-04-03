@@ -2,7 +2,6 @@ inherited F01014: TF01014
   Caption = 'F01014'
   ClientHeight = 670
   ClientWidth = 833
-  ExplicitLeft = -62
   ExplicitWidth = 849
   ExplicitHeight = 709
   PixelsPerInch = 96
@@ -14,6 +13,8 @@ inherited F01014: TF01014
     ExplicitWidth = 833
     ExplicitHeight = 635
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 825
       ExplicitHeight = 607
       inherited grDados: TGroupBox
@@ -431,6 +432,8 @@ inherited F01014: TF01014
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 825
       ExplicitHeight = 607
       inherited GBFiltros: TGroupBox
@@ -580,7 +583,7 @@ inherited F01014: TF01014
     Left = 760
     Top = 8
     Bitmap = {
-      494C01010F002C00E40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00EC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

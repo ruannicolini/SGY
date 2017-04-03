@@ -54,7 +54,7 @@ uses u_relatorios;
 
 procedure TF01007.BExcluirClick(Sender: TObject);
 begin
-  DModule.qAux.SQL.Text := 'SELECT * FROM ALUNOPATOLOGIA AP where AP.idPATOLOGIA =:idP';
+  DModule.qAux.SQL.Text := 'SELECT * FROM ANAMNESEPATOLOGIA AP where AP.idPATOLOGIA =:idP';
   DModule.qAux.ParamByName('idP').AsInteger := ClientDataSet1idpatologia.AsInteger;
   DModule.qAux.Close;
   DModule.qAux.open;

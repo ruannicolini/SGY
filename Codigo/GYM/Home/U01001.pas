@@ -19,14 +19,15 @@ uses
   Vcl.Samples.Spin, ppProd, ppClass, ppReport, ppComm, ppRelatv, ppDB, ppDBPipe,
   ppBands, ppCache, ppDesignLayer, ppParameter, ppCtrls, ppPrnabl, frxClass,
   frxDBSet, frxGradient, frxExportPDF, ShellAPI, System.Bluetooth,
-  System.Bluetooth.Components, frxExportImage;
+  System.Bluetooth.Components, frxExportImage, dxBar, dxRibbonRadialMenu,
+  cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
+  Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls;
 
 type
   TF01001 = class(TFBase)
     cxPageControl1: TcxPageControl;
     pagPerfil: TcxTabSheet;
-    pag2: TcxTabSheet;
-    pag3: TcxTabSheet;
+    pagFichaExercicios: TcxTabSheet;
     pagMensalidades: TcxTabSheet;
     camera: TdxCameraControl;
     DBEdit1: TDBEdit;
@@ -48,18 +49,6 @@ type
     Label4: TLabel;
     cxDBMaskEdit5: TcxDBMaskEdit;
     Label5: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    cxDBSpinEdit3: TcxDBSpinEdit;
-    Label19: TLabel;
-    cxDBSpinEdit4: TcxDBSpinEdit;
-    Label20: TLabel;
-    Label21: TLabel;
-    cxDBSpinEdit6: TcxDBSpinEdit;
-    cxDBSpinEdit7: TcxDBSpinEdit;
-    cxDBMaskEdit6: TcxDBMaskEdit;
     FDQuery1idAluno: TIntegerField;
     FDQuery1nomeAluno: TStringField;
     FDQuery1dataNascimento: TDateField;
@@ -75,18 +64,8 @@ type
     FDQuery1nomeResponsavel: TStringField;
     FDQuery1parentescoResponsavel: TStringField;
     FDQuery1telResponsavel: TStringField;
-    FDQuery1peso: TSingleField;
-    FDQuery1altura: TSingleField;
-    FDQuery1frequenciaAtividadeFisica: TIntegerField;
-    FDQuery1qtdRefeicoesDia: TIntegerField;
-    FDQuery1qtdHorasSono: TIntegerField;
-    FDQuery1suplementacao: TBooleanField;
-    FDQuery1dieta: TBooleanField;
-    FDQuery1fumante: TBooleanField;
-    FDQuery1consomeBebidaAlcoolica: TBooleanField;
     FDQuery1dataCadastro: TDateField;
     FDQuery1cpf: TStringField;
-    FDQuery1idObjetivo: TIntegerField;
     ClientDataSet1idAluno: TIntegerField;
     ClientDataSet1nomeAluno: TStringField;
     ClientDataSet1dataNascimento: TDateField;
@@ -102,39 +81,8 @@ type
     ClientDataSet1nomeResponsavel: TStringField;
     ClientDataSet1parentescoResponsavel: TStringField;
     ClientDataSet1telResponsavel: TStringField;
-    ClientDataSet1peso: TSingleField;
-    ClientDataSet1altura: TSingleField;
-    ClientDataSet1frequenciaAtividadeFisica: TIntegerField;
-    ClientDataSet1qtdRefeicoesDia: TIntegerField;
-    ClientDataSet1qtdHorasSono: TIntegerField;
-    ClientDataSet1suplementacao: TBooleanField;
-    ClientDataSet1dieta: TBooleanField;
-    ClientDataSet1fumante: TBooleanField;
-    ClientDataSet1consomeBebidaAlcoolica: TBooleanField;
     ClientDataSet1dataCadastro: TDateField;
     ClientDataSet1cpf: TStringField;
-    ClientDataSet1idObjetivo: TIntegerField;
-    FDQuery1DESCRICAOOBJETIVO: TStringField;
-    ClientDataSet1DESCRICAOOBJETIVO: TStringField;
-    ClientDataSet1IMC: TFloatField;
-    DBEdit2: TDBEdit;
-    DBEditBeleza1: TDBEditBeleza;
-    DSPAtologia: TDataSource;
-    cdsPatologia: TClientDataSet;
-    provPatologia: TDataSetProvider;
-    QPATOLOGIA: TFDQuery;
-    Edit1: TEdit;
-    EditBeleza1: TEditBeleza;
-    Panel3: TPanel;
-    BTNALTERAR: TSpeedButton;
-    BTNCANCELAR: TSpeedButton;
-    QPATOLOGIAidAluno: TIntegerField;
-    QPATOLOGIAidPatologia: TIntegerField;
-    QPATOLOGIANOMEPATOLOGIA: TStringField;
-    cdsPatologiaidAluno: TIntegerField;
-    cdsPatologiaidPatologia: TIntegerField;
-    cdsPatologiaNOMEPATOLOGIA: TStringField;
-    DBGridBeleza2: TDBGridBeleza;
     cxGroupBox8: TcxGroupBox;
     qFichaAluno: TFDQuery;
     pFichaAluno: TDataSetProvider;
@@ -233,10 +181,6 @@ type
     cdsPagamentoLOGUsuarioResponsavel: TStringField;
     cxImage1: TcxImage;
     ImageListAUX: TImageList;
-    FDQuery1informacaoAdicional: TStringField;
-    ClientDataSet1informacaoAdicional: TStringField;
-    QPATOLOGIAobservacaoMedica: TStringField;
-    cdsPatologiaobservacaoMedica: TStringField;
     frxJPEGExport1: TfrxJPEGExport;
     frxDBDataset1: TfrxDBDataset;
     DBEdit3: TDBEdit;
@@ -255,18 +199,6 @@ type
     DBRadioGroup1: TDBRadioGroup;
     Label28: TLabel;
     Label29: TLabel;
-    GroupBox_PAnamnese: TGroupBox;
-    DBMemo1: TDBMemo;
-    cxDBMemo2: TDBMemo;
-    GroupBox3: TGroupBox;
-    SpeedButton1: TSpeedButton;
-    GroupBox4: TGroupBox;
-    GroupBox5: TGroupBox;
-    GroupBox6: TGroupBox;
-    DBckbDIETA: TDBCheckBox;
-    DBCkBSUPLEMENTACAO: TDBCheckBox;
-    DBCKBFUMANTE: TDBCheckBox;
-    DBckbBebidaAlcoolica: TDBCheckBox;
     FDQuery1idInstrutor: TIntegerField;
     ClientDataSet1idInstrutor: TIntegerField;
     qFichaAlunoidFichaAluno: TIntegerField;
@@ -387,21 +319,99 @@ type
     cbxPesqInstrutor: TCheckBox;
     qserieFichaAlunotipomedida: TStringField;
     CDSserieFichaAlunotipomedida: TStringField;
+    pagAvaliacoes: TcxTabSheet;
+    cxGroupBox1: TcxGroupBox;
+    Panel7: TPanel;
+    SpeedButton2: TSpeedButton;
+    btnNovaAnamnese: TSpeedButton;
+    PageControlAvaliacoes: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    cxGroupBox2: TcxGroupBox;
+    DBGridBeleza6: TDBGridBeleza;
+    DBGridBeleza7: TDBGridBeleza;
+    DBGridBeleza8: TDBGridBeleza;
+    DBGridBeleza9: TDBGridBeleza;
+    dsAnamnese: TDataSource;
+    CDSAnamnese: TClientDataSet;
+    pAnamnese: TDataSetProvider;
+    qAnamnese: TFDQuery;
+    qAnamneseidAnamnese: TIntegerField;
+    qAnamneseidAluno: TIntegerField;
+    qAnamnesefrequenciaSemanalTreino: TIntegerField;
+    qAnamnesepeso: TSingleField;
+    qAnamnesealtura: TSingleField;
+    qAnamneseqtdHorasSono: TIntegerField;
+    qAnamneseqtdRefeicoesDia: TIntegerField;
+    qAnamnesedieta: TBooleanField;
+    qAnamnesesuplementacao: TBooleanField;
+    qAnamnesenivelExtresse: TStringField;
+    qAnamnesenivelAtividadeFisicaAtual: TStringField;
+    qAnamnesehs_alteracaoPressao: TBooleanField;
+    qAnamnesehs_anemia: TBooleanField;
+    qAnamnesehs_ansiedade: TBooleanField;
+    qAnamnesehs_criseRespiratoria: TBooleanField;
+    qAnamnesehs_colesterolElevado: TBooleanField;
+    qAnamnesehs_sonoIrregular: TBooleanField;
+    qAnamnesehs_diabetes: TBooleanField;
+    qAnamnesehs_gastrite: TBooleanField;
+    qAnamnesehs_problemaTireoide: TBooleanField;
+    qAnamnesehs_tonturasConstantes: TBooleanField;
+    qAnamnesehs_varises: TBooleanField;
+    qAnamnesehs_taquicardia: TBooleanField;
+    qAnamneseobsCirurgias: TStringField;
+    qAnamneseobsDoresCronicas: TStringField;
+    qAnamneseobsDoresAgudas: TStringField;
+    CDSAnamneseidAnamnese: TIntegerField;
+    CDSAnamneseidAluno: TIntegerField;
+    CDSAnamnesefrequenciaSemanalTreino: TIntegerField;
+    CDSAnamnesepeso: TSingleField;
+    CDSAnamnesealtura: TSingleField;
+    CDSAnamneseqtdHorasSono: TIntegerField;
+    CDSAnamneseqtdRefeicoesDia: TIntegerField;
+    CDSAnamnesedieta: TBooleanField;
+    CDSAnamnesesuplementacao: TBooleanField;
+    CDSAnamnesenivelExtresse: TStringField;
+    CDSAnamnesenivelAtividadeFisicaAtual: TStringField;
+    CDSAnamnesehs_alteracaoPressao: TBooleanField;
+    CDSAnamnesehs_anemia: TBooleanField;
+    CDSAnamnesehs_ansiedade: TBooleanField;
+    CDSAnamnesehs_criseRespiratoria: TBooleanField;
+    CDSAnamnesehs_colesterolElevado: TBooleanField;
+    CDSAnamnesehs_sonoIrregular: TBooleanField;
+    CDSAnamnesehs_diabetes: TBooleanField;
+    CDSAnamnesehs_gastrite: TBooleanField;
+    CDSAnamnesehs_problemaTireoide: TBooleanField;
+    CDSAnamnesehs_tonturasConstantes: TBooleanField;
+    CDSAnamnesehs_varises: TBooleanField;
+    CDSAnamnesehs_taquicardia: TBooleanField;
+    CDSAnamneseobsCirurgias: TStringField;
+    CDSAnamneseobsDoresCronicas: TStringField;
+    CDSAnamneseobsDoresAgudas: TStringField;
+    qAnamnesedataAnamnese: TDateField;
+    CDSAnamnesedataAnamnese: TDateField;
+    qAnamnesefuma: TBooleanField;
+    qAnamneseconsumoAlcoolico: TBooleanField;
+    CDSAnamnesefuma: TBooleanField;
+    CDSAnamneseconsumoAlcoolico: TBooleanField;
+    qAnamnesenomeAvaliador: TStringField;
+    qAnamneseinformacaoAdicional: TStringField;
+    qAnamneseidObjetivo: TIntegerField;
+    CDSAnamnesenomeAvaliador: TStringField;
+    CDSAnamneseinformacaoAdicional: TStringField;
+    CDSAnamneseidObjetivo: TIntegerField;
+    GroupBox3: TGroupBox;
+    DBEdit2: TDBEdit;
+    DBEditBeleza1: TDBEditBeleza;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
     procedure BSalvarClick(Sender: TObject);
     procedure ClientDataSet1CalcFields(DataSet: TDataSet);
     procedure ClientDataSet1AfterPost(DataSet: TDataSet);
-    procedure cdsPatologiaReconcileError(DataSet: TCustomClientDataSet;
-      E: EReconcileError; UpdateKind: TUpdateKind;
-      var Action: TReconcileAction);
-    procedure cdsPatologiaAfterCancel(DataSet: TDataSet);
-    procedure cdsPatologiaAfterDelete(DataSet: TDataSet);
-    procedure cdsPatologiaAfterPost(DataSet: TDataSet);
     procedure DSDataChange(Sender: TObject; Field: TField);
-    procedure BTNALTERARClick(Sender: TObject);
-    procedure BTNCANCELARClick(Sender: TObject);
     procedure CDSFichaAlunoAfterCancel(DataSet: TDataSet);
     procedure CDSFichaAlunoAfterDelete(DataSet: TDataSet);
     procedure CDSFichaAlunoAfterPost(DataSet: TDataSet);
@@ -432,10 +442,7 @@ type
     procedure EditBTreinoKeyPress(Sender: TObject; var Key: Char);
     procedure EditBeleza1ButtonClick(Sender: TObject;
       var query_result: TFDQuery);
-    procedure DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure Action5Execute(Sender: TObject);
-    procedure DSPAtologiaDataChange(Sender: TObject; Field: TField);
     procedure BExcluirClick(Sender: TObject);
     procedure cxDBDateEdit1Exit(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
@@ -445,7 +452,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
     procedure cxImage1PropertiesChange(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
     procedure BCancelarClick(Sender: TObject);
     procedure DBEdit9Change(Sender: TObject);
@@ -455,6 +461,12 @@ type
     procedure btnNovoFichaClick(Sender: TObject);
     procedure DBEditInstrutorChange(Sender: TObject);
     procedure EditPesqInstrutorChange(Sender: TObject);
+    procedure btnNovaAnamneseClick(Sender: TObject);
+    procedure DBGridBeleza6DblClick(Sender: TObject);
+    procedure DBGridBeleza6KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure CDSAnamneseAfterCancel(DataSet: TDataSet);
+    procedure CDSAnamneseAfterDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -464,6 +476,7 @@ type
     procedure CriarForm(Tela, Desc: String);
     function MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
     Buttons: TMsgDlgButtons; Captions: array of string): Integer;
+    procedure OcultarSheets(PageControl: TPageControl);
 
 
   end;
@@ -482,7 +495,7 @@ uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013, ValidaCPF, U01014;
+  U01013, ValidaCPF, U01014, U01016;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -670,18 +683,8 @@ begin
               //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
               cxPageControl1.ActivePageIndex := 0;
 
-
               //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
               inherited;
-
-              //PREVINE QUE O USUARIO ESQUEÇA DE SALVAR A ULTIMA ALTERAÇÃO EM CXDBMEMO2 (OBSERVAÇÕES MEDICAS)
-              IF(cdsPatologia.State = dsEdit)THEN
-              begin
-                  cdsPatologia.Post;
-              end;
-              BTNCANCELAR.Enabled := FALSE;
-              BTNALTERAR.Caption := 'ALTERAR';
-              cxDBMemo2.ReadOnly:= TRUE;
 
               //COR DO CAMPO CPF
               DBEdit9.Font.Color := clblack;
@@ -699,55 +702,6 @@ begin
   begin
       ShowMessage('INFORME NOME DO ALUNO');
   end;
-end;
-
-procedure TF01001.BTNALTERARClick(Sender: TObject);
-begin
-  inherited;
-  BTNCANCELAR.Enabled := TRUE;
-
-  IF(BTNALTERAR.Caption = 'ALTERAR')THEN
-  BEGIN
-      BTNALTERAR.Caption := 'SALVAR';
-
-      //COLOCA EM MODO DE EDIÇÃO
-      if DSPAtologia.DataSet.Active then
-      begin
-        if not DSPAtologia.DataSet.IsEmpty then
-        begin
-          DSPAtologia.DataSet.Edit;
-          CXDBMEMO2.ReadOnly := FALSE;
-        end else
-           ShowMessage('Não Há Registros para Alteração.');
-      end;
-
-  END ELSE
-  BEGIN
-      IF(BTNALTERAR.Caption = 'SALVAR')THEN
-      BEGIN
-        BTNALTERAR.Caption := 'ALTERAR';
-        BTNCANCELAR.Enabled := FALSE;
-        CXDBMEMO2.ReadOnly := TRUE;
-        //SALVA
-        cdsPatologiaobservacaoMedica.AsString := CXDBMemo2.Text;
-        DSPAtologia.DataSet.Post;
-      END;
-  END;
-end;
-
-procedure TF01001.BTNCANCELARClick(Sender: TObject);
-begin
-  inherited;
-
-  BTNCANCELAR.Enabled := FALSE;
-  BTNALTERAR.Caption := 'ALTERAR';
-  cxDBMemo2.ReadOnly:= TRUE;
-
-  //CANCELA ALTERAÇÕES
-  DSPAtologia.DataSet.Cancel;
-  cdsPatologia.CancelUpdates;
-
-
 end;
 
 procedure TF01001.btnCancelarPIClick(Sender: TObject);
@@ -979,29 +933,16 @@ begin
   cdsPagamento.ApplyUpdates(-1);
 end;
 
-procedure TF01001.cdsPatologiaAfterCancel(DataSet: TDataSet);
+procedure TF01001.CDSAnamneseAfterCancel(DataSet: TDataSet);
 begin
   inherited;
-  cdsPatologia.CancelUpdates;
+  CDSAnamnese.CancelUpdates;
 end;
 
-procedure TF01001.cdsPatologiaAfterDelete(DataSet: TDataSet);
+procedure TF01001.CDSAnamneseAfterDelete(DataSet: TDataSet);
 begin
   inherited;
-  cdsPatologia.ApplyUpdates(-1);
-end;
-
-procedure TF01001.cdsPatologiaAfterPost(DataSet: TDataSet);
-begin
-  inherited;
-  cdsPatologia.ApplyUpdates(-1);
-end;
-
-procedure TF01001.cdsPatologiaReconcileError(DataSet: TCustomClientDataSet;
-  E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
-begin
-  inherited;
-  ShowMessage(E.Message);
+  CDSAnamnese.ApplyUpdates(-1);
 end;
 
 procedure TF01001.CDSFichaAlunoAfterCancel(DataSet: TDataSet);
@@ -1037,12 +978,6 @@ end;
 procedure TF01001.ClientDataSet1CalcFields(DataSet: TDataSet);
 begin
   inherited;
-
-  //CALCULA IMC
-  if NOT(ClientDataSet1peso.IsNull) and NOT(ClientDataSet1altura.IsNull) then
-  begin
-    ClientDataSet1IMC.AsFloat := ClientDataSet1peso.AsFloat/ (ClientDataSet1altura.AsFloat * ClientDataSet1altura.AsFloat) ;
-  end;
 
   // CALCULA IDADE DO ALUNO
   IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
@@ -1253,20 +1188,6 @@ begin
 
 end;
 
-procedure TF01001.DBGridBeleza2KeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  inherited;
-  if (key = 46) then
-  //Deleta PATOLOGIA
-  begin
-    if MessageDlg('Deseja Apagar Item [' + cdsPatologiaNOMEPATOLOGIA.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-     begin
-        cdsPatologia.Delete;
-     end;
-  end;
-end;
-
 procedure TF01001.DBGridBeleza3DblClick(Sender: TObject);
 begin
   inherited;
@@ -1291,7 +1212,7 @@ begin
           CDSFichaAluno.Delete;
       end;
     end;
-  end;
+end;
 
 procedure TF01001.DBGridBeleza5DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -1327,21 +1248,40 @@ begin
   end;
 end;
 
+procedure TF01001.DBGridBeleza6DblClick(Sender: TObject);
+begin
+  inherited;
+  IF NOT(CDSAnamnese.IsEmpty)THEN
+  BEGIN
+      With TF01016.CreateCONSULTA(self, CDSAnamneseidAnamnese.AsInteger) do
+      Begin
+        ShowModal;
+        Free;
+      End;
+      CDSAnamnese.CLOSE;
+      CDSAnamnese.OPEN;
+  END;
+end;
+
+procedure TF01001.DBGridBeleza6KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = 46) then
+    //Deleta Ficha de Exercícios
+    begin
+      if MessageDlg('Deseja Apagar Item [COD:' + CDSAnamneseidAnamnese.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
+          CDSAnamnese.Delete;
+      end;
+    end;
+end;
+
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
 var
   caminho : string;
 begin
   inherited;
-
-  //PESQUISA DE PATOLOGIAS
-  QPATOLOGIA.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-  DSPAtologia.DataSet.Close;
-  DSPAtologia.DataSet.Open;
-  if cdsPatologia.RecNo > 0 then
-  BEGIN
-    BTNALTERAR.Enabled := TRUE;
-  END ELSE
-    BTNALTERAR.Enabled := FALSE;
 
   //PESQUISA FICHA DE EXERCICIO
   qFichaAluno.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
@@ -1357,6 +1297,16 @@ begin
   qPagamento.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSPagamento.DataSet.close;
   DSPagamento.DataSet.open;
+
+  //PESQUISA Anamnese
+  qAnamnese.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+  DSAnamnese.DataSet.close;
+  DSAnamnese.DataSet.open;
+  if CDSAnamnese.RecNo > 0 then
+  BEGIN
+    btnNovaAnamnese.Enabled := TRUE;
+  END ELSE
+    btnNovaAnamnese.Enabled := FALSE;
 
   if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
   begin
@@ -1408,18 +1358,6 @@ begin
   END;
 end;
 
-procedure TF01001.DSPAtologiaDataChange(Sender: TObject; Field: TField);
-begin
-  inherited;
-  IF(cdsPatologia.RecordCount > 0)THEN
-  BEGIN
-    BTNALTERAR.Enabled := TRUE;
-  END ELSE
-  BEGIN
-    BTNALTERAR.Enabled := FALSE;
-  END;
-end;
-
 procedure TF01001.DSFichaAlunoDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
@@ -1445,23 +1383,6 @@ begin
   if (ds.DataSet.State = dsInsert) then
   begin
     ClientDataSet1sexo.AsString := 'M';
-
-    //DBCkBSUPLEMENTACAO.Checked := FALSE;
-    ClientDataSet1suplementacao.AsBoolean:= false;
-
-    //DBckbDIETA.Checked := FALSE;
-    ClientDataSet1dieta.AsBoolean:= false;
-
-    //DBCKBFUMANTE.Checked := FALSE;
-    ClientDataSet1fumante.AsBoolean:= false;
-
-    //DBckbBebidaAlcoolica.Checked := FALSE;
-    ClientDataSet1consomeBebidaAlcoolica.AsBoolean:= false;
-
-    DBCkBSUPLEMENTACAO.Checked := false;
-    DBckbDIETA.Checked := false;
-    DBCKBFUMANTE.Checked := false;
-    DBckbBebidaAlcoolica.Checked := false;
 
     // IMAGEM ALUNO DEFAULT
     cxImage1.Picture.Bitmap := NIL;
@@ -1538,6 +1459,45 @@ begin
     pagMensalidades.TabVisible := false;
     pagModalidades.TabVisible := false;
   end;
+
+
+  {CONTROLE DE PAGECONTROLAVALIACOES}
+  //AVALIAÇÃO ANAMNESE
+  IF(DMODULE.confAvaAnamnese = TRUE)THEN
+  BEGIN
+    TabSheet1.TabVisible := TRUE;
+  END ELSE
+  BEGIN
+    TabSheet1.TabVisible := FALSE;
+  END;
+
+  //AVALIAÇÃO FÍSICA
+  IF(DMODULE.confAvaFisica = TRUE)THEN
+  BEGIN
+    TabSheet2.TabVisible := TRUE;
+  END ELSE
+  BEGIN
+    TabSheet2.TabVisible := FALSE;
+  END;
+
+  //AVALIAÇÃO POSTURAL
+  IF(DMODULE.confAvaPostural = TRUE)THEN
+  BEGIN
+    TabSheet3.TabVisible := TRUE;
+  END ELSE
+  BEGIN
+    TabSheet3.TabVisible := FALSE;
+  END;
+
+  //AVALIAÇÃO DADOS CLÍNICOS
+  IF(DMODULE.confAvaDadosClinicos = TRUE)THEN
+  BEGIN
+    TabSheet4.TabVisible := TRUE;
+  END ELSE
+  BEGIN
+    TabSheet4.TabVisible := FALSE;
+  END;
+
 end;
 
 procedure TF01001.editBModalidadeButtonClick(Sender: TObject;
@@ -1588,6 +1548,19 @@ begin
   Result := aMsgDlg.ShowModal;
 end;
 
+procedure TF01001.OcultarSheets(PageControl: TPageControl);
+var
+    iPage: Integer;
+begin
+    for iPage := 0 to PageControl.PageCount - 1 do
+    PageControl.Pages[iPage].TabVisible := False;
+
+    if ( PageControl.PageCount > 0 ) then
+    PageControl.ActivePage := PageControl.Pages[0];
+
+    //PageControl.Style := tsButtons;
+end;
+
 procedure TF01001.QualityResizeBitmap(bmpOrig, bmpDest: TBitmap; newWidth,
   newHeight: Integer);
 var
@@ -1636,27 +1609,6 @@ begin
     bmpDest.Canvas.Pixels[X,Y] := RGB(Round(R/tpX),Round(G/tpX),Round(B/tpX));
     end;
     end;
-end;
-
-procedure TF01001.SpeedButton1Click(Sender: TObject);
-begin
-  inherited;
-    // ADCIONAR NOVA PATOLOGIA
-  if not DSPAtologia.DataSet.Active then
-    DSPAtologia.DataSet.Open;
-
-  DSPAtologia.DataSet.Append;
-  cdsPatologiaidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
-  cdsPatologiaidPatologia.AsInteger := STRTOINT(Edit1.Text);
-  DSPAtologia.DataSet.Post;
-  //cdsPatologia.ApplyUpdates(-1);
-
-  QPATOLOGIA.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
-  DSPAtologia.DataSet.Close;
-  DSPAtologia.DataSet.Open;
-
-  edit1.Clear;
-  EditBeleza1.Clear;
 end;
 
 procedure TF01001.SpeedButton3Click(Sender: TObject);
@@ -1854,6 +1806,22 @@ begin
 
 end;
 
+procedure TF01001.btnNovaAnamneseClick(Sender: TObject);
+begin
+  inherited;
+
+  With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
+  Begin
+    ShowModal;
+    Free;
+  End;
+
+  // REFRESH DBGRIDBELEZA3
+  CDSAnamnese.CLOSE;
+  CDSAnamnese.OPEN;
+
+end;
+
 procedure TF01001.btnNovoFichaClick(Sender: TObject);
 begin
   inherited;
@@ -1866,8 +1834,6 @@ begin
   // REFRESH DBGRIDBELEZA3
   CDSFichaAluno.CLOSE;
   CDSFichaAluno.OPEN;
-
-
 
 end;
 

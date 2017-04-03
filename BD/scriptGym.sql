@@ -27,7 +27,7 @@ razaoSocial varchar(100) not null,
 nomeFantasia varchar(100) not null,
 telefone varchar(50),
 vencimentoFicha int not null,
-videoYoutube tinyint(1) not null
+videoYoutube tinyint(1) not null,
 avaAnamnese tinyint(1) not null,
 avaFisica tinyint(1) not null,
 avaPostural tinyint(1) not null,
@@ -76,6 +76,10 @@ idObjetivo int primary key not null,
 descricaoObjetivo varchar(50) not null
 );
 
+
+
+
+
 create table Aluno(
 idAluno int primary key not null,
 nomeAluno varchar(80) not null,
@@ -93,6 +97,7 @@ tel2 varchar(50),
 nomeResponsavel varchar(80),
 parentescoResponsavel varchar(50),
 telResponsavel varchar(50),
+/*
 peso float,
 altura float,
 frequenciaAtividadeFisica int,
@@ -102,11 +107,56 @@ suplementacao tinyint(1),
 dieta tinyint(1),
 fumante tinyint(1),
 consomeBebidaAlcoolica tinyint(1),
+*/
 dataCadastro date,
 cpf VARCHAR(50),
-informacaoAdicional varchar(500),
-idObjetivo int,
+/*informacaoAdicional varchar(500),*/
+/*idObjetivo int,*/
 idInstrutor int
+);
+
+create table anamnese(
+idAnamnese int primary key not null,
+idAluno int not null,
+dataAnamnese date not null,
+frequenciaSemanalTreino int,
+peso float,
+altura float,
+qtdHorasSono int,
+qtdRefeicoesDia int,
+fuma char(1),
+dieta tinyint(1),
+suplementacao tinyint(1),
+consumoAlcoolico tinyint(1),
+nivelExtresse char(1),
+nivelAtividadeFisicaAtual char(1),
+informacaoAdicional varchar(700),
+idObjetivo int not null,
+
+hs_alteracaoPressao tinyint(1),
+hs_anemia tinyint(1),
+hs_ansiedade tinyint(1),
+hs_criseRespiratoria tinyint(1),
+hs_colesterolElevado tinyint(1),
+hs_sonoIrregular tinyint(1),
+hs_diabetes tinyint(1),
+hs_gastrite tinyint(1),
+hs_problemaTireoide tinyint(1),
+hs_tonturasConstantes tinyint(1),
+hs_varises tinyint(1),
+hs_taquicardia tinyint(1),
+
+obsCirurgias varchar(700),
+obsDoresCronicas varchar(700),
+obsDoresAgudas varchar(700),
+nomeAvaliador varchar(60)
+);
+
+create table AnamnesePatologia(
+idAnamnese int not null,
+idPatologia int not null,
+observacaoMedica varchar(700),
+PRIMARY KEY (idAnamnese,idPatologia)
 );
 
 create table AlunoModalidade(
@@ -115,13 +165,6 @@ idmodalidade int not null,
 dataInscrição date,
 diavencimento int,
 PRIMARY KEY (idAluno,idModalidade)
-);
-
-create table AlunoPatologia(
-idAluno int not null,
-idPatologia int not null,
-observacaoMedica varchar(700),
-PRIMARY KEY (idAluno,idPatologia)
 );
 
 create table Equipamento(
@@ -235,14 +278,20 @@ INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(7,
 INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(8,'USUARIO','01008', 1);
 INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(9,'BACKUP','01009', 1);
 INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(12,'MODALIDADE','01012', 1);
+INSERT INTO INTERFACE(IDINTERFACE, DESCRICAOINTERFACE, TELA, IDMODULO) VALUES(16,'MODALIDADE','01016', 1);
 
--- CADATRA USUARIO PADRAO INICIAL
-INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO, ATIVO) VALUES(1,'ADMINISTRADOR', 'admin','21232F297A57A5A743894A0E4A801FC3',1,TRUE);
-
--- CADASTRAR TODOS OS TIPOS DE USUARIO: ADMIN E INSTRUTOR
+-- CADASTRA TODOS OS TIPOS DE USUARIO: ADMIN E INSTRUTOR
 INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(1,'ADMINISTRADOR');
 INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(2,'INSTRUTOR');
+/*
+INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(3,'ATENDENTE');
+INSERT INTO TIPOUSUARIO(IDTIPOUSUARIO,DESCRICAOTIPOUSUARIO) VALUES(4,'AVALIADOR');
+*/
 
+-- CADASTRA USUARIO PADRAO INICIAL
+INSERT INTO USUARIO(IDUSUARIO,NOMEUSUARIO, USERNAME,SENHA,IDTIPOUSUARIO, ATIVO) VALUES(1,'ADMINISTRADOR', 'admin','21232F297A57A5A743894A0E4A801FC3',1,TRUE);
+
+-- CADASTRA STATUS DE UM PAGAMENTO
 INSERT INTO STATUSPAGAMENTO(IDSTATUSPAGAMENTO,DESCRICAOSTATUSPAGAMENTO) VALUES(1,'EM ABERTO');
 INSERT INTO STATUSPAGAMENTO(IDSTATUSPAGAMENTO,DESCRICAOSTATUSPAGAMENTO) VALUES(2,'PAGO');
 INSERT INTO STATUSPAGAMENTO(IDSTATUSPAGAMENTO,DESCRICAOSTATUSPAGAMENTO) VALUES(3,'ISENTO');
@@ -278,6 +327,9 @@ INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR,
 -- F01014
 INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(19,14,1,1,1,1,1);
 INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(20,14,2,1,1,1,1);
+-- F01016
+INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(21,16,1,1,1,1,1);
+INSERT INTO SEGURANCA(IDSEGURANCA,IDINTERFACE,IDTIPOUSUARIO, CADASTRAR, ALTERAR, CONSULTAR,EXCLUIR) VALUES(22,16,2,1,1,1,1);
 
 
 -- CADASTRA Objetivos +
@@ -303,7 +355,7 @@ INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('serie',1); /*?*/
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('AlunoPatologia',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idAlunoModalidade',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idFichaAluno',1);
-INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('duracaoFichaEmMeses',3);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('Anamnese',1);
 
 delimiter |
 CREATE PROCEDURE GeraMensalidade ()
@@ -421,13 +473,13 @@ set global event_scheduler = on;
 -- DROP EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE;
 -- DROP EVENT renovaMatricula;
 
--- Exclui alunoPatologia, alunoModalidade, fichaaluno e pagamento em aberto do Aluno excluído
+-- Exclui anamnese, alunoModalidade, fichaaluno e pagamento em aberto do Aluno excluído
 DELIMITER //
 CREATE TRIGGER TRIGGER_Aluno_Delete 
 AFTER DELETE ON aluno for each row
 BEGIN
-	-- Delete AlunoPatologia
-	DELETE FROM alunoPatologia WHERE alunoPatologia.idAluno = old.idAluno;
+	-- Delete anamnese
+	DELETE FROM anamnese WHERE anamnese.idAluno = old.idAluno;
     
     -- Delete AlunoModalidade
 	DELETE FROM alunoModalidade WHERE alunomodalidade.idAluno = old.idAluno;
@@ -437,6 +489,17 @@ BEGIN
     
     -- Delete Pagamentos em aberto
 	DELETE FROM pagamento WHERE pagamento.idAluno = old.idAluno and pagamento.idstatusPagamento = 1;
+    
+END //
+DELIMITER ;
+
+-- Exclui anamnesePatologia da Anamnese excluída
+DELIMITER //
+CREATE TRIGGER TRIGGER_Anamnese_Delete 
+AFTER DELETE ON anamnese for each row
+BEGIN
+	-- Delete anamnese
+	DELETE FROM anamnesepatologia WHERE anamnesepatologia.idAnamnese = old.idAnamnese;
     
 END //
 DELIMITER ;
@@ -477,7 +540,7 @@ BEGIN
 END //
 DELIMITER ;
 
--- drop trigger TRIGGER_Modalidade_Update;
+-- drop trigger TRIGGER_Aluno_Delete;
 
 
 
