@@ -85,13 +85,14 @@ type
     procedure StatusBotoes (e : integer);
   public
     { Public declarations }
-    adicionar, editar, consultar, excluir : boolean;
+    //adicionar, editar, consultar, excluir : boolean;
     function CorCamposOnlyRead():TColor;
     function validacao(operacao: integer):Boolean;
   end;
 
 var
   FBase: TFBase;
+  CdsAlteracoes : Tclientdataset;
 
 
 implementation
@@ -455,11 +456,6 @@ idInterface, edit : integer;
 nomeInterface : string;
 resultado : boolean;
 begin
-  //
-    consultar := false;
-    editar := false;
-    adicionar := false;
-    excluir := false;
 
     //Obtem id interface
     idInterface := 0;
@@ -477,49 +473,86 @@ begin
     DModule.qAcesso.SQL.Text := 'select s.*, i.idinterface as interface, m.idmodulo as modulo from seguranca s ';
     DModule.qAcesso.SQL.Add('left outer join interface i on i.idinterface = s.idinterface ');
     DModule.qAcesso.SQL.Add('left outer join modulo m on m.idmodulo = i.idmodulo ');
-    DModule.qAcesso.SQL.Add('where s.idTipousuario =:idTU and s.idInterface =:idInterf');
-    DModule.qAcesso.ParamByName('idTU').Value := Dmodule.idTipoUsuario;
+    //DModule.qAcesso.SQL.Add('where s.idInterface =:idInterf and s.idTipousuario =:idTU ');
+    DModule.qAcesso.SQL.Add('where s.idInterface =:idInterf and (   (1<>1) ');
+
+    if(Dmodule.administrador = true )then
+    DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 1) ');
+
+    if(Dmodule.instrutor = true )then
+    DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 2) ');
+
+    if(Dmodule.atendente = true )then
+    DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 3) ');
+
+    if(Dmodule.avaliador = true )then
+    DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
+
+
+    DModule.qAcesso.SQL.Add(')');
+    //DModule.qAcesso.ParamByName('idTU').Value := Dmodule.idTipoUsuario;
     DModule.qAcesso.ParamByName('idInterf').Value := idInterface;
     DModule.qAcesso.Open();
     DModule.cdsAcesso.Close;
     DModule.cdsAcesso.Open;
     DModule.cdsAcesso.First;
-
+    //ShowMessage(DModule.qAcesso.SQL.Text);
+    
     case operacao of
       1: //Adicionar
         begin
-          if(Dmodule.cdsAcessocadastrar.AsBoolean = true)then
+          resultado := false;
+          while not(DModule.cdsAcesso.eof) do
           begin
-            resultado := true;
-          end else
-            resultado := false;
+              if(Dmodule.cdsAcessocadastrar.AsBoolean = true)then
+              begin
+                resultado := true;
+                break;
+              end;
+              DModule.cdsAcesso.Next;
+          end;
 
         end;
       2://Consultar
         begin
-          if(Dmodule.cdsAcessoconsultar.AsBoolean = true)then
+          resultado := false;
+          while not(DModule.cdsAcesso.eof) do
           begin
-            resultado := true;
-          end else
-            resultado := false;
+              if(Dmodule.cdsAcessoconsultar.AsBoolean = true)then
+              begin
+                resultado := true;
+                break;
+              end;
+              DModule.cdsAcesso.Next;
+          end;
 
         end;
       3://Editar
         begin
-          if(Dmodule.cdsAcessoalterar.AsBoolean = true)then
+          resultado := false;
+          while not(DModule.cdsAcesso.eof) do
           begin
-            resultado := true;
-          end else
-            resultado := false;
+              if(Dmodule.cdsAcessoalterar.AsBoolean = true)then
+              begin
+                resultado := true;
+                break;
+              end;
+              DModule.cdsAcesso.Next;
+          end;
 
         end;
       4: //Exclui
         begin
-          if(Dmodule.cdsAcessoexcluir.AsBoolean = true)then
+          resultado := false;
+          while not(DModule.cdsAcesso.eof) do
           begin
-            resultado := true;
-          end else
-            resultado := false;
+              if(Dmodule.cdsAcessoexcluir.AsBoolean = true)then
+              begin
+                resultado := true;
+                break;
+              end;
+              DModule.cdsAcesso.Next;
+          end;
 
         end;
     end;

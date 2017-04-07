@@ -49,6 +49,18 @@ type
     FDQuery1ativo: TBooleanField;
     ClientDataSet1ativo: TBooleanField;
     cxDBCheckBox1: TcxDBCheckBox;
+    FDQuery1administrador: TBooleanField;
+    FDQuery1atendente: TBooleanField;
+    FDQuery1instrutor: TBooleanField;
+    FDQuery1avaliador: TBooleanField;
+    ClientDataSet1administrador: TBooleanField;
+    ClientDataSet1atendente: TBooleanField;
+    ClientDataSet1instrutor: TBooleanField;
+    ClientDataSet1avaliador: TBooleanField;
+    cxDBCheckBox2: TcxDBCheckBox;
+    cxDBCheckBox3: TcxDBCheckBox;
+    cxDBCheckBox4: TcxDBCheckBox;
+    cxDBCheckBox5: TcxDBCheckBox;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
@@ -63,6 +75,7 @@ type
     procedure BExcluirClick(Sender: TObject);
     procedure EditPesqTipoUsuarioKeyPress(Sender: TObject; var Key: Char);
     procedure DSStateChange(Sender: TObject);
+    procedure cxDBCheckBox2PropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,6 +84,7 @@ type
 
 var
   F01008: TF01008;
+  alteracaoSenhaInicial: string;
 
 implementation
 
@@ -139,7 +153,20 @@ begin
                 if TRIM(DBEdit5.Text) <> '' then
                 begin
                     //criptografia
-                    ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
+                    if(ds.State = dsinsert)then
+                    begin
+                            ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
+                    end else
+                    begin
+                        if(ds.State = dsEdit)then
+                        begin
+                            if (DBEdit4.Text <> alteracaoSenhaInicial)then
+                            begin
+                              ClientDataSet1senha.AsString := MD5(DBEdit4.Text);
+                            end;
+                        end;
+                    end;
+
                     // salva
                     inherited;
                 end else
@@ -204,6 +231,23 @@ begin
   ShowMessage(e.Message);
 end;
 
+procedure TF01008.cxDBCheckBox2PropertiesChange(Sender: TObject);
+begin
+  inherited;
+  IF(DS.State = dsInsert)OR(DS.State = dsEdit)THEN
+  BEGIN
+      IF(cxDBCheckBox2.Checked = TRUE)THEN
+      BEGIN
+        cxDBCheckBox3.Checked := TRUE;
+        cxDBCheckBox3.Enabled := FALSE;
+      END ELSE
+      BEGIN
+        cxDBCheckBox3.Enabled := TRUE;
+      END;
+  END;
+
+end;
+
 procedure TF01008.DBEditBeleza1KeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
@@ -221,7 +265,18 @@ begin
   IF(DS.DataSet.State = dsInsert)THEN
   BEGIN
     ClientDataSet1ativo.AsBoolean := TRUE;
+    ClientDataSet1administrador.AsBoolean := false;
+    ClientDataSet1instrutor.AsBoolean := false;
+    ClientDataSet1atendente.AsBoolean := false;
+    ClientDataSet1avaliador.AsBoolean := false;
   END;
+
+  IF(DS.DataSet.State = dsEdit)THEN
+  BEGIN
+    alteracaoSenhaInicial := ClientDataSet1senha.AsString;
+  END;
+
+
 end;
 
 procedure TF01008.EditPesqNomeChange(Sender: TObject);

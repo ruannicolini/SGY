@@ -99,6 +99,9 @@ type
     procedure CDSSerieFichaReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure DataSetProvider1BeforeUpdateRecord(Sender: TObject;
+      SourceDS: TDataSet; DeltaDS: TCustomClientDataSet;
+      UpdateKind: TUpdateKind; var Applied: Boolean);
   private
     { Private declarations }
   public
@@ -107,6 +110,7 @@ type
 
 var
   F01005: TF01005;
+
 
 implementation
 
@@ -168,6 +172,8 @@ begin
   begin
     if(CDSSerieFicha.RecordCount > 0)then
     begin
+
+        //showmessage('Antiga Descrição: ' + ClientDataSet1descricaoFicha.AsString);
         inherited;
         //limpa campos da ficha;
         Edittreino.Clear;
@@ -276,6 +282,20 @@ begin
   inherited;
   //
   ClientDataSet1idFichaPreDefinida.AsInteger := DModule.buscaProximoParametro('fichaPreDefinida');
+end;
+
+procedure TF01005.DataSetProvider1BeforeUpdateRecord(Sender: TObject;
+  SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind;
+  var Applied: Boolean);
+begin
+  inherited;
+  {
+  if(ClientDataSet1descricaoFicha.newValue <> ClientDataSet1descricaoFicha.OldValue)then
+  begin
+      showmessage('provider Nova Descrição'+ VarToStr(ClientDataSet1descricaoFicha.newValue));
+      showmessage('provider Antiga Descrição: ' + VarToStr(ClientDataSet1descricaoFicha.OldValue));
+  end;
+  }
 end;
 
 procedure TF01005.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;

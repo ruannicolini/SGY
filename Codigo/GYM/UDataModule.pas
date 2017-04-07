@@ -49,6 +49,10 @@ type
     username: string;
     senha: string;
     idTipoUsuario: integer;
+    administrador : boolean;  // id = (1)
+    instrutor : boolean;      // id = (2)
+    atendente : boolean;      // id = (3)
+    avaliador : boolean;      // id = (4)
 
     //AMBIENTE
     datahoje:TdateTime;

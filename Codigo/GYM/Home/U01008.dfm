@@ -1,15 +1,9 @@
 inherited F01008: TF01008
   Caption = 'F01008'
-  ExplicitWidth = 834
-  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
       inherited grDados: TGroupBox
         object Label1: TLabel
           Left = 16
@@ -135,13 +129,46 @@ inherited F01008: TF01008
           TabOrder = 6
           Width = 121
         end
+        object cxDBCheckBox2: TcxDBCheckBox
+          Left = 16
+          Top = 245
+          Caption = 'ADMINISTRADOR'
+          DataBinding.DataField = 'administrador'
+          DataBinding.DataSource = DS
+          Properties.OnChange = cxDBCheckBox2PropertiesChange
+          TabOrder = 7
+          Width = 121
+        end
+        object cxDBCheckBox3: TcxDBCheckBox
+          Left = 16
+          Top = 272
+          Caption = 'ATENDENTE'
+          DataBinding.DataField = 'atendente'
+          DataBinding.DataSource = DS
+          TabOrder = 8
+          Width = 121
+        end
+        object cxDBCheckBox4: TcxDBCheckBox
+          Left = 16
+          Top = 296
+          Caption = 'INSTRUTOR'
+          DataBinding.DataField = 'instrutor'
+          DataBinding.DataSource = DS
+          TabOrder = 9
+          Width = 121
+        end
+        object cxDBCheckBox5: TcxDBCheckBox
+          Left = 16
+          Top = 320
+          Caption = 'AVALIADOR'
+          DataBinding.DataField = 'avaliador'
+          DataBinding.DataSource = DS
+          TabOrder = 10
+          Width = 121
+        end
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
       inherited DBGridBeleza1: TDBGridBeleza
         Columns = <
           item
@@ -285,6 +312,18 @@ inherited F01008: TF01008
       FieldName = 'ativo'
       Required = True
     end
+    object ClientDataSet1administrador: TBooleanField
+      FieldName = 'administrador'
+    end
+    object ClientDataSet1atendente: TBooleanField
+      FieldName = 'atendente'
+    end
+    object ClientDataSet1instrutor: TBooleanField
+      FieldName = 'instrutor'
+    end
+    object ClientDataSet1avaliador: TBooleanField
+      FieldName = 'avaliador'
+    end
   end
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
@@ -334,10 +373,30 @@ inherited F01008: TF01008
       Origin = 'ativo'
       Required = True
     end
+    object FDQuery1administrador: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'administrador'
+      Origin = 'administrador'
+    end
+    object FDQuery1atendente: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'atendente'
+      Origin = 'atendente'
+    end
+    object FDQuery1instrutor: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'instrutor'
+      Origin = 'instrutor'
+    end
+    object FDQuery1avaliador: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'avaliador'
+      Origin = 'avaliador'
+    end
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00D40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

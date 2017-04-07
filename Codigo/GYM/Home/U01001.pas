@@ -96,7 +96,7 @@ type
     CDSTreinoidTreino: TIntegerField;
     CDSTreinodescricaoTreino: TStringField;
     cxGroupBox10: TcxGroupBox;
-    DBGridBeleza3: TDBGridBeleza;
+    DBGridBelezaFichasAluno: TDBGridBeleza;
     DSTreino: TDataSource;
     pagModalidades: TcxTabSheet;
     cxGroupBox11: TcxGroupBox;
@@ -123,13 +123,13 @@ type
     Label27: TLabel;
     EditModalidade: TEdit;
     editBModalidade: TEditBeleza;
-    Panel4: TPanel;
+    PanelBotoesModalidades: TPanel;
     btnCancelaMatricula: TSpeedButton;
     cxGroupBox14: TcxGroupBox;
     cxGroupBox15: TcxGroupBox;
     cxGroupBox16: TcxGroupBox;
     DBGridBeleza5: TDBGridBeleza;
-    Panel5: TPanel;
+    PanelBotoesMensalidades: TPanel;
     btnPagamento: TSpeedButton;
     pPagamento: TDataSetProvider;
     cdsPagamento: TClientDataSet;
@@ -157,7 +157,7 @@ type
     cdsPagamentodescricaoModalidade: TStringField;
     btnIsencao: TSpeedButton;
     btnCancelarPI: TSpeedButton;
-    Panel6: TPanel;
+    PanelBotoesFichaDeExercicios: TPanel;
     btnImprimirFicha: TSpeedButton;
     btnNovoFicha: TSpeedButton;
     REPORT_FICHA: TfrxReport;
@@ -258,21 +258,9 @@ type
     qRelFichanomeResponsavel: TStringField;
     qRelFichaparentescoResponsavel: TStringField;
     qRelFichatelResponsavel: TStringField;
-    qRelFichapeso: TSingleField;
-    qRelFichaaltura: TSingleField;
-    qRelFichafrequenciaAtividadeFisica: TIntegerField;
-    qRelFichaqtdRefeicoesDia: TIntegerField;
-    qRelFichaqtdHorasSono: TIntegerField;
-    qRelFichasuplementacao: TBooleanField;
-    qRelFichadieta: TBooleanField;
-    qRelFichafumante: TBooleanField;
-    qRelFichaconsomeBebidaAlcoolica: TBooleanField;
     qRelFichadataCadastro: TDateField;
     qRelFichacpf: TStringField;
-    qRelFichainformacaoAdicional: TStringField;
-    qRelFichaidObjetivo: TIntegerField;
     qRelFichaidInstrutor: TIntegerField;
-    qRelFichaDESCRICAOOBJETIVO: TStringField;
     qRelFichaNOMEINSTRUTORFICHA: TStringField;
     qRelFichaDATACOMPOSICAO: TDateField;
     qRelFichaDATAVENCIMENTO: TDateField;
@@ -292,21 +280,9 @@ type
     CDSRelFichanomeResponsavel: TStringField;
     CDSRelFichaparentescoResponsavel: TStringField;
     CDSRelFichatelResponsavel: TStringField;
-    CDSRelFichapeso: TSingleField;
-    CDSRelFichaaltura: TSingleField;
-    CDSRelFichafrequenciaAtividadeFisica: TIntegerField;
-    CDSRelFichaqtdRefeicoesDia: TIntegerField;
-    CDSRelFichaqtdHorasSono: TIntegerField;
-    CDSRelFichasuplementacao: TBooleanField;
-    CDSRelFichadieta: TBooleanField;
-    CDSRelFichafumante: TBooleanField;
-    CDSRelFichaconsomeBebidaAlcoolica: TBooleanField;
     CDSRelFichadataCadastro: TDateField;
     CDSRelFichacpf: TStringField;
-    CDSRelFichainformacaoAdicional: TStringField;
-    CDSRelFichaidObjetivo: TIntegerField;
     CDSRelFichaidInstrutor: TIntegerField;
-    CDSRelFichaDESCRICAOOBJETIVO: TStringField;
     CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
     CDSRelFichaDATACOMPOSICAO: TDateField;
     CDSRelFichaDATAVENCIMENTO: TDateField;
@@ -321,19 +297,19 @@ type
     CDSserieFichaAlunotipomedida: TStringField;
     pagAvaliacoes: TcxTabSheet;
     cxGroupBox1: TcxGroupBox;
-    Panel7: TPanel;
-    SpeedButton2: TSpeedButton;
-    btnNovaAnamnese: TSpeedButton;
+    PanelBotoesAvaliacoes: TPanel;
+    btnImprimirAnamnese: TSpeedButton;
+    btnNovaAvaliacao: TSpeedButton;
     PageControlAvaliacoes: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     cxGroupBox2: TcxGroupBox;
-    DBGridBeleza6: TDBGridBeleza;
-    DBGridBeleza7: TDBGridBeleza;
-    DBGridBeleza8: TDBGridBeleza;
-    DBGridBeleza9: TDBGridBeleza;
+    DBGridBelezaAnamnese: TDBGridBeleza;
+    DBGridBelezaFisica: TDBGridBeleza;
+    DBGridBelezaPostural: TDBGridBeleza;
+    DBGridBelezaDadosClinicos: TDBGridBeleza;
     dsAnamnese: TDataSource;
     CDSAnamnese: TClientDataSet;
     pAnamnese: TDataSetProvider;
@@ -405,6 +381,7 @@ type
     GroupBox3: TGroupBox;
     DBEdit2: TDBEdit;
     DBEditBeleza1: TDBEditBeleza;
+    PanelPerfil: TPanel;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -415,7 +392,7 @@ type
     procedure CDSFichaAlunoAfterCancel(DataSet: TDataSet);
     procedure CDSFichaAlunoAfterDelete(DataSet: TDataSet);
     procedure CDSFichaAlunoAfterPost(DataSet: TDataSet);
-    procedure DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
+    procedure DBGridBelezaFichasAlunoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure SpeedButton3Click(Sender: TObject);
     procedure editBModalidadeButtonClick(Sender: TObject;
@@ -457,16 +434,17 @@ type
     procedure DBEdit9Change(Sender: TObject);
     procedure DBEdit9Exit(Sender: TObject);
     procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
-    procedure DBGridBeleza3DblClick(Sender: TObject);
+    procedure DBGridBelezaFichasAlunoDblClick(Sender: TObject);
     procedure btnNovoFichaClick(Sender: TObject);
     procedure DBEditInstrutorChange(Sender: TObject);
     procedure EditPesqInstrutorChange(Sender: TObject);
-    procedure btnNovaAnamneseClick(Sender: TObject);
-    procedure DBGridBeleza6DblClick(Sender: TObject);
-    procedure DBGridBeleza6KeyDown(Sender: TObject; var Key: Word;
+    procedure btnNovaAvaliacaoClick(Sender: TObject);
+    procedure DBGridBelezaAnamneseDblClick(Sender: TObject);
+    procedure DBGridBelezaAnamneseKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure CDSAnamneseAfterCancel(DataSet: TDataSet);
     procedure CDSAnamneseAfterDelete(DataSet: TDataSet);
+    procedure dsAnamneseDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -1188,7 +1166,7 @@ begin
 
 end;
 
-procedure TF01001.DBGridBeleza3DblClick(Sender: TObject);
+procedure TF01001.DBGridBelezaFichasAlunoDblClick(Sender: TObject);
 begin
   inherited;
   With TF01014.CreateCONSULTA(self, CDSFichaAlunoidFichaAluno.AsInteger) do
@@ -1200,7 +1178,7 @@ begin
   CDSFichaAluno.OPEN;
 end;
 
-procedure TF01001.DBGridBeleza3KeyDown(Sender: TObject; var Key: Word;
+procedure TF01001.DBGridBelezaFichasAlunoKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     inherited;
@@ -1248,7 +1226,7 @@ begin
   end;
 end;
 
-procedure TF01001.DBGridBeleza6DblClick(Sender: TObject);
+procedure TF01001.DBGridBelezaAnamneseDblClick(Sender: TObject);
 begin
   inherited;
   IF NOT(CDSAnamnese.IsEmpty)THEN
@@ -1263,7 +1241,7 @@ begin
   END;
 end;
 
-procedure TF01001.DBGridBeleza6KeyDown(Sender: TObject; var Key: Word;
+procedure TF01001.DBGridBelezaAnamneseKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
@@ -1275,6 +1253,19 @@ begin
           CDSAnamnese.Delete;
       end;
     end;
+end;
+
+procedure TF01001.dsAnamneseDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(CDSAnamnese.RecordCount > 0)THEN
+  BEGIN
+      btnImprimirAnamnese.Enabled := TRUE;
+  END ELSE
+  BEGIN
+      btnImprimirAnamnese.Enabled := FALSE;
+  END;
+
 end;
 
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
@@ -1302,11 +1293,6 @@ begin
   qAnamnese.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSAnamnese.DataSet.close;
   DSAnamnese.DataSet.open;
-  if CDSAnamnese.RecNo > 0 then
-  BEGIN
-    btnNovaAnamnese.Enabled := TRUE;
-  END ELSE
-    btnNovaAnamnese.Enabled := FALSE;
 
   if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
   begin
@@ -1345,17 +1331,26 @@ end;
 procedure TF01001.DSPagamentoDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  IF(cdsPagamentoidstatusPagamento.AsInteger = 1)THEN
-  BEGIN
-      btnPagamento.Enabled := TRUE;
-      btnIsencao.Enabled := TRUE;
+  IF(cdsPagamento.RecordCount > 0 )THEN
+  begin
+      IF(cdsPagamentoidstatusPagamento.AsInteger = 1)THEN
+      BEGIN
+          btnPagamento.Enabled := TRUE;
+          btnIsencao.Enabled := TRUE;
+          btnCancelarPI.Enabled := false;
+      END ELSE
+      BEGIN
+          btnPagamento.Enabled := FALSE;
+          btnIsencao.Enabled := FALSE;
+          btnCancelarPI.Enabled := TRUE;
+      END;
+  end else
+  begin
+      btnPagamento.Enabled := false;
+      btnIsencao.Enabled := false;
       btnCancelarPI.Enabled := false;
-  END ELSE
-  BEGIN
-      btnPagamento.Enabled := FALSE;
-      btnIsencao.Enabled := FALSE;
-      btnCancelarPI.Enabled := TRUE;
-  END;
+  end;
+
 end;
 
 procedure TF01001.DSFichaAlunoDataChange(Sender: TObject; Field: TField);
@@ -1448,17 +1443,127 @@ procedure TF01001.FormCreate(Sender: TObject);
 begin
 
   inherited;
-
-  //Apenas o administrador pode ver a tabs Modalidade e Mensalidade
-  if(DModule.idTipoUsuario = 1)then
+  {CONTROLE DE USUÁRIOS POR FUNCIONALIDADE}
+  if(DModule.administrador = true)then
   begin
-    pagMensalidades.TabVisible := true;
+    showmessage('admin');
+    //Aba Perfil
+    pagPerfil.TabVisible := true;
+    PanelPerfil.Enabled := true;
+
+    //Aba Avaliações
+    pagAvaliacoes.TabVisible := true;
+    btnNovaAvaliacao.visible := TRUE;
+    btnNovaAvaliacao.enabled := TRUE;
+
+    //ABA FICHA DE EXERCICIO
+    pagFichaExercicios.TabVisible := true;
+    PanelBotoesFichaDeExercicios.Enabled := true;
+
+    //ABA MODALIDADES
     pagModalidades.TabVisible := true;
+    PanelBotoesModalidades.Enabled := true;
+
+    //ABAMENSALIDADES
+    pagMensalidades.TabVisible := true;
+    PanelBotoesMensalidades.Enabled := true;
+
   end else
   begin
-    pagMensalidades.TabVisible := false;
-    pagModalidades.TabVisible := false;
+      //AVALIADOR
+      if(DModule.avaliador = true)then
+      BEGIN
+          showmessage('avaliador');
+          //Aba Perfil
+          pagPerfil.TabVisible := true;
+          PanelPerfil.Enabled := FALSE;
+
+          //Aba Avaliações
+          pagAvaliacoes.TabVisible := true;
+          btnNovaAvaliacao.visible := TRUE;
+          btnNovaAvaliacao.enabled := TRUE;
+
+          //ABA FICHA DE EXERCICIO
+          pagFichaExercicios.TabVisible := FALSE;
+
+          //ABA MODALIDADES
+          pagModalidades.TabVisible := FALSE;
+
+          //ABAMENSALIDADES
+          pagMensalidades.TabVisible := FALSE;
+      END;
+
+      //INSTRUTOR
+      if(DModule.instrutor = true)then
+      BEGIN
+          showmessage('instrutor');
+          //Aba Perfil
+          pagPerfil.TabVisible := true;
+          PanelPerfil.Enabled := FALSE;
+
+          //Aba Avaliações
+          IF(DModule.avaliador = FALSE)THEN
+          BEGIN
+              pagAvaliacoes.TabVisible := true;
+              btnNovaAvaliacao.visible := FALSE;
+
+              //Impede exclusão se necessário
+              DBGridBelezaAnamnese.OnKeyDown := nil;
+              DBGridBelezaFisica.OnKeyDown := nil;
+              DBGridBelezaPostural.OnKeyDown := nil;
+              DBGridBelezaDadosClinicos.OnKeyDown := nil;
+          END;
+
+          //ABA FICHA DE EXERCICIO
+          pagFichaExercicios.TabVisible := TRUE;
+
+          //ABA MODALIDADES
+          pagModalidades.TabVisible := FALSE;
+
+          //ABAMENSALIDADES
+          pagMensalidades.TabVisible := FALSE;
+      END;
+
+      //ATENDENTE
+      if(DModule.atendente = true)then
+      BEGIN
+          showmessage('atendente');
+          //Aba Perfil
+          pagPerfil.TabVisible := true;
+          PanelPerfil.Enabled := true;
+
+          //ABA MODALIDADES
+          pagModalidades.TabVisible := TRUE;
+
+          //ABAMENSALIDADES
+          pagMensalidades.TabVisible := TRUE;
+
+          //Aba Avaliações
+          IF(DModule.avaliador = FALSE)THEN
+          BEGIN
+              pagAvaliacoes.TabVisible := FALSE;
+              btnNovaAvaliacao.visible := FALSE;
+
+              //Impede exclusão se necessário
+              DBGridBelezaAnamnese.OnKeyDown := nil;
+              DBGridBelezaFisica.OnKeyDown := nil;
+              DBGridBelezaPostural.OnKeyDown := nil;
+              DBGridBelezaDadosClinicos.OnKeyDown := nil;
+          END;
+
+          //ABA FICHA DE EXERCICIO
+          IF(DModule.instrutor = FALSE)THEN
+          BEGIN
+              pagFichaExercicios.TabVisible := TRUE;
+              btnNovoFicha.Visible := FALSE;
+              DBGridBelezaFichasAluno.OnKeyDown := nil;
+
+          END;
+
+      END;
+
   end;
+
 
 
   {CONTROLE DE PAGECONTROLAVALIACOES}
@@ -1806,19 +1911,25 @@ begin
 
 end;
 
-procedure TF01001.btnNovaAnamneseClick(Sender: TObject);
+procedure TF01001.btnNovaAvaliacaoClick(Sender: TObject);
 begin
   inherited;
 
-  With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
-  Begin
-    ShowModal;
-    Free;
-  End;
+  if(PageControlAvaliacoes.TabIndex = 0)then
+  begin
+      With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
+      Begin
+        ShowModal;
+        Free;
+      End;
 
-  // REFRESH DBGRIDBELEZA3
-  CDSAnamnese.CLOSE;
-  CDSAnamnese.OPEN;
+      // REFRESH DBGRIDBELEZA3
+      CDSAnamnese.CLOSE;
+      CDSAnamnese.OPEN;
+  end else
+  begin
+      ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+  end;
 
 end;
 

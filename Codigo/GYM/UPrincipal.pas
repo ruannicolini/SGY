@@ -222,19 +222,17 @@ begin
     Halt(0); // cancela execução
   end;
 
-
+       {
 
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
     DModule.username := 'ADMIN';
     DModule.nomeusuario := 'ADMINISTRADOR';
+    DModule.administrador := true;
     // FIM DE TESTE
 
-
-    {
-
-
+                }
 
   //Obtem Serial HD
   with GetHPI(Application.ExeName[1]) do
@@ -280,40 +278,43 @@ begin
       Dmodule.nomeusuario := Dmodule.qAux.FieldByName('nomeUsuario').AsString;
       Dmodule.username := Dmodule.qAux.FieldByName('username').AsString;
       Dmodule.senha := Dmodule.qAux.FieldByName('senha').AsString;
+      //FUNCIONALIDADES QUE O USUÁRIOS ESTA HAPITO A DESEMPENHAR
       Dmodule.idTipoUsuario := Dmodule.qAux.FieldByName('idTipoUsuario').AsInteger;
+      DModule.administrador := Dmodule.qAux.FieldByName('administrador').AsBoolean;
+      DModule.instrutor := Dmodule.qAux.FieldByName('instrutor').AsBoolean;
+      DModule.atendente := Dmodule.qAux.FieldByName('atendente').AsBoolean;
+      DModule.avaliador := Dmodule.qAux.FieldByName('avaliador').AsBoolean;
 
+      // VERIFICA SE USUÁRIO ESTA ATIVO ATUALMENTE
       if ( Dmodule.qAux.FieldByName('ativo').AsBoolean = FALSE ) then
       begin
           ShowMessage('Usuário não está ativo no sistema.');
           Application.Terminate;
       end;
 
-
-      //showmessage(
-      //Dmodule.qAux.FieldByName('idUsuario').AsString + #13 +
-      //Dmodule.qAux.FieldByName('login').AsString + #13 +
-      //Dmodule.qAux.FieldByName('senha').AsString + #13 +
-      //Dmodule.qAux.FieldByName('idTipoUsuario').AsString    );
-
-
-      //Obtem Dados de acesso do tipoUsuário
+      //Obtem Dados de acesso doS TIPOS DE USUÁRIOS VINCULADOS
       DModule.qAcesso.Close;
       DModule.qAcesso.SQL.Text := 'select s.*, i.idinterface as interface, m.idmodulo as modulo from seguranca s ';
       DModule.qAcesso.SQL.Add('left outer join interface i on i.idinterface = s.idinterface ');
       DModule.qAcesso.SQL.Add('left outer join modulo m on m.idmodulo = i.idmodulo ');
-      DModule.qAcesso.SQL.Add('where s.idTipousuario =:idTU');
-      DModule.qAcesso.ParamByName('idTU').Value := Dmodule.idTipoUsuario;
-      DModule.qAcesso.Open();
+      DModule.qAcesso.SQL.Add('where (   (1<>1) ');
+
+      if(Dmodule.administrador = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 1) ');
+      if(Dmodule.instrutor = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 2) ');
+      if(Dmodule.atendente = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 3) ');
+      if(Dmodule.avaliador = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
+      DModule.qAcesso.SQL.Add(')');
+
+      DModule.qAcesso.Open();
+      //ShowMessage( (DModule.qAcesso.sql.text));
+      //ShowMessage(inttostr(DModule.qAcesso.RecordCount));
       DModule.cdsAcesso.Close;
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
-
-      //OBTEM DADOS DE CONFIGURAÇÃO
-      Dmodule.qAux.close;
-      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
-      Dmodule.qAux.open;
-
-      DMODULE.
 
   end;
 
@@ -321,31 +322,20 @@ begin
   Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
   Arquivo.EraseSection('Login');
   Arquivo.Free;
-}
-
 
 //OBTEM DADOS DE CONFIGURAÇÃO
-      Dmodule.qAux.close;
-      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
-      Dmodule.qAux.open;
+  Dmodule.qAux.close;
+  Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
+  Dmodule.qAux.open;
 
-      DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
-      DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
-      DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
-      DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
-      DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
-      DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
+  DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
+  DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
+  DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
+  DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
+  DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
+  DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
 
-      {
-      ShowMessage(
-      'confVecimentoFicha: ' + inttostr(DMODULE.confVecimentoFicha) + #13 +
-      'videoYoutube: ' + BoolToStr(DMODULE.confVideoYoutube) + #13 +
-      'Anamnese: ' + BoolToStr(DMODULE.confAvaAnamnese) + #13 +
-      'Física: ' + BoolToStr(DMODULE.confAvaFisica) + #13 +
-      'Postural: ' + BoolToStr(DMODULE.confAvaPostural) + #13 +
-      'Dados Clinicos: ' + BoolToStr(DMODULE.confAvaDadosClinicos)
-      );
-      }
+
 end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);

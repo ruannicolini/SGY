@@ -3,8 +3,6 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
-  ExplicitTop = -287
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -19,18 +17,16 @@
   inherited PageControl: TPageControl
     Width = 1008
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
         Width = 1000
         Height = 678
-        ExplicitLeft = 3
         ExplicitWidth = 1000
         ExplicitHeight = 678
         object cxPageControl1: TcxPageControl
@@ -70,391 +66,402 @@
             Color = 16382457
             ImageIndex = 0
             ParentColor = False
-            object camera: TdxCameraControl
-              Left = 836
-              Top = 144
-              Width = 55
-              Height = 55
-              Visible = False
-            end
-            object GroupBox1: TGroupBox
-              Left = 17
-              Top = 255
-              Width = 638
-              Height = 112
-              TabOrder = 1
-              object Label7: TLabel
-                Left = 15
-                Top = 5
-                Width = 43
-                Height = 16
-                Caption = 'CIDADE'
-              end
-              object Label8: TLabel
-                Left = 223
-                Top = 5
-                Width = 44
-                Height = 16
-                Caption = 'BAIRRO'
-              end
-              object Label9: TLabel
-                Left = 430
-                Top = 57
-                Width = 50
-                Height = 16
-                Caption = 'NUMERO'
-                FocusControl = cxDBSpinEdit2
-              end
-              object Label10: TLabel
-                Left = 15
-                Top = 57
-                Width = 24
-                Height = 16
-                Caption = 'RUA'
-              end
-              object Label11: TLabel
-                Left = 430
-                Top = 5
-                Width = 22
-                Height = 16
-                Caption = 'CEP'
-              end
-              object cxDBSpinEdit2: TcxDBSpinEdit
-                Left = 430
-                Top = 77
-                DataBinding.DataField = 'numero'
-                DataBinding.DataSource = DS
-                TabOrder = 0
-                Width = 193
-              end
-              object DBEdit6: TDBEdit
-                Left = 15
-                Top = 25
-                Width = 193
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'cidade'
-                DataSource = DS
-                TabOrder = 1
-              end
-              object DBEdit7: TDBEdit
-                Left = 223
-                Top = 25
-                Width = 193
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'bairro'
-                DataSource = DS
-                TabOrder = 2
-              end
-              object DBEdit8: TDBEdit
-                Left = 15
-                Top = 77
-                Width = 401
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'rua'
-                DataSource = DS
-                TabOrder = 3
-              end
-              object DBEdit13: TDBEdit
-                Left = 430
-                Top = 25
-                Width = 193
-                Height = 24
-                DataField = 'cep'
-                DataSource = DS
-                TabOrder = 4
-              end
-            end
-            object GROUPBOX2: TGroupBox
-              Left = 16
-              Top = 368
-              Width = 638
-              Height = 129
-              Caption = 'RESPONS'#193'VEL'
-              TabOrder = 2
-              object Label1: TLabel
-                Left = 15
-                Top = 19
-                Width = 34
-                Height = 16
-                Caption = 'NOME'
-              end
-              object Label2: TLabel
-                Left = 15
-                Top = 71
-                Width = 78
-                Height = 16
-                Caption = 'PARENTESCO'
-              end
-              object Label4: TLabel
-                Left = 326
-                Top = 71
-                Width = 21
-                Height = 16
-                Caption = 'TEL'
-              end
-              object cxDBMaskEdit5: TcxDBMaskEdit
-                Left = 326
-                Top = 91
-                DataBinding.DataField = 'telResponsavel'
-                DataBinding.DataSource = DS
-                Properties.CharCase = ecUpperCase
-                Properties.EditMask = '!\(99\)9999-99999;1;_'
-                TabOrder = 0
-                Width = 297
-              end
-              object DBEdit4: TDBEdit
-                Left = 15
-                Top = 39
-                Width = 608
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'nomeResponsavel'
-                DataSource = DS
-                TabOrder = 1
-              end
-              object DBEdit5: TDBEdit
+            object PanelPerfil: TPanel
+              Left = 0
+              Top = 0
+              Width = 996
+              Height = 630
+              Align = alClient
+              BevelOuter = bvNone
+              TabOrder = 0
+              ExplicitLeft = 3
+              ExplicitTop = -33
+              object GroupBox_ALUNO: TGroupBox
                 Left = 16
-                Top = 91
-                Width = 297
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'parentescoResponsavel'
-                DataSource = DS
-                TabOrder = 2
-              end
-            end
-            object GroupBox_ALUNO: TGroupBox
-              Left = 16
-              Top = -4
-              Width = 638
-              Height = 253
-              Caption = 'ALUNO'
-              TabOrder = 3
-              object Label12: TLabel
-                Left = 223
-                Top = 141
-                Width = 22
-                Height = 16
-                Caption = 'CPF'
-              end
-              object Label14: TLabel
-                Left = 223
-                Top = 193
-                Width = 21
-                Height = 16
-                Caption = 'TEL'
-              end
-              object Label3: TLabel
-                Left = 430
-                Top = 193
-                Width = 35
-                Height = 16
-                Caption = 'EMAIL'
-              end
-              object Label5: TLabel
-                Left = 223
-                Top = 34
-                Width = 34
-                Height = 16
-                Caption = 'NOME'
-              end
-              object Label6: TLabel
-                Left = 15
-                Top = 193
-                Width = 21
-                Height = 16
-                Caption = 'CEL'
-              end
-              object Label28: TLabel
-                Left = 430
-                Top = 87
-                Width = 35
-                Height = 16
-                Alignment = taCenter
-                Caption = 'IDADE'
-              end
-              object Label29: TLabel
-                Left = 223
-                Top = 87
-                Width = 72
-                Height = 16
-                Caption = 'DATA NASC.'
-              end
-              object cxDBDateEdit1: TcxDBDateEdit
-                Left = 223
-                Top = 109
-                DataBinding.DataField = 'dataNascimento'
-                DataBinding.DataSource = DS
+                Top = -4
+                Width = 638
+                Height = 253
+                Caption = 'ALUNO'
                 TabOrder = 0
-                OnExit = cxDBDateEdit1Exit
-                Width = 192
+                object Label12: TLabel
+                  Left = 223
+                  Top = 141
+                  Width = 22
+                  Height = 16
+                  Caption = 'CPF'
+                end
+                object Label14: TLabel
+                  Left = 223
+                  Top = 193
+                  Width = 21
+                  Height = 16
+                  Caption = 'TEL'
+                end
+                object Label3: TLabel
+                  Left = 430
+                  Top = 193
+                  Width = 35
+                  Height = 16
+                  Caption = 'EMAIL'
+                end
+                object Label5: TLabel
+                  Left = 223
+                  Top = 34
+                  Width = 34
+                  Height = 16
+                  Caption = 'NOME'
+                end
+                object Label6: TLabel
+                  Left = 15
+                  Top = 193
+                  Width = 21
+                  Height = 16
+                  Caption = 'CEL'
+                end
+                object Label28: TLabel
+                  Left = 430
+                  Top = 87
+                  Width = 35
+                  Height = 16
+                  Alignment = taCenter
+                  Caption = 'IDADE'
+                end
+                object Label29: TLabel
+                  Left = 223
+                  Top = 87
+                  Width = 72
+                  Height = 16
+                  Caption = 'DATA NASC.'
+                end
+                object cxDBDateEdit1: TcxDBDateEdit
+                  Left = 223
+                  Top = 109
+                  DataBinding.DataField = 'dataNascimento'
+                  DataBinding.DataSource = DS
+                  TabOrder = 0
+                  OnExit = cxDBDateEdit1Exit
+                  Width = 192
+                end
+                object cxImage1: TcxImage
+                  Left = 14
+                  Top = 34
+                  Properties.GraphicTransparency = gtOpaque
+                  Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
+                  Properties.OnChange = cxImage1PropertiesChange
+                  Style.BorderStyle = ebsSingle
+                  Style.Edges = [bLeft, bTop, bRight, bBottom]
+                  Style.HotTrack = True
+                  Style.LookAndFeel.Kind = lfUltraFlat
+                  Style.LookAndFeel.NativeStyle = False
+                  Style.Shadow = False
+                  Style.TransparentBorder = True
+                  StyleDisabled.LookAndFeel.Kind = lfUltraFlat
+                  StyleDisabled.LookAndFeel.NativeStyle = False
+                  StyleFocused.LookAndFeel.Kind = lfUltraFlat
+                  StyleFocused.LookAndFeel.NativeStyle = False
+                  StyleHot.LookAndFeel.Kind = lfUltraFlat
+                  StyleHot.LookAndFeel.NativeStyle = False
+                  TabOrder = 1
+                  Height = 153
+                  Width = 195
+                end
+                object DBEdit1: TDBEdit
+                  Left = 566
+                  Top = 54
+                  Width = 57
+                  Height = 24
+                  TabStop = False
+                  DataField = 'idAluno'
+                  DataSource = DS
+                  ReadOnly = True
+                  TabOrder = 2
+                end
+                object DBEdit3: TDBEdit
+                  Left = 223
+                  Top = 54
+                  Width = 344
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'nomeAluno'
+                  DataSource = DS
+                  TabOrder = 3
+                end
+                object DBEdit9: TDBEdit
+                  Left = 223
+                  Top = 161
+                  Width = 193
+                  Height = 24
+                  DataField = 'cpf'
+                  DataSource = DS
+                  TabOrder = 4
+                  OnChange = DBEdit9Change
+                  OnExit = DBEdit9Exit
+                end
+                object DBEdit10: TDBEdit
+                  Left = 15
+                  Top = 213
+                  Width = 193
+                  Height = 24
+                  DataField = 'tel1'
+                  DataSource = DS
+                  TabOrder = 5
+                end
+                object DBEdit11: TDBEdit
+                  Left = 223
+                  Top = 213
+                  Width = 193
+                  Height = 24
+                  DataField = 'tel2'
+                  DataSource = DS
+                  TabOrder = 6
+                end
+                object DBEdit12: TDBEdit
+                  Left = 430
+                  Top = 214
+                  Width = 193
+                  Height = 24
+                  DataField = 'email'
+                  DataSource = DS
+                  TabOrder = 7
+                end
+                object DBRadioGroup1: TDBRadioGroup
+                  Left = 430
+                  Top = 141
+                  Width = 193
+                  Height = 44
+                  Caption = 'SEXO'
+                  Columns = 2
+                  DataField = 'sexo'
+                  DataSource = DS
+                  Items.Strings = (
+                    'MASCULINO'
+                    'FEMININO')
+                  TabOrder = 8
+                  Values.Strings = (
+                    'M'
+                    'F')
+                end
+                object DBEdit14: TDBEdit
+                  Left = 430
+                  Top = 109
+                  Width = 193
+                  Height = 24
+                  DataField = 'IDADE'
+                  DataSource = DS
+                  TabOrder = 9
+                end
               end
-              object cxImage1: TcxImage
-                Left = 14
-                Top = 34
-                Properties.GraphicTransparency = gtOpaque
-                Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
-                Properties.OnChange = cxImage1PropertiesChange
-                Style.BorderStyle = ebsSingle
-                Style.Edges = [bLeft, bTop, bRight, bBottom]
-                Style.HotTrack = True
-                Style.LookAndFeel.Kind = lfUltraFlat
-                Style.LookAndFeel.NativeStyle = False
-                Style.Shadow = False
-                Style.TransparentBorder = True
-                StyleDisabled.LookAndFeel.Kind = lfUltraFlat
-                StyleDisabled.LookAndFeel.NativeStyle = False
-                StyleFocused.LookAndFeel.Kind = lfUltraFlat
-                StyleFocused.LookAndFeel.NativeStyle = False
-                StyleHot.LookAndFeel.Kind = lfUltraFlat
-                StyleHot.LookAndFeel.NativeStyle = False
+              object GroupBox1: TGroupBox
+                Left = 17
+                Top = 255
+                Width = 638
+                Height = 112
                 TabOrder = 1
-                Height = 153
-                Width = 195
+                object Label7: TLabel
+                  Left = 15
+                  Top = 5
+                  Width = 43
+                  Height = 16
+                  Caption = 'CIDADE'
+                end
+                object Label8: TLabel
+                  Left = 223
+                  Top = 5
+                  Width = 44
+                  Height = 16
+                  Caption = 'BAIRRO'
+                end
+                object Label9: TLabel
+                  Left = 430
+                  Top = 57
+                  Width = 50
+                  Height = 16
+                  Caption = 'NUMERO'
+                  FocusControl = cxDBSpinEdit2
+                end
+                object Label10: TLabel
+                  Left = 15
+                  Top = 57
+                  Width = 24
+                  Height = 16
+                  Caption = 'RUA'
+                end
+                object Label11: TLabel
+                  Left = 430
+                  Top = 5
+                  Width = 22
+                  Height = 16
+                  Caption = 'CEP'
+                end
+                object cxDBSpinEdit2: TcxDBSpinEdit
+                  Left = 430
+                  Top = 77
+                  DataBinding.DataField = 'numero'
+                  DataBinding.DataSource = DS
+                  TabOrder = 0
+                  Width = 193
+                end
+                object DBEdit6: TDBEdit
+                  Left = 15
+                  Top = 25
+                  Width = 193
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'cidade'
+                  DataSource = DS
+                  TabOrder = 1
+                end
+                object DBEdit7: TDBEdit
+                  Left = 223
+                  Top = 25
+                  Width = 193
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'bairro'
+                  DataSource = DS
+                  TabOrder = 2
+                end
+                object DBEdit8: TDBEdit
+                  Left = 15
+                  Top = 77
+                  Width = 401
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'rua'
+                  DataSource = DS
+                  TabOrder = 3
+                end
+                object DBEdit13: TDBEdit
+                  Left = 430
+                  Top = 25
+                  Width = 193
+                  Height = 24
+                  DataField = 'cep'
+                  DataSource = DS
+                  TabOrder = 4
+                end
               end
-              object DBEdit1: TDBEdit
-                Left = 566
-                Top = 54
-                Width = 57
-                Height = 24
-                TabStop = False
-                DataField = 'idAluno'
-                DataSource = DS
-                ReadOnly = True
+              object GROUPBOX2: TGroupBox
+                Left = 16
+                Top = 368
+                Width = 638
+                Height = 129
+                Caption = 'RESPONS'#193'VEL'
                 TabOrder = 2
+                object Label1: TLabel
+                  Left = 15
+                  Top = 19
+                  Width = 34
+                  Height = 16
+                  Caption = 'NOME'
+                end
+                object Label2: TLabel
+                  Left = 15
+                  Top = 71
+                  Width = 78
+                  Height = 16
+                  Caption = 'PARENTESCO'
+                end
+                object Label4: TLabel
+                  Left = 326
+                  Top = 71
+                  Width = 21
+                  Height = 16
+                  Caption = 'TEL'
+                end
+                object cxDBMaskEdit5: TcxDBMaskEdit
+                  Left = 326
+                  Top = 91
+                  DataBinding.DataField = 'telResponsavel'
+                  DataBinding.DataSource = DS
+                  Properties.CharCase = ecUpperCase
+                  Properties.EditMask = '!\(99\)9999-99999;1;_'
+                  TabOrder = 0
+                  Width = 297
+                end
+                object DBEdit4: TDBEdit
+                  Left = 15
+                  Top = 39
+                  Width = 608
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'nomeResponsavel'
+                  DataSource = DS
+                  TabOrder = 1
+                end
+                object DBEdit5: TDBEdit
+                  Left = 16
+                  Top = 91
+                  Width = 297
+                  Height = 24
+                  CharCase = ecUpperCase
+                  DataField = 'parentescoResponsavel'
+                  DataSource = DS
+                  TabOrder = 2
+                end
               end
-              object DBEdit3: TDBEdit
-                Left = 223
-                Top = 54
-                Width = 344
-                Height = 24
-                CharCase = ecUpperCase
-                DataField = 'nomeAluno'
-                DataSource = DS
+              object GroupBox3: TGroupBox
+                Left = 16
+                Top = 500
+                Width = 313
+                Height = 50
+                Caption = 'INSTRUTOR'
                 TabOrder = 3
+                object DBEdit2: TDBEdit
+                  Left = 15
+                  Top = 20
+                  Width = 24
+                  Height = 21
+                  TabStop = False
+                  Color = 15132390
+                  DataField = 'idInstrutor'
+                  DataSource = DS
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 0
+                  OnChange = DBEditInstrutorChange
+                end
+                object DBEditBeleza1: TDBEditBeleza
+                  Left = 38
+                  Top = 20
+                  Width = 259
+                  Height = 21
+                  Color = 15132390
+                  DataField = 'NOMEINSTRUTORFICHA'
+                  DataSource = DS
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 1
+                  Ativar_Pesquisa = True
+                  mostrar_Botao = True
+                  sql.Strings = (
+                    
+                      'select idusuario, nomeusuario, ativo,  idTipoUsuario from usuari' +
+                      'o where nomeusuario like :varDescricao and ativo = true and inst' +
+                      'rutor = true;')
+                  database = 'GYM'
+                  campo = 'nomeusuario'
+                  Sempre_Mostrar_Janela = False
+                  Outro_Edit = DBEdit2
+                  campo_outro_edit = 'IDUSUARIO'
+                  CorBorda = clGray
+                  NovoLayout = False
+                end
               end
-              object DBEdit9: TDBEdit
-                Left = 223
-                Top = 161
-                Width = 193
-                Height = 24
-                DataField = 'cpf'
-                DataSource = DS
-                TabOrder = 4
-                OnChange = DBEdit9Change
-                OnExit = DBEdit9Exit
-              end
-              object DBEdit10: TDBEdit
-                Left = 15
-                Top = 213
-                Width = 193
-                Height = 24
-                DataField = 'tel1'
-                DataSource = DS
-                TabOrder = 5
-              end
-              object DBEdit11: TDBEdit
-                Left = 223
-                Top = 213
-                Width = 193
-                Height = 24
-                DataField = 'tel2'
-                DataSource = DS
-                TabOrder = 6
-              end
-              object DBEdit12: TDBEdit
-                Left = 430
-                Top = 214
-                Width = 193
-                Height = 24
-                DataField = 'email'
-                DataSource = DS
-                TabOrder = 7
-              end
-              object DBRadioGroup1: TDBRadioGroup
-                Left = 430
-                Top = 141
-                Width = 193
-                Height = 44
-                Caption = 'SEXO'
-                Columns = 2
-                DataField = 'sexo'
-                DataSource = DS
-                Items.Strings = (
-                  'MASCULINO'
-                  'FEMININO')
-                TabOrder = 8
-                Values.Strings = (
-                  'M'
-                  'F')
-              end
-              object DBEdit14: TDBEdit
-                Left = 430
-                Top = 109
-                Width = 193
-                Height = 24
-                DataField = 'IDADE'
-                DataSource = DS
-                TabOrder = 9
-              end
-            end
-            object GroupBox3: TGroupBox
-              Left = 16
-              Top = 500
-              Width = 313
-              Height = 50
-              Caption = 'INSTRUTOR'
-              TabOrder = 4
-              object DBEdit2: TDBEdit
-                Left = 15
-                Top = 20
-                Width = 24
-                Height = 21
-                TabStop = False
-                Color = 15132390
-                DataField = 'idInstrutor'
-                DataSource = DS
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 0
-                OnChange = DBEditInstrutorChange
-              end
-              object DBEditBeleza1: TDBEditBeleza
-                Left = 38
-                Top = 20
-                Width = 259
-                Height = 21
-                Color = 15132390
-                DataField = 'NOMEINSTRUTORFICHA'
-                DataSource = DS
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -11
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentFont = False
-                TabOrder = 1
-                Ativar_Pesquisa = True
-                mostrar_Botao = True
-                sql.Strings = (
-                  
-                    'select idusuario, nomeusuario, ativo,  idTipoUsuario from usuari' +
-                    'o where nomeusuario like :varDescricao and ativo = true and (idt' +
-                    'ipousuario = 2 or idtipousuario =1);')
-                database = 'GYM'
-                campo = 'nomeusuario'
-                Sempre_Mostrar_Janela = False
-                Outro_Edit = DBEdit2
-                campo_outro_edit = 'IDUSUARIO'
-                CorBorda = clGray
-                NovoLayout = False
+              object camera: TdxCameraControl
+                Left = 735
+                Top = 44
+                Width = 55
+                Height = 55
+                Visible = False
               end
             end
           end
@@ -468,7 +475,7 @@
               TabOrder = 0
               Height = 552
               Width = 794
-              object Panel7: TPanel
+              object PanelBotoesAvaliacoes: TPanel
                 Left = 2
                 Top = 513
                 Width = 790
@@ -478,24 +485,23 @@
                 Color = 15329769
                 ParentBackground = False
                 TabOrder = 0
-                object SpeedButton2: TSpeedButton
+                object btnImprimirAnamnese: TSpeedButton
                   Left = 631
                   Top = 3
                   Width = 151
                   Height = 30
                   Align = alCustom
-                  Caption = 'IMPRIMIR ANAMNESE'
+                  Caption = 'IMPRIMIR'
                   Enabled = False
                 end
-                object btnNovaAnamnese: TSpeedButton
+                object btnNovaAvaliacao: TSpeedButton
                   Left = 478
                   Top = 3
                   Width = 151
                   Height = 30
                   Align = alCustom
                   Caption = 'NOVO'
-                  Enabled = False
-                  OnClick = btnNovaAnamneseClick
+                  OnClick = btnNovaAvaliacaoClick
                 end
               end
               object PageControlAvaliacoes: TPageControl
@@ -509,7 +515,7 @@
                 TabOrder = 1
                 object TabSheet1: TTabSheet
                   Caption = 'ANAMNESE'
-                  object DBGridBeleza6: TDBGridBeleza
+                  object DBGridBelezaAnamnese: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
@@ -539,8 +545,8 @@
                     TitleFont.Height = -11
                     TitleFont.Name = 'Tahoma'
                     TitleFont.Style = []
-                    OnDblClick = DBGridBeleza6DblClick
-                    OnKeyDown = DBGridBeleza6KeyDown
+                    OnDblClick = DBGridBelezaAnamneseDblClick
+                    OnKeyDown = DBGridBelezaAnamneseKeyDown
                     Cor_2 = 16382457
                     Direcao_Cor2 = dg_Horiz
                     Direcao_Enter = dg_Horiz
@@ -579,7 +585,7 @@
                 object TabSheet2: TTabSheet
                   Caption = 'F'#205'SICA'
                   ImageIndex = 1
-                  object DBGridBeleza7: TDBGridBeleza
+                  object DBGridBelezaFisica: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
@@ -621,7 +627,7 @@
                 object TabSheet3: TTabSheet
                   Caption = 'POSTURAL'
                   ImageIndex = 2
-                  object DBGridBeleza8: TDBGridBeleza
+                  object DBGridBelezaPostural: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
@@ -663,7 +669,7 @@
                 object TabSheet4: TTabSheet
                   Caption = 'DADOS CL'#205'NICOS'
                   ImageIndex = 3
-                  object DBGridBeleza9: TDBGridBeleza
+                  object DBGridBelezaDadosClinicos: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
@@ -752,7 +758,7 @@
                 TabOrder = 0
                 Height = 508
                 Width = 790
-                object DBGridBeleza3: TDBGridBeleza
+                object DBGridBelezaFichasAluno: TDBGridBeleza
                   AlignWithMargins = True
                   Left = 5
                   Top = 78
@@ -782,8 +788,8 @@
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
-                  OnDblClick = DBGridBeleza3DblClick
-                  OnKeyDown = DBGridBeleza3KeyDown
+                  OnDblClick = DBGridBelezaFichasAlunoDblClick
+                  OnKeyDown = DBGridBelezaFichasAlunoKeyDown
                   Cor_2 = 16382457
                   Direcao_Cor2 = dg_Horiz
                   Direcao_Enter = dg_Horiz
@@ -906,7 +912,7 @@
                   end
                 end
               end
-              object Panel6: TPanel
+              object PanelBotoesFichaDeExercicios: TPanel
                 Left = 2
                 Top = 513
                 Width = 790
@@ -933,7 +939,6 @@
                   Height = 30
                   Align = alCustom
                   Caption = 'NOVO'
-                  Enabled = False
                   OnClick = btnNovoFichaClick
                 end
               end
@@ -1129,7 +1134,7 @@
                       Visible = True
                     end>
                 end
-                object Panel4: TPanel
+                object PanelBotoesModalidades: TPanel
                   Left = 2
                   Top = 506
                   Width = 786
@@ -1303,7 +1308,7 @@
                       Visible = True
                     end>
                 end
-                object Panel5: TPanel
+                object PanelBotoesMensalidades: TPanel
                   Left = 2
                   Top = 506
                   Width = 786
@@ -1351,8 +1356,6 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1708,8 +1711,7 @@
           sql.Strings = (
             
               'select P.idUSUARIO, P.NOMEUSUARIO from USUARIO P where P.NOMEUSU' +
-              'ARIO like :varDescricao AND ((P.IDUSUARIO = 1)OR(P.IDUSUARIO = 2' +
-              '))')
+              'ARIO like :varDescricao AND p.instrutor = true')
           database = 'GYM'
           campo = 'NOMEUSUARIO'
           Sempre_Mostrar_Janela = False
@@ -2018,7 +2020,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00580310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00640310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3258,15 +3260,12 @@
   object qRelFicha: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      
-        'SELECT a.*, OBJ.DESCRICAOOBJETIVO, FA.NOMEINSTRUTOR AS NOMEINSTR' +
-        'UTORFICHA, '
+      'SELECT a.*, FA.NOMEINSTRUTOR AS NOMEINSTRUTORFICHA, '
       
         'FA.DATACOMPOSICAO, FA.DATAVENCIMENTO, FA.IDFICHAALUNO AS CODFICH' +
         'A '
       'FROM FICHAALUNO FA'
-      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = FA.IDALUNO '
-      'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO '
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = FA.IDALUNO'
       'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTOR'
       'WHERE FA.IDFICHAALUNO =:IDFA')
     Left = 326
@@ -3364,51 +3363,6 @@
       Origin = 'telResponsavel'
       Size = 50
     end
-    object qRelFichapeso: TSingleField
-      AutoGenerateValue = arDefault
-      FieldName = 'peso'
-      Origin = 'peso'
-    end
-    object qRelFichaaltura: TSingleField
-      AutoGenerateValue = arDefault
-      FieldName = 'altura'
-      Origin = 'altura'
-    end
-    object qRelFichafrequenciaAtividadeFisica: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'frequenciaAtividadeFisica'
-      Origin = 'frequenciaAtividadeFisica'
-    end
-    object qRelFichaqtdRefeicoesDia: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'qtdRefeicoesDia'
-      Origin = 'qtdRefeicoesDia'
-    end
-    object qRelFichaqtdHorasSono: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'qtdHorasSono'
-      Origin = 'qtdHorasSono'
-    end
-    object qRelFichasuplementacao: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'suplementacao'
-      Origin = 'suplementacao'
-    end
-    object qRelFichadieta: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'dieta'
-      Origin = 'dieta'
-    end
-    object qRelFichafumante: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'fumante'
-      Origin = 'fumante'
-    end
-    object qRelFichaconsomeBebidaAlcoolica: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'consomeBebidaAlcoolica'
-      Origin = 'consomeBebidaAlcoolica'
-    end
     object qRelFichadataCadastro: TDateField
       AutoGenerateValue = arDefault
       FieldName = 'dataCadastro'
@@ -3420,26 +3374,10 @@
       Origin = 'cpf'
       Size = 50
     end
-    object qRelFichainformacaoAdicional: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'informacaoAdicional'
-      Origin = 'informacaoAdicional'
-      Size = 500
-    end
-    object qRelFichaidObjetivo: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'idObjetivo'
-      Origin = 'idObjetivo'
-    end
     object qRelFichaidInstrutor: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'idInstrutor'
       Origin = 'idInstrutor'
-    end
-    object qRelFichaDESCRICAOOBJETIVO: TStringField
-      FieldName = 'DESCRICAOOBJETIVO'
-      Origin = 'DESCRICAOOBJETIVO'
-      Size = 50
     end
     object qRelFichaNOMEINSTRUTORFICHA: TStringField
       AutoGenerateValue = arDefault
@@ -3547,42 +3485,6 @@
       Origin = 'telResponsavel'
       Size = 50
     end
-    object CDSRelFichapeso: TSingleField
-      FieldName = 'peso'
-      Origin = 'peso'
-    end
-    object CDSRelFichaaltura: TSingleField
-      FieldName = 'altura'
-      Origin = 'altura'
-    end
-    object CDSRelFichafrequenciaAtividadeFisica: TIntegerField
-      FieldName = 'frequenciaAtividadeFisica'
-      Origin = 'frequenciaAtividadeFisica'
-    end
-    object CDSRelFichaqtdRefeicoesDia: TIntegerField
-      FieldName = 'qtdRefeicoesDia'
-      Origin = 'qtdRefeicoesDia'
-    end
-    object CDSRelFichaqtdHorasSono: TIntegerField
-      FieldName = 'qtdHorasSono'
-      Origin = 'qtdHorasSono'
-    end
-    object CDSRelFichasuplementacao: TBooleanField
-      FieldName = 'suplementacao'
-      Origin = 'suplementacao'
-    end
-    object CDSRelFichadieta: TBooleanField
-      FieldName = 'dieta'
-      Origin = 'dieta'
-    end
-    object CDSRelFichafumante: TBooleanField
-      FieldName = 'fumante'
-      Origin = 'fumante'
-    end
-    object CDSRelFichaconsomeBebidaAlcoolica: TBooleanField
-      FieldName = 'consomeBebidaAlcoolica'
-      Origin = 'consomeBebidaAlcoolica'
-    end
     object CDSRelFichadataCadastro: TDateField
       FieldName = 'dataCadastro'
       Origin = 'dataCadastro'
@@ -3592,23 +3494,9 @@
       Origin = 'cpf'
       Size = 50
     end
-    object CDSRelFichainformacaoAdicional: TStringField
-      FieldName = 'informacaoAdicional'
-      Origin = 'informacaoAdicional'
-      Size = 500
-    end
-    object CDSRelFichaidObjetivo: TIntegerField
-      FieldName = 'idObjetivo'
-      Origin = 'idObjetivo'
-    end
     object CDSRelFichaidInstrutor: TIntegerField
       FieldName = 'idInstrutor'
       Origin = 'idInstrutor'
-    end
-    object CDSRelFichaDESCRICAOOBJETIVO: TStringField
-      FieldName = 'DESCRICAOOBJETIVO'
-      Origin = 'DESCRICAOOBJETIVO'
-      Size = 50
     end
     object CDSRelFichaNOMEINSTRUTORFICHA: TStringField
       FieldName = 'NOMEINSTRUTORFICHA'
@@ -3635,7 +3523,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C010101001400B8005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101001400C4005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8324,21 +8212,9 @@
       'nomeResponsavel=nomeResponsavel'
       'parentescoResponsavel=parentescoResponsavel'
       'telResponsavel=telResponsavel'
-      'peso=peso'
-      'altura=altura'
-      'frequenciaAtividadeFisica=frequenciaAtividadeFisica'
-      'qtdRefeicoesDia=qtdRefeicoesDia'
-      'qtdHorasSono=qtdHorasSono'
-      'suplementacao=suplementacao'
-      'dieta=dieta'
-      'fumante=fumante'
-      'consomeBebidaAlcoolica=consomeBebidaAlcoolica'
       'dataCadastro=dataCadastro'
       'cpf=cpf'
-      'informacaoAdicional=informacaoAdicional'
-      'idObjetivo=idObjetivo'
       'idInstrutor=idInstrutor'
-      'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO'
       'NOMEINSTRUTORFICHA=NOMEINSTRUTORFICHA'
       'DATACOMPOSICAO=DATACOMPOSICAO'
       'DATAVENCIMENTO=DATAVENCIMENTO'
@@ -8524,6 +8400,7 @@
   end
   object dsAnamnese: TDataSource
     DataSet = CDSAnamnese
+    OnDataChange = dsAnamneseDataChange
     Left = 966
     Top = 418
   end
