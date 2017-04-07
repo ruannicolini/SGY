@@ -32,6 +32,8 @@ type
     imgBtnBackup: TImage;
     imgBtnModalidade: TImage;
     ApplicationEvents1: TApplicationEvents;
+    PanelNomeUsuario: TPanel;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
     procedure CriarForm(Tela, Desc : String);
@@ -268,7 +270,7 @@ begin
       senha := MD5(CRIP(Arquivo.ReadString('Login', 'userpassword', senha)));
 
       //Obtem Dados do Usuário (username, senha, idTipoUsuario)
-      Dmodule.idTipoUsuario := 0;
+      //Dmodule.idTipoUsuario := 0;
       Dmodule.qAux.close;
       Dmodule.qAux.SQL.Text := 'select * from usuario where username =:idUsuario and senha=:idSenha';
       Dmodule.qAux.ParamByName('idUsuario').Value := username;
@@ -279,11 +281,11 @@ begin
       Dmodule.username := Dmodule.qAux.FieldByName('username').AsString;
       Dmodule.senha := Dmodule.qAux.FieldByName('senha').AsString;
       //FUNCIONALIDADES QUE O USUÁRIOS ESTA HAPITO A DESEMPENHAR
-      Dmodule.idTipoUsuario := Dmodule.qAux.FieldByName('idTipoUsuario').AsInteger;
       DModule.administrador := Dmodule.qAux.FieldByName('administrador').AsBoolean;
       DModule.instrutor := Dmodule.qAux.FieldByName('instrutor').AsBoolean;
       DModule.atendente := Dmodule.qAux.FieldByName('atendente').AsBoolean;
       DModule.avaliador := Dmodule.qAux.FieldByName('avaliador').AsBoolean;
+      PanelNomeUsuario.Caption := Dmodule.nomeusuario;
 
       // VERIFICA SE USUÁRIO ESTA ATIVO ATUALMENTE
       if ( Dmodule.qAux.FieldByName('ativo').AsBoolean = FALSE ) then
@@ -386,7 +388,7 @@ begin
   Sleep(20);
   imgBtnBackup.Visible := true;
 
-  if(DModule.idTipoUsuario = 1)then
+  if(DModule.administrador = true)then
   begin
         try
             With TF01009.Create(self) do

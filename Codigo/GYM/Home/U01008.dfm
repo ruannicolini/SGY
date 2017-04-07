@@ -1,9 +1,17 @@
 inherited F01008: TF01008
   Caption = 'F01008'
+  ExplicitLeft = -47
+  ExplicitTop = -33
+  ExplicitWidth = 834
+  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited grDados: TGroupBox
         object Label1: TLabel
           Left = 16
@@ -32,13 +40,6 @@ inherited F01008: TF01008
           Width = 33
           Height = 13
           Caption = 'SENHA'
-        end
-        object Label5: TLabel
-          Left = 16
-          Top = 190
-          Width = 73
-          Height = 13
-          Caption = 'TIPO USU'#193'RIO'
         end
         object DBEdit1: TDBEdit
           Left = 16
@@ -79,96 +80,59 @@ inherited F01008: TF01008
           PasswordChar = '*'
           TabOrder = 3
         end
-        object DBEdit5: TDBEdit
-          Left = 16
-          Top = 208
-          Width = 47
-          Height = 21
-          Color = 14079702
-          DataField = 'idTipoUsuario'
-          DataSource = DS
-          ReadOnly = True
-          TabOrder = 4
-        end
-        object DBEditBeleza1: TDBEditBeleza
-          Left = 62
-          Top = 208
-          Width = 259
-          Height = 21
-          Color = 14079702
-          DataField = 'descricaoTipoUsuario'
-          DataSource = DS
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 5
-          OnKeyPress = DBEditBeleza1KeyPress
-          Ativar_Pesquisa = True
-          mostrar_Botao = True
-          sql.Strings = (
-            
-              'select idTipoUsuario, descricaoTipoUsuario from TipoUsuario wher' +
-              'e descricaoTipoUsuario like :varDescricao')
-          database = 'gym'
-          campo = 'descricaoTipoUsuario'
-          Sempre_Mostrar_Janela = False
-          Outro_Edit = DBEdit5
-          campo_outro_edit = 'idTipoUsuario'
-          CorBorda = clGray
-          NovoLayout = False
-        end
         object cxDBCheckBox1: TcxDBCheckBox
           Left = 113
           Top = 40
           Caption = 'ATIVO'
           DataBinding.DataField = 'ativo'
           DataBinding.DataSource = DS
-          TabOrder = 6
+          TabOrder = 4
           Width = 121
         end
         object cxDBCheckBox2: TcxDBCheckBox
-          Left = 16
-          Top = 245
+          Left = 12
+          Top = 198
           Caption = 'ADMINISTRADOR'
           DataBinding.DataField = 'administrador'
           DataBinding.DataSource = DS
           Properties.OnChange = cxDBCheckBox2PropertiesChange
-          TabOrder = 7
+          TabOrder = 5
           Width = 121
         end
         object cxDBCheckBox3: TcxDBCheckBox
-          Left = 16
-          Top = 272
+          Left = 12
+          Top = 219
           Caption = 'ATENDENTE'
           DataBinding.DataField = 'atendente'
           DataBinding.DataSource = DS
-          TabOrder = 8
+          TabOrder = 6
           Width = 121
         end
         object cxDBCheckBox4: TcxDBCheckBox
-          Left = 16
-          Top = 296
+          Left = 12
+          Top = 240
           Caption = 'INSTRUTOR'
           DataBinding.DataField = 'instrutor'
           DataBinding.DataSource = DS
-          TabOrder = 9
+          TabOrder = 7
           Width = 121
         end
         object cxDBCheckBox5: TcxDBCheckBox
-          Left = 16
-          Top = 320
+          Left = 12
+          Top = 261
           Caption = 'AVALIADOR'
           DataBinding.DataField = 'avaliador'
           DataBinding.DataSource = DS
-          TabOrder = 10
+          TabOrder = 8
           Width = 121
         end
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 810
+      ExplicitHeight = 455
       inherited DBGridBeleza1: TDBGridBeleza
         Columns = <
           item
@@ -189,6 +153,7 @@ inherited F01008: TF01008
             Expanded = False
             FieldName = 'username'
             Title.Caption = 'USERNAME'
+            Width = 954
             Visible = True
           end
           item
@@ -198,15 +163,13 @@ inherited F01008: TF01008
           end
           item
             Expanded = False
-            FieldName = 'idTipoUsuario'
             Visible = False
           end
           item
             Expanded = False
-            FieldName = 'descricaoTipoUsuario'
             Title.Caption = 'TIPO USU'#193'RIO'
-            Width = 658
-            Visible = True
+            Width = -1
+            Visible = False
           end>
       end
       inherited PanelFiltros: TPanel
@@ -300,14 +263,6 @@ inherited F01008: TF01008
       Required = True
       Size = 150
     end
-    object ClientDataSet1idTipoUsuario: TIntegerField
-      FieldName = 'idTipoUsuario'
-      Required = True
-    end
-    object ClientDataSet1descricaoTipoUsuario: TStringField
-      FieldName = 'descricaoTipoUsuario'
-      Size = 50
-    end
     object ClientDataSet1ativo: TBooleanField
       FieldName = 'ativo'
       Required = True
@@ -328,10 +283,7 @@ inherited F01008: TF01008
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'select u.*, tu.descricaoTipoUsuario from usuario u'
-      
-        'left outer join tipoUsuario tu on tu.idTipoUsuario = u.idTipoUsu' +
-        'ario')
+      'select u.* from usuario u')
     object FDQuery1idusuario: TIntegerField
       FieldName = 'idusuario'
       Origin = 'idusuario'
@@ -355,18 +307,6 @@ inherited F01008: TF01008
       Origin = 'senha'
       Required = True
       Size = 150
-    end
-    object FDQuery1idTipoUsuario: TIntegerField
-      FieldName = 'idTipoUsuario'
-      Origin = 'idTipoUsuario'
-      Required = True
-    end
-    object FDQuery1descricaoTipoUsuario: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'descricaoTipoUsuario'
-      Origin = 'descricaoTipoUsuario'
-      ProviderFlags = []
-      Size = 50
     end
     object FDQuery1ativo: TBooleanField
       FieldName = 'ativo'
@@ -396,7 +336,7 @@ inherited F01008: TF01008
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00E00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E40110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

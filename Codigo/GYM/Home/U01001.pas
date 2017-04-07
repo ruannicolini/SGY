@@ -799,8 +799,8 @@ begin
   inherited;
 
   FDQuery1.Close;
-  FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
-  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR WHERE 1=1 ';
+  FDQuery1.SQL.Text := 'SELECT a.*, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
+  'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR WHERE 1=1 ';
 
   if(cbxPesqNome.Checked = true)then
   BEGIN
@@ -1443,10 +1443,10 @@ procedure TF01001.FormCreate(Sender: TObject);
 begin
 
   inherited;
+
   {CONTROLE DE USUÁRIOS POR FUNCIONALIDADE}
   if(DModule.administrador = true)then
   begin
-    showmessage('admin');
     //Aba Perfil
     pagPerfil.TabVisible := true;
     PanelPerfil.Enabled := true;
@@ -1473,7 +1473,6 @@ begin
       //AVALIADOR
       if(DModule.avaliador = true)then
       BEGIN
-          showmessage('avaliador');
           //Aba Perfil
           pagPerfil.TabVisible := true;
           PanelPerfil.Enabled := FALSE;
@@ -1491,79 +1490,121 @@ begin
 
           //ABAMENSALIDADES
           pagMensalidades.TabVisible := FALSE;
-      END;
 
-      //INSTRUTOR
-      if(DModule.instrutor = true)then
-      BEGIN
-          showmessage('instrutor');
-          //Aba Perfil
-          pagPerfil.TabVisible := true;
-          PanelPerfil.Enabled := FALSE;
-
-          //Aba Avaliações
-          IF(DModule.avaliador = FALSE)THEN
+          if(DModule.instrutor = true)then
           BEGIN
+              //ABA FICHA DE EXERCICIO
+              pagFichaExercicios.TabVisible := TRUE;
+              btnNovoFicha.Visible := TRUE;
+          END ELSE
+          BEGIN
+              //ABA FICHA DE EXERCICIO
+              pagFichaExercicios.TabVisible := FALSE;
+              btnNovoFicha.Visible := FALSE;
+          END;
+
+          if(DModule.atendente = true)then
+          BEGIN
+              //Aba Perfil
+              pagPerfil.TabVisible := true;
+              PanelPerfil.Enabled := true;
+
+              //ABA MODALIDADES
+              pagModalidades.TabVisible := TRUE;
+
+              //ABAMENSALIDADES
+              pagMensalidades.TabVisible := TRUE;
+          END ELSE
+          BEGIN
+              //Aba Perfil
+              pagPerfil.TabVisible := true;
+              PanelPerfil.Enabled := FALSE;
+
+              //ABA MODALIDADES
+              pagModalidades.TabVisible := FALSE;
+
+              //ABAMENSALIDADES
+              pagMensalidades.TabVisible := FALSE;
+          END;
+      END ELSE
+      BEGIN
+          //INSTRUTOR
+          if(DModule.instrutor = true)then
+          BEGIN
+              //Aba Perfil
+              pagPerfil.TabVisible := true;
+              PanelPerfil.Enabled := FALSE;
+
+              //ABA AVALIAÇÃO -- AQUI JA TEMOS A CERTEZA DE QUE O USUÁRIO NÃO É UM AVALIADOR
               pagAvaliacoes.TabVisible := true;
               btnNovaAvaliacao.visible := FALSE;
-
               //Impede exclusão se necessário
               DBGridBelezaAnamnese.OnKeyDown := nil;
               DBGridBelezaFisica.OnKeyDown := nil;
               DBGridBelezaPostural.OnKeyDown := nil;
               DBGridBelezaDadosClinicos.OnKeyDown := nil;
-          END;
 
-          //ABA FICHA DE EXERCICIO
-          pagFichaExercicios.TabVisible := TRUE;
-
-          //ABA MODALIDADES
-          pagModalidades.TabVisible := FALSE;
-
-          //ABAMENSALIDADES
-          pagMensalidades.TabVisible := FALSE;
-      END;
-
-      //ATENDENTE
-      if(DModule.atendente = true)then
-      BEGIN
-          showmessage('atendente');
-          //Aba Perfil
-          pagPerfil.TabVisible := true;
-          PanelPerfil.Enabled := true;
-
-          //ABA MODALIDADES
-          pagModalidades.TabVisible := TRUE;
-
-          //ABAMENSALIDADES
-          pagMensalidades.TabVisible := TRUE;
-
-          //Aba Avaliações
-          IF(DModule.avaliador = FALSE)THEN
-          BEGIN
-              pagAvaliacoes.TabVisible := FALSE;
-              btnNovaAvaliacao.visible := FALSE;
-
-              //Impede exclusão se necessário
-              DBGridBelezaAnamnese.OnKeyDown := nil;
-              DBGridBelezaFisica.OnKeyDown := nil;
-              DBGridBelezaPostural.OnKeyDown := nil;
-              DBGridBelezaDadosClinicos.OnKeyDown := nil;
-          END;
-
-          //ABA FICHA DE EXERCICIO
-          IF(DModule.instrutor = FALSE)THEN
-          BEGIN
+              //ABA FICHA DE EXERCICIO
               pagFichaExercicios.TabVisible := TRUE;
-              btnNovoFicha.Visible := FALSE;
-              DBGridBelezaFichasAluno.OnKeyDown := nil;
+              btnNovoFicha.Visible := TRUE;
+
+              if(DModule.atendente = true)then
+              BEGIN
+                  //Aba Perfil
+                  pagPerfil.TabVisible := true;
+                  PanelPerfil.Enabled := true;
+
+                  //ABA MODALIDADES
+                  pagModalidades.TabVisible := TRUE;
+
+                  //ABAMENSALIDADES
+                  pagMensalidades.TabVisible := TRUE;
+              END ELSE
+              BEGIN
+                  //Aba Perfil
+                  pagPerfil.TabVisible := true;
+                  PanelPerfil.Enabled := FALSE;
+
+                  //ABA MODALIDADES
+                  pagModalidades.TabVisible := FALSE;
+
+                  //ABAMENSALIDADES
+                  pagMensalidades.TabVisible := FALSE;
+              END;
+          END ELSE
+          BEGIN
+              //ATENDENTE
+              if(DModule.atendente = true)then
+              BEGIN
+                  //Aba Perfil
+                  pagPerfil.TabVisible := true;
+                  PanelPerfil.Enabled := true;
+
+                  //ABA MODALIDADES
+                  pagModalidades.TabVisible := TRUE;
+
+                  //ABAMENSALIDADES
+                  pagMensalidades.TabVisible := TRUE;
+
+                  //ABA AVALIAÇÃO -- AQUI JA TEMOS A CERTEZA DE QUE O USUÁRIO NÃO É UM AVALIADOR
+                  pagAvaliacoes.TabVisible := true;
+                  btnNovaAvaliacao.visible := FALSE;
+                  //Impede exclusão se necessário
+                  DBGridBelezaAnamnese.OnKeyDown := nil;
+                  DBGridBelezaFisica.OnKeyDown := nil;
+                  DBGridBelezaPostural.OnKeyDown := nil;
+                  DBGridBelezaDadosClinicos.OnKeyDown := nil;
+
+                  //ABA FICHA DE EXERCICIO -- AQUI JA TEMOS A CERTEZA DE QUE O USUÁRIO NÃO É UM INSTRUTOR
+                  pagFichaExercicios.TabVisible := TRUE;
+                  btnNovoFicha.Visible := FALSE;
+              END;
+
 
           END;
-
       END;
 
   end;
-
 
 
   {CONTROLE DE PAGECONTROLAVALIACOES}
@@ -1819,8 +1860,8 @@ procedure TF01001.BtnLimparFiltrosClick(Sender: TObject);
 begin
   inherited;
   FDQuery1.Close;
-  FDQuery1.SQL.Text := 'SELECT a.*, OBJ.DESCRICAOOBJETIVO,  INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
-  'LEFT OUTER JOIN OBJETIVO OBJ ON OBJ.IDOBJETIVO = A.IDOBJETIVO LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR';
+  FDQuery1.SQL.Text := 'SELECT a.*, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A ' +
+  'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR';
   FDQuery1.Open;
   //BPesquisar.Click;
 

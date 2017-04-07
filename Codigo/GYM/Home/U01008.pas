@@ -22,25 +22,18 @@ type
     FDQuery1nomeUsuario: TStringField;
     FDQuery1username: TStringField;
     FDQuery1senha: TStringField;
-    FDQuery1idTipoUsuario: TIntegerField;
-    FDQuery1descricaoTipoUsuario: TStringField;
     ClientDataSet1idusuario: TIntegerField;
     ClientDataSet1nomeUsuario: TStringField;
     ClientDataSet1username: TStringField;
     ClientDataSet1senha: TStringField;
-    ClientDataSet1idTipoUsuario: TIntegerField;
-    ClientDataSet1descricaoTipoUsuario: TStringField;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
-    DBEditBeleza1: TDBEditBeleza;
     cbxPesqTipoUsuario: TCheckBox;
     editPesqidTipoUsuario: TEdit;
     EditPesqTipoUsuario: TEditBeleza;
@@ -150,8 +143,6 @@ begin
       begin
             if TRIM(DBEdit4.Text) <> '' then
             begin
-                if TRIM(DBEdit5.Text) <> '' then
-                begin
                     //criptografia
                     if(ds.State = dsinsert)then
                     begin
@@ -169,10 +160,6 @@ begin
 
                     // salva
                     inherited;
-                end else
-                begin
-                  ShowMessage('INFORME TIPO DE USUÁRIO');
-                end;
             end else
             begin
               ShowMessage('INFORME SENHA');

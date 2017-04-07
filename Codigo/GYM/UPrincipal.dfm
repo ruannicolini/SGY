@@ -23063,10 +23063,31 @@ object FPrincipal: TFPrincipal
         OnClick = imgBtnModalidadeClick
       end
     end
+    object PanelNomeUsuario: TPanel
+      Left = 38
+      Top = 555
+      Width = 936
+      Height = 25
+      Align = alCustom
+      Anchors = []
+      BevelInner = bvSpace
+      BevelOuter = bvLowered
+      TabOrder = 1
+    end
+    object Memo1: TMemo
+      Left = 1
+      Top = 555
+      Width = 1012
+      Height = 139
+      Align = alBottom
+      Lines.Strings = (
+        'Memo1')
+      TabOrder = 2
+    end
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 864
-    Top = 579
+    Left = 664
+    Top = 627
   end
 end

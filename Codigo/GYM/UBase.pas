@@ -80,6 +80,9 @@ type
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DataSetProvider1BeforeUpdateRecord(Sender: TObject;
+      SourceDS: TDataSet; DeltaDS: TCustomClientDataSet;
+      UpdateKind: TUpdateKind; var Applied: Boolean);
   private
     { Private declarations }
     procedure StatusBotoes (e : integer);
@@ -98,6 +101,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses DBCommon, UPrincipal;
 
 
 procedure TFBase.Action5Execute(Sender: TObject);
@@ -180,6 +185,87 @@ end;
 function TFBase.CorCamposOnlyRead: TColor;
 begin
   Result := $00CECBC2;
+end;
+
+procedure TFBase.DataSetProvider1BeforeUpdateRecord(Sender: TObject;
+  SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind;
+  var Applied: Boolean);
+var
+texto : string;
+tabelaBanco, tipoCRUD, novoValor, AntigoValor : string;
+nomeusuario, obs, nomeInterface : string;
+dataLog : TDate;
+horaLog : TTime;
+idusuario, idRegistro: integer;
+I : integer;
+begin
+  //DADOS DO LOG
+  tabelaBanco := (GetTableNameFromSQL(FDQuery1.SQL.Text));
+  dataLog := DModule.datahoje;
+  horaLog := now();
+  nomeusuario := DModule.nomeusuario;
+  idusuario := DModule.idusuario;
+  nomeInterface := Screen.ActiveForm.Name;
+  idRegistro := clientdataset1.Fields[0].AsInteger;
+
+  //DESCOBRE OS CAMPOS ID
+  for I := 0 to DeltaDS.FieldCount-1 do
+  begin
+      if (pfInKey in ClientDataset1.fields[i].ProviderFlags) then
+      begin
+        showmessage('PK: ' + clientdataset1.Fields[I].FieldName);
+        idRegistro := clientdataset1.Fields[I].AsInteger;
+        break;
+      end;
+  end;
+
+  //TIPO DA OPERAÇÃO
+  Case UpdateKind of
+  ukModify :
+            begin
+              tipoCRUD := 'modify';
+
+              for I := 0 to DeltaDS.FieldCount-1 do
+              begin
+                if( (clientdataset1.Fields[I].OldValue) <> (clientdataset1.Fields[I].NewValue))then
+                begin
+                  antigoValor := VarToStr(DeltaDS.Fields[I].OldValue);
+                  novovalor := VarToStr(DeltaDS.Fields[I].NewValue);
+                  TEXTO :=   TEXTO + 'FIELD '+ inttostr(i) + ': ' + DeltaDS.Fields[I].FieldName + #13 +
+                  '   >>>   Antigo valor: '+ antigoValor  + #13+
+                  ' | novo valor: '+ novoValor +#13+#13;
+                end;
+              end;
+              FPrincipal.Memo1.lines.Text := FPrincipal.Memo1.lines.Text + texto;
+
+            end;
+  ukInsert :
+            begin
+              tipoCRUD := 'insert';
+            end;
+  ukDelete :
+            begin
+              tipoCRUD := 'delete';
+
+              for I := 0 to DeltaDS.FieldCount-1 do
+              begin
+                  (clientdataset1.Fields[I].OldValue);
+                  (clientdataset1.Fields[I].newValue)
+              end;
+            end;
+  end;
+
+  SHOWMESSAGE(
+  'DATA: ' +  DateToStr(DATALOG) + #13 +
+  'HORA: ' + TimeToStr(HORALOG) + #13 +
+  'NOME USUÁRIO : ' + nomeusuario + #13 +
+  'ID USUÁRIO : ' + INTTOSTR(idusuario) + #13 +
+  'NOME INTERFACE : ' + nomeInterface + #13 +
+  'TABELA : ' + tabelaBanco + #13 +
+  'ID REGISTRO : ' + INTTOSTR(idRegistro) + #13 +
+  'TIPO OPERAÇÃO : ' + tipoCRUD + #13
+  );
+
 end;
 
 procedure TFBase.DSDataChange(Sender: TObject; Field: TField);

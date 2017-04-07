@@ -48,7 +48,7 @@ type
     nomeusuario: string;
     username: string;
     senha: string;
-    idTipoUsuario: integer;
+    //idTipoUsuario: integer;
     administrador : boolean;  // id = (1)
     instrutor : boolean;      // id = (2)
     atendente : boolean;      // id = (3)
