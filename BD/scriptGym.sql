@@ -34,6 +34,27 @@ avaPostural tinyint(1) not null,
 avaDadosClinicos tinyint(1) not null
 );
 
+create table logSistema(
+idlogSistema int primary key not null,
+tabelaBanco varchar(50),
+dataLog date,
+horaLog time,
+idUsuario int,
+nomeUsuario varchar(50), 
+descricaoInterface varchar(50),
+idPkRegistro int,
+idPkRegistro2 int,
+tipoCRUD varchar(50)
+);
+
+create table campoLog(
+idCampolog int primary key not null,
+nomeField varchar(50),
+valorAntigo varchar(50),
+valornovo varchar(50), 
+idLogSistema int
+);
+
 create table patologia(
 idpatologia int primary key not null,
 nomePatologia varchar(50) not null,
@@ -372,7 +393,7 @@ INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('modalidade',2);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('patologia',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('aluno',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('usuario',2);
-INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('tipousuario',3);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('tipousuario',5);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('equipamento',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('exercicio',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('grupoexercicio',1);
@@ -383,6 +404,8 @@ INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('AlunoPatologia',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idAlunoModalidade',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('idFichaAluno',1);
 INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('Anamnese',1);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('logsistema',1);
+INSERT INTO PARAMETROS(PARAMETRO, VALOR) VALUES('campolog',1);
 
 delimiter |
 CREATE PROCEDURE GeraMensalidade ()
