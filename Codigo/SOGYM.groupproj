@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8BB82E1F-F723-4B4C-AA34-B8AB795ED73E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Login\Login.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Manager\Gerenciador.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="GYM\Gym.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Login">
+        <MSBuild Projects="Login\Login.dproj"/>
+    </Target>
+    <Target Name="Login:Clean">
+        <MSBuild Projects="Login\Login.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Login:Make">
+        <MSBuild Projects="Login\Login.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Gerenciador">
+        <MSBuild Projects="Manager\Gerenciador.dproj"/>
+    </Target>
+    <Target Name="Gerenciador:Clean">
+        <MSBuild Projects="Manager\Gerenciador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gerenciador:Make">
+        <MSBuild Projects="Manager\Gerenciador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Gym">
+        <MSBuild Projects="GYM\Gym.dproj"/>
+    </Target>
+    <Target Name="Gym:Clean">
+        <MSBuild Projects="GYM\Gym.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gym:Make">
+        <MSBuild Projects="GYM\Gym.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Login;Gerenciador;Gym"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Login:Clean;Gerenciador:Clean;Gym:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Login:Make;Gerenciador:Make;Gym:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
