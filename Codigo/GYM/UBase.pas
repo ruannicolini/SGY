@@ -230,17 +230,19 @@ begin
 
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
-                if( (clientdataset1.Fields[I].OldValue) <> (clientdataset1.Fields[I].NewValue))then
+                if( (ClientDataSet1.Fields[I].OldValue) <> (ClientDataSet1.Fields[I].NewValue))then
                 begin
 
                   //idcampoLog := 0;
-                  antigoValor := VarToStr(DeltaDS.Fields[I].OldValue);
-                  novovalor := VarToStr(DeltaDS.Fields[I].NewValue);
+                  antigoValor := VarToStr(ClientDataSet1.Fields[I].OldValue);
+                  novovalor := VarToStr(ClientDataSet1.Fields[I].NewValue);
+
+                  //showmessage('av: ' + AntigoValor + #13 + 'nv: ' + novoValor);
                   
                   //REGISTRO CAMPOLOG
                   if not DModule.cdsCampoLog.Active then DModule.cdsCampoLog.Open;
                   DModule.cdsCampoLog.Append;
-                  DModule.cdsCampoLognomeField.AsString := DeltaDS.Fields[I].FieldName;
+                  DModule.cdsCampoLognomeField.AsString := ClientDataSet1.Fields[I].FieldName;
                   DModule.cdsCampoLogvalorAntigo.AsString := AntigoValor;
                   DModule.cdsCampoLogvalornovo.AsString := novoValor;
                   DModule.cdsCampoLogidLogSistema.AsInteger := DModule.cdsLogidlogSistema.AsInteger;
@@ -290,7 +292,7 @@ begin
   ukDelete :
             begin
               tipoCRUD := 'delete';
-
+              {
               //DESCOBRE OS CAMPOS ID
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
@@ -320,6 +322,7 @@ begin
                   DModule.cdsCampoLog.Post
 
               end;
+              }
 
             end;
   end;

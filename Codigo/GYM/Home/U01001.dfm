@@ -3,6 +3,8 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
+  ExplicitLeft = -280
+  ExplicitTop = -365
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -17,10 +19,13 @@
   inherited PageControl: TPageControl
     Width = 1008
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -47,7 +52,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pagPerfil
+          Properties.ActivePage = pagAvaliacoes
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -490,6 +495,7 @@
                   Align = alCustom
                   Caption = 'IMPRIMIR'
                   Enabled = False
+                  OnClick = btnImprimirAnamneseClick
                 end
                 object btnNovaAvaliacao: TSpeedButton
                   Left = 478
@@ -1261,7 +1267,6 @@
                       FieldName = 'valorModalidade'
                       Title.Alignment = taCenter
                       Title.Caption = 'VALOR MOD'
-                      Width = 64
                       Visible = True
                     end
                     item
@@ -1270,7 +1275,6 @@
                       FieldName = 'valorCobrado'
                       Title.Alignment = taCenter
                       Title.Caption = 'VALOR COBRADO'
-                      Width = 64
                       Visible = True
                     end
                     item
@@ -1304,7 +1308,6 @@
                       Expanded = False
                       FieldName = 'LOGUsuarioResponsavel'
                       Title.Caption = 'LOG'
-                      Width = 64
                       Visible = True
                     end>
                 end
@@ -2022,7 +2025,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00900310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00980310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3531,7 +3534,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C010101001400F0005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101001400F8005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8409,142 +8412,108 @@
   object dsAnamnese: TDataSource
     DataSet = CDSAnamnese
     OnDataChange = dsAnamneseDataChange
-    Left = 966
-    Top = 418
+    Left = 942
+    Top = 370
   end
   object CDSAnamnese: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pAnamnese'
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
-    Left = 934
-    Top = 418
+    Left = 910
+    Top = 370
     object CDSAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
+      Origin = 'idAnamnese'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object CDSAnamneseidAluno: TIntegerField
       FieldName = 'idAluno'
+      Origin = 'idAluno'
       Required = True
     end
     object CDSAnamnesefrequenciaSemanalTreino: TIntegerField
       FieldName = 'frequenciaSemanalTreino'
+      Origin = 'frequenciaSemanalTreino'
     end
     object CDSAnamnesepeso: TSingleField
       FieldName = 'peso'
+      Origin = 'peso'
     end
     object CDSAnamnesealtura: TSingleField
       FieldName = 'altura'
+      Origin = 'altura'
     end
     object CDSAnamneseqtdHorasSono: TIntegerField
       FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
     end
     object CDSAnamneseqtdRefeicoesDia: TIntegerField
       FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
     end
     object CDSAnamnesedieta: TBooleanField
       FieldName = 'dieta'
+      Origin = 'dieta'
     end
     object CDSAnamnesesuplementacao: TBooleanField
       FieldName = 'suplementacao'
-    end
-    object CDSAnamnesenivelExtresse: TStringField
-      FieldName = 'nivelExtresse'
-      FixedChar = True
-      Size = 1
-    end
-    object CDSAnamnesenivelAtividadeFisicaAtual: TStringField
-      FieldName = 'nivelAtividadeFisicaAtual'
-      FixedChar = True
-      Size = 1
-    end
-    object CDSAnamnesehs_alteracaoPressao: TBooleanField
-      FieldName = 'hs_alteracaoPressao'
-    end
-    object CDSAnamnesehs_anemia: TBooleanField
-      FieldName = 'hs_anemia'
-    end
-    object CDSAnamnesehs_ansiedade: TBooleanField
-      FieldName = 'hs_ansiedade'
-    end
-    object CDSAnamnesehs_criseRespiratoria: TBooleanField
-      FieldName = 'hs_criseRespiratoria'
-    end
-    object CDSAnamnesehs_colesterolElevado: TBooleanField
-      FieldName = 'hs_colesterolElevado'
-    end
-    object CDSAnamnesehs_sonoIrregular: TBooleanField
-      FieldName = 'hs_sonoIrregular'
-    end
-    object CDSAnamnesehs_diabetes: TBooleanField
-      FieldName = 'hs_diabetes'
-    end
-    object CDSAnamnesehs_gastrite: TBooleanField
-      FieldName = 'hs_gastrite'
-    end
-    object CDSAnamnesehs_problemaTireoide: TBooleanField
-      FieldName = 'hs_problemaTireoide'
-    end
-    object CDSAnamnesehs_tonturasConstantes: TBooleanField
-      FieldName = 'hs_tonturasConstantes'
-    end
-    object CDSAnamnesehs_varises: TBooleanField
-      FieldName = 'hs_varises'
-    end
-    object CDSAnamnesehs_taquicardia: TBooleanField
-      FieldName = 'hs_taquicardia'
-    end
-    object CDSAnamneseobsCirurgias: TStringField
-      FieldName = 'obsCirurgias'
-      Size = 700
-    end
-    object CDSAnamneseobsDoresCronicas: TStringField
-      FieldName = 'obsDoresCronicas'
-      Size = 700
-    end
-    object CDSAnamneseobsDoresAgudas: TStringField
-      FieldName = 'obsDoresAgudas'
-      Size = 700
+      Origin = 'suplementacao'
     end
     object CDSAnamnesedataAnamnese: TDateField
       FieldName = 'dataAnamnese'
+      Origin = 'dataAnamnese'
       Required = True
     end
     object CDSAnamnesefuma: TBooleanField
       FieldName = 'fuma'
+      Origin = 'fuma'
     end
     object CDSAnamneseconsumoAlcoolico: TBooleanField
       FieldName = 'consumoAlcoolico'
+      Origin = 'consumoAlcoolico'
     end
     object CDSAnamnesenomeAvaliador: TStringField
       FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
       Required = True
       Size = 60
     end
     object CDSAnamneseinformacaoAdicional: TStringField
       FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
       Size = 700
     end
     object CDSAnamneseidObjetivo: TIntegerField
       FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
       Required = True
+    end
+    object CDSAnamneseNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
     end
   end
   object pAnamnese: TDataSetProvider
     DataSet = qAnamnese
     BeforeUpdateRecord = pAnamneseBeforeUpdateRecord
-    Left = 902
-    Top = 418
+    Left = 886
+    Top = 370
   end
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT * FROM ANAMNESE WHERE IDALUNO =:IDA'
-      'ORDER BY DATAANAMNESE DESC, IDANAMNESE DESC')
-    Left = 870
-    Top = 418
+      'SELECT AN.*,A.NOMEALUNO FROM ANAMNESE AN '
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AN.IDALUNO '
+      'WHERE AN.IDALUNO =:IDA'
+      'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
+    Left = 862
+    Top = 370
     ParamData = <
       item
         Name = 'IDA'
@@ -8598,98 +8567,6 @@
       FieldName = 'suplementacao'
       Origin = 'suplementacao'
     end
-    object qAnamnesenivelExtresse: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nivelExtresse'
-      Origin = 'nivelExtresse'
-      FixedChar = True
-      Size = 1
-    end
-    object qAnamnesenivelAtividadeFisicaAtual: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nivelAtividadeFisicaAtual'
-      Origin = 'nivelAtividadeFisicaAtual'
-      FixedChar = True
-      Size = 1
-    end
-    object qAnamnesehs_alteracaoPressao: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_alteracaoPressao'
-      Origin = 'hs_alteracaoPressao'
-    end
-    object qAnamnesehs_anemia: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_anemia'
-      Origin = 'hs_anemia'
-    end
-    object qAnamnesehs_ansiedade: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_ansiedade'
-      Origin = 'hs_ansiedade'
-    end
-    object qAnamnesehs_criseRespiratoria: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_criseRespiratoria'
-      Origin = 'hs_criseRespiratoria'
-    end
-    object qAnamnesehs_colesterolElevado: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_colesterolElevado'
-      Origin = 'hs_colesterolElevado'
-    end
-    object qAnamnesehs_sonoIrregular: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_sonoIrregular'
-      Origin = 'hs_sonoIrregular'
-    end
-    object qAnamnesehs_diabetes: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_diabetes'
-      Origin = 'hs_diabetes'
-    end
-    object qAnamnesehs_gastrite: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_gastrite'
-      Origin = 'hs_gastrite'
-    end
-    object qAnamnesehs_problemaTireoide: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_problemaTireoide'
-      Origin = 'hs_problemaTireoide'
-    end
-    object qAnamnesehs_tonturasConstantes: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_tonturasConstantes'
-      Origin = 'hs_tonturasConstantes'
-    end
-    object qAnamnesehs_varises: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_varises'
-      Origin = 'hs_varises'
-    end
-    object qAnamnesehs_taquicardia: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_taquicardia'
-      Origin = 'hs_taquicardia'
-    end
-    object qAnamneseobsCirurgias: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsCirurgias'
-      Origin = 'obsCirurgias'
-      Size = 700
-    end
-    object qAnamneseobsDoresCronicas: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsDoresCronicas'
-      Origin = 'obsDoresCronicas'
-      Size = 700
-    end
-    object qAnamneseobsDoresAgudas: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsDoresAgudas'
-      Origin = 'obsDoresAgudas'
-      Size = 700
-    end
     object qAnamnesedataAnamnese: TDateField
       FieldName = 'dataAnamnese'
       Origin = 'dataAnamnese'
@@ -8722,5 +8599,698 @@
       Origin = 'idObjetivo'
       Required = True
     end
+    object qAnamneseNOMEALUNO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
+  end
+  object REPORT_ANAMNESEPATOLOGIA: TfrxReport
+    Version = '5.1.5'
+    DataSet = frxDBDataset3
+    DataSetName = 'frxDBDataset3'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 42838.527142581000000000
+    ReportOptions.LastChange = 42838.862956331010000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    OnBeforePrint = REPORT_ANAMNESEPATOLOGIABeforePrint
+    OnPreview = REPORT_ANAMNESEPATOLOGIAPreview
+    Left = 838
+    Top = 650
+    Datasets = <
+      item
+        DataSet = frxDBDataset3
+        DataSetName = 'frxDBDataset3'
+      end
+      item
+        DataSet = frxDBDataset4
+        DataSetName = 'frxDBDataset4'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = [ftTop]
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Fill.Style = bsClear
+        Height = 321.260050000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Top = 18.897650000000000000
+          Width = 718.110700000000000000
+          Height = 37.795300000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -29
+          Font.Name = 'Arial'
+          Font.Style = [fsItalic]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'ANAMNESE')
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 92.692950000000000000
+          Width = 453.543600000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' ALUNO: [frxDBDataset3."NOMEALUNO"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3dataAnamnese: TfrxMemoView
+          Left = 567.149970000000100000
+          Top = 151.606370000000000000
+          Width = 132.283550000000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' DATA: [frxDBDataset3."dataAnamnese"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3fuma: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 247.448980000000000000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = 'N'#227'o,Sim'
+          DisplayFormat.Kind = fkBoolean
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftBottom]
+          Memo.UTF8W = (
+            ' FUMANTE: [frxDBDataset3."fuma"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3dieta: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 227.551330000000000000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = 'N'#227'o,Sim'
+          DisplayFormat.Kind = fkBoolean
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftBottom]
+          Memo.UTF8W = (
+            ' DIETA: [frxDBDataset3."dieta"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3suplementacao: TfrxMemoView
+          Left = 472.441250000000000000
+          Top = 227.330860000000000000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = 'N'#227'o,Sim'
+          DisplayFormat.Kind = fkBoolean
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' SUPLEMENTA'#199#195'O: [frxDBDataset3."suplementacao"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3consumoAlcoolico: TfrxMemoView
+          Left = 472.441250000000000000
+          Top = 247.228510000000000000
+          Width = 226.771653540000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = 'N'#227'o,Sim'
+          DisplayFormat.Kind = fkBoolean
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' USO BEB. ALC'#211'OLICA: [frxDBDataset3."consumoAlcoolico"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3nomeAvaliador: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 151.606370000000000000
+          Width = 321.260050000000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftBottom]
+          Memo.UTF8W = (
+            ' AVALIADOR: [frxDBDataset3."nomeAvaliador"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Picture1: TfrxPictureView
+          Left = 19.779530000000000000
+          Top = 92.692950000000000000
+          Width = 208.251968500000000000
+          Height = 174.236220470000000000
+          Center = True
+          Fill.BackColor = 16382457
+          Fill.Style = bsClear
+          Stretched = False
+          HightQuality = False
+          Transparent = False
+          TransparentColor = clWhite
+        end
+        object frxDBDataset3peso: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 207.653680000000000000
+          Width = 151.181200000000000000
+          Height = 18.897637800000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = '%2.2f'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' PESO: [frxDBDataset3."peso"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3altura: TfrxMemoView
+          Left = 548.031849999999900000
+          Top = 207.653680000000000000
+          Width = 151.181200000000000000
+          Height = 18.897637800000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = '%2.2f'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' IMC: [frxDBDataset3."IMC"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3DESCRICAOOBJETIVO: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 131.944960000000000000
+          Width = 453.543600000000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' OBJETIVO: [frxDBDataset3."DESCRICAOOBJETIVO"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3frequenciaSemanalTreino: TfrxMemoView
+          Left = 245.669450000000000000
+          Top = 170.637910000000000000
+          Width = 453.543600000000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' FREQUENCIA SEMANAL: [frxDBDataset3."frequenciaSemanalTreino"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset3IMC: TfrxMemoView
+          Left = 396.850650000000000000
+          Top = 206.874150000000000000
+          Width = 151.181102360000000000
+          Height = 18.897637800000000000
+          DataSet = frxDBDataset3
+          DataSetName = 'frxDBDataset3'
+          DisplayFormat.FormatStr = '%2.2f'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' ALTURA: [frxDBDataset3."altura"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Height = 18.897650000000000000
+        Top = 442.205010000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDataset4
+        DataSetName = 'frxDBDataset4'
+        RowCount = 0
+        object frxDBDataset4nomepatologia: TfrxMemoView
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          DataSet = frxDBDataset4
+          DataSetName = 'frxDBDataset4'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' [frxDBDataset4."nomepatologia"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object Header1: TfrxHeader
+        FillType = ftBrush
+        Height = 18.897650000000000000
+        Top = 400.630180000000000000
+        Width = 718.110700000000000000
+        object Memo3: TfrxMemoView
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Fill.BackColor = 16382457
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'PATOLOGIAS E RELATOS F'#205'SICOS')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+    end
+  end
+  object frxDBDataset3: TfrxDBDataset
+    UserName = 'frxDBDataset3'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAnamnese=idAnamnese'
+      'idAluno=idAluno'
+      'frequenciaSemanalTreino=frequenciaSemanalTreino'
+      'peso=peso'
+      'altura=altura'
+      'qtdHorasSono=qtdHorasSono'
+      'qtdRefeicoesDia=qtdRefeicoesDia'
+      'fuma=fuma'
+      'dieta=dieta'
+      'suplementacao=suplementacao'
+      'consumoAlcoolico=consumoAlcoolico'
+      'dataAnamnese=dataAnamnese'
+      'informacaoAdicional=informacaoAdicional'
+      'idObjetivo=idObjetivo'
+      'nomeAvaliador=nomeAvaliador'
+      'NOMEALUNO=NOMEALUNO'
+      'DESCRICAOOBJETIVO=DESCRICAOOBJETIVO'
+      'IMC=IMC')
+    DataSet = cdsRelAnamnese
+    BCDToCurrency = False
+    Left = 862
+    Top = 650
+  end
+  object qAnamnesePatologia: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      'select ap.*, p.nomepatologia from AnamnesePatologia ap '
+      'left outer join patologia p on p.idPatologia = ap.idpatologia'
+      'where ap.idAnamnese =:idA')
+    Left = 838
+    Top = 594
+    ParamData = <
+      item
+        Name = 'IDA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qAnamnesePatologiaidAnamnese: TIntegerField
+      FieldName = 'idAnamnese'
+      Origin = 'idAnamnese'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qAnamnesePatologiaidPatologia: TIntegerField
+      FieldName = 'idPatologia'
+      Origin = 'idPatologia'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qAnamnesePatologiaobservacaoMedica: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'observacaoMedica'
+      Origin = 'observacaoMedica'
+      Size = 700
+    end
+    object qAnamnesePatologianomepatologia: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomepatologia'
+      Origin = 'nomePatologia'
+      ProviderFlags = []
+      Size = 50
+    end
+  end
+  object pAnamnesePatologia: TDataSetProvider
+    DataSet = qAnamnesePatologia
+    Left = 864
+    Top = 592
+  end
+  object cdsAnamnesePatologia: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pAnamnesePatologia'
+    Left = 894
+    Top = 594
+    object cdsAnamnesePatologiaidAnamnese: TIntegerField
+      FieldName = 'idAnamnese'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsAnamnesePatologiaidPatologia: TIntegerField
+      FieldName = 'idPatologia'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsAnamnesePatologiaobservacaoMedica: TStringField
+      FieldName = 'observacaoMedica'
+      Size = 700
+    end
+    object cdsAnamnesePatologianomepatologia: TStringField
+      FieldName = 'nomepatologia'
+      Size = 50
+    end
+  end
+  object dsanamnesePatologia: TDataSource
+    DataSet = cdsAnamnesePatologia
+    Left = 926
+    Top = 594
+  end
+  object frxDBDataset4: TfrxDBDataset
+    UserName = 'frxDBDataset4'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAnamnese=idAnamnese'
+      'idPatologia=idPatologia'
+      'observacaoMedica=observacaoMedica'
+      'nomepatologia=nomepatologia')
+    DataSet = cdsAnamnesePatologia
+    BCDToCurrency = False
+    Left = 894
+    Top = 650
+  end
+  object qRelAnamnese: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      'SELECT AN.*,A.NOMEALUNO, OB.DESCRICAOOBJETIVO FROM ANAMNESE AN '
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AN.IDALUNO '
+      'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
+      'WHERE AN.IDanamnese =:IDAn'
+      'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
+    Left = 838
+    Top = 522
+    ParamData = <
+      item
+        Name = 'IDAN'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qRelAnamneseidAnamnese: TIntegerField
+      FieldName = 'idAnamnese'
+      Origin = 'idAnamnese'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qRelAnamneseidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      Required = True
+    end
+    object qRelAnamnesefrequenciaSemanalTreino: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'frequenciaSemanalTreino'
+      Origin = 'frequenciaSemanalTreino'
+    end
+    object qRelAnamnesepeso: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'peso'
+      Origin = 'peso'
+    end
+    object qRelAnamnesealtura: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'altura'
+      Origin = 'altura'
+    end
+    object qRelAnamneseqtdHorasSono: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
+    end
+    object qRelAnamneseqtdRefeicoesDia: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
+    end
+    object qRelAnamnesefuma: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'fuma'
+      Origin = 'fuma'
+    end
+    object qRelAnamnesedieta: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'dieta'
+      Origin = 'dieta'
+    end
+    object qRelAnamnesesuplementacao: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'suplementacao'
+      Origin = 'suplementacao'
+    end
+    object qRelAnamneseconsumoAlcoolico: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'consumoAlcoolico'
+      Origin = 'consumoAlcoolico'
+    end
+    object qRelAnamnesedataAnamnese: TDateField
+      FieldName = 'dataAnamnese'
+      Origin = 'dataAnamnese'
+      Required = True
+    end
+    object qRelAnamneseinformacaoAdicional: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
+      Size = 700
+    end
+    object qRelAnamneseidObjetivo: TIntegerField
+      FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
+      Required = True
+    end
+    object qRelAnamnesenomeAvaliador: TStringField
+      FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
+      Required = True
+      Size = 60
+    end
+    object qRelAnamneseNOMEALUNO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
+    object qRelAnamneseDESCRICAOOBJETIVO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAOOBJETIVO'
+      Origin = 'descricaoObjetivo'
+      ProviderFlags = []
+      Size = 50
+    end
+  end
+  object pRelAnamnese: TDataSetProvider
+    DataSet = qRelAnamnese
+    Left = 862
+    Top = 522
+  end
+  object cdsRelAnamnese: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pRelAnamnese'
+    OnCalcFields = cdsRelAnamneseCalcFields
+    Left = 886
+    Top = 522
+    object cdsRelAnamneseidAnamnese: TIntegerField
+      FieldName = 'idAnamnese'
+      Origin = 'idAnamnese'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsRelAnamneseidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      Required = True
+    end
+    object cdsRelAnamnesefrequenciaSemanalTreino: TIntegerField
+      FieldName = 'frequenciaSemanalTreino'
+      Origin = 'frequenciaSemanalTreino'
+    end
+    object cdsRelAnamnesepeso: TSingleField
+      FieldName = 'peso'
+      Origin = 'peso'
+    end
+    object cdsRelAnamnesealtura: TSingleField
+      FieldName = 'altura'
+      Origin = 'altura'
+    end
+    object cdsRelAnamneseqtdHorasSono: TIntegerField
+      FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
+    end
+    object cdsRelAnamneseqtdRefeicoesDia: TIntegerField
+      FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
+    end
+    object cdsRelAnamnesefuma: TBooleanField
+      FieldName = 'fuma'
+      Origin = 'fuma'
+    end
+    object cdsRelAnamnesedieta: TBooleanField
+      FieldName = 'dieta'
+      Origin = 'dieta'
+    end
+    object cdsRelAnamnesesuplementacao: TBooleanField
+      FieldName = 'suplementacao'
+      Origin = 'suplementacao'
+    end
+    object cdsRelAnamneseconsumoAlcoolico: TBooleanField
+      FieldName = 'consumoAlcoolico'
+      Origin = 'consumoAlcoolico'
+    end
+    object cdsRelAnamnesedataAnamnese: TDateField
+      FieldName = 'dataAnamnese'
+      Origin = 'dataAnamnese'
+      Required = True
+    end
+    object cdsRelAnamneseinformacaoAdicional: TStringField
+      FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
+      Size = 700
+    end
+    object cdsRelAnamneseidObjetivo: TIntegerField
+      FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
+      Required = True
+    end
+    object cdsRelAnamnesenomeAvaliador: TStringField
+      FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
+      Required = True
+      Size = 60
+    end
+    object cdsRelAnamneseNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
+    object cdsRelAnamneseDESCRICAOOBJETIVO: TStringField
+      FieldName = 'DESCRICAOOBJETIVO'
+      Origin = 'descricaoObjetivo'
+      ProviderFlags = []
+      Size = 50
+    end
+    object cdsRelAnamneseIMC: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'IMC'
+    end
+  end
+  object dsRelAnamnese: TDataSource
+    DataSet = cdsRelAnamnese
+    OnDataChange = dsRelAnamneseDataChange
+    Left = 918
+    Top = 522
   end
 end

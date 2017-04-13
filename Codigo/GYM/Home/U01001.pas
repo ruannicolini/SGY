@@ -301,61 +301,12 @@ type
     qAnamneseqtdRefeicoesDia: TIntegerField;
     qAnamnesedieta: TBooleanField;
     qAnamnesesuplementacao: TBooleanField;
-    qAnamnesenivelExtresse: TStringField;
-    qAnamnesenivelAtividadeFisicaAtual: TStringField;
-    qAnamnesehs_alteracaoPressao: TBooleanField;
-    qAnamnesehs_anemia: TBooleanField;
-    qAnamnesehs_ansiedade: TBooleanField;
-    qAnamnesehs_criseRespiratoria: TBooleanField;
-    qAnamnesehs_colesterolElevado: TBooleanField;
-    qAnamnesehs_sonoIrregular: TBooleanField;
-    qAnamnesehs_diabetes: TBooleanField;
-    qAnamnesehs_gastrite: TBooleanField;
-    qAnamnesehs_problemaTireoide: TBooleanField;
-    qAnamnesehs_tonturasConstantes: TBooleanField;
-    qAnamnesehs_varises: TBooleanField;
-    qAnamnesehs_taquicardia: TBooleanField;
-    qAnamneseobsCirurgias: TStringField;
-    qAnamneseobsDoresCronicas: TStringField;
-    qAnamneseobsDoresAgudas: TStringField;
-    CDSAnamneseidAnamnese: TIntegerField;
-    CDSAnamneseidAluno: TIntegerField;
-    CDSAnamnesefrequenciaSemanalTreino: TIntegerField;
-    CDSAnamnesepeso: TSingleField;
-    CDSAnamnesealtura: TSingleField;
-    CDSAnamneseqtdHorasSono: TIntegerField;
-    CDSAnamneseqtdRefeicoesDia: TIntegerField;
-    CDSAnamnesedieta: TBooleanField;
-    CDSAnamnesesuplementacao: TBooleanField;
-    CDSAnamnesenivelExtresse: TStringField;
-    CDSAnamnesenivelAtividadeFisicaAtual: TStringField;
-    CDSAnamnesehs_alteracaoPressao: TBooleanField;
-    CDSAnamnesehs_anemia: TBooleanField;
-    CDSAnamnesehs_ansiedade: TBooleanField;
-    CDSAnamnesehs_criseRespiratoria: TBooleanField;
-    CDSAnamnesehs_colesterolElevado: TBooleanField;
-    CDSAnamnesehs_sonoIrregular: TBooleanField;
-    CDSAnamnesehs_diabetes: TBooleanField;
-    CDSAnamnesehs_gastrite: TBooleanField;
-    CDSAnamnesehs_problemaTireoide: TBooleanField;
-    CDSAnamnesehs_tonturasConstantes: TBooleanField;
-    CDSAnamnesehs_varises: TBooleanField;
-    CDSAnamnesehs_taquicardia: TBooleanField;
-    CDSAnamneseobsCirurgias: TStringField;
-    CDSAnamneseobsDoresCronicas: TStringField;
-    CDSAnamneseobsDoresAgudas: TStringField;
     qAnamnesedataAnamnese: TDateField;
-    CDSAnamnesedataAnamnese: TDateField;
     qAnamnesefuma: TBooleanField;
     qAnamneseconsumoAlcoolico: TBooleanField;
-    CDSAnamnesefuma: TBooleanField;
-    CDSAnamneseconsumoAlcoolico: TBooleanField;
     qAnamnesenomeAvaliador: TStringField;
     qAnamneseinformacaoAdicional: TStringField;
     qAnamneseidObjetivo: TIntegerField;
-    CDSAnamnesenomeAvaliador: TStringField;
-    CDSAnamneseinformacaoAdicional: TStringField;
-    CDSAnamneseidObjetivo: TIntegerField;
     GroupBox3: TGroupBox;
     DBEdit2: TDBEdit;
     DBEditBeleza1: TDBEditBeleza;
@@ -382,6 +333,77 @@ type
     cdsPagamentoLOGUsuarioResponsavel: TStringField;
     cdsPagamentodescricaoModalidade: TStringField;
     cdsPagamentodescricaoStatusPagamento: TStringField;
+    REPORT_ANAMNESEPATOLOGIA: TfrxReport;
+    frxDBDataset3: TfrxDBDataset;
+    qAnamnesePatologia: TFDQuery;
+    pAnamnesePatologia: TDataSetProvider;
+    cdsAnamnesePatologia: TClientDataSet;
+    qAnamnesePatologiaidAnamnese: TIntegerField;
+    qAnamnesePatologiaidPatologia: TIntegerField;
+    qAnamnesePatologiaobservacaoMedica: TStringField;
+    cdsAnamnesePatologiaidAnamnese: TIntegerField;
+    cdsAnamnesePatologiaidPatologia: TIntegerField;
+    cdsAnamnesePatologiaobservacaoMedica: TStringField;
+    dsanamnesePatologia: TDataSource;
+    frxDBDataset4: TfrxDBDataset;
+    qAnamnesePatologianomepatologia: TStringField;
+    cdsAnamnesePatologianomepatologia: TStringField;
+    qAnamneseNOMEALUNO: TStringField;
+    CDSAnamneseidAnamnese: TIntegerField;
+    CDSAnamneseidAluno: TIntegerField;
+    CDSAnamnesefrequenciaSemanalTreino: TIntegerField;
+    CDSAnamnesepeso: TSingleField;
+    CDSAnamnesealtura: TSingleField;
+    CDSAnamneseqtdHorasSono: TIntegerField;
+    CDSAnamneseqtdRefeicoesDia: TIntegerField;
+    CDSAnamnesedieta: TBooleanField;
+    CDSAnamnesesuplementacao: TBooleanField;
+    CDSAnamnesedataAnamnese: TDateField;
+    CDSAnamnesefuma: TBooleanField;
+    CDSAnamneseconsumoAlcoolico: TBooleanField;
+    CDSAnamnesenomeAvaliador: TStringField;
+    CDSAnamneseinformacaoAdicional: TStringField;
+    CDSAnamneseidObjetivo: TIntegerField;
+    CDSAnamneseNOMEALUNO: TStringField;
+    qRelAnamnese: TFDQuery;
+    pRelAnamnese: TDataSetProvider;
+    cdsRelAnamnese: TClientDataSet;
+    dsRelAnamnese: TDataSource;
+    qRelAnamneseidAnamnese: TIntegerField;
+    qRelAnamneseidAluno: TIntegerField;
+    qRelAnamnesefrequenciaSemanalTreino: TIntegerField;
+    qRelAnamnesepeso: TSingleField;
+    qRelAnamnesealtura: TSingleField;
+    qRelAnamneseqtdHorasSono: TIntegerField;
+    qRelAnamneseqtdRefeicoesDia: TIntegerField;
+    qRelAnamnesefuma: TBooleanField;
+    qRelAnamnesedieta: TBooleanField;
+    qRelAnamnesesuplementacao: TBooleanField;
+    qRelAnamneseconsumoAlcoolico: TBooleanField;
+    qRelAnamnesedataAnamnese: TDateField;
+    qRelAnamneseinformacaoAdicional: TStringField;
+    qRelAnamneseidObjetivo: TIntegerField;
+    qRelAnamnesenomeAvaliador: TStringField;
+    qRelAnamneseNOMEALUNO: TStringField;
+    qRelAnamneseDESCRICAOOBJETIVO: TStringField;
+    cdsRelAnamneseidAnamnese: TIntegerField;
+    cdsRelAnamneseidAluno: TIntegerField;
+    cdsRelAnamnesefrequenciaSemanalTreino: TIntegerField;
+    cdsRelAnamnesepeso: TSingleField;
+    cdsRelAnamnesealtura: TSingleField;
+    cdsRelAnamneseqtdHorasSono: TIntegerField;
+    cdsRelAnamneseqtdRefeicoesDia: TIntegerField;
+    cdsRelAnamnesefuma: TBooleanField;
+    cdsRelAnamnesedieta: TBooleanField;
+    cdsRelAnamnesesuplementacao: TBooleanField;
+    cdsRelAnamneseconsumoAlcoolico: TBooleanField;
+    cdsRelAnamnesedataAnamnese: TDateField;
+    cdsRelAnamneseinformacaoAdicional: TStringField;
+    cdsRelAnamneseidObjetivo: TIntegerField;
+    cdsRelAnamnesenomeAvaliador: TStringField;
+    cdsRelAnamneseNOMEALUNO: TStringField;
+    cdsRelAnamneseDESCRICAOOBJETIVO: TStringField;
+    cdsRelAnamneseIMC: TFloatField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -460,6 +482,11 @@ type
     procedure cdsPagamentoReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure btnImprimirAnamneseClick(Sender: TObject);
+    procedure dsRelAnamneseDataChange(Sender: TObject; Field: TField);
+    procedure cdsRelAnamneseCalcFields(DataSet: TDataSet);
+    procedure REPORT_ANAMNESEPATOLOGIABeforePrint(Sender: TfrxReportComponent);
+    procedure REPORT_ANAMNESEPATOLOGIAPreview(Sender: TObject);
   private
     { Private declarations }
   public
@@ -787,6 +814,61 @@ begin
   END;
 end;
 
+procedure TF01001.btnImprimirAnamneseClick(Sender: TObject);
+begin
+  inherited;
+
+  //Imprimi anamnese
+  if(PageControlAvaliacoes.TabIndex = 0)then
+  begin
+    IF(DS.DataSet.State = dsEDIT) THEN
+    BEGIN
+        TRY
+            TRY
+              qRelanamnese.Params[0].AsInteger := CDSAnamneseidAnamnese.AsInteger;
+              cdsrelanamnese.close;
+              cdsRelanamnese.open;
+              REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+            EXCEPT
+              RAISE;
+            END;
+        FINALLY
+            dsRelAnamnese.DataSet.Close;
+        END;
+    END ELSE
+    BEGIN
+        IF(DS.DataSet.State = dsINSERT)THEN
+        BEGIN
+            //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
+            TRY
+            cdsRelAnamnese.close;
+            CDSRelAnamnese.open;
+            CDSRelAnamnese.EmptyDataSet;
+            CDSRelAnamnese.Append;
+            cdsRelAnamnesenomealuno.asString := ClientDataSet1nomeAluno.AsString;
+
+            cdsRelAnamneseidAnamnese.AsInteger := CDSAnamneseidAnamnese.AsInteger;
+            cdsRelAnamnesedataAnamnese.AsDateTime := CDSAnamnesedataAnamnese.AsDateTime;
+
+            cdsRelAnamnesenomeAvaliador.AsString := DModule.nomeusuario;
+            cdsRelAnamnese.Post;
+
+            REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+            FINALLY
+              CDSRelanamnese.Cancel;
+              CDSRelanamnese.CancelUpdates;
+              CDSRelanamnese.close;
+            END;
+        END;
+
+    END;
+
+  end else
+  begin
+      //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+  end;
+end;
+
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
 begin
   inherited;
@@ -961,6 +1043,17 @@ procedure TF01001.cdsPagamentoReconcileError(DataSet: TCustomClientDataSet;
 begin
   inherited;
   //showmessage(e.Message);
+end;
+
+procedure TF01001.cdsRelAnamneseCalcFields(DataSet: TDataSet);
+begin
+  inherited;
+  //CALCULA IMC
+  if NOT(cdsRelAnamnesepeso.IsNull) and NOT(cdsRelAnamnesealtura.IsNull) then
+  begin
+    cdsRelAnamneseIMC.AsFloat := cdsRelAnamnesepeso.AsFloat/ (cdsRelAnamnesealtura.AsFloat * cdsRelAnamnesealtura.AsFloat) ;
+  end;
+
 end;
 
 procedure TF01001.CDSAnamneseAfterCancel(DataSet: TDataSet);
@@ -1318,6 +1411,8 @@ begin
       btnImprimirAnamnese.Enabled := FALSE;
   END;
 
+  
+
 end;
 
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
@@ -1407,6 +1502,15 @@ begin
       btnCancelarPI.Enabled := false;
   end;
 
+end;
+
+procedure TF01001.dsRelAnamneseDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  //PESQUISA anamnesePatologia
+  qanamnesePatologia.Params[0].AsInteger := CDSAnamneseidAnamnese.AsInteger;
+  cdsanamnesePatologia.close;
+  cdsanamnesePatologia.open;
 end;
 
 procedure TF01001.DSFichaAlunoDataChange(Sender: TObject; Field: TField);
@@ -2457,6 +2561,49 @@ begin
     end;
 end;
 
+procedure TF01001.REPORT_ANAMNESEPATOLOGIABeforePrint(
+  Sender: TfrxReportComponent);
+var
+  caminho : string;
+begin
+  inherited;
+{
+  // Foto na pasta local img_Aluno
+  caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
+
+  if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
+  begin
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
+  end else
+  begin
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Picture.Bitmap := cxImage1.Picture.Bitmap;
+  end;
+   }
+
+end;
+
+procedure TF01001.REPORT_ANAMNESEPATOLOGIAPreview(Sender: TObject);
+var
+caminho : string;
+begin
+  inherited;
+
+// Foto na pasta local img_Aluno
+  caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
+
+  if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
+  begin
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Stretched := true;
+
+  end else
+  begin
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Picture.Bitmap := cxImage1.Picture.Bitmap;
+    TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Stretched := false;
+
+  end;
+end;
+
 procedure TF01001.SpeedButton3Click(Sender: TObject);
 var
   I: INTEGER;
@@ -2604,6 +2751,9 @@ begin
                         cdsPagamento.Delete;
                         end;
                         cdsPagamento.Filtered := false;
+
+                        cdsModalidade.Delete;
+
                         {
                         //// APAGA MENSALIDADES EM ABERTO
                         DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
@@ -2635,7 +2785,7 @@ begin
           end;
           cdsPagamento.Filtered := false;
 
-
+          cdsModalidade.Delete;
             {
             // APAGA MENSALIDADES EM ABERTO
               DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE IDALUNO =:IDA AND idmodalidade =:IDM AND idstatusPagamento = 1';
@@ -2673,7 +2823,7 @@ begin
       CDSAnamnese.OPEN;
   end else
   begin
-      ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+      //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
   end;
 
 end;

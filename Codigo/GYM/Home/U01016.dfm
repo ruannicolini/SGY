@@ -14,8 +14,6 @@ inherited F01016: TF01016
     ExplicitWidth = 684
     ExplicitHeight = 665
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 676
       ExplicitHeight = 637
       inherited grDados: TGroupBox
@@ -47,6 +45,14 @@ inherited F01016: TF01016
             Width = 34
             Height = 13
             Caption = 'ALUNO'
+          end
+          object Label5: TLabel
+            Left = 162
+            Top = 8
+            Width = 71
+            Height = 13
+            Caption = 'nomeAvaliador'
+            FocusControl = cxDBTextEdit3
           end
           object cxDBTextEdit1: TcxDBTextEdit
             Left = 60
@@ -492,12 +498,18 @@ inherited F01016: TF01016
               Width = 140
             end
           end
+          object cxDBTextEdit3: TcxDBTextEdit
+            Left = 162
+            Top = 24
+            DataBinding.DataField = 'nomeAvaliador'
+            DataBinding.DataSource = DS
+            TabOrder = 5
+            Width = 121
+          end
         end
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 676
       ExplicitHeight = 637
       inherited GBFiltros: TGroupBox
@@ -597,64 +609,6 @@ inherited F01016: TF01016
     object ClientDataSet1fuma: TBooleanField
       FieldName = 'fuma'
     end
-    object ClientDataSet1nivelExtresse: TStringField
-      FieldName = 'nivelExtresse'
-      FixedChar = True
-      Size = 1
-    end
-    object ClientDataSet1nivelAtividadeFisicaAtual: TStringField
-      FieldName = 'nivelAtividadeFisicaAtual'
-      FixedChar = True
-      Size = 1
-    end
-    object ClientDataSet1hs_alteracaoPressao: TBooleanField
-      FieldName = 'hs_alteracaoPressao'
-    end
-    object ClientDataSet1hs_anemia: TBooleanField
-      FieldName = 'hs_anemia'
-    end
-    object ClientDataSet1hs_ansiedade: TBooleanField
-      FieldName = 'hs_ansiedade'
-    end
-    object ClientDataSet1hs_criseRespiratoria: TBooleanField
-      FieldName = 'hs_criseRespiratoria'
-    end
-    object ClientDataSet1hs_colesterolElevado: TBooleanField
-      FieldName = 'hs_colesterolElevado'
-    end
-    object ClientDataSet1hs_sonoIrregular: TBooleanField
-      FieldName = 'hs_sonoIrregular'
-    end
-    object ClientDataSet1hs_diabetes: TBooleanField
-      FieldName = 'hs_diabetes'
-    end
-    object ClientDataSet1hs_gastrite: TBooleanField
-      FieldName = 'hs_gastrite'
-    end
-    object ClientDataSet1hs_problemaTireoide: TBooleanField
-      FieldName = 'hs_problemaTireoide'
-    end
-    object ClientDataSet1hs_tonturasConstantes: TBooleanField
-      FieldName = 'hs_tonturasConstantes'
-    end
-    object ClientDataSet1hs_varises: TBooleanField
-      FieldName = 'hs_varises'
-    end
-    object ClientDataSet1hs_taquicardia: TBooleanField
-      FieldName = 'hs_taquicardia'
-    end
-    object ClientDataSet1obsCirurgias: TStringField
-      FieldName = 'obsCirurgias'
-      Size = 700
-    end
-    object ClientDataSet1obsDoresCronicas: TStringField
-      FieldName = 'obsDoresCronicas'
-      Size = 700
-    end
-    object ClientDataSet1obsDoresAgudas: TStringField
-      FieldName = 'obsDoresAgudas'
-      Size = 700
-    end
     object ClientDataSet1dataAnamnese: TDateField
       FieldName = 'dataAnamnese'
       Required = True
@@ -700,9 +654,7 @@ inherited F01016: TF01016
     ParamData = <
       item
         Name = 'IDA'
-        DataType = ftInteger
         ParamType = ptInput
-        Value = Null
       end>
     object FDQuery1idAnamnese: TIntegerField
       FieldName = 'idAnamnese'
@@ -749,98 +701,6 @@ inherited F01016: TF01016
       AutoGenerateValue = arDefault
       FieldName = 'suplementacao'
       Origin = 'suplementacao'
-    end
-    object FDQuery1nivelExtresse: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nivelExtresse'
-      Origin = 'nivelExtresse'
-      FixedChar = True
-      Size = 1
-    end
-    object FDQuery1nivelAtividadeFisicaAtual: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nivelAtividadeFisicaAtual'
-      Origin = 'nivelAtividadeFisicaAtual'
-      FixedChar = True
-      Size = 1
-    end
-    object FDQuery1hs_alteracaoPressao: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_alteracaoPressao'
-      Origin = 'hs_alteracaoPressao'
-    end
-    object FDQuery1hs_anemia: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_anemia'
-      Origin = 'hs_anemia'
-    end
-    object FDQuery1hs_ansiedade: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_ansiedade'
-      Origin = 'hs_ansiedade'
-    end
-    object FDQuery1hs_criseRespiratoria: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_criseRespiratoria'
-      Origin = 'hs_criseRespiratoria'
-    end
-    object FDQuery1hs_colesterolElevado: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_colesterolElevado'
-      Origin = 'hs_colesterolElevado'
-    end
-    object FDQuery1hs_sonoIrregular: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_sonoIrregular'
-      Origin = 'hs_sonoIrregular'
-    end
-    object FDQuery1hs_diabetes: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_diabetes'
-      Origin = 'hs_diabetes'
-    end
-    object FDQuery1hs_gastrite: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_gastrite'
-      Origin = 'hs_gastrite'
-    end
-    object FDQuery1hs_problemaTireoide: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_problemaTireoide'
-      Origin = 'hs_problemaTireoide'
-    end
-    object FDQuery1hs_tonturasConstantes: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_tonturasConstantes'
-      Origin = 'hs_tonturasConstantes'
-    end
-    object FDQuery1hs_varises: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_varises'
-      Origin = 'hs_varises'
-    end
-    object FDQuery1hs_taquicardia: TBooleanField
-      AutoGenerateValue = arDefault
-      FieldName = 'hs_taquicardia'
-      Origin = 'hs_taquicardia'
-    end
-    object FDQuery1obsCirurgias: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsCirurgias'
-      Origin = 'obsCirurgias'
-      Size = 700
-    end
-    object FDQuery1obsDoresCronicas: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsDoresCronicas'
-      Origin = 'obsDoresCronicas'
-      Size = 700
-    end
-    object FDQuery1obsDoresAgudas: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'obsDoresAgudas'
-      Origin = 'obsDoresAgudas'
-      Size = 700
     end
     object FDQuery1dataAnamnese: TDateField
       FieldName = 'dataAnamnese'
@@ -893,7 +753,7 @@ inherited F01016: TF01016
     Left = 664
     Top = 8
     Bitmap = {
-      494C01010F002C00E00110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -1511,5 +1371,10 @@ inherited F01016: TF01016
     OnDataChange = DSPatologiaAnamDataChange
     Left = 604
     Top = 75
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 328
+    Top = 336
   end
 end

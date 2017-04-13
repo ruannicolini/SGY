@@ -153,11 +153,12 @@ fuma char(1),
 dieta tinyint(1),
 suplementacao tinyint(1),
 consumoAlcoolico tinyint(1),
-nivelExtresse char(1),
-nivelAtividadeFisicaAtual char(1),
+/*nivelExtresse char(1),
+nivelAtividadeFisicaAtual char(1), */
 informacaoAdicional varchar(700),
 idObjetivo int not null,
 
+/*
 hs_alteracaoPressao tinyint(1),
 hs_anemia tinyint(1),
 hs_ansiedade tinyint(1),
@@ -174,6 +175,7 @@ hs_taquicardia tinyint(1),
 obsCirurgias varchar(700),
 obsDoresCronicas varchar(700),
 obsDoresAgudas varchar(700),
+*/
 nomeAvaliador varchar(60)
 );
 
