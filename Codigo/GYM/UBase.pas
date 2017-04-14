@@ -178,7 +178,7 @@ end;
 procedure TFBase.ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
   E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
-  ShowMessage(e.Message);
+  //ShowMessage(e.Message);
 
 end;
 

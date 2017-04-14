@@ -49,40 +49,6 @@ type
     Label4: TLabel;
     cxDBMaskEdit5: TcxDBMaskEdit;
     Label5: TLabel;
-    FDQuery1idAluno: TIntegerField;
-    FDQuery1nomeAluno: TStringField;
-    FDQuery1dataNascimento: TDateField;
-    FDQuery1email: TStringField;
-    FDQuery1sexo: TStringField;
-    FDQuery1cidade: TStringField;
-    f: TStringField;
-    FDQuery1rua: TStringField;
-    FDQuery1numero: TIntegerField;
-    FDQuery1cep: TIntegerField;
-    FDQuery1tel1: TStringField;
-    FDQuery1tel2: TStringField;
-    FDQuery1nomeResponsavel: TStringField;
-    FDQuery1parentescoResponsavel: TStringField;
-    FDQuery1telResponsavel: TStringField;
-    FDQuery1dataCadastro: TDateField;
-    FDQuery1cpf: TStringField;
-    ClientDataSet1idAluno: TIntegerField;
-    ClientDataSet1nomeAluno: TStringField;
-    ClientDataSet1dataNascimento: TDateField;
-    ClientDataSet1email: TStringField;
-    ClientDataSet1sexo: TStringField;
-    ClientDataSet1cidade: TStringField;
-    ClientDataSet1bairro: TStringField;
-    ClientDataSet1rua: TStringField;
-    ClientDataSet1numero: TIntegerField;
-    ClientDataSet1cep: TIntegerField;
-    ClientDataSet1tel1: TStringField;
-    ClientDataSet1tel2: TStringField;
-    ClientDataSet1nomeResponsavel: TStringField;
-    ClientDataSet1parentescoResponsavel: TStringField;
-    ClientDataSet1telResponsavel: TStringField;
-    ClientDataSet1dataCadastro: TDateField;
-    ClientDataSet1cpf: TStringField;
     cxGroupBox8: TcxGroupBox;
     qFichaAluno: TFDQuery;
     pFichaAluno: TDataSetProvider;
@@ -177,8 +143,6 @@ type
     DBRadioGroup1: TDBRadioGroup;
     Label28: TLabel;
     Label29: TLabel;
-    FDQuery1idInstrutor: TIntegerField;
-    ClientDataSet1idInstrutor: TIntegerField;
     qFichaAlunoidFichaAluno: TIntegerField;
     qFichaAlunoidAluno: TIntegerField;
     qFichaAlunodataComposicao: TDateField;
@@ -191,8 +155,6 @@ type
     DBEditBInstrutor: TDBEditBeleza;
     DBEditInstrutor: TDBEdit;
     Label22: TLabel;
-    FDQuery1NOMEINSTRUTORFICHA: TStringField;
-    ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
     qFichaAlunodataVencimento: TDateField;
     CDSFichaAlunodataVencimento: TDateField;
     qserieFichaAluno: TFDQuery;
@@ -404,6 +366,46 @@ type
     cdsRelAnamneseNOMEALUNO: TStringField;
     cdsRelAnamneseDESCRICAOOBJETIVO: TStringField;
     cdsRelAnamneseIMC: TFloatField;
+    FDQuery1idAluno: TIntegerField;
+    FDQuery1nomeAluno: TStringField;
+    FDQuery1dataNascimento: TDateField;
+    FDQuery1email: TStringField;
+    FDQuery1sexo: TStringField;
+    FDQuery1cidade: TStringField;
+    FDQuery1bairro: TStringField;
+    FDQuery1rua: TStringField;
+    FDQuery1numero: TIntegerField;
+    FDQuery1cep: TIntegerField;
+    FDQuery1tel1: TStringField;
+    FDQuery1tel2: TStringField;
+    FDQuery1nomeResponsavel: TStringField;
+    FDQuery1parentescoResponsavel: TStringField;
+    FDQuery1telResponsavel: TStringField;
+    FDQuery1dataCadastro: TDateField;
+    FDQuery1cpf: TStringField;
+    FDQuery1idInstrutor: TIntegerField;
+    FDQuery1NOMEINSTRUTORFICHA: TStringField;
+    ClientDataSet1idAluno: TIntegerField;
+    ClientDataSet1nomeAluno: TStringField;
+    ClientDataSet1dataNascimento: TDateField;
+    ClientDataSet1email: TStringField;
+    ClientDataSet1sexo: TStringField;
+    ClientDataSet1cidade: TStringField;
+    ClientDataSet1bairro: TStringField;
+    ClientDataSet1rua: TStringField;
+    ClientDataSet1numero: TIntegerField;
+    ClientDataSet1cep: TIntegerField;
+    ClientDataSet1tel1: TStringField;
+    ClientDataSet1tel2: TStringField;
+    ClientDataSet1nomeResponsavel: TStringField;
+    ClientDataSet1parentescoResponsavel: TStringField;
+    ClientDataSet1telResponsavel: TStringField;
+    ClientDataSet1dataCadastro: TDateField;
+    ClientDataSet1cpf: TStringField;
+    ClientDataSet1idInstrutor: TIntegerField;
+    ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
+    qAnamneseDESCRICAOOBJETIVO: TStringField;
+    CDSAnamneseDESCRICAOOBJETIVO: TStringField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -479,9 +481,6 @@ type
     procedure pPagamentoBeforeUpdateRecord(Sender: TObject; SourceDS: TDataSet;
       DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind;
       var Applied: Boolean);
-    procedure cdsPagamentoReconcileError(DataSet: TCustomClientDataSet;
-      E: EReconcileError; UpdateKind: TUpdateKind;
-      var Action: TReconcileAction);
     procedure btnImprimirAnamneseClick(Sender: TObject);
     procedure dsRelAnamneseDataChange(Sender: TObject; Field: TField);
     procedure cdsRelAnamneseCalcFields(DataSet: TDataSet);
@@ -525,8 +524,8 @@ begin
     IF(DS.DataSet.State = dsInsert)THEN
     BEGIN
 
-      //PATOLOGIA
-      DModule.qAux.SQL.Text := 'DELETE FROM ALUNOPATOLOGIA WHERE idALUNO =:IDA';
+      //ANAMNESE
+      DModule.qAux.SQL.Text := 'DELETE FROM ANAMNESE WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
       DModule.qAux.ExecSQL;
@@ -846,10 +845,20 @@ begin
             CDSRelAnamnese.EmptyDataSet;
             CDSRelAnamnese.Append;
             cdsRelAnamnesenomealuno.asString := ClientDataSet1nomeAluno.AsString;
-
+            cdsRelAnamneseidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
             cdsRelAnamneseidAnamnese.AsInteger := CDSAnamneseidAnamnese.AsInteger;
             cdsRelAnamnesedataAnamnese.AsDateTime := CDSAnamnesedataAnamnese.AsDateTime;
-
+            cdsRelAnamneseidObjetivo.AsInteger := CDSAnamneseidObjetivo.AsInteger;
+            cdsRelAnamneseDESCRICAOOBJETIVO.AsString := CDSAnamneseDESCRICAOOBJETIVO.AsString;
+            cdsRelAnamnesefrequenciaSemanalTreino.AsInteger := cdsAnamnesefrequenciaSemanalTreino.AsInteger;
+            cdsRelAnamnesepeso.AsFloat := cdsAnamnesepeso.AsFloat;
+            cdsRelAnamnesealtura.AsFloat := cdsAnamnesealtura.AsFloat;
+            cdsRelAnamnesedieta.AsBoolean := cdsAnamnesedieta.AsBoolean;
+            cdsRelAnamnesesuplementacao.AsBoolean := cdsAnamnesesuplementacao.AsBoolean;
+            cdsRelAnamneseconsumoAlcoolico.AsBoolean := cdsAnamneseconsumoAlcoolico.AsBoolean;
+            cdsRelAnamnesefuma.AsBoolean := cdsAnamnesefuma.AsBoolean;
+            cdsRelAnamneseqtdHorasSono.AsInteger  := cdsAnamneseqtdHorasSono.AsInteger;
+            cdsRelAnamneseqtdRefeicoesDia.AsInteger := cdsAnamneseqtdRefeicoesDia.AsInteger;
             cdsRelAnamnesenomeAvaliador.AsString := DModule.nomeusuario;
             cdsRelAnamnese.Post;
 
@@ -1036,13 +1045,6 @@ procedure TF01001.cdsPagamentoAfterPost(DataSet: TDataSet);
 begin
   inherited;
   cdsPagamento.ApplyUpdates(-1);
-end;
-
-procedure TF01001.cdsPagamentoReconcileError(DataSet: TCustomClientDataSet;
-  E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
-begin
-  inherited;
-  //showmessage(e.Message);
 end;
 
 procedure TF01001.cdsRelAnamneseCalcFields(DataSet: TDataSet);
@@ -1536,10 +1538,10 @@ procedure TF01001.DSStateChange(Sender: TObject);
 begin
   inherited;
 
+
   if (ds.DataSet.State = dsInsert) then
   begin
-    ClientDataSet1sexo.AsString := 'M';
-
+    DBRadioGroup1.Buttons[1].OnClick(sender);
     // IMAGEM ALUNO DEFAULT
     cxImage1.Picture.Bitmap := NIL;
     ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);

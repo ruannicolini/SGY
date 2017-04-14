@@ -3,8 +3,7 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -280
-  ExplicitTop = -365
+  ExplicitLeft = 8
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -19,13 +18,10 @@
   inherited PageControl: TPageControl
     Width = 1008
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -52,7 +48,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pagAvaliacoes
+          Properties.ActivePage = pagPerfil
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -1359,8 +1355,6 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1762,116 +1756,6 @@
     OnCalcFields = ClientDataSet1CalcFields
     Left = 864
     Top = 16
-    object ClientDataSet1idAluno: TIntegerField
-      FieldName = 'idAluno'
-      Origin = 'idAluno'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object ClientDataSet1nomeAluno: TStringField
-      FieldName = 'nomeAluno'
-      Origin = 'nomeAluno'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-      Size = 80
-    end
-    object ClientDataSet1dataNascimento: TDateField
-      FieldName = 'dataNascimento'
-      Origin = 'dataNascimento'
-      ProviderFlags = [pfInUpdate]
-    end
-    object ClientDataSet1email: TStringField
-      FieldName = 'email'
-      Origin = 'email'
-      ProviderFlags = [pfInUpdate]
-      Size = 60
-    end
-    object ClientDataSet1sexo: TStringField
-      FieldName = 'sexo'
-      Origin = 'sexo'
-      ProviderFlags = [pfInUpdate]
-      FixedChar = True
-      Size = 1
-    end
-    object ClientDataSet1cidade: TStringField
-      FieldName = 'cidade'
-      Origin = 'cidade'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object ClientDataSet1bairro: TStringField
-      FieldName = 'bairro'
-      Origin = 'bairro'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object ClientDataSet1rua: TStringField
-      FieldName = 'rua'
-      Origin = 'rua'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object ClientDataSet1numero: TIntegerField
-      FieldName = 'numero'
-      Origin = 'numero'
-      ProviderFlags = [pfInUpdate]
-    end
-    object ClientDataSet1cep: TIntegerField
-      FieldName = 'cep'
-      Origin = 'cep'
-      ProviderFlags = [pfInUpdate]
-    end
-    object ClientDataSet1tel1: TStringField
-      FieldName = 'tel1'
-      Origin = 'tel1'
-      ProviderFlags = [pfInUpdate]
-      EditMask = '!\(99\)9999-99999;1;_'
-      Size = 50
-    end
-    object ClientDataSet1tel2: TStringField
-      FieldName = 'tel2'
-      Origin = 'tel2'
-      ProviderFlags = [pfInUpdate]
-      EditMask = '!\(99\)9999-99999;1;_'
-      Size = 50
-    end
-    object ClientDataSet1nomeResponsavel: TStringField
-      FieldName = 'nomeResponsavel'
-      Origin = 'nomeResponsavel'
-      ProviderFlags = [pfInUpdate]
-      Size = 80
-    end
-    object ClientDataSet1parentescoResponsavel: TStringField
-      FieldName = 'parentescoResponsavel'
-      Origin = 'parentescoResponsavel'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object ClientDataSet1telResponsavel: TStringField
-      FieldName = 'telResponsavel'
-      Origin = 'telResponsavel'
-      ProviderFlags = [pfInUpdate]
-      Size = 50
-    end
-    object ClientDataSet1dataCadastro: TDateField
-      FieldName = 'dataCadastro'
-      Origin = 'dataCadastro'
-      ProviderFlags = [pfInUpdate]
-    end
-    object ClientDataSet1cpf: TStringField
-      FieldName = 'cpf'
-      Origin = 'cpf'
-      ProviderFlags = [pfInUpdate]
-      EditMask = '999.999.999-99;1;_'
-      Size = 50
-    end
-    object ClientDataSet1idInstrutor: TIntegerField
-      FieldName = 'idInstrutor'
-    end
-    object ClientDataSet1NOMEINSTRUTORFICHA: TStringField
-      FieldName = 'NOMEINSTRUTORFICHA'
-      Size = 50
-    end
     object ClientDataSet1IDADE: TIntegerField
       FieldKind = fkInternalCalc
       FieldName = 'IDADE'
@@ -1879,6 +1763,80 @@
     object ClientDataSet1situacao: TStringField
       FieldKind = fkInternalCalc
       FieldName = 'situacao'
+      Size = 50
+    end
+    object ClientDataSet1idAluno: TIntegerField
+      FieldName = 'idAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object ClientDataSet1nomeAluno: TStringField
+      FieldName = 'nomeAluno'
+      Required = True
+      Size = 80
+    end
+    object ClientDataSet1dataNascimento: TDateField
+      FieldName = 'dataNascimento'
+    end
+    object ClientDataSet1email: TStringField
+      FieldName = 'email'
+      Size = 60
+    end
+    object ClientDataSet1sexo: TStringField
+      FieldName = 'sexo'
+      FixedChar = True
+      Size = 1
+    end
+    object ClientDataSet1cidade: TStringField
+      FieldName = 'cidade'
+      Size = 50
+    end
+    object ClientDataSet1bairro: TStringField
+      FieldName = 'bairro'
+      Size = 50
+    end
+    object ClientDataSet1rua: TStringField
+      FieldName = 'rua'
+      Size = 50
+    end
+    object ClientDataSet1numero: TIntegerField
+      FieldName = 'numero'
+    end
+    object ClientDataSet1cep: TIntegerField
+      FieldName = 'cep'
+    end
+    object ClientDataSet1tel1: TStringField
+      FieldName = 'tel1'
+      Size = 50
+    end
+    object ClientDataSet1tel2: TStringField
+      FieldName = 'tel2'
+      Size = 50
+    end
+    object ClientDataSet1nomeResponsavel: TStringField
+      FieldName = 'nomeResponsavel'
+      Size = 80
+    end
+    object ClientDataSet1parentescoResponsavel: TStringField
+      FieldName = 'parentescoResponsavel'
+      Size = 50
+    end
+    object ClientDataSet1telResponsavel: TStringField
+      FieldName = 'telResponsavel'
+      Size = 50
+    end
+    object ClientDataSet1dataCadastro: TDateField
+      FieldName = 'dataCadastro'
+    end
+    object ClientDataSet1cpf: TStringField
+      FieldName = 'cpf'
+      Size = 50
+    end
+    object ClientDataSet1idInstrutor: TIntegerField
+      FieldName = 'idInstrutor'
+    end
+    object ClientDataSet1NOMEINSTRUTORFICHA: TStringField
+      FieldName = 'NOMEINSTRUTORFICHA'
       Size = 50
     end
   end
@@ -1889,8 +1847,8 @@
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT a.*, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A '
-      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTOR')
+      'SELECT A.*, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A '
+      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR')
     Left = 800
     Top = 16
     object FDQuery1idAluno: TIntegerField
@@ -1902,7 +1860,6 @@
     object FDQuery1nomeAluno: TStringField
       FieldName = 'nomeAluno'
       Origin = 'nomeAluno'
-      ProviderFlags = [pfInUpdate]
       Required = True
       Size = 80
     end
@@ -1910,20 +1867,17 @@
       AutoGenerateValue = arDefault
       FieldName = 'dataNascimento'
       Origin = 'dataNascimento'
-      ProviderFlags = [pfInUpdate]
     end
     object FDQuery1email: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'email'
       Origin = 'email'
-      ProviderFlags = [pfInUpdate]
       Size = 60
     end
     object FDQuery1sexo: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'sexo'
       Origin = 'sexo'
-      ProviderFlags = [pfInUpdate]
       FixedChar = True
       Size = 1
     end
@@ -1931,81 +1885,69 @@
       AutoGenerateValue = arDefault
       FieldName = 'cidade'
       Origin = 'cidade'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
-    object f: TStringField
+    object FDQuery1bairro: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'bairro'
       Origin = 'bairro'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1rua: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'rua'
       Origin = 'rua'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1numero: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'numero'
       Origin = 'numero'
-      ProviderFlags = [pfInUpdate]
     end
     object FDQuery1cep: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'cep'
       Origin = 'cep'
-      ProviderFlags = [pfInUpdate]
     end
     object FDQuery1tel1: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tel1'
       Origin = 'tel1'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1tel2: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tel2'
       Origin = 'tel2'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1nomeResponsavel: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nomeResponsavel'
       Origin = 'nomeResponsavel'
-      ProviderFlags = [pfInUpdate]
       Size = 80
     end
     object FDQuery1parentescoResponsavel: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'parentescoResponsavel'
       Origin = 'parentescoResponsavel'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1telResponsavel: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'telResponsavel'
       Origin = 'telResponsavel'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1dataCadastro: TDateField
       AutoGenerateValue = arDefault
       FieldName = 'dataCadastro'
       Origin = 'dataCadastro'
-      ProviderFlags = [pfInUpdate]
     end
     object FDQuery1cpf: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cpf'
       Origin = 'cpf'
-      ProviderFlags = [pfInUpdate]
       Size = 50
     end
     object FDQuery1idInstrutor: TIntegerField
@@ -2025,7 +1967,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00980310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C009C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2810,7 +2752,6 @@
     AfterPost = cdsPagamentoAfterPost
     AfterCancel = cdsPagamentoAfterCancel
     AfterDelete = cdsPagamentoAfterDelete
-    OnReconcileError = cdsPagamentoReconcileError
     Left = 928
     Top = 79
     object cdsPagamentoidPagamento: TIntegerField
@@ -3534,7 +3475,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C010101001400F8005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101001400FC005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8416,7 +8357,6 @@
     Top = 370
   end
   object CDSAnamnese: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pAnamnese'
@@ -8498,6 +8438,10 @@
       ProviderFlags = []
       Size = 80
     end
+    object CDSAnamneseDESCRICAOOBJETIVO: TStringField
+      FieldName = 'DESCRICAOOBJETIVO'
+      Size = 50
+    end
   end
   object pAnamnese: TDataSetProvider
     DataSet = qAnamnese
@@ -8508,8 +8452,9 @@
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT AN.*,A.NOMEALUNO FROM ANAMNESE AN '
+      'SELECT AN.*,A.NOMEALUNO, OB.DESCRICAOOBJETIVO  FROM ANAMNESE AN '
       'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AN.IDALUNO '
+      'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDALUNO =:IDA'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
     Left = 862
@@ -8605,6 +8550,13 @@
       Origin = 'nomeAluno'
       ProviderFlags = []
       Size = 80
+    end
+    object qAnamneseDESCRICAOOBJETIVO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAOOBJETIVO'
+      Origin = 'descricaoObjetivo'
+      ProviderFlags = []
+      Size = 50
     end
   end
   object REPORT_ANAMNESEPATOLOGIA: TfrxReport
@@ -9195,7 +9147,6 @@
     Top = 522
   end
   object cdsRelAnamnese: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelAnamnese'

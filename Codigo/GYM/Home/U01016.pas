@@ -423,18 +423,24 @@ begin
   if not DSPatologiaAnam.DataSet.Active then
     DSPatologiaAnam.DataSet.Open;
 
-  DSPatologiaAnam.DataSet.Append;
-  CDSPatologiaAnamidAnamnese.AsInteger := ClientDataSet1idAnamnese.AsInteger;
-  CDSPatologiaAnamidPatologia.AsInteger := STRTOINT(Edit1.Text);
-  DSPatologiaAnam.DataSet.Post;
-  //cdsPatologia.ApplyUpdates(-1);
+  if TRIM(Edit1.Text) <> '' then
+  begin
+      DSPatologiaAnam.DataSet.Append;
+      CDSPatologiaAnamidAnamnese.AsInteger := ClientDataSet1idAnamnese.AsInteger;
+      CDSPatologiaAnamidPatologia.AsInteger := STRTOINT(Edit1.Text);
+      DSPatologiaAnam.DataSet.Post;
+      //cdsPatologia.ApplyUpdates(-1);
 
-  qPatologiaAnam.Params[0].AsInteger := ClientDataSet1idAnamnese.AsInteger;
-  DSPatologiaAnam.DataSet.Close;
-  DSPatologiaAnam.DataSet.Open;
+      qPatologiaAnam.Params[0].AsInteger := ClientDataSet1idAnamnese.AsInteger;
+      DSPatologiaAnam.DataSet.Close;
+      DSPatologiaAnam.DataSet.Open;
 
-  edit1.Clear;
-  EditBeleza1.Clear;
+      edit1.Clear;
+      EditBeleza1.Clear;
+  end else
+  begin
+      SHOWMESSAGE('INFORME PATOLOGIA');
+  end;
 end;
 
 procedure TF01016.SpeedButton2Click(Sender: TObject);
