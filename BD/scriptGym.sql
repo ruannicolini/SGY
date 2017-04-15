@@ -149,33 +149,12 @@ peso float,
 altura float,
 qtdHorasSono int,
 qtdRefeicoesDia int,
-fuma char(1),
+fuma tinyint(1),
 dieta tinyint(1),
 suplementacao tinyint(1),
 consumoAlcoolico tinyint(1),
-/*nivelExtresse char(1),
-nivelAtividadeFisicaAtual char(1), */
 informacaoAdicional varchar(700),
 idObjetivo int not null,
-
-/*
-hs_alteracaoPressao tinyint(1),
-hs_anemia tinyint(1),
-hs_ansiedade tinyint(1),
-hs_criseRespiratoria tinyint(1),
-hs_colesterolElevado tinyint(1),
-hs_sonoIrregular tinyint(1),
-hs_diabetes tinyint(1),
-hs_gastrite tinyint(1),
-hs_problemaTireoide tinyint(1),
-hs_tonturasConstantes tinyint(1),
-hs_varises tinyint(1),
-hs_taquicardia tinyint(1),
-
-obsCirurgias varchar(700),
-obsDoresCronicas varchar(700),
-obsDoresAgudas varchar(700),
-*/
 nomeAvaliador varchar(60)
 );
 
@@ -233,7 +212,7 @@ qtdRepeticao int,
 PRIMARY KEY (idFichaPreDefinida,idTreino,idExercicio)
 );
 
-create table FixaAluno(
+create table FichaAluno(
 idFichaAluno int not null,
 idAluno int not null,
 dataComposicao date,
@@ -482,8 +461,6 @@ delimiter ;
 -- Drop PROCEDURE geraMensalidade;
 
 
-
-
 delimiter |
 CREATE EVENT CHAMA_PROCEDURE_GERA_MENSALIDADE 
 ON SCHEDULE EVERY 1 DAY 
@@ -494,8 +471,6 @@ DO
 	CALL geraMensalidade;
 |
 DELIMITER ;
-
-
 
 
 -- Teste 
@@ -509,9 +484,6 @@ DO
 |
 DELIMITER ;
 -- Fim de teste
-
-
-
 
 
 -- Habilida Eventos

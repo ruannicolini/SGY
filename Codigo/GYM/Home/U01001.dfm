@@ -3,7 +3,8 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = 8
+  ExplicitLeft = -237
+  ExplicitTop = -84
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -136,13 +137,14 @@
                   Top = 109
                   DataBinding.DataField = 'dataNascimento'
                   DataBinding.DataSource = DS
-                  TabOrder = 0
+                  TabOrder = 2
                   OnExit = cxDBDateEdit1Exit
                   Width = 192
                 end
                 object cxImage1: TcxImage
                   Left = 14
                   Top = 34
+                  TabStop = False
                   Properties.GraphicTransparency = gtOpaque
                   Properties.PopupMenuLayout.MenuItems = [pmiWebCam, pmiSave]
                   Properties.OnChange = cxImage1PropertiesChange
@@ -172,7 +174,7 @@
                   DataField = 'idAluno'
                   DataSource = DS
                   ReadOnly = True
-                  TabOrder = 2
+                  TabOrder = 8
                 end
                 object DBEdit3: TDBEdit
                   Left = 223
@@ -182,7 +184,7 @@
                   CharCase = ecUpperCase
                   DataField = 'nomeAluno'
                   DataSource = DS
-                  TabOrder = 3
+                  TabOrder = 0
                 end
                 object DBEdit9: TDBEdit
                   Left = 223
@@ -191,7 +193,7 @@
                   Height = 24
                   DataField = 'cpf'
                   DataSource = DS
-                  TabOrder = 4
+                  TabOrder = 3
                   OnChange = DBEdit9Change
                   OnExit = DBEdit9Exit
                 end
@@ -214,8 +216,8 @@
                   TabOrder = 6
                 end
                 object DBEdit12: TDBEdit
-                  Left = 430
-                  Top = 214
+                  Left = 422
+                  Top = 215
                   Width = 193
                   Height = 24
                   DataField = 'email'
@@ -234,7 +236,7 @@
                   Items.Strings = (
                     'MASCULINO'
                     'FEMININO')
-                  TabOrder = 8
+                  TabOrder = 4
                   Values.Strings = (
                     'M'
                     'F')
@@ -244,6 +246,7 @@
                   Top = 109
                   Width = 193
                   Height = 24
+                  TabStop = False
                   DataField = 'IDADE'
                   DataSource = DS
                   TabOrder = 9
@@ -296,7 +299,7 @@
                   Top = 77
                   DataBinding.DataField = 'numero'
                   DataBinding.DataSource = DS
-                  TabOrder = 0
+                  TabOrder = 4
                   Width = 193
                 end
                 object DBEdit6: TDBEdit
@@ -307,7 +310,7 @@
                   CharCase = ecUpperCase
                   DataField = 'cidade'
                   DataSource = DS
-                  TabOrder = 1
+                  TabOrder = 0
                 end
                 object DBEdit7: TDBEdit
                   Left = 223
@@ -317,7 +320,7 @@
                   CharCase = ecUpperCase
                   DataField = 'bairro'
                   DataSource = DS
-                  TabOrder = 2
+                  TabOrder = 1
                 end
                 object DBEdit8: TDBEdit
                   Left = 15
@@ -336,7 +339,7 @@
                   Height = 24
                   DataField = 'cep'
                   DataSource = DS
-                  TabOrder = 4
+                  TabOrder = 2
                 end
               end
               object GROUPBOX2: TGroupBox
@@ -374,7 +377,7 @@
                   DataBinding.DataSource = DS
                   Properties.CharCase = ecUpperCase
                   Properties.EditMask = '!\(99\)9999-99999;1;_'
-                  TabOrder = 0
+                  TabOrder = 2
                   Width = 297
                 end
                 object DBEdit4: TDBEdit
@@ -385,7 +388,7 @@
                   CharCase = ecUpperCase
                   DataField = 'nomeResponsavel'
                   DataSource = DS
-                  TabOrder = 1
+                  TabOrder = 0
                 end
                 object DBEdit5: TDBEdit
                   Left = 16
@@ -395,7 +398,7 @@
                   CharCase = ecUpperCase
                   DataField = 'parentescoResponsavel'
                   DataSource = DS
-                  TabOrder = 2
+                  TabOrder = 1
                 end
               end
               object GroupBox3: TGroupBox
@@ -420,7 +423,8 @@
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  TabOrder = 0
+                  ReadOnly = True
+                  TabOrder = 1
                   OnChange = DBEditInstrutorChange
                 end
                 object DBEditBeleza1: TDBEditBeleza
@@ -437,7 +441,8 @@
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  TabOrder = 1
+                  TabOrder = 0
+                  OnKeyPress = EditPesqModalidadeKeyPress
                   Ativar_Pesquisa = True
                   mostrar_Botao = True
                   sql.Strings = (
@@ -1967,7 +1972,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C009C0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00A00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3475,7 +3480,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C010101001400FC005F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140000015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8360,6 +8365,7 @@
     Aggregates = <>
     Params = <>
     ProviderName = 'pAnamnese'
+    AfterPost = CDSAnamneseAfterPost
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
     Left = 910

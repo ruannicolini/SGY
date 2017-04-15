@@ -486,6 +486,7 @@ type
     procedure cdsRelAnamneseCalcFields(DataSet: TDataSet);
     procedure REPORT_ANAMNESEPATOLOGIABeforePrint(Sender: TfrxReportComponent);
     procedure REPORT_ANAMNESEPATOLOGIAPreview(Sender: TObject);
+    procedure CDSAnamneseAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -525,28 +526,48 @@ begin
     BEGIN
 
       //ANAMNESE
-      DModule.qAux.SQL.Text := 'DELETE FROM ANAMNESE WHERE idALUNO =:IDA';
+      {DModule.qAux.SQL.Text := 'DELETE FROM ANAMNESE WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
-      DModule.qAux.ExecSQL;
+      DModule.qAux.ExecSQL;}
+      cdsanamnese.First;
+      while not(cdsanamnese.eof)do
+      begin
+      cdsanamnese.Delete;
+      end;
 
       //MODALIDADES
-      DModule.qAux.SQL.Text := 'DELETE FROM ALUNOMODALIDADE WHERE idALUNO =:IDA';
+      {DModule.qAux.SQL.Text := 'DELETE FROM ALUNOMODALIDADE WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
-      DModule.qAux.ExecSQL;
+      DModule.qAux.ExecSQL; }
+      cdsmodalidade.First;
+      while not(cdsmodalidade.eof)do
+      begin
+      cdsmodalidade.Delete;
+      end;
 
       // SÉRIE (FICHA DE EXERCÍCIOS)
-      DModule.qAux.SQL.Text := 'DELETE FROM FICHAALUNO WHERE idALUNO =:IDA';
+      {DModule.qAux.SQL.Text := 'DELETE FROM FICHAALUNO WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
-      DModule.qAux.ExecSQL;
+      DModule.qAux.ExecSQL;}
+      CDSFichaAluno.First;
+      while not(CDSFichaAluno.eof)do
+      begin
+      CDSFichaAluno.Delete;
+      end;
 
       // PAGAMENTOS
-      DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE idALUNO =:IDA';
+      {DModule.qAux.SQL.Text := 'DELETE FROM PAGAMENTO WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
-      DModule.qAux.ExecSQL;
+      DModule.qAux.ExecSQL;}
+      CDSPagamento.First;
+      while not(CDSPagamento.eof)do
+      begin
+      CDSPagamento.Delete;
+      end;
 
     END;
 
@@ -639,7 +660,9 @@ begin
               visible := false;
               //Assimila_Relat_q(Screen.ActiveForm.Name, 0, DS.DataSet, DSSerie.DataSet, 'idAluno', 'idAluno');
 
-              Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSFichaAluno.DataSet,'idAluno', 'idAluno', 'idAluno');
+              //Assimila3Datasets(Screen.ActiveForm.Name, DS.DataSet, DSModalidade.DataSet, DSFichaAluno.DataSet,'idAluno', 'idAluno', 'idAluno');
+              Assimila3Datasets(Screen.ActiveForm.Name, fdquery1, QMODALIDADE, qFichaAluno,'idAluno', 'idAluno', 'idAluno');
+
               ShowModal;
           finally
               Relatorios_sis.close;
@@ -1065,6 +1088,12 @@ begin
 end;
 
 procedure TF01001.CDSAnamneseAfterDelete(DataSet: TDataSet);
+begin
+  inherited;
+  CDSAnamnese.ApplyUpdates(-1);
+end;
+
+procedure TF01001.CDSAnamneseAfterPost(DataSet: TDataSet);
 begin
   inherited;
   CDSAnamnese.ApplyUpdates(-1);
@@ -2000,7 +2029,7 @@ begin
   ukDelete :
             begin
               tipoCRUD := 'delete';
-
+              {
               //DESCOBRE OS CAMPOS ID
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
@@ -2030,7 +2059,7 @@ begin
                   DModule.cdsCampoLog.Post
 
               end;
-
+               }
             end;
   end;
 
@@ -2153,7 +2182,7 @@ begin
   ukDelete :
             begin
               tipoCRUD := 'delete';
-
+             {
               //DESCOBRE OS CAMPOS ID
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
@@ -2183,7 +2212,7 @@ begin
                   DModule.cdsCampoLog.Post
 
               end;
-
+              }
             end;
   end;
 
@@ -2307,7 +2336,7 @@ begin
   ukDelete :
             begin
               tipoCRUD := 'delete';
-
+               {
               //DESCOBRE OS CAMPOS ID
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
@@ -2337,7 +2366,7 @@ begin
                   DModule.cdsCampoLog.Post
 
               end;
-
+              }
             end;
   end;
 
@@ -2461,7 +2490,7 @@ begin
   ukDelete :
             begin
               tipoCRUD := 'delete';
-
+              {
               //DESCOBRE OS CAMPOS ID
               for I := 0 to DeltaDS.FieldCount-1 do
               begin
@@ -2491,7 +2520,7 @@ begin
                   DModule.cdsCampoLog.Post
 
               end;
-
+              }
             end;
   end;
 

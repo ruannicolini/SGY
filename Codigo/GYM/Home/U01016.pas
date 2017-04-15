@@ -106,8 +106,6 @@ type
     ClientDataSet1nomeAvaliador: TStringField;
     SpeedButton2: TSpeedButton;
     DataSource1: TDataSource;
-    Label5: TLabel;
-    cxDBTextEdit3: TcxDBTextEdit;
     procedure ClientDataSet1CalcFields(DataSet: TDataSet);
     procedure DSStateChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
