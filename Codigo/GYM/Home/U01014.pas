@@ -235,6 +235,7 @@ begin
           //Limpa EditBelezaExercicio
           Editexercicio.Clear;
           EditBexercicio.Clear;
+          EditBexercicio.SetFocus;
 
           //Grava Dados
           CDSserieFichaAluno.Post;

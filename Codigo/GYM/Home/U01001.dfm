@@ -3,8 +3,6 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
-  ExplicitTop = -84
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -23,6 +21,8 @@
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -216,8 +216,8 @@
                   TabOrder = 6
                 end
                 object DBEdit12: TDBEdit
-                  Left = 422
-                  Top = 215
+                  Left = 430
+                  Top = 213
                   Width = 193
                   Height = 24
                   DataField = 'email'
@@ -237,6 +237,7 @@
                     'MASCULINO'
                     'FEMININO')
                   TabOrder = 4
+                  TabStop = True
                   Values.Strings = (
                     'M'
                     'F')
@@ -1360,6 +1361,8 @@
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1812,10 +1815,12 @@
     end
     object ClientDataSet1tel1: TStringField
       FieldName = 'tel1'
+      EditMask = '!\(99\)9999-99999;1;_'
       Size = 50
     end
     object ClientDataSet1tel2: TStringField
       FieldName = 'tel2'
+      EditMask = '!\(99\)9999-99999;1;_'
       Size = 50
     end
     object ClientDataSet1nomeResponsavel: TStringField
@@ -1835,6 +1840,7 @@
     end
     object ClientDataSet1cpf: TStringField
       FieldName = 'cpf'
+      EditMask = '999.999.999-99;1;_'
       Size = 50
     end
     object ClientDataSet1idInstrutor: TIntegerField
@@ -1972,7 +1978,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00A00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00A80310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3480,7 +3486,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C01010100140000015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140008015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

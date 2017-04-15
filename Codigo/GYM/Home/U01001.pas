@@ -445,7 +445,6 @@ type
       var query_result: TFDQuery);
     procedure Action5Execute(Sender: TObject);
     procedure BExcluirClick(Sender: TObject);
-    procedure cxDBDateEdit1Exit(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure EditPesqModalidadeChange(Sender: TObject);
     procedure EditPesqNomeChange(Sender: TObject);
@@ -454,7 +453,6 @@ type
     procedure BEditarClick(Sender: TObject);
     procedure cxImage1PropertiesChange(Sender: TObject);
     procedure EditPesqModalidadeKeyPress(Sender: TObject; var Key: Char);
-    procedure BCancelarClick(Sender: TObject);
     procedure DBEdit9Change(Sender: TObject);
     procedure DBEdit9Exit(Sender: TObject);
     procedure ActionReajustarDBGridBeleza1Execute(Sender: TObject);
@@ -487,6 +485,7 @@ type
     procedure REPORT_ANAMNESEPATOLOGIABeforePrint(Sender: TfrxReportComponent);
     procedure REPORT_ANAMNESEPATOLOGIAPreview(Sender: TObject);
     procedure CDSAnamneseAfterPost(DataSet: TDataSet);
+    procedure cxDBDateEdit1Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -571,6 +570,17 @@ begin
 
     END;
 
+    //habilita painel responsável
+    DBEdit4.Enabled := true;
+    DBEdit5.Enabled := true;
+    cxDBMaskEdit5.Enabled := true;
+
+    //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+    cxPageControl1.ActivePageIndex := 0;
+
+    //COR DO CAMPO CPF
+    DBEdit9.Font.Color := clblack;
+
 end;
 
 procedure TF01001.ActionReajustarDBGridBeleza1Execute(Sender: TObject);
@@ -612,16 +622,6 @@ begin
   end;
 
 
-end;
-
-procedure TF01001.BCancelarClick(Sender: TObject);
-begin
-  inherited;
-  //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
-  cxPageControl1.ActivePageIndex := 0;
-
-  //COR DO CAMPO CPF
-  DBEdit9.Font.Color := clblack;
 end;
 
 procedure TF01001.BEditarClick(Sender: TObject);
@@ -724,6 +724,11 @@ begin
 
               //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
               cxPageControl1.ActivePageIndex := 0;
+
+              //habilita painel responsável
+              DBEdit4.Enabled := true;
+              DBEdit5.Enabled := true;
+              cxDBMaskEdit5.Enabled := true;
 
               //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
               inherited;
@@ -1137,6 +1142,7 @@ begin
   IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
   BEGIN
     ClientDataSet1idADE.AsInteger := (DateUtils.YearsBetween(DATE, ClientDataSet1dataNascimento.AsDateTime));
+
   END;
 
   //SITUAÇÃO DO ALUNO
@@ -1570,7 +1576,8 @@ begin
 
   if (ds.DataSet.State = dsInsert) then
   begin
-    DBRadioGroup1.Buttons[1].OnClick(sender);
+    DBRadioGroup1.Value := 'M';
+    DBRadioGroup1.Buttons[0].OnClick(sender);
     // IMAGEM ALUNO DEFAULT
     cxImage1.Picture.Bitmap := NIL;
     ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
@@ -1580,6 +1587,26 @@ begin
   begin
     if (ds.DataSet.State = dsEdit) then
     begin
+
+        // CONTROLE DE PAINEL DADOS-RESPONSÁVEL
+        if(ClientDataSet1idade.AsInteger >= 18)then
+        begin
+            DBEdit4.Enabled := false;
+            DBEdit5.Enabled := false;
+            cxDBMaskEdit5.Enabled := false;
+            DBEdit4.Clear;
+            DBEdit5.Clear;
+            cxDBMaskEdit5.Clear;
+        end else
+        begin
+            if(ClientDataSet1idade.AsInteger < 18)then
+            begin
+                DBEdit4.Enabled := true;
+                DBEdit5.Enabled := true;
+                cxDBMaskEdit5.Enabled := true;
+            end;
+        end;
+
         //CASO O USUÁRIO SEJA UM INSTRUTOR, VERIFICA SE ELE É O INSTRUTOR
         //DESSE ALUNO CUJO REGISTRO SERÁ EDITADO.
         IF(DModule.administrador = FALSE)THEN
