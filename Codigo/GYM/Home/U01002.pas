@@ -281,19 +281,25 @@ begin
                   TRY
                       if(ClientDataSet1idstatusPagamento.AsInteger = 2)then
                       begin
-                        DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
+                        ClientDataSet1.Edit;
+                        ClientDataSet1valorCobrado.Clear;
+                        ClientDataSet1dataPagamento.Clear;
+                        ClientDataSet1idstatusPagamento.AsInteger := 1;
+                        ClientDataSet1LOGUsuarioResponsavel.AsString := 'Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje);
+                        ClientDataSet1.Post;
                       end else
                       begin
                           if(ClientDataSet1idstatusPagamento.AsInteger = 3)then
                           begin
-                            DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Isenção cancelada por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
+                            ClientDataSet1.Edit;
+                            ClientDataSet1valorCobrado.Clear;
+                            ClientDataSet1dataPagamento.Clear;
+                            ClientDataSet1idstatusPagamento.AsInteger := 1;
+                            ClientDataSet1LOGUsuarioResponsavel.AsString := 'Isenção cancelada por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje);
+                            ClientDataSet1.Post;
                           end;
                       end;
-                      DModule.qAux.SQL.Text := 'UPDATE PAGAMENTO SET VALORCOBRADO = NULL, DATAPAGAMENTO = NULL, IDSTATUSPAGAMENTO = 1, LOGUSUARIORESPONSAVEL = '+ QuotedStr('Pagamento cancelado por ' + DModule.nomeusuario + ' em ' + datetostr(DModule.datahoje)) +' WHERE IDPAGAMENTO =:IDP';
-                      DModule.qAux.ParamByName('IDP').AsInteger := ClientDataSet1idPagamento.AsInteger;
-                      DModule.qAux.Close;
-                      DModule.qAux.ExecSQL;
-                      ClientDataSet1.Refresh;
+                      PageControl.ActivePageIndex := 1;
                   except
                     ON E: Exception DO
                     BEGIN

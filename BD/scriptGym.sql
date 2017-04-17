@@ -108,7 +108,6 @@ descricaoObjetivo varchar(50) not null
 create table Aluno(
 idAluno int primary key not null,
 nomeAluno varchar(80) not null,
-idade int,
 dataNascimento date,
 email varchar(60),
 sexo char(1),
@@ -122,21 +121,8 @@ tel2 varchar(50),
 nomeResponsavel varchar(80),
 parentescoResponsavel varchar(50),
 telResponsavel varchar(50),
-/*
-peso float,
-altura float,
-frequenciaAtividadeFisica int,
-qtdRefeicoesDia int,
-qtdHorasSono int,
-suplementacao tinyint(1),
-dieta tinyint(1),
-fumante tinyint(1),
-consomeBebidaAlcoolica tinyint(1),
-*/
 dataCadastro date,
 cpf VARCHAR(50),
-/*informacaoAdicional varchar(500),*/
-/*idObjetivo int,*/
 idInstrutor int
 );
 

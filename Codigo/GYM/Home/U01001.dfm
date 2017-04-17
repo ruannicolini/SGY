@@ -21,8 +21,8 @@
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -520,6 +520,10 @@
                 TabOrder = 1
                 object TabSheet1: TTabSheet
                   Caption = 'ANAMNESE'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object DBGridBelezaAnamnese: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -590,6 +594,10 @@
                 object TabSheet2: TTabSheet
                   Caption = 'F'#205'SICA'
                   ImageIndex = 1
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object DBGridBelezaFisica: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -632,6 +640,10 @@
                 object TabSheet3: TTabSheet
                   Caption = 'POSTURAL'
                   ImageIndex = 2
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object DBGridBelezaPostural: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -674,6 +686,10 @@
                 object TabSheet4: TTabSheet
                   Caption = 'DADOS CL'#205'NICOS'
                   ImageIndex = 3
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object DBGridBelezaDadosClinicos: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -1361,8 +1377,8 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 0
-      ExplicitTop = 0
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -1978,7 +1994,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00A80310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00B00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3486,7 +3502,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C01010100140008015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140010015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

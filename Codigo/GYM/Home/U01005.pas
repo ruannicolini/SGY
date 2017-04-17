@@ -124,10 +124,15 @@ begin
   //APAGA REGISTROS DA EXERCICIO DA FICHA
   IF(DS.DataSet.State = dsInsert)THEN
   BEGIN
-    DModule.qAux.SQL.Text := 'DELETE FROM FichaPreDefinidaSerie WHERE idFichaPreDefinida =:IDF';
+    {DModule.qAux.SQL.Text := 'DELETE FROM FichaPreDefinidaSerie WHERE idFichaPreDefinida =:IDF';
     DModule.qAux.ParamByName('IDF').AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
     DModule.qAux.Close;
-    DModule.qAux.ExecSQL;
+    DModule.qAux.ExecSQL; }
+    CDSSerieFicha.First;
+    while not(CDSSerieFicha.eof)do
+    begin
+    CDSSerieFicha.Delete;
+    end;
   END;
   //limpa campos da ficha;
   Edittreino.Clear;

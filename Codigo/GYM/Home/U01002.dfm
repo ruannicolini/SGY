@@ -2,17 +2,14 @@
   Caption = 'F01002'
   ClientWidth = 1008
   ExplicitWidth = 1024
-  ExplicitHeight = 557
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
     Width = 1008
+    ActivePage = TbFiltros
     ExplicitWidth = 1008
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
-      ExplicitHeight = 455
       inherited grDados: TGroupBox
         Width = 1000
         ExplicitWidth = 1000
@@ -278,10 +275,7 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
-      ExplicitHeight = 455
       inherited GBFiltros: TGroupBox
         Width = 1000
         ExplicitWidth = 1000
@@ -933,7 +927,7 @@
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00FC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00000210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

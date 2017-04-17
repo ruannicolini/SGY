@@ -138,10 +138,16 @@ begin
   if(ds.State = dsInsert)then
   begin
     //apaga registro subordinado SERIE
-      DModule.qAux.SQL.Text := 'DELETE FROM SERIEFICHAALUNO WHERE idFICHAALUNO =:IDFA';
+      {DModule.qAux.SQL.Text := 'DELETE FROM SERIEFICHAALUNO WHERE idFICHAALUNO =:IDFA';
       DModule.qAux.ParamByName('IDFA').AsInteger := ClientDataSet1idFICHAAluno.AsInteger;
       DModule.qAux.Close;
       DModule.qAux.ExecSQL;
+      CDSSerieFicha.First;
+      }
+      while not(CDSserieFichaAluno.eof)do
+      begin
+      CDSserieFichaAluno.Delete;
+      end;
 
     //Cuida para que não vá para o modo de consulta, apenas de inserção
     ds.DataSet.Close;

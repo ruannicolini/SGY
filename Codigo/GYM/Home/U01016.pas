@@ -127,6 +127,7 @@ type
       var Action: TReconcileAction);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure Action5Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -146,6 +147,19 @@ implementation
 {$R *.dfm}
 
 uses UPrincipal, U01007;
+
+procedure TF01016.Action5Execute(Sender: TObject);
+begin
+  inherited;
+  if(ds.State = dsInsert)then
+  begin
+      while not(CDSPatologiaAnam.eof)do
+      begin
+      CDSPatologiaAnam.Delete;
+      end;
+
+  end;
+end;
 
 procedure TF01016.BSalvarClick(Sender: TObject);
 begin
