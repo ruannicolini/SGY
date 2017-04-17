@@ -406,6 +406,76 @@ type
     ClientDataSet1NOMEINSTRUTORFICHA: TStringField;
     qAnamneseDESCRICAOOBJETIVO: TStringField;
     CDSAnamneseDESCRICAOOBJETIVO: TStringField;
+    qAvaFisica: TFDQuery;
+    qAvaFisicaidAvaliacaoFisica: TIntegerField;
+    qAvaFisicaidAluno: TIntegerField;
+    qAvaFisicadataAvaliacaoFisica: TDateField;
+    qAvaFisicanomeAvaliador: TStringField;
+    qAvaFisicamed_peso_cm: TSingleField;
+    qAvaFisicamed_altura_cm: TSingleField;
+    qAvaFisicamed_cervical_cm: TSingleField;
+    qAvaFisicamed_torax_cm: TSingleField;
+    qAvaFisicamed_quadril_cm: TSingleField;
+    qAvaFisicamed_cintura_cm: TSingleField;
+    qAvaFisicamed_abdomen_cm: TSingleField;
+    qAvaFisicamed_bracoDireitoContraido_cm: TSingleField;
+    qAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField;
+    qAvaFisicamed_antibracoDireito_cm: TSingleField;
+    qAvaFisicamed_coxaDireita_cm: TSingleField;
+    qAvaFisicamed_panturrilhaDireita_cm: TSingleField;
+    qAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField;
+    qAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField;
+    qAvaFisicamed_antibracoEsquerdo_cm: TSingleField;
+    qAvaFisicamed_coxaEsquerda_cm: TSingleField;
+    qAvaFisicamed_panturrilhaEsquerda_cm: TSingleField;
+    qAvaFisicadobra_triciptal_mm: TSingleField;
+    qAvaFisicadobra_subescapular_mm: TSingleField;
+    qAvaFisicadobra_axiliar_mm: TSingleField;
+    qAvaFisicadobra_abdominal_mm: TSingleField;
+    qAvaFisicadobra_coxa_mm: TSingleField;
+    qAvaFisicadobra_panturrilha_mm: TSingleField;
+    qAvaFisicadobra_biciptal_mm: TSingleField;
+    qAvaFisicadobra_peitoral_mm: TSingleField;
+    qAvaFisicadobra_suprailiac_mm: TSingleField;
+    qAvaFisicatipoProtocolo: TStringField;
+    qAvaFisicaporcentagemGordura: TIntegerField;
+    qAvaFisicaNOMEALUNO: TStringField;
+    PAvaFisica: TDataSetProvider;
+    CDSAvaFisica: TClientDataSet;
+    CDSAvaFisicaidAvaliacaoFisica: TIntegerField;
+    CDSAvaFisicaidAluno: TIntegerField;
+    CDSAvaFisicadataAvaliacaoFisica: TDateField;
+    CDSAvaFisicanomeAvaliador: TStringField;
+    CDSAvaFisicamed_peso_cm: TSingleField;
+    CDSAvaFisicamed_altura_cm: TSingleField;
+    CDSAvaFisicamed_cervical_cm: TSingleField;
+    CDSAvaFisicamed_torax_cm: TSingleField;
+    CDSAvaFisicamed_quadril_cm: TSingleField;
+    CDSAvaFisicamed_cintura_cm: TSingleField;
+    CDSAvaFisicamed_abdomen_cm: TSingleField;
+    CDSAvaFisicamed_bracoDireitoContraido_cm: TSingleField;
+    CDSAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField;
+    CDSAvaFisicamed_antibracoDireito_cm: TSingleField;
+    CDSAvaFisicamed_coxaDireita_cm: TSingleField;
+    CDSAvaFisicamed_panturrilhaDireita_cm: TSingleField;
+    CDSAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField;
+    CDSAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField;
+    CDSAvaFisicamed_antibracoEsquerdo_cm: TSingleField;
+    CDSAvaFisicamed_coxaEsquerda_cm: TSingleField;
+    CDSAvaFisicamed_panturrilhaEsquerda_cm: TSingleField;
+    CDSAvaFisicadobra_triciptal_mm: TSingleField;
+    CDSAvaFisicadobra_subescapular_mm: TSingleField;
+    CDSAvaFisicadobra_axiliar_mm: TSingleField;
+    CDSAvaFisicadobra_abdominal_mm: TSingleField;
+    CDSAvaFisicadobra_coxa_mm: TSingleField;
+    CDSAvaFisicadobra_panturrilha_mm: TSingleField;
+    CDSAvaFisicadobra_biciptal_mm: TSingleField;
+    CDSAvaFisicadobra_peitoral_mm: TSingleField;
+    CDSAvaFisicadobra_suprailiac_mm: TSingleField;
+    CDSAvaFisicatipoProtocolo: TStringField;
+    CDSAvaFisicaporcentagemGordura: TIntegerField;
+    CDSAvaFisicaNOMEALUNO: TStringField;
+    DSAvaFisica: TDataSource;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -486,6 +556,9 @@ type
     procedure REPORT_ANAMNESEPATOLOGIAPreview(Sender: TObject);
     procedure CDSAnamneseAfterPost(DataSet: TDataSet);
     procedure cxDBDateEdit1Exit(Sender: TObject);
+    procedure DBGridBelezaFisicaDblClick(Sender: TObject);
+    procedure DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -514,7 +587,7 @@ uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013, ValidaCPF, U01014, U01016, DBCommon;
+  U01013, ValidaCPF, U01014, U01016, DBCommon, U01017;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -1374,6 +1447,35 @@ begin
     end;
 end;
 
+procedure TF01001.DBGridBelezaFisicaDblClick(Sender: TObject);
+begin
+  inherited;
+  IF NOT(CDSAvaFisica.IsEmpty)THEN
+  BEGIN
+      With TF01017.CreateCONSULTA(self, CDSAvaFisicaidAvaliacaoFisica.AsInteger) do
+      Begin
+        ShowModal;
+        Free;
+      End;
+      CDSAvaFisica.CLOSE;
+      CDSAvaFisica.OPEN;
+  END;
+end;
+
+procedure TF01001.DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if (key = 46) then
+  //Deleta Ficha de Exercícios
+  begin
+    if MessageDlg('Deseja Apagar Item [COD:' + CDSAvaFisicaidAvaliacaoFisica.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+        CDSAvaFisica.Delete;
+    end;
+  end;
+end;
+
 procedure TF01001.DBGridBeleza5DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
@@ -1428,13 +1530,13 @@ procedure TF01001.DBGridBelezaAnamneseKeyDown(Sender: TObject; var Key: Word;
 begin
   inherited;
   if (key = 46) then
-    //Deleta Ficha de Exercícios
+  //Deleta Ficha de Exercícios
+  begin
+    if MessageDlg('Deseja Apagar Item [COD:' + CDSAnamneseidAnamnese.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
-      if MessageDlg('Deseja Apagar Item [COD:' + CDSAnamneseidAnamnese.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-      begin
-          CDSAnamnese.Delete;
-      end;
+        CDSAnamnese.Delete;
     end;
+  end;
 end;
 
 procedure TF01001.dsAnamneseDataChange(Sender: TObject; Field: TField);
@@ -1477,6 +1579,11 @@ begin
   qAnamnese.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSAnamnese.DataSet.close;
   DSAnamnese.DataSet.open;
+
+  //PESQUISA AVALIAÇÃO FÍSICA
+  qAvaFisica.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
+  DSAvaFisica.DataSet.close;
+  DSAvaFisica.DataSet.open;
 
   if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
   begin
@@ -2870,6 +2977,7 @@ begin
 
   if(PageControlAvaliacoes.TabIndex = 0)then
   begin
+      //anamnese
       With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
       Begin
         ShowModal;
@@ -2881,7 +2989,23 @@ begin
       CDSAnamnese.OPEN;
   end else
   begin
-      //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+
+      if(PageControlAvaliacoes.TabIndex = 1)then
+      begin
+        //avaliação física
+        With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
+        Begin
+          ShowModal;
+          Free;
+        End;
+        CDSAvaFisica.CLOSE;
+        CDSAvaFisica.OPEN;
+
+      end else
+      begin
+        //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+      end;
+
   end;
 
 end;

@@ -520,10 +520,6 @@
                 TabOrder = 1
                 object TabSheet1: TTabSheet
                   Caption = 'ANAMNESE'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object DBGridBelezaAnamnese: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -594,10 +590,6 @@
                 object TabSheet2: TTabSheet
                   Caption = 'F'#205'SICA'
                   ImageIndex = 1
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object DBGridBelezaFisica: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -608,6 +600,7 @@
                     Align = alClient
                     BorderStyle = bsNone
                     Color = clWhite
+                    DataSource = DSAvaFisica
                     DrawingStyle = gdsGradient
                     FixedColor = 16762447
                     GradientEndColor = 16382457
@@ -627,6 +620,8 @@
                     TitleFont.Height = -11
                     TitleFont.Name = 'Tahoma'
                     TitleFont.Style = []
+                    OnDblClick = DBGridBelezaFisicaDblClick
+                    OnKeyDown = DBGridBelezaFisicaKeyDown
                     Cor_2 = 16382457
                     Direcao_Cor2 = dg_Horiz
                     Direcao_Enter = dg_Horiz
@@ -635,15 +630,36 @@
                     CorLinhaMarcada = 15854564
                     CorFonteLinhaMarcada = clBlack
                     BloquearExportacoes = False
+                    Columns = <
+                      item
+                        Alignment = taCenter
+                        Expanded = False
+                        FieldName = 'idAvaliacaoFisica'
+                        Title.Alignment = taCenter
+                        Title.Caption = 'COD'
+                        Visible = True
+                      end
+                      item
+                        Alignment = taCenter
+                        Expanded = False
+                        FieldName = 'dataAvaliacaoFisica'
+                        Title.Alignment = taCenter
+                        Title.Caption = 'DATA'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'nomeAvaliador'
+                        Title.Caption = ' AVALIADOR'
+                        Width = 590
+                        Visible = True
+                      end>
                   end
                 end
                 object TabSheet3: TTabSheet
                   Caption = 'POSTURAL'
                   ImageIndex = 2
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object DBGridBelezaPostural: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -686,10 +702,6 @@
                 object TabSheet4: TTabSheet
                   Caption = 'DADOS CL'#205'NICOS'
                   ImageIndex = 3
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object DBGridBelezaDadosClinicos: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -1994,7 +2006,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00B00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00B40310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2542,8 +2554,8 @@
       
         'select fa.* from fichaAluno fa where fa.idAluno =:idA order by d' +
         'atacomposicao DESC, IDFICHAALUNO DESC;')
-    Left = 880
-    Top = 266
+    Left = 872
+    Top = 242
     ParamData = <
       item
         Name = 'IDA'
@@ -2582,8 +2594,8 @@
   object pFichaAluno: TDataSetProvider
     DataSet = qFichaAluno
     BeforeUpdateRecord = pFichaAlunoBeforeUpdateRecord
-    Left = 904
-    Top = 266
+    Left = 896
+    Top = 250
   end
   object CDSFichaAluno: TClientDataSet
     Aggregates = <>
@@ -2593,7 +2605,7 @@
     AfterCancel = CDSFichaAlunoAfterCancel
     AfterDelete = CDSFichaAlunoAfterDelete
     Left = 928
-    Top = 266
+    Top = 250
     object CDSFichaAlunoidFichaAluno: TIntegerField
       FieldName = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2617,8 +2629,8 @@
   object DSFichaAluno: TDataSource
     DataSet = CDSFichaAluno
     OnDataChange = DSFichaAlunoDataChange
-    Left = 960
-    Top = 266
+    Left = 952
+    Top = 250
   end
   object qTreino: TFDQuery
     Connection = DModule.FDConnection
@@ -3502,7 +3514,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C01010100140010015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140014015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8380,8 +8392,8 @@
   object dsAnamnese: TDataSource
     DataSet = CDSAnamnese
     OnDataChange = dsAnamneseDataChange
-    Left = 942
-    Top = 370
+    Left = 934
+    Top = 306
   end
   object CDSAnamnese: TClientDataSet
     Aggregates = <>
@@ -8391,7 +8403,7 @@
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
     Left = 910
-    Top = 370
+    Top = 306
     object CDSAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -8474,8 +8486,8 @@
   object pAnamnese: TDataSetProvider
     DataSet = qAnamnese
     BeforeUpdateRecord = pAnamneseBeforeUpdateRecord
-    Left = 886
-    Top = 370
+    Left = 878
+    Top = 306
   end
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
@@ -8485,8 +8497,8 @@
       'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDALUNO =:IDA'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
-    Left = 862
-    Top = 370
+    Left = 854
+    Top = 306
     ParamData = <
       item
         Name = 'IDA'
@@ -9271,5 +9283,317 @@
     OnDataChange = dsRelAnamneseDataChange
     Left = 918
     Top = 522
+  end
+  object qAvaFisica: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '
+      'WHERE AV.IDALUNO =:IDA'
+      'ORDER BY AV.DATAAVALIACAOFISICA DESC, AV.IDAVALIACAOFISICA DESC')
+    Left = 854
+    Top = 362
+    ParamData = <
+      item
+        Name = 'IDA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qAvaFisicaidAvaliacaoFisica: TIntegerField
+      FieldName = 'idAvaliacaoFisica'
+      Origin = 'idAvaliacaoFisica'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qAvaFisicaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      Required = True
+    end
+    object qAvaFisicadataAvaliacaoFisica: TDateField
+      FieldName = 'dataAvaliacaoFisica'
+      Origin = 'dataAvaliacaoFisica'
+      Required = True
+    end
+    object qAvaFisicanomeAvaliador: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
+      Size = 60
+    end
+    object qAvaFisicamed_peso_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_peso_cm'
+      Origin = 'med_peso_cm'
+    end
+    object qAvaFisicamed_altura_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_altura_cm'
+      Origin = 'med_altura_cm'
+    end
+    object qAvaFisicamed_cervical_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_cervical_cm'
+      Origin = 'med_cervical_cm'
+    end
+    object qAvaFisicamed_torax_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_torax_cm'
+      Origin = 'med_torax_cm'
+    end
+    object qAvaFisicamed_quadril_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_quadril_cm'
+      Origin = 'med_quadril_cm'
+    end
+    object qAvaFisicamed_cintura_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_cintura_cm'
+      Origin = 'med_cintura_cm'
+    end
+    object qAvaFisicamed_abdomen_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_abdomen_cm'
+      Origin = 'med_abdomen_cm'
+    end
+    object qAvaFisicamed_bracoDireitoContraido_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoDireitoContraido_cm'
+      Origin = 'med_bracoDireitoContraido_cm'
+    end
+    object qAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoDireitoRelaxado_cm'
+      Origin = 'med_bracoDireitoRelaxado_cm'
+    end
+    object qAvaFisicamed_antibracoDireito_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_antibracoDireito_cm'
+      Origin = 'med_antibracoDireito_cm'
+    end
+    object qAvaFisicamed_coxaDireita_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_coxaDireita_cm'
+      Origin = 'med_coxaDireita_cm'
+    end
+    object qAvaFisicamed_panturrilhaDireita_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_panturrilhaDireita_cm'
+      Origin = 'med_panturrilhaDireita_cm'
+    end
+    object qAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoEsquerdoContraido_cm'
+      Origin = 'med_bracoEsquerdoContraido_cm'
+    end
+    object qAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoEsquerdoRelaxado_cm'
+      Origin = 'med_bracoEsquerdoRelaxado_cm'
+    end
+    object qAvaFisicamed_antibracoEsquerdo_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_antibracoEsquerdo_cm'
+      Origin = 'med_antibracoEsquerdo_cm'
+    end
+    object qAvaFisicamed_coxaEsquerda_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_coxaEsquerda_cm'
+      Origin = 'med_coxaEsquerda_cm'
+    end
+    object qAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_panturrilhaEsquerda_cm'
+      Origin = 'med_panturrilhaEsquerda_cm'
+    end
+    object qAvaFisicadobra_triciptal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_triciptal_mm'
+      Origin = 'dobra_triciptal_mm'
+    end
+    object qAvaFisicadobra_subescapular_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_subescapular_mm'
+      Origin = 'dobra_subescapular_mm'
+    end
+    object qAvaFisicadobra_axiliar_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_axiliar_mm'
+      Origin = 'dobra_axiliar_mm'
+    end
+    object qAvaFisicadobra_abdominal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_abdominal_mm'
+      Origin = 'dobra_abdominal_mm'
+    end
+    object qAvaFisicadobra_coxa_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_coxa_mm'
+      Origin = 'dobra_coxa_mm'
+    end
+    object qAvaFisicadobra_panturrilha_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_panturrilha_mm'
+      Origin = 'dobra_panturrilha_mm'
+    end
+    object qAvaFisicadobra_biciptal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_biciptal_mm'
+      Origin = 'dobra_biciptal_mm'
+    end
+    object qAvaFisicadobra_peitoral_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_peitoral_mm'
+      Origin = 'dobra_peitoral_mm'
+    end
+    object qAvaFisicadobra_suprailiac_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_suprailiac_mm'
+      Origin = 'dobra_suprailiac_mm'
+    end
+    object qAvaFisicatipoProtocolo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoProtocolo'
+      Origin = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object qAvaFisicaporcentagemGordura: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'porcentagemGordura'
+      Origin = 'porcentagemGordura'
+    end
+    object qAvaFisicaNOMEALUNO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
+  end
+  object PAvaFisica: TDataSetProvider
+    DataSet = qAvaFisica
+    Left = 886
+    Top = 362
+  end
+  object CDSAvaFisica: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'PAvaFisica'
+    Left = 918
+    Top = 362
+    object CDSAvaFisicaidAvaliacaoFisica: TIntegerField
+      FieldName = 'idAvaliacaoFisica'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CDSAvaFisicaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Required = True
+    end
+    object CDSAvaFisicadataAvaliacaoFisica: TDateField
+      FieldName = 'dataAvaliacaoFisica'
+      Required = True
+    end
+    object CDSAvaFisicanomeAvaliador: TStringField
+      FieldName = 'nomeAvaliador'
+      Size = 60
+    end
+    object CDSAvaFisicamed_peso_cm: TSingleField
+      FieldName = 'med_peso_cm'
+    end
+    object CDSAvaFisicamed_altura_cm: TSingleField
+      FieldName = 'med_altura_cm'
+    end
+    object CDSAvaFisicamed_cervical_cm: TSingleField
+      FieldName = 'med_cervical_cm'
+    end
+    object CDSAvaFisicamed_torax_cm: TSingleField
+      FieldName = 'med_torax_cm'
+    end
+    object CDSAvaFisicamed_quadril_cm: TSingleField
+      FieldName = 'med_quadril_cm'
+    end
+    object CDSAvaFisicamed_cintura_cm: TSingleField
+      FieldName = 'med_cintura_cm'
+    end
+    object CDSAvaFisicamed_abdomen_cm: TSingleField
+      FieldName = 'med_abdomen_cm'
+    end
+    object CDSAvaFisicamed_bracoDireitoContraido_cm: TSingleField
+      FieldName = 'med_bracoDireitoContraido_cm'
+    end
+    object CDSAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
+      FieldName = 'med_bracoDireitoRelaxado_cm'
+    end
+    object CDSAvaFisicamed_antibracoDireito_cm: TSingleField
+      FieldName = 'med_antibracoDireito_cm'
+    end
+    object CDSAvaFisicamed_coxaDireita_cm: TSingleField
+      FieldName = 'med_coxaDireita_cm'
+    end
+    object CDSAvaFisicamed_panturrilhaDireita_cm: TSingleField
+      FieldName = 'med_panturrilhaDireita_cm'
+    end
+    object CDSAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
+      FieldName = 'med_bracoEsquerdoContraido_cm'
+    end
+    object CDSAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
+      FieldName = 'med_bracoEsquerdoRelaxado_cm'
+    end
+    object CDSAvaFisicamed_antibracoEsquerdo_cm: TSingleField
+      FieldName = 'med_antibracoEsquerdo_cm'
+    end
+    object CDSAvaFisicamed_coxaEsquerda_cm: TSingleField
+      FieldName = 'med_coxaEsquerda_cm'
+    end
+    object CDSAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
+      FieldName = 'med_panturrilhaEsquerda_cm'
+    end
+    object CDSAvaFisicadobra_triciptal_mm: TSingleField
+      FieldName = 'dobra_triciptal_mm'
+    end
+    object CDSAvaFisicadobra_subescapular_mm: TSingleField
+      FieldName = 'dobra_subescapular_mm'
+    end
+    object CDSAvaFisicadobra_axiliar_mm: TSingleField
+      FieldName = 'dobra_axiliar_mm'
+    end
+    object CDSAvaFisicadobra_abdominal_mm: TSingleField
+      FieldName = 'dobra_abdominal_mm'
+    end
+    object CDSAvaFisicadobra_coxa_mm: TSingleField
+      FieldName = 'dobra_coxa_mm'
+    end
+    object CDSAvaFisicadobra_panturrilha_mm: TSingleField
+      FieldName = 'dobra_panturrilha_mm'
+    end
+    object CDSAvaFisicadobra_biciptal_mm: TSingleField
+      FieldName = 'dobra_biciptal_mm'
+    end
+    object CDSAvaFisicadobra_peitoral_mm: TSingleField
+      FieldName = 'dobra_peitoral_mm'
+    end
+    object CDSAvaFisicadobra_suprailiac_mm: TSingleField
+      FieldName = 'dobra_suprailiac_mm'
+    end
+    object CDSAvaFisicatipoProtocolo: TStringField
+      FieldName = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object CDSAvaFisicaporcentagemGordura: TIntegerField
+      FieldName = 'porcentagemGordura'
+    end
+    object CDSAvaFisicaNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Size = 80
+    end
+  end
+  object DSAvaFisica: TDataSource
+    DataSet = CDSAvaFisica
+    Left = 950
+    Top = 360
   end
 end

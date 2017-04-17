@@ -280,7 +280,7 @@ procedure TF01016.ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
   E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
   inherited;
-  ShowMessage(E.Message);
+  //ShowMessage(E.Message);
 end;
 
 constructor TF01016.CreateCONSULTA(AOwner: TComponent; IDANAM: INTEGER);
@@ -469,4 +469,8 @@ begin
 
 end;
 
+initialization
+  RegisterClass(TF01016);
+Finalization
+  UnRegisterClass(TF01016);
 end.
