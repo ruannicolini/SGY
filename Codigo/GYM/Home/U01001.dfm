@@ -4,7 +4,7 @@
   ClientWidth = 1008
   OnCreate = FormCreate
   ExplicitLeft = -237
-  ExplicitTop = -308
+  ExplicitTop = -242
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -19,6 +19,7 @@
   inherited PageControl: TPageControl
     Width = 1008
     Height = 706
+    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 1008
     ExplicitHeight = 706
@@ -51,7 +52,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pagPerfil
+          Properties.ActivePage = pagAvaliacoes
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -597,7 +598,7 @@
                     Left = 3
                     Top = 3
                     Width = 776
-                    Height = 431
+                    Height = 391
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
@@ -657,6 +658,80 @@
                         Width = 590
                         Visible = True
                       end>
+                  end
+                  object Panel3: TPanel
+                    Left = 0
+                    Top = 397
+                    Width = 782
+                    Height = 40
+                    Align = alBottom
+                    BevelOuter = bvNone
+                    Color = 15329769
+                    ParentBackground = False
+                    TabOrder = 1
+                    ExplicitTop = 396
+                    object LabelAvisoProtocolo: TLabel
+                      Left = 328
+                      Top = 11
+                      Width = 332
+                      Height = 18
+                      Caption = '<- Selecione um Protocolo de Composi'#231#227'o Corporal'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = 232
+                      Font.Height = -15
+                      Font.Name = 'Tahoma'
+                      Font.Style = []
+                      ParentFont = False
+                      Visible = False
+                    end
+                    object DBEditBeleza2: TDBEditBeleza
+                      Left = 38
+                      Top = 10
+                      Width = 275
+                      Height = 21
+                      Color = clSilver
+                      DataField = 'descricaoprotocoloAvaFisica'
+                      DataSource = DS
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindowText
+                      Font.Height = -11
+                      Font.Name = 'Tahoma'
+                      Font.Style = []
+                      ParentFont = False
+                      TabOrder = 0
+                      OnKeyPress = EditPesqModalidadeKeyPress
+                      Ativar_Pesquisa = True
+                      mostrar_Botao = True
+                      sql.Strings = (
+                        
+                          'select idProtocoloAvaFisica, descricaoprotocoloAvaFisica from Pr' +
+                          'otocoloAvaFisica where descricaoprotocoloAvaFisica like :varDesc' +
+                          'ricao')
+                      database = 'GYM'
+                      campo = 'descricaoprotocoloAvaFisica'
+                      Sempre_Mostrar_Janela = False
+                      Outro_Edit = DBEdit15
+                      campo_outro_edit = 'IDprotocoloAvaFisica'
+                      CorBorda = clGray
+                      NovoLayout = False
+                    end
+                    object DBEdit15: TDBEdit
+                      Left = 14
+                      Top = 10
+                      Width = 25
+                      Height = 21
+                      Color = clSilver
+                      DataField = 'idProtocoloAvaFisica'
+                      DataSource = DS
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindowText
+                      Font.Height = -11
+                      Font.Name = 'Tahoma'
+                      Font.Style = []
+                      ParentFont = False
+                      TabOrder = 1
+                      OnChange = DBEdit15Change
+                    end
                   end
                 end
                 object TabSheet3: TTabSheet
@@ -1880,6 +1955,13 @@
       FieldName = 'NOMEINSTRUTORFICHA'
       Size = 50
     end
+    object ClientDataSet1idProtocoloAvaFisica: TIntegerField
+      FieldName = 'idProtocoloAvaFisica'
+    end
+    object ClientDataSet1descricaoprotocoloAvaFisica: TStringField
+      FieldName = 'descricaoprotocoloAvaFisica'
+      Size = 50
+    end
   end
   inherited DataSetProvider1: TDataSetProvider
     Left = 832
@@ -1888,8 +1970,13 @@
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
-      'SELECT A.*, INST.NOMEUSUARIO AS NOMEINSTRUTORFICHA FROM ALUNO A '
-      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR')
+      
+        'SELECT A.*, P.descricaoprotocoloAvaFisica, INST.NOMEUSUARIO AS N' +
+        'OMEINSTRUTORFICHA FROM ALUNO A '
+      'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A.IDINSTRUTOR'
+      
+        'LEFT OUTER JOIN PROTOCOLOAVAFISICA P ON P.IDPROTOCOLOAVAFISICA =' +
+        ' A.IDPROTOCOLOAVAFISICA')
     Left = 800
     Top = 16
     object FDQuery1idAluno: TIntegerField
@@ -2000,6 +2087,18 @@
       AutoGenerateValue = arDefault
       FieldName = 'NOMEINSTRUTORFICHA'
       Origin = 'nomeUsuario'
+      ProviderFlags = []
+      Size = 50
+    end
+    object FDQuery1idProtocoloAvaFisica: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idProtocoloAvaFisica'
+      Origin = 'idProtocoloAvaFisica'
+    end
+    object FDQuery1descricaoprotocoloAvaFisica: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoprotocoloAvaFisica'
+      Origin = 'descricaoprotocoloAvaFisica'
       ProviderFlags = []
       Size = 50
     end
@@ -2556,8 +2655,8 @@
       
         'select fa.* from fichaAluno fa where fa.idAluno =:idA order by d' +
         'atacomposicao DESC, IDFICHAALUNO DESC;')
-    Left = 880
-    Top = 234
+    Left = 568
+    Top = 642
     ParamData = <
       item
         Name = 'IDA'
@@ -2596,8 +2695,8 @@
   object pFichaAluno: TDataSetProvider
     DataSet = qFichaAluno
     BeforeUpdateRecord = pFichaAlunoBeforeUpdateRecord
-    Left = 904
-    Top = 234
+    Left = 592
+    Top = 642
   end
   object CDSFichaAluno: TClientDataSet
     Aggregates = <>
@@ -2606,8 +2705,8 @@
     AfterPost = CDSFichaAlunoAfterPost
     AfterCancel = CDSFichaAlunoAfterCancel
     AfterDelete = CDSFichaAlunoAfterDelete
-    Left = 936
-    Top = 234
+    Left = 624
+    Top = 642
     object CDSFichaAlunoidFichaAluno: TIntegerField
       FieldName = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2631,8 +2730,8 @@
   object DSFichaAluno: TDataSource
     DataSet = CDSFichaAluno
     OnDataChange = DSFichaAlunoDataChange
-    Left = 960
-    Top = 234
+    Left = 648
+    Top = 642
   end
   object qTreino: TFDQuery
     Connection = DModule.FDConnection
@@ -2948,8 +3047,8 @@
       'begin'
       ''
       'end.')
-    Left = 94
-    Top = 650
+    Left = 22
+    Top = 644
     Datasets = <
       item
         DataSet = frxDBDataset1
@@ -3214,12 +3313,12 @@
       'tipomedida=tipomedida')
     DataSource = DSserieFichaAluno
     BCDToCurrency = False
-    Left = 142
-    Top = 650
+    Left = 78
+    Top = 644
   end
   object frxGradientObject1: TfrxGradientObject
-    Left = 166
-    Top = 650
+    Left = 110
+    Top = 644
   end
   object frxPDFExport1: TfrxPDFExport
     UseFileCache = True
@@ -3242,12 +3341,12 @@
     CenterWindow = False
     PrintScaling = False
     PdfA = False
-    Left = 190
-    Top = 650
+    Left = 142
+    Top = 644
   end
   object DSRelFicha: TDataSource
     DataSet = CDSRelFicha
-    Left = 422
+    Left = 334
     Top = 642
   end
   object qRelFicha: TFDQuery
@@ -3261,7 +3360,7 @@
       'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = FA.IDALUNO'
       'LEFT OUTER JOIN USUARIO INST ON INST.IDUSUARIO = A .IDINSTRUTOR'
       'WHERE FA.IDFICHAALUNO =:IDFA')
-    Left = 326
+    Left = 238
     Top = 642
     ParamData = <
       item
@@ -3396,14 +3495,14 @@
   end
   object pRelFicha: TDataSetProvider
     DataSet = qRelFicha
-    Left = 358
+    Left = 270
     Top = 642
   end
   object CDSRelFicha: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelFicha'
-    Left = 390
+    Left = 302
     Top = 642
     object CDSRelFichaidAluno: TIntegerField
       FieldName = 'idAluno'
@@ -8183,8 +8282,8 @@
     ShowProgress = True
     OverwritePrompt = False
     DataOnly = False
-    Left = 214
-    Top = 650
+    Left = 174
+    Top = 644
   end
   object frxDBDataset1: TfrxDBDataset
     UserName = 'frxDBDataset1'
@@ -8214,8 +8313,8 @@
       'CODFICHA=CODFICHA')
     DataSource = DSRelFicha
     BCDToCurrency = False
-    Left = 118
-    Top = 650
+    Left = 46
+    Top = 644
   end
   object qserieFichaAluno: TFDQuery
     Connection = DModule.FDConnection
@@ -8240,7 +8339,7 @@
         'o  '
       'where fa.idFichaAluno =:idFA'
       'ORDER BY S.IDTREINO,  e.idgrupoExercicio;')
-    Left = 540
+    Left = 412
     Top = 643
     ParamData = <
       item
@@ -8328,14 +8427,14 @@
   end
   object pserieFichaAluno: TDataSetProvider
     DataSet = qserieFichaAluno
-    Left = 572
+    Left = 444
     Top = 643
   end
   object CDSserieFichaAluno: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pserieFichaAluno'
-    Left = 596
+    Left = 468
     Top = 643
     object CDSserieFichaAlunoidFichaAluno: TIntegerField
       FieldName = 'idFichaAluno'
@@ -8388,14 +8487,14 @@
   end
   object DSserieFichaAluno: TDataSource
     DataSet = CDSserieFichaAluno
-    Left = 620
+    Left = 492
     Top = 643
   end
   object dsAnamnese: TDataSource
     DataSet = CDSAnamnese
     OnDataChange = dsAnamneseDataChange
-    Left = 958
-    Top = 282
+    Left = 950
+    Top = 530
   end
   object CDSAnamnese: TClientDataSet
     Aggregates = <>
@@ -8404,8 +8503,8 @@
     AfterPost = CDSAnamneseAfterPost
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
-    Left = 926
-    Top = 282
+    Left = 918
+    Top = 530
     object CDSAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -8488,8 +8587,8 @@
   object pAnamnese: TDataSetProvider
     DataSet = qAnamnese
     BeforeUpdateRecord = pAnamneseBeforeUpdateRecord
-    Left = 902
-    Top = 282
+    Left = 894
+    Top = 530
   end
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
@@ -8499,8 +8598,8 @@
       'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDALUNO =:IDA'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
-    Left = 870
-    Top = 282
+    Left = 862
+    Top = 530
     ParamData = <
       item
         Name = 'IDA'
@@ -8620,8 +8719,8 @@
       'end.')
     OnBeforePrint = REPORT_ANAMNESEPATOLOGIABeforePrint
     OnPreview = REPORT_ANAMNESEPATOLOGIAPreview
-    Left = 838
-    Top = 650
+    Left = 854
+    Top = 666
     Datasets = <
       item
         DataSet = frxDBDataset3
@@ -8981,8 +9080,8 @@
       'IMC=IMC')
     DataSet = cdsRelAnamnese
     BCDToCurrency = False
-    Left = 862
-    Top = 650
+    Left = 886
+    Top = 666
   end
   object qAnamnesePatologia: TFDQuery
     Connection = DModule.FDConnection
@@ -8990,8 +9089,8 @@
       'select ap.*, p.nomepatologia from AnamnesePatologia ap '
       'left outer join patologia p on p.idPatologia = ap.idpatologia'
       'where ap.idAnamnese =:idA')
-    Left = 870
-    Top = 386
+    Left = 862
+    Top = 570
     ParamData = <
       item
         Name = 'IDA'
@@ -9027,15 +9126,15 @@
   end
   object pAnamnesePatologia: TDataSetProvider
     DataSet = qAnamnesePatologia
-    Left = 896
-    Top = 384
+    Left = 888
+    Top = 568
   end
   object cdsAnamnesePatologia: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pAnamnesePatologia'
-    Left = 926
-    Top = 386
+    Left = 918
+    Top = 570
     object cdsAnamnesePatologiaidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -9057,8 +9156,8 @@
   end
   object dsanamnesePatologia: TDataSource
     DataSet = cdsAnamnesePatologia
-    Left = 958
-    Top = 386
+    Left = 950
+    Top = 570
   end
   object frxDBDataset4: TfrxDBDataset
     UserName = 'frxDBDataset4'
@@ -9070,8 +9169,8 @@
       'nomepatologia=nomepatologia')
     DataSet = cdsAnamnesePatologia
     BCDToCurrency = False
-    Left = 894
-    Top = 650
+    Left = 910
+    Top = 666
   end
   object qRelAnamnese: TFDQuery
     Connection = DModule.FDConnection
@@ -9081,8 +9180,8 @@
       'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDanamnese =:IDAn'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
-    Left = 870
-    Top = 458
+    Left = 862
+    Top = 618
     ParamData = <
       item
         Name = 'IDAN'
@@ -9185,16 +9284,16 @@
   end
   object pRelAnamnese: TDataSetProvider
     DataSet = qRelAnamnese
-    Left = 894
-    Top = 458
+    Left = 886
+    Top = 618
   end
   object cdsRelAnamnese: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelAnamnese'
     OnCalcFields = cdsRelAnamneseCalcFields
-    Left = 918
-    Top = 458
+    Left = 910
+    Top = 618
     object cdsRelAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -9283,8 +9382,8 @@
   object dsRelAnamnese: TDataSource
     DataSet = cdsRelAnamnese
     OnDataChange = dsRelAnamneseDataChange
-    Left = 950
-    Top = 458
+    Left = 942
+    Top = 618
   end
   object qAvaFisica: TFDQuery
     Connection = DModule.FDConnection
@@ -9293,8 +9392,8 @@
       'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '
       'WHERE AV.IDALUNO =:IDA'
       'ORDER BY AV.DATAAVALIACAOFISICA DESC, AV.IDAVALIACAOFISICA DESC')
-    Left = 886
-    Top = 338
+    Left = 854
+    Top = 322
     ParamData = <
       item
         Name = 'IDA'
@@ -9476,16 +9575,16 @@
   end
   object PAvaFisica: TDataSetProvider
     DataSet = qAvaFisica
-    Left = 910
-    Top = 338
+    Left = 886
+    Top = 322
   end
   object CDSAvaFisica: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'PAvaFisica'
     OnCalcFields = CDSAvaFisicaCalcFields
-    Left = 934
-    Top = 338
+    Left = 918
+    Top = 322
     object CDSAvaFisicaidAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
       Origin = 'idAvaliacaoFisica'
@@ -9634,8 +9733,8 @@
   end
   object DSAvaFisica: TDataSource
     DataSet = CDSAvaFisica
-    Left = 958
-    Top = 336
+    Left = 950
+    Top = 320
   end
   object frxDBDataset5: TfrxDBDataset
     UserName = 'frxDBDataset5'
@@ -9677,12 +9776,12 @@
       'IMC=IMC')
     DataSource = DSAvaFisica
     BCDToCurrency = False
-    Left = 878
-    Top = 530
+    Left = 884
+    Top = 370
   end
   object frxChartObject1: TfrxChartObject
-    Left = 910
-    Top = 530
+    Left = 912
+    Top = 370
   end
   object report_AvaFisicaGrafico: TfrxReport
     Version = '5.1.5'
@@ -9701,8 +9800,8 @@
       'begin'
       ''
       'end.')
-    Left = 854
-    Top = 530
+    Left = 856
+    Top = 370
     Datasets = <
       item
         DataSet = frxDBDataset5

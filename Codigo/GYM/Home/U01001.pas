@@ -481,6 +481,14 @@ type
     frxChartObject1: TfrxChartObject;
     report_AvaFisicaGrafico: TfrxReport;
     CDSAvaFisicaIMC: TFloatField;
+    Panel3: TPanel;
+    DBEditBeleza2: TDBEditBeleza;
+    DBEdit15: TDBEdit;
+    FDQuery1idProtocoloAvaFisica: TIntegerField;
+    FDQuery1descricaoprotocoloAvaFisica: TStringField;
+    ClientDataSet1idProtocoloAvaFisica: TIntegerField;
+    ClientDataSet1descricaoprotocoloAvaFisica: TStringField;
+    LabelAvisoProtocolo: TLabel;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -565,6 +573,7 @@ type
     procedure DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure CDSAvaFisicaCalcFields(DataSet: TDataSet);
+    procedure DBEdit15Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -1264,7 +1273,7 @@ procedure TF01001.ClientDataSet1CalcFields(DataSet: TDataSet);
 begin
   inherited;
 
-  // CALCULA IDADE DO ALUNO
+    // CALCULA IDADE DO ALUNO
   IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
   BEGIN
     ClientDataSet1idADE.AsInteger := (DateUtils.YearsBetween(DATE, ClientDataSet1dataNascimento.AsDateTime));
@@ -1371,6 +1380,19 @@ begin
   IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
   begin
     imagemMudou := true;
+  end;
+end;
+
+procedure TF01001.DBEdit15Change(Sender: TObject);
+begin
+  inherited;
+  //PROTOCOLO DE COMPOSIÇÃO CORPORAL
+  if (ClientDataSet1idProtocoloAvaFisica.IsNull) then
+  begin
+      LabelAvisoProtocolo.Visible := true;
+  end else
+  begin
+      LabelAvisoProtocolo.Visible := false;
   end;
 end;
 
@@ -1613,6 +1635,15 @@ var
 begin
   inherited;
 
+  //PROTOCOLO DE COMPOSIÇÃO CORPORAL
+  if (ClientDataSet1idProtocoloAvaFisica.IsNull) then
+  begin
+      LabelAvisoProtocolo.Visible := true;
+  end else
+  begin
+      LabelAvisoProtocolo.Visible := false;
+  end;
+
   //PESQUISA FICHA DE EXERCICIO
   qFichaAluno.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSFichaAluno.DataSet.close;
@@ -1640,7 +1671,8 @@ begin
 
   if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
   begin
-        //Se estiver no modo de edição ou inserção, não faz nada!
+
+        //Se estiver no modo de edição ou inserção, não Faz nada!
   END ELSE
   BEGIN
       // Foto na pasta local img_Aluno
