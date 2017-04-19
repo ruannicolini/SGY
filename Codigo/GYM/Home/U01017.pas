@@ -12,7 +12,7 @@ uses
   Datasnap.DBClient, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, DBGridBeleza,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit,
-  cxDBEdit, Vcl.Mask, Vcl.DBCtrls, cxMaskEdit, cxSpinEdit;
+  cxDBEdit, Vcl.Mask, Vcl.DBCtrls, cxMaskEdit, cxSpinEdit, Math;
 
 type
   TF01017 = class(TFBase)
@@ -212,6 +212,7 @@ begin
   if NOT(ClientDataSet1med_peso_cm.IsNull) and NOT(ClientDataSet1med_altura_cm.IsNull) then
   begin
     ClientDataSet1IMC.AsFloat := ClientDataSet1med_peso_cm.AsFloat/ (ClientDataSet1med_altura_cm.AsFloat * ClientDataSet1med_altura_cm.AsFloat) ;
+    ClientDataSet1IMC.AsFloat := RoundTo(ClientDataSet1IMC.AsFloat, -2);
   end;
 end;
 

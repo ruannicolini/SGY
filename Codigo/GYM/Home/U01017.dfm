@@ -12,17 +12,18 @@ inherited F01017: TF01017
     Width = 724
     Height = 645
     ActivePage = TbDados
+    ExplicitWidth = 724
+    ExplicitHeight = 645
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
+      ExplicitWidth = 716
+      ExplicitHeight = 617
       inherited grDados: TGroupBox
         Width = 716
         Height = 617
-        ExplicitLeft = 2
-        ExplicitWidth = 806
-        ExplicitHeight = 592
+        ExplicitWidth = 716
+        ExplicitHeight = 617
         object Label1: TLabel
           Left = 12
           Top = 14
@@ -881,14 +882,17 @@ inherited F01017: TF01017
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 810
-      ExplicitHeight = 455
+      ExplicitWidth = 716
+      ExplicitHeight = 617
       inherited GBFiltros: TGroupBox
         Width = 716
+        ExplicitWidth = 716
         inherited Panel1: TPanel
           Width = 707
+          ExplicitWidth = 707
           inherited BtnLimparFiltros: TButton
             Left = 662
+            ExplicitLeft = 662
           end
         end
       end
@@ -898,16 +902,20 @@ inherited F01017: TF01017
       end
       inherited PanelFiltros: TPanel
         Width = 716
+        ExplicitWidth = 716
         inherited btnFiltrar: TButton
           Left = 665
+          ExplicitLeft = 665
         end
       end
     end
   end
   inherited Panel2: TPanel
     Width = 724
+    ExplicitWidth = 724
     inherited BFechar: TSpeedButton
       Left = 690
+      ExplicitLeft = 690
     end
     inherited BFirst: TSpeedButton
       Visible = False
@@ -1296,7 +1304,7 @@ inherited F01017: TF01017
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C00FC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00000210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

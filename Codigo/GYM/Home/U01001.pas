@@ -21,7 +21,8 @@ uses
   frxDBSet, frxGradient, frxExportPDF, ShellAPI, System.Bluetooth,
   System.Bluetooth.Components, frxExportImage, dxBar, dxRibbonRadialMenu,
   cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
-  Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch;
+  Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch,
+  frxChart;
 
 type
   TF01001 = class(TFBase)
@@ -476,6 +477,10 @@ type
     CDSAvaFisicaporcentagemGordura: TIntegerField;
     CDSAvaFisicaNOMEALUNO: TStringField;
     DSAvaFisica: TDataSource;
+    frxDBDataset5: TfrxDBDataset;
+    frxChartObject1: TfrxChartObject;
+    report_AvaFisicaGrafico: TfrxReport;
+    CDSAvaFisicaIMC: TFloatField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -559,6 +564,7 @@ type
     procedure DBGridBelezaFisicaDblClick(Sender: TObject);
     procedure DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure CDSAvaFisicaCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -975,7 +981,44 @@ begin
 
   end else
   begin
-      //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
+      if(PageControlAvaliacoes.TabIndex = 1)then
+      begin
+          IF(DS.DataSet.State = dsEDIT) THEN
+          BEGIN
+              TRY
+                  TRY
+                    //MUDA A ORDEM CRONOLÓGICA DOS DADOS
+                    qavafisica.sql.Text :=
+                    'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
+                    'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
+                    'WHERE AV.IDALUNO =:IDA '+
+                    'ORDER BY AV.DATAAVALIACAOFISICA, AV.IDAVALIACAOFISICA';
+                    qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
+                    CDSAvaFisica.close;
+                    CDSAvaFisica.open;
+
+                    //IMPRIME RELATÓRIO
+                    report_AvaFisicaGrafico.ShowReport(TRUE);
+
+                    //VOLTA A CONSULTA NORMAL
+                    qavafisica.sql.Text :=
+                    'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
+                    'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
+                    'WHERE AV.IDALUNO =:IDA '+
+                    'ORDER BY AV.DATAAVALIACAOFISICA desc, AV.IDAVALIACAOFISICA desc';
+
+                    qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
+                    CDSAvaFisica.close;
+                    CDSAvaFisica.open;
+
+                  EXCEPT
+                    RAISE;
+                  END;
+              FINALLY
+
+              END;
+          END;//
+      end;
   end;
 end;
 
@@ -1175,6 +1218,16 @@ procedure TF01001.CDSAnamneseAfterPost(DataSet: TDataSet);
 begin
   inherited;
   CDSAnamnese.ApplyUpdates(-1);
+end;
+
+procedure TF01001.CDSAvaFisicaCalcFields(DataSet: TDataSet);
+begin
+  inherited;
+  if NOT(CDSAVAFISICAmed_peso_cm.IsNull) and NOT(CDSAVAFISICAmed_altura_cm.IsNull) then
+  begin
+    CDSAVAFISICAIMC.AsFloat := CDSAVAFISICAmed_peso_cm.AsFloat/ (CDSAVAFISICAmed_altura_cm.AsFloat * CDSAVAFISICAmed_altura_cm.AsFloat) ;
+    CDSAVAFISICAIMC.AsFloat := RoundTo (CDSAVAFISICAIMC.AsFloat, -2);
+  end;
 end;
 
 procedure TF01001.CDSFichaAlunoAfterCancel(DataSet: TDataSet);

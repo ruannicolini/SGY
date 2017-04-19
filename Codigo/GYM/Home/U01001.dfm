@@ -3,6 +3,8 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
+  ExplicitLeft = -237
+  ExplicitTop = -308
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -514,7 +516,7 @@
                 Top = 42
                 Width = 790
                 Height = 471
-                ActivePage = TabSheet1
+                ActivePage = TabSheet2
                 Align = alClient
                 Style = tsFlatButtons
                 TabOrder = 1
@@ -2006,7 +2008,7 @@
     Left = 768
     Top = 16
     Bitmap = {
-      494C01010F002C00B40310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00BC0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2554,8 +2556,8 @@
       
         'select fa.* from fichaAluno fa where fa.idAluno =:idA order by d' +
         'atacomposicao DESC, IDFICHAALUNO DESC;')
-    Left = 872
-    Top = 242
+    Left = 880
+    Top = 234
     ParamData = <
       item
         Name = 'IDA'
@@ -2594,8 +2596,8 @@
   object pFichaAluno: TDataSetProvider
     DataSet = qFichaAluno
     BeforeUpdateRecord = pFichaAlunoBeforeUpdateRecord
-    Left = 896
-    Top = 250
+    Left = 904
+    Top = 234
   end
   object CDSFichaAluno: TClientDataSet
     Aggregates = <>
@@ -2604,8 +2606,8 @@
     AfterPost = CDSFichaAlunoAfterPost
     AfterCancel = CDSFichaAlunoAfterCancel
     AfterDelete = CDSFichaAlunoAfterDelete
-    Left = 928
-    Top = 250
+    Left = 936
+    Top = 234
     object CDSFichaAlunoidFichaAluno: TIntegerField
       FieldName = 'idFichaAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2629,15 +2631,15 @@
   object DSFichaAluno: TDataSource
     DataSet = CDSFichaAluno
     OnDataChange = DSFichaAlunoDataChange
-    Left = 952
-    Top = 250
+    Left = 960
+    Top = 234
   end
   object qTreino: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
       'select * from treino')
-    Left = 872
-    Top = 196
+    Left = 880
+    Top = 188
     object qTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       Origin = 'idTreino'
@@ -2654,14 +2656,14 @@
   object pTreino: TDataSetProvider
     DataSet = qTreino
     Left = 904
-    Top = 195
+    Top = 187
   end
   object CDSTreino: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pTreino'
     Left = 928
-    Top = 194
+    Top = 186
     object CDSTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2675,13 +2677,13 @@
   object DSTreino: TDataSource
     DataSet = CDSTreino
     Left = 960
-    Top = 193
+    Top = 185
   end
   object DSModalidade: TDataSource
     DataSet = cdsModalidade
     OnDataChange = DSModalidadeDataChange
     Left = 960
-    Top = 137
+    Top = 129
   end
   object cdsModalidade: TClientDataSet
     Aggregates = <>
@@ -2691,7 +2693,7 @@
     AfterCancel = cdsModalidadeAfterCancel
     AfterDelete = cdsModalidadeAfterDelete
     Left = 928
-    Top = 137
+    Top = 129
     object cdsModalidadeidAluno: TIntegerField
       FieldName = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2720,7 +2722,7 @@
     DataSet = QMODALIDADE
     BeforeUpdateRecord = pModalidadeBeforeUpdateRecord
     Left = 896
-    Top = 137
+    Top = 129
   end
   object QMODALIDADE: TFDQuery
     Connection = DModule.FDConnection
@@ -2733,7 +2735,7 @@
         ' '
       'WHERE AM.IDALUNO =:IDA')
     Left = 872
-    Top = 137
+    Top = 129
     ParamData = <
       item
         Name = 'IDA'
@@ -3514,7 +3516,7 @@
     Left = 736
     Top = 16
     Bitmap = {
-      494C01010100140014015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014001C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8392,8 +8394,8 @@
   object dsAnamnese: TDataSource
     DataSet = CDSAnamnese
     OnDataChange = dsAnamneseDataChange
-    Left = 934
-    Top = 306
+    Left = 958
+    Top = 282
   end
   object CDSAnamnese: TClientDataSet
     Aggregates = <>
@@ -8402,8 +8404,8 @@
     AfterPost = CDSAnamneseAfterPost
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
-    Left = 910
-    Top = 306
+    Left = 926
+    Top = 282
     object CDSAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -8486,8 +8488,8 @@
   object pAnamnese: TDataSetProvider
     DataSet = qAnamnese
     BeforeUpdateRecord = pAnamneseBeforeUpdateRecord
-    Left = 878
-    Top = 306
+    Left = 902
+    Top = 282
   end
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
@@ -8497,8 +8499,8 @@
       'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDALUNO =:IDA'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
-    Left = 854
-    Top = 306
+    Left = 870
+    Top = 282
     ParamData = <
       item
         Name = 'IDA'
@@ -8988,8 +8990,8 @@
       'select ap.*, p.nomepatologia from AnamnesePatologia ap '
       'left outer join patologia p on p.idPatologia = ap.idpatologia'
       'where ap.idAnamnese =:idA')
-    Left = 838
-    Top = 594
+    Left = 870
+    Top = 386
     ParamData = <
       item
         Name = 'IDA'
@@ -9025,15 +9027,15 @@
   end
   object pAnamnesePatologia: TDataSetProvider
     DataSet = qAnamnesePatologia
-    Left = 864
-    Top = 592
+    Left = 896
+    Top = 384
   end
   object cdsAnamnesePatologia: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pAnamnesePatologia'
-    Left = 894
-    Top = 594
+    Left = 926
+    Top = 386
     object cdsAnamnesePatologiaidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -9055,8 +9057,8 @@
   end
   object dsanamnesePatologia: TDataSource
     DataSet = cdsAnamnesePatologia
-    Left = 926
-    Top = 594
+    Left = 958
+    Top = 386
   end
   object frxDBDataset4: TfrxDBDataset
     UserName = 'frxDBDataset4'
@@ -9079,8 +9081,8 @@
       'LEFT OUTER JOIN OBJETIVO OB ON OB.IDOBJETIVO = AN.IDOBJETIVO'
       'WHERE AN.IDanamnese =:IDAn'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
-    Left = 838
-    Top = 522
+    Left = 870
+    Top = 458
     ParamData = <
       item
         Name = 'IDAN'
@@ -9183,16 +9185,16 @@
   end
   object pRelAnamnese: TDataSetProvider
     DataSet = qRelAnamnese
-    Left = 862
-    Top = 522
+    Left = 894
+    Top = 458
   end
   object cdsRelAnamnese: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelAnamnese'
     OnCalcFields = cdsRelAnamneseCalcFields
-    Left = 886
-    Top = 522
+    Left = 918
+    Top = 458
     object cdsRelAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -9281,8 +9283,8 @@
   object dsRelAnamnese: TDataSource
     DataSet = cdsRelAnamnese
     OnDataChange = dsRelAnamneseDataChange
-    Left = 918
-    Top = 522
+    Left = 950
+    Top = 458
   end
   object qAvaFisica: TFDQuery
     Connection = DModule.FDConnection
@@ -9291,8 +9293,8 @@
       'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '
       'WHERE AV.IDALUNO =:IDA'
       'ORDER BY AV.DATAAVALIACAOFISICA DESC, AV.IDAVALIACAOFISICA DESC')
-    Left = 854
-    Top = 362
+    Left = 886
+    Top = 338
     ParamData = <
       item
         Name = 'IDA'
@@ -9474,126 +9476,1829 @@
   end
   object PAvaFisica: TDataSetProvider
     DataSet = qAvaFisica
-    Left = 886
-    Top = 362
+    Left = 910
+    Top = 338
   end
   object CDSAvaFisica: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'PAvaFisica'
-    Left = 918
-    Top = 362
+    OnCalcFields = CDSAvaFisicaCalcFields
+    Left = 934
+    Top = 338
     object CDSAvaFisicaidAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
+      Origin = 'idAvaliacaoFisica'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object CDSAvaFisicaidAluno: TIntegerField
       FieldName = 'idAluno'
+      Origin = 'idAluno'
       Required = True
     end
     object CDSAvaFisicadataAvaliacaoFisica: TDateField
       FieldName = 'dataAvaliacaoFisica'
+      Origin = 'dataAvaliacaoFisica'
       Required = True
     end
     object CDSAvaFisicanomeAvaliador: TStringField
       FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
       Size = 60
     end
     object CDSAvaFisicamed_peso_cm: TSingleField
       FieldName = 'med_peso_cm'
+      Origin = 'med_peso_cm'
     end
     object CDSAvaFisicamed_altura_cm: TSingleField
       FieldName = 'med_altura_cm'
+      Origin = 'med_altura_cm'
     end
     object CDSAvaFisicamed_cervical_cm: TSingleField
       FieldName = 'med_cervical_cm'
+      Origin = 'med_cervical_cm'
     end
     object CDSAvaFisicamed_torax_cm: TSingleField
       FieldName = 'med_torax_cm'
+      Origin = 'med_torax_cm'
     end
     object CDSAvaFisicamed_quadril_cm: TSingleField
       FieldName = 'med_quadril_cm'
+      Origin = 'med_quadril_cm'
     end
     object CDSAvaFisicamed_cintura_cm: TSingleField
       FieldName = 'med_cintura_cm'
+      Origin = 'med_cintura_cm'
     end
     object CDSAvaFisicamed_abdomen_cm: TSingleField
       FieldName = 'med_abdomen_cm'
+      Origin = 'med_abdomen_cm'
     end
     object CDSAvaFisicamed_bracoDireitoContraido_cm: TSingleField
       FieldName = 'med_bracoDireitoContraido_cm'
+      Origin = 'med_bracoDireitoContraido_cm'
     end
     object CDSAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
       FieldName = 'med_bracoDireitoRelaxado_cm'
+      Origin = 'med_bracoDireitoRelaxado_cm'
     end
     object CDSAvaFisicamed_antibracoDireito_cm: TSingleField
       FieldName = 'med_antibracoDireito_cm'
+      Origin = 'med_antibracoDireito_cm'
     end
     object CDSAvaFisicamed_coxaDireita_cm: TSingleField
       FieldName = 'med_coxaDireita_cm'
+      Origin = 'med_coxaDireita_cm'
     end
     object CDSAvaFisicamed_panturrilhaDireita_cm: TSingleField
       FieldName = 'med_panturrilhaDireita_cm'
+      Origin = 'med_panturrilhaDireita_cm'
     end
     object CDSAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
       FieldName = 'med_bracoEsquerdoContraido_cm'
+      Origin = 'med_bracoEsquerdoContraido_cm'
     end
     object CDSAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
       FieldName = 'med_bracoEsquerdoRelaxado_cm'
+      Origin = 'med_bracoEsquerdoRelaxado_cm'
     end
     object CDSAvaFisicamed_antibracoEsquerdo_cm: TSingleField
       FieldName = 'med_antibracoEsquerdo_cm'
+      Origin = 'med_antibracoEsquerdo_cm'
     end
     object CDSAvaFisicamed_coxaEsquerda_cm: TSingleField
       FieldName = 'med_coxaEsquerda_cm'
+      Origin = 'med_coxaEsquerda_cm'
     end
     object CDSAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
       FieldName = 'med_panturrilhaEsquerda_cm'
+      Origin = 'med_panturrilhaEsquerda_cm'
     end
     object CDSAvaFisicadobra_triciptal_mm: TSingleField
       FieldName = 'dobra_triciptal_mm'
+      Origin = 'dobra_triciptal_mm'
     end
     object CDSAvaFisicadobra_subescapular_mm: TSingleField
       FieldName = 'dobra_subescapular_mm'
+      Origin = 'dobra_subescapular_mm'
     end
     object CDSAvaFisicadobra_axiliar_mm: TSingleField
       FieldName = 'dobra_axiliar_mm'
+      Origin = 'dobra_axiliar_mm'
     end
     object CDSAvaFisicadobra_abdominal_mm: TSingleField
       FieldName = 'dobra_abdominal_mm'
+      Origin = 'dobra_abdominal_mm'
     end
     object CDSAvaFisicadobra_coxa_mm: TSingleField
       FieldName = 'dobra_coxa_mm'
+      Origin = 'dobra_coxa_mm'
     end
     object CDSAvaFisicadobra_panturrilha_mm: TSingleField
       FieldName = 'dobra_panturrilha_mm'
+      Origin = 'dobra_panturrilha_mm'
     end
     object CDSAvaFisicadobra_biciptal_mm: TSingleField
       FieldName = 'dobra_biciptal_mm'
+      Origin = 'dobra_biciptal_mm'
     end
     object CDSAvaFisicadobra_peitoral_mm: TSingleField
       FieldName = 'dobra_peitoral_mm'
+      Origin = 'dobra_peitoral_mm'
     end
     object CDSAvaFisicadobra_suprailiac_mm: TSingleField
       FieldName = 'dobra_suprailiac_mm'
+      Origin = 'dobra_suprailiac_mm'
     end
     object CDSAvaFisicatipoProtocolo: TStringField
       FieldName = 'tipoProtocolo'
+      Origin = 'tipoProtocolo'
       FixedChar = True
       Size = 1
     end
     object CDSAvaFisicaporcentagemGordura: TIntegerField
       FieldName = 'porcentagemGordura'
+      Origin = 'porcentagemGordura'
     end
     object CDSAvaFisicaNOMEALUNO: TStringField
       FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
       Size = 80
+    end
+    object CDSAvaFisicaIMC: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'IMC'
     end
   end
   object DSAvaFisica: TDataSource
     DataSet = CDSAvaFisica
-    Left = 950
-    Top = 360
+    Left = 958
+    Top = 336
+  end
+  object frxDBDataset5: TfrxDBDataset
+    UserName = 'frxDBDataset5'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAvaliacaoFisica=idAvaliacaoFisica'
+      'idAluno=idAluno'
+      'dataAvaliacaoFisica=dataAvaliacaoFisica'
+      'nomeAvaliador=nomeAvaliador'
+      'med_peso_cm=med_peso_cm'
+      'med_altura_cm=med_altura_cm'
+      'med_cervical_cm=med_cervical_cm'
+      'med_torax_cm=med_torax_cm'
+      'med_quadril_cm=med_quadril_cm'
+      'med_cintura_cm=med_cintura_cm'
+      'med_abdomen_cm=med_abdomen_cm'
+      'med_bracoDireitoContraido_cm=med_bracoDireitoContraido_cm'
+      'med_bracoDireitoRelaxado_cm=med_bracoDireitoRelaxado_cm'
+      'med_antibracoDireito_cm=med_antibracoDireito_cm'
+      'med_coxaDireita_cm=med_coxaDireita_cm'
+      'med_panturrilhaDireita_cm=med_panturrilhaDireita_cm'
+      'med_bracoEsquerdoContraido_cm=med_bracoEsquerdoContraido_cm'
+      'med_bracoEsquerdoRelaxado_cm=med_bracoEsquerdoRelaxado_cm'
+      'med_antibracoEsquerdo_cm=med_antibracoEsquerdo_cm'
+      'med_coxaEsquerda_cm=med_coxaEsquerda_cm'
+      'med_panturrilhaEsquerda_cm=med_panturrilhaEsquerda_cm'
+      'dobra_triciptal_mm=dobra_triciptal_mm'
+      'dobra_subescapular_mm=dobra_subescapular_mm'
+      'dobra_axiliar_mm=dobra_axiliar_mm'
+      'dobra_abdominal_mm=dobra_abdominal_mm'
+      'dobra_coxa_mm=dobra_coxa_mm'
+      'dobra_panturrilha_mm=dobra_panturrilha_mm'
+      'dobra_biciptal_mm=dobra_biciptal_mm'
+      'dobra_peitoral_mm=dobra_peitoral_mm'
+      'dobra_suprailiac_mm=dobra_suprailiac_mm'
+      'tipoProtocolo=tipoProtocolo'
+      'porcentagemGordura=porcentagemGordura'
+      'NOMEALUNO=NOMEALUNO'
+      'IMC=IMC')
+    DataSource = DSAvaFisica
+    BCDToCurrency = False
+    Left = 878
+    Top = 530
+  end
+  object frxChartObject1: TfrxChartObject
+    Left = 910
+    Top = 530
+  end
+  object report_AvaFisicaGrafico: TfrxReport
+    Version = '5.1.5'
+    DataSet = frxDBDataset5
+    DataSetName = 'frxDBDataset5'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 42843.385856840300000000
+    ReportOptions.LastChange = 42844.470955555550000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 854
+    Top = 530
+    Datasets = <
+      item
+        DataSet = frxDBDataset5
+        DataSetName = 'frxDBDataset5'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = [ftBottom]
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Height = 132.283550000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo3: TfrxMemoView
+          Left = 18.897650000000000000
+          Top = 87.488250000000000000
+          Width = 680.315400000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' ALUNO: [frxDBDataset5."NOMEALUNO"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object SysMemo1: TfrxSysMemoView
+          Left = 605.724800000000000000
+          Width = 94.488250000000000000
+          Height = 56.692950000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[DATE]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo4: TfrxMemoView
+          Left = 18.897650000000000000
+          Top = 107.267780000000000000
+          Width = 680.315400000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' AVALIADOR: [frxDBDataset5."nomeAvaliador"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object Memo1: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 208.078850000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PESO (kg)')
+        ParentFont = False
+      end
+      object Memo2: TfrxMemoView
+        Left = 153.181200000000000000
+        Top = 18.795300000000000000
+        Width = 411.968770000000000000
+        Height = 56.692950000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -24
+        Font.Name = 'Arial'
+        Font.Style = []
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ACOMPANHAMENTO F'#205'SICO')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo5: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 170.078850000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clCream
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clWhite
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Fill.BackColor = clTeal
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'MEDIDAS')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo7: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 434.645950000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ALTURA (m)')
+        ParentFont = False
+      end
+      object Chart2: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 453.543600000000000000
+        Width = 680.315400000000000000
+        Height = 185.196970000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_altura_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_altura_cm"'
+          end>
+      end
+      object Memo6: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 661.417750000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'IMC')
+        ParentFont = False
+      end
+      object Chart3: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 680.315400000000000000
+        Width = 680.315400000000000000
+        Height = 185.196970000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."IMC"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."IMC"'
+          end>
+      end
+      object Memo8: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 866.291900000000000000
+        Width = 680.315400000000000000
+        Height = 113.385900000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Memo.UTF8W = (
+          ''
+          '           * Menor igual a 18.5    =   BAIXO PESO'
+          '           * De 18.6 a 24.9          =   PESO IDEAL'
+          '           * De 25.0 a 29.9          =   SOBREPESO           '
+          '           * De 30.0 a 34.9          =   OPESIDADE GRAU I'
+          '           * De 35.0 a 39.9          =   OPESIDADE GRAU II'
+          '           * Maior igual a 40.0     =   OPESIDADE GRAVE')
+        ParentFont = False
+      end
+      object Chart1: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 226.771800000000000000
+        Width = 680.315400000000000000
+        Height = 185.196970000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_peso_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_peso_cm"'
+          end>
+      end
+    end
+    object Page2: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Chart4: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 19.574830000000000000
+        Width = 680.315400000000000000
+        Height = 166.299320000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_cervical_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_cervical_cm"'
+          end>
+      end
+      object Memo9: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = -0.102350000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'CERVICAL (cm)')
+        ParentFont = False
+      end
+      object Chart5: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 228.551330000000000000
+        Width = 680.315400000000000000
+        Height = 166.299224800000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_torax_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_torax_cm"'
+          end>
+      end
+      object Memo10: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 208.874150000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'TORAX (cm)')
+        ParentFont = False
+      end
+      object Chart6: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 435.527830000000000000
+        Width = 680.315400000000000000
+        Height = 166.299212600000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_cintura_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_cintura_cm"'
+          end>
+      end
+      object Memo11: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 415.850650000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'CINTURA (cm)')
+        ParentFont = False
+      end
+      object Chart7: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 643.386210000000000000
+        Width = 680.315400000000000000
+        Height = 166.299212600000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_quadril_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_quadril_cm"'
+          end>
+      end
+      object Memo12: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 623.709030000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'QUADRIL (cm)')
+        ParentFont = False
+      end
+      object Chart8: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 849.362710000000000000
+        Width = 680.315400000000000000
+        Height = 166.299212600000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_abdomen_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_abdomen_cm"'
+          end>
+      end
+      object Memo13: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 829.685530000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ABDOM'#202'N (cm)')
+        ParentFont = False
+      end
+    end
+    object Page3: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Chart9: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 19.574830000000000000
+        Width = 680.315400000000000000
+        Height = 132.283550000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_bracoDireitoContraido_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_bracoDireitoContraido_cm"'
+          end>
+      end
+      object Memo14: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = -0.102350000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'BRA'#199'O DIREITO CONTRA'#205'DO (cm)')
+        ParentFont = False
+      end
+      object Chart10: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 190.653680000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_bracoDireitoRelaxado_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_bracoDireitoRelaxado_cm"'
+          end>
+      end
+      object Memo15: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 170.976500000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'BRA'#199'O DIREITO RELAXADO (cm)')
+        ParentFont = False
+      end
+      object Chart11: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 360.527830000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_bracoEsquerdoContraido_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_bracoEsquerdoContraido_cm"'
+          end>
+      end
+      object Memo16: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 340.850650000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'BRA'#199'O ESQUERDO CONTRA'#205'DO (cm)')
+        ParentFont = False
+      end
+      object Chart12: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 530.693260000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_bracoEsquerdoRelaxado_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_bracoEsquerdoRelaxado_cm"'
+          end>
+      end
+      object Memo17: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 511.016080000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'BRA'#199'O ESQUERDO RELAXADO (cm)')
+        ParentFont = False
+      end
+      object Chart13: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 699.480830000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_antibracoDireito_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_antibracoDireito_cm"'
+          end>
+      end
+      object Memo18: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 679.803650000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ANTIBRA'#199'O DIREITO (cm)')
+        ParentFont = False
+      end
+      object Chart14: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 870.071430000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_antibracoEsquerdo_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_antibracoEsquerdo_cm"'
+          end>
+      end
+      object Memo19: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 850.394250000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ANTIBRA'#199'O ESQUERDO (cm)')
+        ParentFont = False
+      end
+    end
+    object Page4: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Chart15: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 19.677180000000000000
+        Width = 680.315400000000000000
+        Height = 132.283550000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_coxaDireita_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_coxaDireita_cm"'
+          end>
+      end
+      object Memo20: TfrxMemoView
+        Left = 18.897650000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'COXA DIREITA (cm)')
+        ParentFont = False
+      end
+      object Chart16: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 190.756030000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_coxaEsquerda_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_coxaEsquerda_cm"'
+          end>
+      end
+      object Memo21: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 171.078850000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'COXA ESQUERDA (cm)')
+        ParentFont = False
+      end
+      object Chart17: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 360.630180000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_panturrilhaDireita_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_panturrilhaDireita_cm"'
+          end>
+      end
+      object Memo22: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 340.953000000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PANTURRILHA DIREITA (cm)')
+        ParentFont = False
+      end
+      object Chart18: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 530.795610000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."med_panturrilhaEsquerda_cm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."med_panturrilhaEsquerda_cm"'
+          end>
+      end
+      object Memo23: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 511.118430000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PANTURRILHA ESQUERDA (cm)')
+        ParentFont = False
+      end
+      object Chart19: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 737.583180000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_subescapular_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_subescapular_mm"'
+          end>
+      end
+      object Memo24: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 717.906000000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'SUBESCAPULAR (mm)')
+        ParentFont = False
+      end
+      object Chart20: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 908.173780000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_suprailiac_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_suprailiac_mm"'
+          end>
+      end
+      object Memo25: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 888.496600000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'SUPRAIL'#205'AC (mm)')
+        ParentFont = False
+      end
+      object Memo26: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 678.417750000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clCream
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clWhite
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Fill.BackColor = clTeal
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'DOBRAS CUT'#194'NEAS')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+    end
+    object Page5: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Chart21: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 17.897650000000000000
+        Width = 680.315400000000000000
+        Height = 132.283550000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_axiliar_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_axiliar_mm"'
+          end>
+      end
+      object Memo27: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = -1.779530000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'AXILIAR (mm)')
+        ParentFont = False
+      end
+      object Chart22: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 188.976500000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_abdominal_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_abdominal_mm"'
+          end>
+      end
+      object Memo28: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = 169.299320000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ABDOMINAL (mm)')
+        ParentFont = False
+      end
+      object Chart23: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 358.850650000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_peitoral_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_peitoral_mm"'
+          end>
+      end
+      object Memo29: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = 339.173470000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PEITORAL (mm)')
+        ParentFont = False
+      end
+      object Chart24: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 529.016080000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_triciptal_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_triciptal_mm"'
+          end>
+      end
+      object Memo30: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = 509.338900000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'TRICIPTAL (mm)')
+        ParentFont = False
+      end
+      object Chart25: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 697.803650000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_biciptal_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_biciptal_mm"'
+          end>
+      end
+      object Memo31: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = 678.126470000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'BICEPTAL (mm)')
+        ParentFont = False
+      end
+      object Chart26: TfrxChartView
+        Left = 20.118120000000000000
+        Top = 868.394250000000000000
+        Width = 680.315400000000000000
+        Height = 132.283464570000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_coxa_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_coxa_mm"'
+          end>
+      end
+      object Memo32: TfrxMemoView
+        Left = 20.118120000000000000
+        Top = 848.717070000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'COXA (mm)')
+        ParentFont = False
+      end
+    end
+    object Page6: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object Chart27: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 18.677180000000000000
+        Width = 680.315400000000000000
+        Height = 132.283550000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080D4672616D652E56697369626C6508165669657733444F7074
+          696F6E732E526F746174696F6E02000A426576656C4F75746572070662764E6F
+          6E6505436F6C6F720707636C57686974650D44656661756C7443616E76617306
+          0E54474449506C757343616E76617311436F6C6F7250616C65747465496E6465
+          78020D000B544C696E6553657269657307536572696573310F42727573682E42
+          61636B436F6C6F720709636C44656661756C7416506F696E7465722E496E666C
+          6174654D617267696E73090D506F696E7465722E5374796C65070B7073526563
+          74616E676C650C5856616C7565732E4E616D650601580D5856616C7565732E4F
+          72646572070B6C6F417363656E64696E670C5956616C7565732E4E616D650601
+          590D5956616C7565732E4F7264657207066C6F4E6F6E65000000}
+        ChartElevation = 345
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtDBData
+            DataSet = frxDBDataset5
+            DataSetName = 'frxDBDataset5'
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+            Source1 = 'frxDBDataset5."dataAvaliacaoFisica"'
+            Source2 = 'frxDBDataset5."dobra_panturrilha_mm"'
+            XSource = 'frxDBDataset5."dataAvaliacaoFisica"'
+            YSource = 'frxDBDataset5."dobra_panturrilha_mm"'
+          end>
+      end
+      object Memo33: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = -1.000000000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PANTURRILHA (mm)')
+        ParentFont = False
+      end
+    end
   end
 end
