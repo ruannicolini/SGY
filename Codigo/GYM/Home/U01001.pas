@@ -22,7 +22,7 @@ uses
   System.Bluetooth.Components, frxExportImage, dxBar, dxRibbonRadialMenu,
   cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
   Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch,
-  frxChart;
+  frxChart, cxCalc;
 
 type
   TF01001 = class(TFBase)
@@ -238,9 +238,6 @@ type
     CDSserieFichaAlunotipomedida: TStringField;
     pagAvaliacoes: TcxTabSheet;
     cxGroupBox1: TcxGroupBox;
-    PanelBotoesAvaliacoes: TPanel;
-    btnImprimirAnamnese: TSpeedButton;
-    btnNovaAvaliacao: TSpeedButton;
     PageControlAvaliacoes: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -439,7 +436,6 @@ type
     qAvaFisicadobra_peitoral_mm: TSingleField;
     qAvaFisicadobra_suprailiac_mm: TSingleField;
     qAvaFisicatipoProtocolo: TStringField;
-    qAvaFisicaporcentagemGordura: TIntegerField;
     qAvaFisicaNOMEALUNO: TStringField;
     PAvaFisica: TDataSetProvider;
     CDSAvaFisica: TClientDataSet;
@@ -474,7 +470,6 @@ type
     CDSAvaFisicadobra_peitoral_mm: TSingleField;
     CDSAvaFisicadobra_suprailiac_mm: TSingleField;
     CDSAvaFisicatipoProtocolo: TStringField;
-    CDSAvaFisicaporcentagemGordura: TIntegerField;
     CDSAvaFisicaNOMEALUNO: TStringField;
     DSAvaFisica: TDataSource;
     frxDBDataset5: TfrxDBDataset;
@@ -489,6 +484,120 @@ type
     ClientDataSet1idProtocoloAvaFisica: TIntegerField;
     ClientDataSet1descricaoprotocoloAvaFisica: TStringField;
     LabelAvisoProtocolo: TLabel;
+    qRelAvaFisica: TFDQuery;
+    qRelAvaFisicaidAvaliacaoFisica: TIntegerField;
+    qRelAvaFisicaidAluno: TIntegerField;
+    qRelAvaFisicadataAvaliacaoFisica: TDateField;
+    qRelAvaFisicanomeAvaliador: TStringField;
+    qRelAvaFisicamed_peso_cm: TSingleField;
+    qRelAvaFisicamed_altura_cm: TSingleField;
+    qRelAvaFisicamed_cervical_cm: TSingleField;
+    qRelAvaFisicamed_torax_cm: TSingleField;
+    qRelAvaFisicamed_quadril_cm: TSingleField;
+    qRelAvaFisicamed_cintura_cm: TSingleField;
+    qRelAvaFisicamed_abdomen_cm: TSingleField;
+    qRelAvaFisicamed_bracoDireitoContraido_cm: TSingleField;
+    qRelAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField;
+    qRelAvaFisicamed_antibracoDireito_cm: TSingleField;
+    qRelAvaFisicamed_coxaDireita_cm: TSingleField;
+    qRelAvaFisicamed_panturrilhaDireita_cm: TSingleField;
+    qRelAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField;
+    qRelAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField;
+    qRelAvaFisicamed_antibracoEsquerdo_cm: TSingleField;
+    qRelAvaFisicamed_coxaEsquerda_cm: TSingleField;
+    qRelAvaFisicamed_panturrilhaEsquerda_cm: TSingleField;
+    qRelAvaFisicadobra_triciptal_mm: TSingleField;
+    qRelAvaFisicadobra_subescapular_mm: TSingleField;
+    qRelAvaFisicadobra_axiliar_mm: TSingleField;
+    qRelAvaFisicadobra_abdominal_mm: TSingleField;
+    qRelAvaFisicadobra_coxa_mm: TSingleField;
+    qRelAvaFisicadobra_panturrilha_mm: TSingleField;
+    qRelAvaFisicadobra_biciptal_mm: TSingleField;
+    qRelAvaFisicadobra_peitoral_mm: TSingleField;
+    qRelAvaFisicadobra_suprailiac_mm: TSingleField;
+    qRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField;
+    qRelAvaFisicaflex_troncoFlexao_grau: TIntegerField;
+    qRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField;
+    qRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField;
+    qRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField;
+    qRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField;
+    qRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField;
+    qRelAvaFisicatipoProtocolo: TStringField;
+    qRelAvaFisicaNOMEALUNO: TStringField;
+    qRelAvaFisicaidprotocoloavafisica: TIntegerField;
+    qRelAvaFisicadescricaoprotocoloavafisica: TStringField;
+    cdsRelAvaFisica: TClientDataSet;
+    PRelAvaFisica: TDataSetProvider;
+    dsRelAvaFisica: TDataSource;
+    cdsRelAvaFisicaidAvaliacaoFisica: TIntegerField;
+    cdsRelAvaFisicaidAluno: TIntegerField;
+    cdsRelAvaFisicadataAvaliacaoFisica: TDateField;
+    cdsRelAvaFisicanomeAvaliador: TStringField;
+    cdsRelAvaFisicamed_peso_cm: TSingleField;
+    cdsRelAvaFisicamed_altura_cm: TSingleField;
+    cdsRelAvaFisicamed_cervical_cm: TSingleField;
+    cdsRelAvaFisicamed_torax_cm: TSingleField;
+    cdsRelAvaFisicamed_quadril_cm: TSingleField;
+    cdsRelAvaFisicamed_cintura_cm: TSingleField;
+    cdsRelAvaFisicamed_abdomen_cm: TSingleField;
+    cdsRelAvaFisicamed_bracoDireitoContraido_cm: TSingleField;
+    cdsRelAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField;
+    cdsRelAvaFisicamed_antibracoDireito_cm: TSingleField;
+    cdsRelAvaFisicamed_coxaDireita_cm: TSingleField;
+    cdsRelAvaFisicamed_panturrilhaDireita_cm: TSingleField;
+    cdsRelAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField;
+    cdsRelAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField;
+    cdsRelAvaFisicamed_antibracoEsquerdo_cm: TSingleField;
+    cdsRelAvaFisicamed_coxaEsquerda_cm: TSingleField;
+    cdsRelAvaFisicamed_panturrilhaEsquerda_cm: TSingleField;
+    cdsRelAvaFisicadobra_triciptal_mm: TSingleField;
+    cdsRelAvaFisicadobra_subescapular_mm: TSingleField;
+    cdsRelAvaFisicadobra_axiliar_mm: TSingleField;
+    cdsRelAvaFisicadobra_abdominal_mm: TSingleField;
+    cdsRelAvaFisicadobra_coxa_mm: TSingleField;
+    cdsRelAvaFisicadobra_panturrilha_mm: TSingleField;
+    cdsRelAvaFisicadobra_biciptal_mm: TSingleField;
+    cdsRelAvaFisicadobra_peitoral_mm: TSingleField;
+    cdsRelAvaFisicadobra_suprailiac_mm: TSingleField;
+    cdsRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField;
+    cdsRelAvaFisicaflex_troncoFlexao_grau: TIntegerField;
+    cdsRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField;
+    cdsRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField;
+    cdsRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField;
+    cdsRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField;
+    cdsRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField;
+    cdsRelAvaFisicatipoProtocolo: TStringField;
+    cdsRelAvaFisicaNOMEALUNO: TStringField;
+    cdsRelAvaFisicaidprotocoloavafisica: TIntegerField;
+    cdsRelAvaFisicadescricaoprotocoloavafisica: TStringField;
+    cdsRelAvaFisicaporcentagemGordura: TFloatField;
+    cdsRelAvaFisicapesoOsseo: TFloatField;
+    cdsRelAvaFisicapesoGordura: TFloatField;
+    cdsRelAvaFisicaPesoMuscular: TFloatField;
+    cdsRelAvaFisicapesoResidual: TFloatField;
+    cdsRelAvaFisicamassaMagraCorporal: TFloatField;
+    cdsRelAvaFisicasomatotipoEcto: TFloatField;
+    cdsRelAvaFisicasomatotipoMeso: TFloatField;
+    cdsRelAvaFisicasomatotipoEndo: TFloatField;
+    cdsRelAvaFisicaIMC: TFloatField;
+    Label15: TLabel;
+    Panel4: TPanel;
+    btnImprimirAvaFisica: TSpeedButton;
+    btnNovaAvaFisica: TSpeedButton;
+    Panel5: TPanel;
+    btnImprimirAnamnes: TSpeedButton;
+    btnNovaAnamnes: TSpeedButton;
+    DBEdit16: TDBEdit;
+    Label16: TLabel;
+    cxDBCalcEdit1: TcxDBCalcEdit;
+    Label17: TLabel;
+    cxDBCalcEdit2: TcxDBCalcEdit;
+    Label18: TLabel;
+    cxDBCalcEdit3: TcxDBCalcEdit;
+    Label19: TLabel;
+    cxDBCalcEdit4: TcxDBCalcEdit;
+    Label20: TLabel;
+    cxDBCalcEdit5: TcxDBCalcEdit;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -543,7 +652,6 @@ type
     procedure btnNovoFichaClick(Sender: TObject);
     procedure DBEditInstrutorChange(Sender: TObject);
     procedure EditPesqInstrutorChange(Sender: TObject);
-    procedure btnNovaAvaliacaoClick(Sender: TObject);
     procedure DBGridBelezaAnamneseDblClick(Sender: TObject);
     procedure DBGridBelezaAnamneseKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -562,7 +670,6 @@ type
     procedure pPagamentoBeforeUpdateRecord(Sender: TObject; SourceDS: TDataSet;
       DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind;
       var Applied: Boolean);
-    procedure btnImprimirAnamneseClick(Sender: TObject);
     procedure dsRelAnamneseDataChange(Sender: TObject; Field: TField);
     procedure cdsRelAnamneseCalcFields(DataSet: TDataSet);
     procedure REPORT_ANAMNESEPATOLOGIABeforePrint(Sender: TfrxReportComponent);
@@ -574,6 +681,12 @@ type
       Shift: TShiftState);
     procedure CDSAvaFisicaCalcFields(DataSet: TDataSet);
     procedure DBEdit15Change(Sender: TObject);
+    procedure cdsRelAvaFisicaCalcFields(DataSet: TDataSet);
+    procedure btnNovaAnamnesClick(Sender: TObject);
+    procedure btnImprimirAnamnesClick(Sender: TObject);
+    procedure btnNovaAvaFisicaClick(Sender: TObject);
+    procedure btnImprimirAvaFisicaClick(Sender: TObject);
+    procedure DSAvaFisicaDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -929,10 +1042,9 @@ begin
   END;
 end;
 
-procedure TF01001.btnImprimirAnamneseClick(Sender: TObject);
+procedure TF01001.btnImprimirAnamnesClick(Sender: TObject);
 begin
   inherited;
-
   //Imprimi anamnese
   if(PageControlAvaliacoes.TabIndex = 0)then
   begin
@@ -988,46 +1100,111 @@ begin
 
     END;
 
-  end else
+  end;
+end;
+
+procedure TF01001.btnImprimirAvaFisicaClick(Sender: TObject);
+var iMensagem : integer;
+begin
+  inherited;
+
+  if(PageControlAvaliacoes.TabIndex = 1)then
   begin
-      if(PageControlAvaliacoes.TabIndex = 1)then
-      begin
-          IF(DS.DataSet.State = dsEDIT) THEN
-          BEGIN
-              TRY
-                  TRY
-                    //MUDA A ORDEM CRONOLÓGICA DOS DADOS
-                    qavafisica.sql.Text :=
-                    'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
-                    'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
-                    'WHERE AV.IDALUNO =:IDA '+
-                    'ORDER BY AV.DATAAVALIACAOFISICA, AV.IDAVALIACAOFISICA';
-                    qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
-                    CDSAvaFisica.close;
-                    CDSAvaFisica.open;
 
-                    //IMPRIME RELATÓRIO
-                    report_AvaFisicaGrafico.ShowReport(TRUE);
+      iMensagem := MsgDlgButtonPersonal('Selecione Relatório: ', mtConfirmation, [mbYes,mbNo],
+      ['Av. Física', 'Rel. Geral']);
+      case iMensagem of
+         6:
+            // Rel. Ava Física
+            begin
+                IF(DS.DataSet.State = dsEDIT) THEN
+                BEGIN
+                    TRY
+                        TRY
+                          qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
+                          cdsRelAvaFisica.close;
+                          cdsRelAvaFisica.open;
+                          //REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+                        EXCEPT
+                          RAISE;
+                        END;
+                    FINALLY
+                        //dsRelAvaFisica.DataSet.Close;
+                    END;
+                END ELSE
+                BEGIN
+                    IF(DS.DataSet.State = dsINSERT)THEN
+                    BEGIN
+                        //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
+                        TRY
+                        cdsRelAvaFisica.close;
+                        cdsRelAvaFisica.open;
+                        cdsRelAvaFisica.EmptyDataSet;
+                        cdsRelAvaFisica.Append;
+                        cdsRelAvaFisicanomealuno.asString := ClientDataSet1nomeAluno.AsString;
+                        cdsRelAvaFisicaidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
+                        cdsRelAvaFisicaidAvaliacaoFisica.AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
+                        cdsRelAvaFisicadataAvaliacaoFisica.AsDateTime := cdsRelAvaFisicadataAvaliacaoFisica.AsDateTime;
+                        cdsRelAvaFisicanomeAvaliador.AsString := DModule.nomeusuario;
+                        cdsRelAvaFisica.Post;
 
-                    //VOLTA A CONSULTA NORMAL
-                    qavafisica.sql.Text :=
-                    'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
-                    'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
-                    'WHERE AV.IDALUNO =:IDA '+
-                    'ORDER BY AV.DATAAVALIACAOFISICA desc, AV.IDAVALIACAOFISICA desc';
+                        //REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+                        FINALLY
+                          cdsRelAvaFisica.Cancel;
+                          cdsRelAvaFisica.CancelUpdates;
+                          cdsRelAvaFisica.close;
+                        END;
+                    END;
 
-                    qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
-                    CDSAvaFisica.close;
-                    CDSAvaFisica.open;
+                END;
 
-                  EXCEPT
-                    RAISE;
-                  END;
-              FINALLY
 
-              END;
-          END;//
+
+
+
+            end;
+
+         7: begin
+                IF(DS.DataSet.State = dsEDIT) THEN
+                BEGIN
+                    TRY
+                        TRY
+                          //MUDA A ORDEM CRONOLÓGICA DOS DADOS
+                          qavafisica.sql.Text :=
+                          'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
+                          'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
+                          'WHERE AV.IDALUNO =:IDA '+
+                          'ORDER BY AV.DATAAVALIACAOFISICA, AV.IDAVALIACAOFISICA';
+                          qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
+                          CDSAvaFisica.close;
+                          CDSAvaFisica.open;
+
+                          //IMPRIME RELATÓRIO
+                          report_AvaFisicaGrafico.ShowReport(TRUE);
+
+                          //VOLTA A CONSULTA NORMAL
+                          qavafisica.sql.Text :=
+                          'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
+                          'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
+                          'WHERE AV.IDALUNO =:IDA '+
+                          'ORDER BY AV.DATAAVALIACAOFISICA desc, AV.IDAVALIACAOFISICA desc';
+
+                          qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
+                          CDSAvaFisica.close;
+                          CDSAvaFisica.open;
+
+                        EXCEPT
+                          RAISE;
+                        END;
+                    FINALLY
+
+                    END;
+                END;//
+
+            end;
       end;
+
+
   end;
 end;
 
@@ -1207,7 +1384,68 @@ begin
   if NOT(cdsRelAnamnesepeso.IsNull) and NOT(cdsRelAnamnesealtura.IsNull) then
   begin
     cdsRelAnamneseIMC.AsFloat := cdsRelAnamnesepeso.AsFloat/ (cdsRelAnamnesealtura.AsFloat * cdsRelAnamnesealtura.AsFloat) ;
+    CDSAVAFISICAIMC.AsFloat := RoundTo (cdsRelAnamneseIMC.AsFloat, -2);
   end;
+
+end;
+
+procedure TF01001.cdsRelAvaFisicaCalcFields(DataSet: TDataSet);
+VAR
+SOMA: REAL;
+begin
+  inherited;
+
+  IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
+  BEGIN
+
+    //Porcentagem Gordura
+    SOMA := 0.0;
+    case ClientDataSet1idProtocoloAvaFisica.AsInteger of
+      1:  BEGIN
+          //PROTOCOLO DE FAULKNER (1968)
+          //G% = [(TR + SB + SI + AB) x 0.153] + 5.783
+          cdsRelAvaFisicaidprotocoloavafisica.AsInteger := 1;
+          SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+          cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+          cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+          cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
+          cdsRelAvaFisicaporcentagemGordura.AsFloat := ((SOMA) * 0.153)+ 5.783;
+          END;
+    end;
+
+    //Peso Gordura
+    //Peso Gordo= Peso Corporal x % Gordura
+    cdsRelAvaFisicapesoGordura.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat*(cdsRelAvaFisicaporcentagemGordura.AsFloat / 100.0)  ;
+    cdsRelAvaFisicapesoGordura.AsFloat := RoundTo( cdsRelAvaFisicapesoGordura.AsFloat, -2);
+
+    //Peso Residual
+    //Peso Residual (masc)=PT( peso total) x (24,1/100)
+    //Peso Residual (fem)=PT x (20,9/100)
+    IF(ClientDataSet1sexo.AsString = 'M')THEN
+    BEGIN
+        cdsRelAvaFisicapesoResidual.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat * 0.241;
+    END ELSE
+    BEGIN
+        cdsRelAvaFisicapesoResidual.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat * 0.209;
+    END;
+
+    //Peso Osseo
+    //Peso Ósseo= Estatura² x (Punho/100) x (fêmur/100) x 400
+    {cdsRelAvaFisicapesoOsseo.AsFloat :=
+    (cdsRelAvaFisicamed_altura_cm.AsFloat * cdsRelAvaFisicamed_altura_cm.AsFloat) * (punho / 100) * (fêmur/100) * 400;
+    }
+
+    //Peso Muscular
+    //Peso Muscular= (Peso Corporal – (PG+PO+PR))
+    cdsRelAvaFisicaPesoMuscular.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat - (cdsRelAvaFisicapesoGordura.AsFloat + cdsRelAvaFisicapesoOsseo.AsFloat + cdsRelAvaFisicapesoResidual.AsFloat);
+
+    //Massa Corporal Magra
+    //Peso Magro= Peso Corporal – Peso Gordo
+    cdsRelAvaFisicamassaMagraCorporal.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat - cdsRelAvaFisicapesoGordura.AsFloat;
+
+
+  END;
+
 
 end;
 
@@ -1232,11 +1470,14 @@ end;
 procedure TF01001.CDSAvaFisicaCalcFields(DataSet: TDataSet);
 begin
   inherited;
+
   if NOT(CDSAVAFISICAmed_peso_cm.IsNull) and NOT(CDSAVAFISICAmed_altura_cm.IsNull) then
   begin
     CDSAVAFISICAIMC.AsFloat := CDSAVAFISICAmed_peso_cm.AsFloat/ (CDSAVAFISICAmed_altura_cm.AsFloat * CDSAVAFISICAmed_altura_cm.AsFloat) ;
     CDSAVAFISICAIMC.AsFloat := RoundTo (CDSAVAFISICAIMC.AsFloat, -2);
   end;
+
+
 end;
 
 procedure TF01001.CDSFichaAlunoAfterCancel(DataSet: TDataSet);
@@ -1619,14 +1860,26 @@ begin
   inherited;
   IF(CDSAnamnese.RecordCount > 0)THEN
   BEGIN
-      btnImprimirAnamnese.Enabled := TRUE;
+      btnImprimirAnamnes.Enabled := TRUE;
   END ELSE
   BEGIN
-      btnImprimirAnamnese.Enabled := FALSE;
+      btnImprimirAnamnes.Enabled := FALSE;
   END;
 
   
 
+end;
+
+procedure TF01001.DSAvaFisicaDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+  IF(CDSAvaFisica.RecordCount > 0)THEN
+  BEGIN
+      btnImprimirAvaFisica.Enabled := TRUE;
+  END ELSE
+  BEGIN
+      btnImprimirAvaFisica.Enabled := FALSE;
+  END;
 end;
 
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
@@ -1893,8 +2146,10 @@ begin
 
     //Aba Avaliações
     pagAvaliacoes.TabVisible := true;
-    btnNovaAvaliacao.visible := TRUE;
-    btnNovaAvaliacao.enabled := TRUE;
+    btnNovaAnamnes.visible := TRUE;
+    btnNovaAnamnes.enabled := TRUE;
+    btnNovaAvaFisica.visible := TRUE;
+    btnNovaAvaFisica.enabled := TRUE;
 
     //ABA FICHA DE EXERCICIO
     pagFichaExercicios.TabVisible := true;
@@ -1919,8 +2174,10 @@ begin
 
           //Aba Avaliações
           pagAvaliacoes.TabVisible := true;
-          btnNovaAvaliacao.visible := TRUE;
-          btnNovaAvaliacao.enabled := TRUE;
+          btnNovaAnamnes.visible := TRUE;
+          btnNovaAnamnes.enabled := TRUE;
+          btnNovaAvaFisica.visible := TRUE;
+          btnNovaAvaFisica.enabled := TRUE;
 
           //ABA FICHA DE EXERCICIO
           pagFichaExercicios.TabVisible := FALSE;
@@ -1977,7 +2234,8 @@ begin
 
               //ABA AVALIAÇÃO -- AQUI JA TEMOS A CERTEZA DE QUE O USUÁRIO NÃO É UM AVALIADOR
               pagAvaliacoes.TabVisible := true;
-              btnNovaAvaliacao.visible := FALSE;
+              btnNovaAnamnes.visible := FALSE;
+              btnNovaAvaFisica.visible := FALSE;
               //Impede exclusão se necessário
               DBGridBelezaAnamnese.OnKeyDown := nil;
               DBGridBelezaFisica.OnKeyDown := nil;
@@ -2028,7 +2286,8 @@ begin
 
                   //ABA AVALIAÇÃO -- AQUI JA TEMOS A CERTEZA DE QUE O USUÁRIO NÃO É UM AVALIADOR
                   pagAvaliacoes.TabVisible := true;
-                  btnNovaAvaliacao.visible := FALSE;
+                  btnNovaAvaFisica.visible := FALSE;
+                  btnNovaAnamnes.visible := FALSE;
                   //Impede exclusão se necessário
                   DBGridBelezaAnamnese.OnKeyDown := nil;
                   DBGridBelezaFisica.OnKeyDown := nil;
@@ -2117,6 +2376,8 @@ begin
   { Criar o dialogo }
   aMsgDlg := CreateMessageDialog(Msg, DlgType, Buttons);
   CaptionIndex := 0;
+  //aMsgDlg.Width := 350; //
+  //aMsgDlg.Height := 200; //
   { Faz um loop varrendo os objetos do dialogo }
   for i := 0 to pred(aMsgDlg.ComponentCount) do
   begin
@@ -2124,11 +2385,11 @@ begin
     begin
       { Apenas entra na condição se o objeto for um button }
       dlgButton := TButton(aMsgDlg.Components[i]);
-      if CaptionIndex > High(Captions) then //Captura o Index dos captions dos buttons criado no array
+      //dlgButton.Width := 151; //
+      if CaptionIndex > High(Captions) then//Captura o Index dos captions dos buttons criado no array
          Break;
       dlgButton.Caption := Captions[CaptionIndex];
       Inc(CaptionIndex);
-      //dlgButton.
     end;
   end;
   Result := aMsgDlg.ShowModal;
@@ -3056,10 +3317,9 @@ begin
 
 end;
 
-procedure TF01001.btnNovaAvaliacaoClick(Sender: TObject);
+procedure TF01001.btnNovaAnamnesClick(Sender: TObject);
 begin
   inherited;
-
   if(PageControlAvaliacoes.TabIndex = 0)then
   begin
       //anamnese
@@ -3072,27 +3332,27 @@ begin
       // REFRESH DBGRIDBELEZA3
       CDSAnamnese.CLOSE;
       CDSAnamnese.OPEN;
+  end;
+end;
+
+procedure TF01001.btnNovaAvaFisicaClick(Sender: TObject);
+begin
+  inherited;
+  if(PageControlAvaliacoes.TabIndex = 1)then
+  begin
+    //avaliação física
+    With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
+    Begin
+      ShowModal;
+      Free;
+    End;
+    CDSAvaFisica.CLOSE;
+    CDSAvaFisica.OPEN;
+
   end else
   begin
-
-      if(PageControlAvaliacoes.TabIndex = 1)then
-      begin
-        //avaliação física
-        With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
-        Begin
-          ShowModal;
-          Free;
-        End;
-        CDSAvaFisica.CLOSE;
-        CDSAvaFisica.OPEN;
-
-      end else
-      begin
-        //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
-      end;
-
+    //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
   end;
-
 end;
 
 procedure TF01001.btnNovoFichaClick(Sender: TObject);

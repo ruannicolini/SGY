@@ -4,7 +4,7 @@
   ClientWidth = 1008
   OnCreate = FormCreate
   ExplicitLeft = -237
-  ExplicitTop = -242
+  ExplicitTop = -181
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -475,6 +475,55 @@
           object pagAvaliacoes: TcxTabSheet
             Caption = 'AVALIA'#199#213'ES'
             ImageIndex = 5
+            ExplicitLeft = -3
+            ExplicitTop = -15
+            object Label15: TLabel
+              Left = 818
+              Top = 226
+              Width = 121
+              Height = 16
+              Caption = 'porcentagemGordura'
+            end
+            object Label16: TLabel
+              Left = 818
+              Top = 274
+              Width = 73
+              Height = 16
+              Caption = 'pesoGordura'
+              FocusControl = cxDBCalcEdit1
+            end
+            object Label17: TLabel
+              Left = 822
+              Top = 312
+              Width = 75
+              Height = 16
+              Caption = 'pesoResidual'
+              FocusControl = cxDBCalcEdit2
+            end
+            object Label18: TLabel
+              Left = 822
+              Top = 352
+              Width = 122
+              Height = 16
+              Caption = 'massaMagraCorporal'
+              FocusControl = cxDBCalcEdit3
+            end
+            object Label19: TLabel
+              Left = 822
+              Top = 390
+              Width = 78
+              Height = 16
+              Caption = 'PesoMuscular'
+              FocusControl = cxDBCalcEdit4
+            end
+            object Label20: TLabel
+              Left = 824
+              Top = 432
+              Width = 62
+              Height = 16
+              Caption = 'pesoOsseo'
+              FocusControl = cxDBCalcEdit5
+            end
             object cxGroupBox1: TcxGroupBox
               Left = 24
               Top = 8
@@ -482,47 +531,19 @@
               TabOrder = 0
               Height = 552
               Width = 794
-              object PanelBotoesAvaliacoes: TPanel
-                Left = 2
-                Top = 513
-                Width = 790
-                Height = 37
-                Align = alBottom
-                BevelOuter = bvNone
-                Color = 15329769
-                ParentBackground = False
-                TabOrder = 0
-                object btnImprimirAnamnese: TSpeedButton
-                  Left = 631
-                  Top = 3
-                  Width = 151
-                  Height = 30
-                  Align = alCustom
-                  Caption = 'IMPRIMIR'
-                  Enabled = False
-                  OnClick = btnImprimirAnamneseClick
-                end
-                object btnNovaAvaliacao: TSpeedButton
-                  Left = 478
-                  Top = 3
-                  Width = 151
-                  Height = 30
-                  Align = alCustom
-                  Caption = 'NOVO'
-                  OnClick = btnNovaAvaliacaoClick
-                end
-              end
               object PageControlAvaliacoes: TPageControl
                 Left = 2
                 Top = 42
                 Width = 790
-                Height = 471
+                Height = 508
                 ActivePage = TabSheet2
                 Align = alClient
                 Style = tsFlatButtons
-                TabOrder = 1
+                TabOrder = 0
+                ExplicitHeight = 471
                 object TabSheet1: TTabSheet
                   Caption = 'ANAMNESE'
+                  ExplicitHeight = 437
                   object DBGridBelezaAnamnese: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -589,16 +610,50 @@
                         Visible = True
                       end>
                   end
+                  object Panel5: TPanel
+                    Left = 0
+                    Top = 437
+                    Width = 782
+                    Height = 37
+                    Align = alBottom
+                    BevelOuter = bvNone
+                    Color = 15329769
+                    ParentBackground = False
+                    TabOrder = 1
+                    ExplicitLeft = 2
+                    ExplicitTop = 513
+                    ExplicitWidth = 790
+                    object btnImprimirAnamnes: TSpeedButton
+                      Left = 631
+                      Top = 3
+                      Width = 151
+                      Height = 30
+                      Align = alCustom
+                      Caption = 'IMPRIMIR'
+                      Enabled = False
+                      OnClick = btnImprimirAnamnesClick
+                    end
+                    object btnNovaAnamnes: TSpeedButton
+                      Left = 474
+                      Top = 3
+                      Width = 151
+                      Height = 30
+                      Align = alCustom
+                      Caption = 'NOVO'
+                      OnClick = btnNovaAnamnesClick
+                    end
+                  end
                 end
                 object TabSheet2: TTabSheet
                   Caption = 'F'#205'SICA'
                   ImageIndex = 1
+                  ExplicitHeight = 437
                   object DBGridBelezaFisica: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
                     Width = 776
-                    Height = 391
+                    Height = 398
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
@@ -661,7 +716,7 @@
                   end
                   object Panel3: TPanel
                     Left = 0
-                    Top = 397
+                    Top = 404
                     Width = 782
                     Height = 40
                     Align = alBottom
@@ -669,7 +724,7 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 1
-                    ExplicitTop = 396
+                    ExplicitTop = 397
                     object LabelAvisoProtocolo: TLabel
                       Left = 328
                       Top = 11
@@ -733,16 +788,48 @@
                       OnChange = DBEdit15Change
                     end
                   end
+                  object Panel4: TPanel
+                    Left = 0
+                    Top = 444
+                    Width = 782
+                    Height = 30
+                    Align = alBottom
+                    BevelOuter = bvNone
+                    Color = 15329769
+                    ParentBackground = False
+                    TabOrder = 2
+                    ExplicitTop = 400
+                    object btnImprimirAvaFisica: TSpeedButton
+                      Left = 631
+                      Top = 0
+                      Width = 151
+                      Height = 30
+                      Align = alCustom
+                      Caption = 'IMPRIMIR'
+                      Enabled = False
+                      OnClick = btnImprimirAvaFisicaClick
+                    end
+                    object btnNovaAvaFisica: TSpeedButton
+                      Left = 478
+                      Top = 0
+                      Width = 151
+                      Height = 30
+                      Align = alCustom
+                      Caption = 'NOVO'
+                      OnClick = btnNovaAvaFisicaClick
+                    end
+                  end
                 end
                 object TabSheet3: TTabSheet
                   Caption = 'POSTURAL'
                   ImageIndex = 2
+                  ExplicitHeight = 437
                   object DBGridBelezaPostural: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
                     Width = 776
-                    Height = 431
+                    Height = 468
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
@@ -779,12 +866,13 @@
                 object TabSheet4: TTabSheet
                   Caption = 'DADOS CL'#205'NICOS'
                   ImageIndex = 3
+                  ExplicitHeight = 437
                   object DBGridBelezaDadosClinicos: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
                     Top = 3
                     Width = 776
-                    Height = 431
+                    Height = 468
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
@@ -838,11 +926,60 @@
                 StyleFocused.LookAndFeel.NativeStyle = False
                 StyleHot.LookAndFeel.Kind = lfUltraFlat
                 StyleHot.LookAndFeel.NativeStyle = False
-                TabOrder = 2
+                TabOrder = 1
                 Visible = False
                 Height = 37
                 Width = 790
               end
+            end
+            object DBEdit16: TDBEdit
+              Left = 818
+              Top = 248
+              Width = 121
+              Height = 24
+              DataField = 'porcentagemGordura'
+              DataSource = dsRelAvaFisica
+              TabOrder = 1
+            end
+            object cxDBCalcEdit1: TcxDBCalcEdit
+              Left = 818
+              Top = 290
+              DataBinding.DataField = 'pesoGordura'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 2
+              Width = 121
+            end
+            object cxDBCalcEdit2: TcxDBCalcEdit
+              Left = 822
+              Top = 328
+              DataBinding.DataField = 'pesoResidual'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 3
+              Width = 121
+            end
+            object cxDBCalcEdit3: TcxDBCalcEdit
+              Left = 822
+              Top = 368
+              DataBinding.DataField = 'massaMagraCorporal'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 4
+              Width = 121
+            end
+            object cxDBCalcEdit4: TcxDBCalcEdit
+              Left = 822
+              Top = 406
+              DataBinding.DataField = 'PesoMuscular'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 5
+              Width = 121
+            end
+            object cxDBCalcEdit5: TcxDBCalcEdit
+              Left = 824
+              Top = 448
+              DataBinding.DataField = 'pesoOsseo'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 6
+              Width = 121
             end
           end
           object pagFichaExercicios: TcxTabSheet
@@ -1862,12 +1999,12 @@
     end
   end
   inherited DS: TDataSource
-    Left = 928
+    Left = 632
     Top = 16
   end
   inherited ClientDataSet1: TClientDataSet
     OnCalcFields = ClientDataSet1CalcFields
-    Left = 864
+    Left = 568
     Top = 16
     object ClientDataSet1IDADE: TIntegerField
       FieldKind = fkInternalCalc
@@ -1964,7 +2101,7 @@
     end
   end
   inherited DataSetProvider1: TDataSetProvider
-    Left = 832
+    Left = 536
     Top = 16
   end
   inherited FDQuery1: TFDQuery
@@ -1977,7 +2114,7 @@
       
         'LEFT OUTER JOIN PROTOCOLOAVAFISICA P ON P.IDPROTOCOLOAVAFISICA =' +
         ' A.IDPROTOCOLOAVAFISICA')
-    Left = 800
+    Left = 504
     Top = 16
     object FDQuery1idAluno: TIntegerField
       FieldName = 'idAluno'
@@ -2104,10 +2241,10 @@
     end
   end
   inherited ImageListBase: TImageList
-    Left = 768
+    Left = 472
     Top = 16
     Bitmap = {
-      494C01010F002C00BC0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2643,7 +2780,7 @@
       000000000000}
   end
   inherited Acoes: TActionList
-    Left = 896
+    Left = 600
     Top = 17
     inherited ActionReajustarDBGridBeleza1: TAction
       OnExecute = ActionReajustarDBGridBeleza1Execute
@@ -2737,8 +2874,8 @@
     Connection = DModule.FDConnection
     SQL.Strings = (
       'select * from treino')
-    Left = 880
-    Top = 188
+    Left = 840
+    Top = 116
     object qTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       Origin = 'idTreino'
@@ -2754,15 +2891,15 @@
   end
   object pTreino: TDataSetProvider
     DataSet = qTreino
-    Left = 904
-    Top = 187
+    Left = 872
+    Top = 115
   end
   object CDSTreino: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pTreino'
-    Left = 928
-    Top = 186
+    Left = 896
+    Top = 114
     object CDSTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2775,14 +2912,14 @@
   end
   object DSTreino: TDataSource
     DataSet = CDSTreino
-    Left = 960
-    Top = 185
+    Left = 928
+    Top = 113
   end
   object DSModalidade: TDataSource
     DataSet = cdsModalidade
     OnDataChange = DSModalidadeDataChange
-    Left = 960
-    Top = 129
+    Left = 928
+    Top = 65
   end
   object cdsModalidade: TClientDataSet
     Aggregates = <>
@@ -2791,8 +2928,8 @@
     AfterPost = cdsModalidadeAfterPost
     AfterCancel = cdsModalidadeAfterCancel
     AfterDelete = cdsModalidadeAfterDelete
-    Left = 928
-    Top = 129
+    Left = 896
+    Top = 65
     object cdsModalidadeidAluno: TIntegerField
       FieldName = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2820,8 +2957,8 @@
   object pModalidade: TDataSetProvider
     DataSet = QMODALIDADE
     BeforeUpdateRecord = pModalidadeBeforeUpdateRecord
-    Left = 896
-    Top = 129
+    Left = 872
+    Top = 65
   end
   object QMODALIDADE: TFDQuery
     Connection = DModule.FDConnection
@@ -2833,8 +2970,8 @@
         'LEFT OUTER JOIN MODALIDADE M ON M.IDMODALIDADE = AM.IDMODALIDADE' +
         ' '
       'WHERE AM.IDALUNO =:IDA')
-    Left = 872
-    Top = 129
+    Left = 840
+    Top = 65
     ParamData = <
       item
         Name = 'IDA'
@@ -2881,8 +3018,8 @@
   object pPagamento: TDataSetProvider
     DataSet = qPagamento
     BeforeUpdateRecord = pPagamentoBeforeUpdateRecord
-    Left = 896
-    Top = 79
+    Left = 872
+    Top = 15
   end
   object cdsPagamento: TClientDataSet
     Aggregates = <>
@@ -2892,8 +3029,8 @@
     AfterPost = cdsPagamentoAfterPost
     AfterCancel = cdsPagamentoAfterCancel
     AfterDelete = cdsPagamentoAfterDelete
-    Left = 928
-    Top = 79
+    Left = 904
+    Top = 15
     object cdsPagamentoidPagamento: TIntegerField
       FieldName = 'idPagamento'
       ProviderFlags = [pfInWhere, pfInKey]
@@ -2939,8 +3076,8 @@
   object DSPagamento: TDataSource
     DataSet = cdsPagamento
     OnDataChange = DSPagamentoDataChange
-    Left = 952
-    Top = 79
+    Left = 928
+    Top = 15
   end
   object qPagamento: TFDQuery
     Connection = DModule.FDConnection
@@ -2953,8 +3090,8 @@
         'left outer join statusPagamento st on st.idStatusPagamento = p.i' +
         'dstatusPagamento '
       'where p.idAluno =:idA order by(p.dataVencimento)')
-    Left = 872
-    Top = 79
+    Left = 848
+    Top = 15
     ParamData = <
       item
         Name = 'IDA'
@@ -3612,10 +3749,10 @@
   object ImageListAUX: TImageList
     Height = 95
     Width = 95
-    Left = 736
+    Left = 440
     Top = 16
     Bitmap = {
-      494C0101010014001C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140020015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -9393,7 +9530,7 @@
       'WHERE AV.IDALUNO =:IDA'
       'ORDER BY AV.DATAAVALIACAOFISICA DESC, AV.IDAVALIACAOFISICA DESC')
     Left = 854
-    Top = 322
+    Top = 170
     ParamData = <
       item
         Name = 'IDA'
@@ -9560,11 +9697,6 @@
       FixedChar = True
       Size = 1
     end
-    object qAvaFisicaporcentagemGordura: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'porcentagemGordura'
-      Origin = 'porcentagemGordura'
-    end
     object qAvaFisicaNOMEALUNO: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'NOMEALUNO'
@@ -9576,15 +9708,15 @@
   object PAvaFisica: TDataSetProvider
     DataSet = qAvaFisica
     Left = 886
-    Top = 322
+    Top = 170
   end
   object CDSAvaFisica: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'PAvaFisica'
     OnCalcFields = CDSAvaFisicaCalcFields
-    Left = 918
-    Top = 322
+    Left = 910
+    Top = 170
     object CDSAvaFisicaidAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
       Origin = 'idAvaliacaoFisica'
@@ -9716,10 +9848,6 @@
       FixedChar = True
       Size = 1
     end
-    object CDSAvaFisicaporcentagemGordura: TIntegerField
-      FieldName = 'porcentagemGordura'
-      Origin = 'porcentagemGordura'
-    end
     object CDSAvaFisicaNOMEALUNO: TStringField
       FieldName = 'NOMEALUNO'
       Origin = 'nomeAluno'
@@ -9733,8 +9861,9 @@
   end
   object DSAvaFisica: TDataSource
     DataSet = CDSAvaFisica
-    Left = 950
-    Top = 320
+    OnDataChange = DSAvaFisicaDataChange
+    Left = 942
+    Top = 168
   end
   object frxDBDataset5: TfrxDBDataset
     UserName = 'frxDBDataset5'
@@ -9777,11 +9906,11 @@
     DataSource = DSAvaFisica
     BCDToCurrency = False
     Left = 884
-    Top = 370
+    Top = 250
   end
   object frxChartObject1: TfrxChartObject
     Left = 912
-    Top = 370
+    Top = 250
   end
   object report_AvaFisicaGrafico: TfrxReport
     Version = '5.1.5'
@@ -9801,7 +9930,7 @@
       ''
       'end.')
     Left = 856
-    Top = 370
+    Top = 250
     Datasets = <
       item
         DataSet = frxDBDataset5
@@ -11399,5 +11528,431 @@
         ParentFont = False
       end
     end
+  end
+  object qRelAvaFisica: TFDQuery
+    Connection = DModule.FDConnection
+    SQL.Strings = (
+      
+        'SELECT AV.*,A.NOMEALUNO, A.idprotocoloavafisica, p.descricaoprot' +
+        'ocoloavafisica '
+      'FROM AVALIACAOFISICA AV '
+      'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '
+      
+        'LEFT OUTER JOIN protocoloavafisica P ON P.idprotocoloavafisica =' +
+        ' A.idprotocoloavafisica'
+      'WHERE AV.idAVALIACAOFISICA =:IDAVF')
+    Left = 846
+    Top = 210
+    ParamData = <
+      item
+        Name = 'IDAVF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qRelAvaFisicaidAvaliacaoFisica: TIntegerField
+      FieldName = 'idAvaliacaoFisica'
+      Origin = 'idAvaliacaoFisica'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qRelAvaFisicaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      Required = True
+    end
+    object qRelAvaFisicadataAvaliacaoFisica: TDateField
+      FieldName = 'dataAvaliacaoFisica'
+      Origin = 'dataAvaliacaoFisica'
+      Required = True
+    end
+    object qRelAvaFisicanomeAvaliador: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
+      Size = 60
+    end
+    object qRelAvaFisicamed_peso_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_peso_cm'
+      Origin = 'med_peso_cm'
+    end
+    object qRelAvaFisicamed_altura_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_altura_cm'
+      Origin = 'med_altura_cm'
+    end
+    object qRelAvaFisicamed_cervical_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_cervical_cm'
+      Origin = 'med_cervical_cm'
+    end
+    object qRelAvaFisicamed_torax_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_torax_cm'
+      Origin = 'med_torax_cm'
+    end
+    object qRelAvaFisicamed_quadril_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_quadril_cm'
+      Origin = 'med_quadril_cm'
+    end
+    object qRelAvaFisicamed_cintura_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_cintura_cm'
+      Origin = 'med_cintura_cm'
+    end
+    object qRelAvaFisicamed_abdomen_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_abdomen_cm'
+      Origin = 'med_abdomen_cm'
+    end
+    object qRelAvaFisicamed_bracoDireitoContraido_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoDireitoContraido_cm'
+      Origin = 'med_bracoDireitoContraido_cm'
+    end
+    object qRelAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoDireitoRelaxado_cm'
+      Origin = 'med_bracoDireitoRelaxado_cm'
+    end
+    object qRelAvaFisicamed_antibracoDireito_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_antibracoDireito_cm'
+      Origin = 'med_antibracoDireito_cm'
+    end
+    object qRelAvaFisicamed_coxaDireita_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_coxaDireita_cm'
+      Origin = 'med_coxaDireita_cm'
+    end
+    object qRelAvaFisicamed_panturrilhaDireita_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_panturrilhaDireita_cm'
+      Origin = 'med_panturrilhaDireita_cm'
+    end
+    object qRelAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoEsquerdoContraido_cm'
+      Origin = 'med_bracoEsquerdoContraido_cm'
+    end
+    object qRelAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_bracoEsquerdoRelaxado_cm'
+      Origin = 'med_bracoEsquerdoRelaxado_cm'
+    end
+    object qRelAvaFisicamed_antibracoEsquerdo_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_antibracoEsquerdo_cm'
+      Origin = 'med_antibracoEsquerdo_cm'
+    end
+    object qRelAvaFisicamed_coxaEsquerda_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_coxaEsquerda_cm'
+      Origin = 'med_coxaEsquerda_cm'
+    end
+    object qRelAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'med_panturrilhaEsquerda_cm'
+      Origin = 'med_panturrilhaEsquerda_cm'
+    end
+    object qRelAvaFisicadobra_triciptal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_triciptal_mm'
+      Origin = 'dobra_triciptal_mm'
+    end
+    object qRelAvaFisicadobra_subescapular_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_subescapular_mm'
+      Origin = 'dobra_subescapular_mm'
+    end
+    object qRelAvaFisicadobra_axiliar_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_axiliar_mm'
+      Origin = 'dobra_axiliar_mm'
+    end
+    object qRelAvaFisicadobra_abdominal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_abdominal_mm'
+      Origin = 'dobra_abdominal_mm'
+    end
+    object qRelAvaFisicadobra_coxa_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_coxa_mm'
+      Origin = 'dobra_coxa_mm'
+    end
+    object qRelAvaFisicadobra_panturrilha_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_panturrilha_mm'
+      Origin = 'dobra_panturrilha_mm'
+    end
+    object qRelAvaFisicadobra_biciptal_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_biciptal_mm'
+      Origin = 'dobra_biciptal_mm'
+    end
+    object qRelAvaFisicadobra_peitoral_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_peitoral_mm'
+      Origin = 'dobra_peitoral_mm'
+    end
+    object qRelAvaFisicadobra_suprailiac_mm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'dobra_suprailiac_mm'
+      Origin = 'dobra_suprailiac_mm'
+    end
+    object qRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
+      Origin = 'flex_colunaCervicalFlexaoLateral_grau'
+    end
+    object qRelAvaFisicaflex_troncoFlexao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_troncoFlexao_grau'
+      Origin = 'flex_troncoFlexao_grau'
+    end
+    object qRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_ombroDireitoAbducao_grau'
+      Origin = 'flex_ombroDireitoAbducao_grau'
+    end
+    object qRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_ombroEsquerdoAbducao_grau'
+      Origin = 'flex_ombroEsquerdoAbducao_grau'
+    end
+    object qRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_quadrilDireitoFlexao_grau'
+      Origin = 'flex_quadrilDireitoFlexao_grau'
+    end
+    object qRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
+      Origin = 'flex_quadrilEsquerdoFlexao_grau'
+    end
+    object qRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'flex_quadrilAbducao_grau'
+      Origin = 'flex_quadrilAbducao_grau'
+    end
+    object qRelAvaFisicatipoProtocolo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoProtocolo'
+      Origin = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object qRelAvaFisicaNOMEALUNO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
+    object qRelAvaFisicaidprotocoloavafisica: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idprotocoloavafisica'
+      Origin = 'idProtocoloAvaFisica'
+      ProviderFlags = []
+    end
+    object qRelAvaFisicadescricaoprotocoloavafisica: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoprotocoloavafisica'
+      Origin = 'descricaoprotocoloAvaFisica'
+      ProviderFlags = []
+      Size = 50
+    end
+  end
+  object cdsRelAvaFisica: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pRelAvaFisica'
+    OnCalcFields = cdsRelAvaFisicaCalcFields
+    Left = 910
+    Top = 210
+    object cdsRelAvaFisicaidAvaliacaoFisica: TIntegerField
+      FieldName = 'idAvaliacaoFisica'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsRelAvaFisicaidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Required = True
+    end
+    object cdsRelAvaFisicadataAvaliacaoFisica: TDateField
+      FieldName = 'dataAvaliacaoFisica'
+      Required = True
+    end
+    object cdsRelAvaFisicanomeAvaliador: TStringField
+      FieldName = 'nomeAvaliador'
+      Size = 60
+    end
+    object cdsRelAvaFisicamed_peso_cm: TSingleField
+      FieldName = 'med_peso_cm'
+    end
+    object cdsRelAvaFisicamed_altura_cm: TSingleField
+      FieldName = 'med_altura_cm'
+    end
+    object cdsRelAvaFisicamed_cervical_cm: TSingleField
+      FieldName = 'med_cervical_cm'
+    end
+    object cdsRelAvaFisicamed_torax_cm: TSingleField
+      FieldName = 'med_torax_cm'
+    end
+    object cdsRelAvaFisicamed_quadril_cm: TSingleField
+      FieldName = 'med_quadril_cm'
+    end
+    object cdsRelAvaFisicamed_cintura_cm: TSingleField
+      FieldName = 'med_cintura_cm'
+    end
+    object cdsRelAvaFisicamed_abdomen_cm: TSingleField
+      FieldName = 'med_abdomen_cm'
+    end
+    object cdsRelAvaFisicamed_bracoDireitoContraido_cm: TSingleField
+      FieldName = 'med_bracoDireitoContraido_cm'
+    end
+    object cdsRelAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
+      FieldName = 'med_bracoDireitoRelaxado_cm'
+    end
+    object cdsRelAvaFisicamed_antibracoDireito_cm: TSingleField
+      FieldName = 'med_antibracoDireito_cm'
+    end
+    object cdsRelAvaFisicamed_coxaDireita_cm: TSingleField
+      FieldName = 'med_coxaDireita_cm'
+    end
+    object cdsRelAvaFisicamed_panturrilhaDireita_cm: TSingleField
+      FieldName = 'med_panturrilhaDireita_cm'
+    end
+    object cdsRelAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
+      FieldName = 'med_bracoEsquerdoContraido_cm'
+    end
+    object cdsRelAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
+      FieldName = 'med_bracoEsquerdoRelaxado_cm'
+    end
+    object cdsRelAvaFisicamed_antibracoEsquerdo_cm: TSingleField
+      FieldName = 'med_antibracoEsquerdo_cm'
+    end
+    object cdsRelAvaFisicamed_coxaEsquerda_cm: TSingleField
+      FieldName = 'med_coxaEsquerda_cm'
+    end
+    object cdsRelAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
+      FieldName = 'med_panturrilhaEsquerda_cm'
+    end
+    object cdsRelAvaFisicadobra_triciptal_mm: TSingleField
+      FieldName = 'dobra_triciptal_mm'
+    end
+    object cdsRelAvaFisicadobra_subescapular_mm: TSingleField
+      FieldName = 'dobra_subescapular_mm'
+    end
+    object cdsRelAvaFisicadobra_axiliar_mm: TSingleField
+      FieldName = 'dobra_axiliar_mm'
+    end
+    object cdsRelAvaFisicadobra_abdominal_mm: TSingleField
+      FieldName = 'dobra_abdominal_mm'
+    end
+    object cdsRelAvaFisicadobra_coxa_mm: TSingleField
+      FieldName = 'dobra_coxa_mm'
+    end
+    object cdsRelAvaFisicadobra_panturrilha_mm: TSingleField
+      FieldName = 'dobra_panturrilha_mm'
+    end
+    object cdsRelAvaFisicadobra_biciptal_mm: TSingleField
+      FieldName = 'dobra_biciptal_mm'
+    end
+    object cdsRelAvaFisicadobra_peitoral_mm: TSingleField
+      FieldName = 'dobra_peitoral_mm'
+    end
+    object cdsRelAvaFisicadobra_suprailiac_mm: TSingleField
+      FieldName = 'dobra_suprailiac_mm'
+    end
+    object cdsRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField
+      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
+    end
+    object cdsRelAvaFisicaflex_troncoFlexao_grau: TIntegerField
+      FieldName = 'flex_troncoFlexao_grau'
+    end
+    object cdsRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField
+      FieldName = 'flex_ombroDireitoAbducao_grau'
+    end
+    object cdsRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField
+      FieldName = 'flex_ombroEsquerdoAbducao_grau'
+    end
+    object cdsRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField
+      FieldName = 'flex_quadrilDireitoFlexao_grau'
+    end
+    object cdsRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField
+      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
+    end
+    object cdsRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField
+      FieldName = 'flex_quadrilAbducao_grau'
+    end
+    object cdsRelAvaFisicatipoProtocolo: TStringField
+      FieldName = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsRelAvaFisicaNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Size = 80
+    end
+    object cdsRelAvaFisicaidprotocoloavafisica: TIntegerField
+      FieldName = 'idprotocoloavafisica'
+    end
+    object cdsRelAvaFisicadescricaoprotocoloavafisica: TStringField
+      FieldName = 'descricaoprotocoloavafisica'
+      Size = 50
+    end
+    object cdsRelAvaFisicaporcentagemGordura: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'porcentagemGordura'
+    end
+    object cdsRelAvaFisicapesoOsseo: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'pesoOsseo'
+    end
+    object cdsRelAvaFisicapesoGordura: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'pesoGordura'
+    end
+    object cdsRelAvaFisicaPesoMuscular: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'PesoMuscular'
+    end
+    object cdsRelAvaFisicapesoResidual: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'pesoResidual'
+    end
+    object cdsRelAvaFisicamassaMagraCorporal: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'massaMagraCorporal'
+    end
+    object cdsRelAvaFisicasomatotipoEcto: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'somatotipoEcto'
+    end
+    object cdsRelAvaFisicasomatotipoMeso: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'somatotipoMeso'
+    end
+    object cdsRelAvaFisicasomatotipoEndo: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'somatotipoEndo'
+    end
+    object cdsRelAvaFisicaIMC: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'IMC'
+    end
+  end
+  object PRelAvaFisica: TDataSetProvider
+    DataSet = qRelAvaFisica
+    Left = 878
+    Top = 210
+  end
+  object dsRelAvaFisica: TDataSource
+    DataSet = cdsRelAvaFisica
+    Left = 934
+    Top = 210
   end
 end

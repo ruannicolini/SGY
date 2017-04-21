@@ -167,8 +167,7 @@ flex_ombroEsquerdoAbducao_grau int,
 flex_quadrilDireitoFlexao_grau int,
 flex_quadrilEsquerdoFlexao_grau int,
 flex_quadrilAbducao_grau int,
-tipoProtocolo char(1),
-porcentagemGordura int
+tipoProtocolo char(1)
 );
 
 create table anamnese(

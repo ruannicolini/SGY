@@ -47,7 +47,6 @@ type
     FDQuery1dobra_peitoral_mm: TSingleField;
     FDQuery1dobra_suprailiac_mm: TSingleField;
     FDQuery1tipoProtocolo: TStringField;
-    FDQuery1porcentagemGordura: TIntegerField;
     FDQuery1NOMEALUNO: TStringField;
     ClientDataSet1idAvaliacaoFisica: TIntegerField;
     ClientDataSet1idAluno: TIntegerField;
@@ -80,7 +79,6 @@ type
     ClientDataSet1dobra_peitoral_mm: TSingleField;
     ClientDataSet1dobra_suprailiac_mm: TSingleField;
     ClientDataSet1tipoProtocolo: TStringField;
-    ClientDataSet1porcentagemGordura: TIntegerField;
     ClientDataSet1NOMEALUNO: TStringField;
     Label1: TLabel;
     DBEdit1: TDBEdit;
