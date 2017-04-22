@@ -167,6 +167,10 @@ flex_ombroEsquerdoAbducao_grau int,
 flex_quadrilDireitoFlexao_grau int,
 flex_quadrilEsquerdoFlexao_grau int,
 flex_quadrilAbducao_grau int,
+do_BIESTILOIDE_cm float,
+do_BIEPICONDILIANO_cm float,
+do_BICONDILIANO_cm float,
+do_BIMALEOLAR_cm float,
 tipoProtocolo char(1)
 );
 

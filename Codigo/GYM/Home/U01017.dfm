@@ -2,27 +2,30 @@ inherited F01017: TF01017
   BorderStyle = bsNone
   Caption = 'F01017'
   ClientHeight = 680
-  ClientWidth = 724
+  ClientWidth = 884
   Position = poOwnerFormCenter
-  ExplicitWidth = 724
+  ExplicitLeft = -97
+  ExplicitTop = -186
+  ExplicitWidth = 884
   ExplicitHeight = 680
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
-    Width = 724
+    Width = 884
     Height = 645
     ActivePage = TbDados
-    ExplicitWidth = 724
+    ExplicitWidth = 924
     ExplicitHeight = 645
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 716
+      ExplicitWidth = 916
       ExplicitHeight = 617
       inherited grDados: TGroupBox
-        Width = 716
+        Width = 876
         Height = 617
-        ExplicitWidth = 716
+        ExplicitLeft = 2
+        ExplicitWidth = 916
         ExplicitHeight = 617
         object Label1: TLabel
           Left = 12
@@ -68,7 +71,7 @@ inherited F01017: TF01017
           DataBinding.DataSource = DS
           Properties.ReadOnly = False
           TabOrder = 2
-          Width = 651
+          Width = 464
         end
         object GroupBox1: TGroupBox
           Left = 12
@@ -501,10 +504,10 @@ inherited F01017: TF01017
           end
         end
         object GroupBox2: TGroupBox
-          Left = 527
+          Left = 525
           Top = 102
-          Width = 176
-          Height = 481
+          Width = 339
+          Height = 281
           Caption = 'DOBRAS'
           TabOrder = 4
           object Label21: TLabel
@@ -592,8 +595,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label27: TLabel
-            Left = 13
-            Top = 308
+            Left = 176
+            Top = 62
             Width = 83
             Height = 11
             Caption = 'BICIPTAL (mm)'
@@ -606,8 +609,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label28: TLabel
-            Left = 13
-            Top = 267
+            Left = 176
+            Top = 21
             Width = 85
             Height = 11
             Caption = 'PEITORAL (mm)'
@@ -620,8 +623,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label29: TLabel
-            Left = 13
-            Top = 348
+            Left = 176
+            Top = 102
             Width = 100
             Height = 11
             Caption = 'SUPRA ILIAC (mm)'
@@ -688,8 +691,8 @@ inherited F01017: TF01017
             TabOrder = 5
           end
           object DBEdit27: TDBEdit
-            Left = 13
-            Top = 324
+            Left = 176
+            Top = 78
             Width = 150
             Height = 21
             DataField = 'dobra_biciptal_mm'
@@ -697,8 +700,8 @@ inherited F01017: TF01017
             TabOrder = 7
           end
           object DBEdit28: TDBEdit
-            Left = 13
-            Top = 283
+            Left = 176
+            Top = 37
             Width = 150
             Height = 21
             DataField = 'dobra_peitoral_mm'
@@ -706,8 +709,8 @@ inherited F01017: TF01017
             TabOrder = 6
           end
           object DBEdit29: TDBEdit
-            Left = 13
-            Top = 365
+            Left = 176
+            Top = 119
             Width = 150
             Height = 21
             DataField = 'dobra_suprailiac_mm'
@@ -877,44 +880,144 @@ inherited F01017: TF01017
             Width = 232
           end
         end
+        object GroupBox4: TGroupBox
+          Left = 525
+          Top = 386
+          Width = 339
+          Height = 197
+          Caption = 'DI'#194'METROS '#211'SSEOS'
+          TabOrder = 6
+          object Label37: TLabel
+            Left = 13
+            Top = 62
+            Width = 142
+            Height = 11
+            Caption = 'BIEPIC'#212'NDILIANO - C (cm)'
+            FocusControl = DBEdit3
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label38: TLabel
+            Left = 13
+            Top = 21
+            Width = 112
+            Height = 11
+            Caption = 'BIESTIL'#211'IDE - P (cm)'
+            FocusControl = DBEdit4
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label39: TLabel
+            Left = 13
+            Top = 103
+            Width = 122
+            Height = 11
+            Caption = 'BIC'#212'NDILIANO - J (cm)'
+            FocusControl = DBEdit20
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label40: TLabel
+            Left = 13
+            Top = 144
+            Width = 114
+            Height = 11
+            Caption = 'BIMALEOLAR - T (cm)'
+            FocusControl = DBEdit30
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object DBEdit3: TDBEdit
+            Left = 13
+            Top = 78
+            Width = 150
+            Height = 21
+            DataField = 'do_BIEPICONDILIANO_cm'
+            DataSource = DS
+            TabOrder = 1
+          end
+          object DBEdit4: TDBEdit
+            Left = 13
+            Top = 37
+            Width = 150
+            Height = 21
+            DataField = 'do_BIESTILOIDE_cm'
+            DataSource = DS
+            TabOrder = 0
+          end
+          object DBEdit20: TDBEdit
+            Left = 13
+            Top = 119
+            Width = 150
+            Height = 21
+            DataField = 'do_BICONDILIANO_cm'
+            DataSource = DS
+            TabOrder = 2
+          end
+          object DBEdit30: TDBEdit
+            Left = 13
+            Top = 160
+            Width = 150
+            Height = 21
+            DataField = 'do_BIMALEOLAR_cm'
+            DataSource = DS
+            TabOrder = 3
+          end
+        end
       end
     end
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 716
+      ExplicitWidth = 916
       ExplicitHeight = 617
       inherited GBFiltros: TGroupBox
-        Width = 716
-        ExplicitWidth = 716
+        Width = 876
+        ExplicitWidth = 916
         inherited Panel1: TPanel
-          Width = 707
-          ExplicitWidth = 707
+          Width = 867
+          ExplicitWidth = 907
           inherited BtnLimparFiltros: TButton
-            Left = 662
-            ExplicitLeft = 662
+            Left = 822
+            ExplicitLeft = 862
           end
         end
       end
       inherited DBGridBeleza1: TDBGridBeleza
-        Width = 716
+        Width = 876
         Height = 506
       end
       inherited PanelFiltros: TPanel
-        Width = 716
-        ExplicitWidth = 716
+        Width = 876
+        ExplicitWidth = 916
         inherited btnFiltrar: TButton
-          Left = 665
-          ExplicitLeft = 665
+          Left = 825
+          ExplicitLeft = 865
         end
       end
     end
   end
   inherited Panel2: TPanel
-    Width = 724
-    ExplicitWidth = 724
+    Width = 884
+    ExplicitWidth = 924
     inherited BFechar: TSpeedButton
-      Left = 690
+      Left = 850
       ExplicitLeft = 690
     end
     inherited BFirst: TSpeedButton
@@ -941,6 +1044,10 @@ inherited F01017: TF01017
     OnCalcFields = ClientDataSet1CalcFields
     Left = 568
     Top = 0
+    object ClientDataSet1IMC: TFloatField
+      FieldKind = fkInternalCalc
+      FieldName = 'IMC'
+    end
     object ClientDataSet1idAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1036,19 +1143,6 @@ inherited F01017: TF01017
     object ClientDataSet1dobra_suprailiac_mm: TSingleField
       FieldName = 'dobra_suprailiac_mm'
     end
-    object ClientDataSet1tipoProtocolo: TStringField
-      FieldName = 'tipoProtocolo'
-      FixedChar = True
-      Size = 1
-    end
-    object ClientDataSet1NOMEALUNO: TStringField
-      FieldName = 'NOMEALUNO'
-      Size = 80
-    end
-    object ClientDataSet1IMC: TFloatField
-      FieldKind = fkInternalCalc
-      FieldName = 'IMC'
-    end
     object ClientDataSet1flex_colunaCervicalFlexaoLateral_grau: TIntegerField
       FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
     end
@@ -1070,8 +1164,30 @@ inherited F01017: TF01017
     object ClientDataSet1flex_quadrilAbducao_grau: TIntegerField
       FieldName = 'flex_quadrilAbducao_grau'
     end
+    object ClientDataSet1tipoProtocolo: TStringField
+      FieldName = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object ClientDataSet1do_BIESTILOIDE_cm: TSingleField
+      FieldName = 'do_BIESTILOIDE_cm'
+    end
+    object ClientDataSet1do_BIEPICONDILIANO_cm: TSingleField
+      FieldName = 'do_BIEPICONDILIANO_cm'
+    end
+    object ClientDataSet1do_BICONDILIANO_cm: TSingleField
+      FieldName = 'do_BICONDILIANO_cm'
+    end
+    object ClientDataSet1do_BIMALEOLAR_cm: TSingleField
+      FieldName = 'do_BIMALEOLAR_cm'
+    end
+    object ClientDataSet1NOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Size = 80
+    end
   end
   inherited DataSetProvider1: TDataSetProvider
+    UpdateMode = upWhereKeyOnly
     Left = 544
     Top = 0
   end
@@ -1242,20 +1358,6 @@ inherited F01017: TF01017
       FieldName = 'dobra_suprailiac_mm'
       Origin = 'dobra_suprailiac_mm'
     end
-    object FDQuery1tipoProtocolo: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'tipoProtocolo'
-      Origin = 'tipoProtocolo'
-      FixedChar = True
-      Size = 1
-    end
-    object FDQuery1NOMEALUNO: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'NOMEALUNO'
-      Origin = 'nomeAluno'
-      ProviderFlags = []
-      Size = 80
-    end
     object FDQuery1flex_colunaCervicalFlexaoLateral_grau: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
@@ -1291,12 +1393,46 @@ inherited F01017: TF01017
       FieldName = 'flex_quadrilAbducao_grau'
       Origin = 'flex_quadrilAbducao_grau'
     end
+    object FDQuery1tipoProtocolo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipoProtocolo'
+      Origin = 'tipoProtocolo'
+      FixedChar = True
+      Size = 1
+    end
+    object FDQuery1do_BIESTILOIDE_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIESTILOIDE_cm'
+      Origin = 'do_BIESTILOIDE_cm'
+    end
+    object FDQuery1do_BIEPICONDILIANO_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIEPICONDILIANO_cm'
+      Origin = 'do_BIEPICONDILIANO_cm'
+    end
+    object FDQuery1do_BICONDILIANO_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BICONDILIANO_cm'
+      Origin = 'do_BICONDILIANO_cm'
+    end
+    object FDQuery1do_BIMALEOLAR_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIMALEOLAR_cm'
+      Origin = 'do_BIMALEOLAR_cm'
+    end
+    object FDQuery1NOMEALUNO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
+      Size = 80
+    end
   end
   inherited ImageListBase: TImageList
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C00040210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C000C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

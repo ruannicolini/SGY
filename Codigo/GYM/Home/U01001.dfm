@@ -4,7 +4,7 @@
   ClientWidth = 1008
   OnCreate = FormCreate
   ExplicitLeft = -237
-  ExplicitTop = -181
+  ExplicitTop = -150
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -475,8 +475,6 @@
           object pagAvaliacoes: TcxTabSheet
             Caption = 'AVALIA'#199#213'ES'
             ImageIndex = 5
-            ExplicitLeft = -3
-            ExplicitTop = -15
             object Label15: TLabel
               Left = 818
               Top = 226
@@ -540,10 +538,8 @@
                 Align = alClient
                 Style = tsFlatButtons
                 TabOrder = 0
-                ExplicitHeight = 471
                 object TabSheet1: TTabSheet
                   Caption = 'ANAMNESE'
-                  ExplicitHeight = 437
                   object DBGridBelezaAnamnese: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -620,9 +616,6 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 1
-                    ExplicitLeft = 2
-                    ExplicitTop = 513
-                    ExplicitWidth = 790
                     object btnImprimirAnamnes: TSpeedButton
                       Left = 631
                       Top = 3
@@ -647,7 +640,6 @@
                 object TabSheet2: TTabSheet
                   Caption = 'F'#205'SICA'
                   ImageIndex = 1
-                  ExplicitHeight = 437
                   object DBGridBelezaFisica: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -724,7 +716,6 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 1
-                    ExplicitTop = 397
                     object LabelAvisoProtocolo: TLabel
                       Left = 328
                       Top = 11
@@ -798,7 +789,6 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 2
-                    ExplicitTop = 400
                     object btnImprimirAvaFisica: TSpeedButton
                       Left = 631
                       Top = 0
@@ -823,7 +813,6 @@
                 object TabSheet3: TTabSheet
                   Caption = 'POSTURAL'
                   ImageIndex = 2
-                  ExplicitHeight = 437
                   object DBGridBelezaPostural: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -866,7 +855,6 @@
                 object TabSheet4: TTabSheet
                   Caption = 'DADOS CL'#205'NICOS'
                   ImageIndex = 3
-                  ExplicitHeight = 437
                   object DBGridBelezaDadosClinicos: TDBGridBeleza
                     AlignWithMargins = True
                     Left = 3
@@ -2244,7 +2232,7 @@
     Left = 472
     Top = 16
     Bitmap = {
-      494C01010F002C00C00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C40310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3752,7 +3740,7 @@
     Left = 440
     Top = 16
     Bitmap = {
-      494C01010100140020015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140024015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -11764,6 +11752,26 @@
       ProviderFlags = []
       Size = 50
     end
+    object qRelAvaFisicado_BIESTILOIDE_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIESTILOIDE_cm'
+      Origin = 'do_BIESTILOIDE_cm'
+    end
+    object qRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIEPICONDILIANO_cm'
+      Origin = 'do_BIEPICONDILIANO_cm'
+    end
+    object qRelAvaFisicado_BICONDILIANO_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BICONDILIANO_cm'
+      Origin = 'do_BICONDILIANO_cm'
+    end
+    object qRelAvaFisicado_BIMALEOLAR_cm: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'do_BIMALEOLAR_cm'
+      Origin = 'do_BIMALEOLAR_cm'
+    end
   end
   object cdsRelAvaFisica: TClientDataSet
     Aggregates = <>
@@ -11903,6 +11911,18 @@
     object cdsRelAvaFisicadescricaoprotocoloavafisica: TStringField
       FieldName = 'descricaoprotocoloavafisica'
       Size = 50
+    end
+    object cdsRelAvaFisicado_BIESTILOIDE_cm: TSingleField
+      FieldName = 'do_BIESTILOIDE_cm'
+    end
+    object cdsRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField
+      FieldName = 'do_BIEPICONDILIANO_cm'
+    end
+    object cdsRelAvaFisicado_BICONDILIANO_cm: TSingleField
+      FieldName = 'do_BICONDILIANO_cm'
+    end
+    object cdsRelAvaFisicado_BIMALEOLAR_cm: TSingleField
+      FieldName = 'do_BIMALEOLAR_cm'
     end
     object cdsRelAvaFisicaporcentagemGordura: TFloatField
       FieldKind = fkInternalCalc

@@ -1,4 +1,4 @@
-unit U01001;
+Ôªøunit U01001;
 
 interface
 
@@ -77,12 +77,12 @@ type
     QMODALIDADE: TFDQuery;
     QMODALIDADEidAluno: TIntegerField;
     QMODALIDADEidmodalidade: TIntegerField;
-    QMODALIDADEdataInscriÁ„o: TDateField;
+    QMODALIDADEdataInscri√ß√£o: TDateField;
     QMODALIDADEdiavencimento: TIntegerField;
     QMODALIDADEDESCRICAOMODALIDADE: TStringField;
     cdsModalidadeidAluno: TIntegerField;
     cdsModalidadeidmodalidade: TIntegerField;
-    cdsModalidadedataInscriÁ„o: TDateField;
+    cdsModalidadedataInscri√ß√£o: TDateField;
     cdsModalidadediavencimento: TIntegerField;
     cdsModalidadeDESCRICAOMODALIDADE: TStringField;
     QMODALIDADEvalor: TSingleField;
@@ -598,6 +598,14 @@ type
     cxDBCalcEdit4: TcxDBCalcEdit;
     Label20: TLabel;
     cxDBCalcEdit5: TcxDBCalcEdit;
+    qRelAvaFisicado_BIESTILOIDE_cm: TSingleField;
+    qRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField;
+    qRelAvaFisicado_BICONDILIANO_cm: TSingleField;
+    qRelAvaFisicado_BIMALEOLAR_cm: TSingleField;
+    cdsRelAvaFisicado_BIESTILOIDE_cm: TSingleField;
+    cdsRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField;
+    cdsRelAvaFisicado_BICONDILIANO_cm: TSingleField;
+    cdsRelAvaFisicado_BIMALEOLAR_cm: TSingleField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -747,7 +755,7 @@ begin
       cdsmodalidade.Delete;
       end;
 
-      // S…RIE (FICHA DE EXERCÕCIOS)
+      // S√âRIE (FICHA DE EXERC√çCIOS)
       {DModule.qAux.SQL.Text := 'DELETE FROM FICHAALUNO WHERE idALUNO =:IDA';
       DModule.qAux.ParamByName('IDA').AsInteger := ClientDataSet1idAluno.AsInteger;
       DModule.qAux.Close;
@@ -771,12 +779,12 @@ begin
 
     END;
 
-    //habilita painel respons·vel
+    //habilita painel respons√°vel
     DBEdit4.Enabled := true;
     DBEdit5.Enabled := true;
     cxDBMaskEdit5.Enabled := true;
 
-    //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTA«√O
+    //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTA√á√ÉO
     cxPageControl1.ActivePageIndex := 0;
 
     //COR DO CAMPO CPF
@@ -791,14 +799,14 @@ var
 begin
   inherited;
 
-  //REAJUSTA DBGRIDBELEZA1 EM RELA«√O AO TAMANHO DA TELA
+  //REAJUSTA DBGRIDBELEZA1 EM RELA√á√ÉO AO TAMANHO DA TELA
   for I := 0 to DBGridBeleza1.Columns.Count-1 do
   begin
       if(   (DBGridBeleza1.Columns[i].Visible = true) and (DBGridBeleza1.Columns[i].FieldName = 'nomeAluno')  )then
       begin
             if(Screen.Width >= 1366)then
             begin
-                  //mantem definiÁıes padr„o, PROPORCIONALMENTE;
+                  //mantem defini√ß√µes padr√£o, PROPORCIONALMENTE;
                   DBGridBeleza1.Columns[i].Expanded := TRUE;
             end else
             begin
@@ -840,10 +848,10 @@ begin
   DModule.qAux.open;
   if(DModule.qAux.RecordCount > 0)then
   begin
-    showmessage('ALUNO POSSUI PAGAMENTOS EFETUADOS. N√O … POSSÕVEL EXCLUIR.')
+    showmessage('ALUNO POSSUI PAGAMENTOS EFETUADOS. N√ÉO √â POSS√çVEL EXCLUIR.')
   end else
   begin
-    //Executa exclus„o
+    //Executa exclus√£o
     inherited;
   end;
 end;
@@ -873,7 +881,7 @@ begin
       end;
   end else
   begin
-    ShowMessage('RelatÛrio necessita de pesquisa');
+    ShowMessage('Relat√≥rio necessita de pesquisa');
   end;
 end;
 
@@ -890,10 +898,10 @@ begin
           IF NOT(ClientDataSet1idInstrutor.IsNull)THEN
           BEGIN
 
-              // AVISO QUE O ALUNO N√O POSSUI MATRÕCULA ATIVA
+              // AVISO QUE O ALUNO N√ÉO POSSUI MATR√çCULA ATIVA
               IF(DSModalidade.DataSet.RecordCount = 0)THEN
               BEGIN
-                ShowMessage('ATEN«√O!' + #13 + 'ALUNO N√O ESTA MATRICULADO EM NENHUMA MODALIDADE.');
+                ShowMessage('ATEN√á√ÉO!' + #13 + 'ALUNO N√ÉO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
               END;
 
 
@@ -911,7 +919,7 @@ begin
               }
 
 
-              //SE HOUVE MUDAN«A DA FOTO, ELA … SALVA NA PASTA IMG_ALUNO NO DIRET”RIO
+              //SE HOUVE MUDAN√áA DA FOTO, ELA √â SALVA NA PASTA IMG_ALUNO NO DIRET√ìRIO
               if(imagemMudou = true)then
               begin
                   //SALVA FOTO PASTA
@@ -923,15 +931,15 @@ begin
               end;
               imagemMudou := false;
 
-              //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTA«√O
+              //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTA√á√ÉO
               cxPageControl1.ActivePageIndex := 0;
 
-              //habilita painel respons·vel
+              //habilita painel respons√°vel
               DBEdit4.Enabled := true;
               DBEdit5.Enabled := true;
               cxDBMaskEdit5.Enabled := true;
 
-              //OBS: A INCLUS√O DA IMAGEM DEVE SER FEITA ANTES DA MUDAN«A DO STATE DO CLIENTDATASET;
+              //OBS: A INCLUS√ÉO DA IMAGEM DEVE SER FEITA ANTES DA MUDAN√áA DO STATE DO CLIENTDATASET;
               inherited;
 
               //COR DO CAMPO CPF
@@ -939,7 +947,7 @@ begin
 
           END ELSE
           BEGIN
-            ShowMessage('INFORME UM INSTRUTOR PARA O ALUNO (ABA FICHA DE EXERCÕCIOS)');
+            ShowMessage('INFORME UM INSTRUTOR PARA O ALUNO (ABA FICHA DE EXERC√çCIOS)');
           END;
 
       END ELSE
@@ -959,7 +967,7 @@ begin
   if NOT(DS.DataSet.IsEmpty) then
   begin
 
-      // Se Passar pelas verificaÁıes acima, executa o cancelamento.
+      // Se Passar pelas verifica√ß√µes acima, executa o cancelamento.
       DModule.qAux.SQL.Text := 'SELECT P.* FROM PAGAMENTO P WHERE P. IDPAGAMENTO = ' +
       '(SELECT max(IDPAGAMENTO) FROM PAGAMENTO PA WHERE PA.idAluno =:IDA AND PA.idmodalidade =:IDM AND ((PA.idstatusPagamento = 2)OR(PA.idstatusPagamento = 3)) )';
       DModule.qAux.ParamByName('IDA').AsInteger := cdsPagamentoidAluno.AsInteger;
@@ -969,34 +977,34 @@ begin
 
       IF(cdsPagamentoidPagamento.AsInteger = DModule.qAux.FieldByName('IDPAGAMENTO').AsInteger)THEN
       BEGIN
-          //verificaÁ„o de seguranÁa.
-          // Atendente n„o concede nem cancela uma isenÁ„o
-          // Atendente sÛ cancela pagamentos de hoje.
+          //verifica√ß√£o de seguran√ßa.
+          // Atendente n√£o concede nem cancela uma isen√ß√£o
+          // Atendente s√≥ cancela pagamentos de hoje.
           if(DModule.administrador = false)then
           begin
               if(cdsPagamentoidstatusPagamento.AsInteger = 3)then
               begin
-                  ShowMessage('Para cancelar uma isenÁ„o concedida, È necess·rio estar logado como administrador.' +
-                    #13 + 'IsenÁ„o n„o cancelada!');
+                  ShowMessage('Para cancelar uma isen√ß√£o concedida, √© necess√°rio estar logado como administrador.' +
+                    #13 + 'Isen√ß√£o n√£o cancelada!');
                   exit;
               end else
               begin
-                  //n„o È administrador
+                  //n√£o √© administrador
                   DModule.qAux.SQL.Text := 'select DATEDIFF (now(), :dataP ) as diferenca';
                   DModule.qAux.ParamByName('dataP').AsDateTime := cdsPagamentodataPagamento.AsDateTime;
                   DModule.qAux.Close;
                   DModule.qAux.Open;
-                  //caso n„o seja um adminitrador, ele sÛ pode cancelar pagamentos feitos hoje.
+                  //caso n√£o seja um adminitrador, ele s√≥ pode cancelar pagamentos feitos hoje.
                   if(DModule.qAux.FieldByName('diferenca').AsInteger <> 0)then
                   begin
-                      ShowMessage('Para cancelar registro com data de pagamento superior a um dia, È necess·rio estar logado como administrador.' +
-                      #13 + 'Pagamento n„o cancelado!');
+                      ShowMessage('Para cancelar registro com data de pagamento superior a um dia, √© necess√°rio estar logado como administrador.' +
+                      #13 + 'Pagamento n√£o cancelado!');
                       exit;
                   end;
               end;
           end;
 
-          if (Application.MessageBox('Confirma Cancelar Pagamento/IsenÁ„o?', 'CANCELAMENTO', MB_YESNO + MB_ICONQUESTION) = id_yes) then
+          if (Application.MessageBox('Confirma Cancelar Pagamento/Isen√ß√£o?', 'CANCELAMENTO', MB_YESNO + MB_ICONQUESTION) = id_yes) then
           begin
                   TRY
                       cdsPagamento.Edit;
@@ -1009,7 +1017,7 @@ begin
                           if(cdsPagamentoidstatusPagamento.AsInteger = 3)then
                           begin
                               cdsPagamentoLOGUsuarioResponsavel.AsString :=
-                              'IsenÁ„o cancelada por ' + DModule.nomeusuario + ' em ' + DateTostr(DModule.datahoje);
+                              'Isen√ß√£o cancelada por ' + DModule.nomeusuario + ' em ' + DateTostr(DModule.datahoje);
                           end;
 
                       end;
@@ -1032,7 +1040,7 @@ begin
       END ELSE
       BEGIN
           ShowMessage('O ITEM SELECIONADO POSSUI REGISTROS POSTERIORES A ELE.'
-          + #13 + 'EXCLUS√O N√O CONCLUÕDA.'
+          + #13 + 'EXCLUS√ÉO N√ÉO CONCLU√çDA.'
           );
       END;
 
@@ -1066,7 +1074,7 @@ begin
     BEGIN
         IF(DS.DataSet.State = dsINSERT)THEN
         BEGIN
-            //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√O EST√O SALVOS, NESSE CASO EU FA«O UMA C”PIA PARA CDSRELFICHA
+            //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√ÉO EST√ÉO SALVOS, NESSE CASO EU FA√áO UMA C√ìPIA PARA CDSRELFICHA
             TRY
             cdsRelAnamnese.close;
             CDSRelAnamnese.open;
@@ -1111,11 +1119,11 @@ begin
   if(PageControlAvaliacoes.TabIndex = 1)then
   begin
 
-      iMensagem := MsgDlgButtonPersonal('Selecione RelatÛrio: ', mtConfirmation, [mbYes,mbNo],
-      ['Av. FÌsica', 'Rel. Geral']);
+      iMensagem := MsgDlgButtonPersonal('Selecione Relat√≥rio: ', mtConfirmation, [mbYes,mbNo],
+      ['Av. F√≠sica', 'Rel. Geral']);
       case iMensagem of
          6:
-            // Rel. Ava FÌsica
+            // Rel. Ava F√≠sica
             begin
                 IF(DS.DataSet.State = dsEDIT) THEN
                 BEGIN
@@ -1135,7 +1143,7 @@ begin
                 BEGIN
                     IF(DS.DataSet.State = dsINSERT)THEN
                     BEGIN
-                        //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√O EST√O SALVOS, NESSE CASO EU FA«O UMA C”PIA PARA CDSRELFICHA
+                        //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√ÉO EST√ÉO SALVOS, NESSE CASO EU FA√áO UMA C√ìPIA PARA CDSRELFICHA
                         TRY
                         cdsRelAvaFisica.close;
                         cdsRelAvaFisica.open;
@@ -1169,7 +1177,7 @@ begin
                 BEGIN
                     TRY
                         TRY
-                          //MUDA A ORDEM CRONOL”GICA DOS DADOS
+                          //MUDA A ORDEM CRONOL√ìGICA DOS DADOS
                           qavafisica.sql.Text :=
                           'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
                           'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
@@ -1179,7 +1187,7 @@ begin
                           CDSAvaFisica.close;
                           CDSAvaFisica.open;
 
-                          //IMPRIME RELAT”RIO
+                          //IMPRIME RELAT√ìRIO
                           report_AvaFisicaGrafico.ShowReport(TRUE);
 
                           //VOLTA A CONSULTA NORMAL
@@ -1230,7 +1238,7 @@ begin
   BEGIN
       IF(DS.DataSet.State = dsINSERT)THEN
       BEGIN
-          //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√O EST√O SALVOS, NESSE CASO EU FA«O UMA C”PIA PARA CDSRELFICHA
+          //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA N√ÉO EST√ÉO SALVOS, NESSE CASO EU FA√áO UMA C√ìPIA PARA CDSRELFICHA
           TRY
           CDSRelFicha.close;
           CDSRelFicha.open;
@@ -1307,7 +1315,7 @@ end;
 procedure TF01001.btnIsencaoClick(Sender: TObject);
 begin
   inherited;
-  // VERIFICA SE H¡ PAGAMENTOS ANTERIORES AO ITEM SELECIONADO, EM ABERTO.
+  // VERIFICA SE H√Å PAGAMENTOS ANTERIORES AO ITEM SELECIONADO, EM ABERTO.
   DModule.qAux.SQL.Text := 'select p.* from pagamento p where p.idAluno =:idA and p.idModalidade =:idM and p.idStatusPagamento =:idS and (SELECT DATEDIFF(p.dataVencimento, :vdata)) < 0 ';
   DModule.qAux.ParamByName('IDA').AsInteger := cdsPagamentoidAluno.AsInteger;
   DModule.qAux.ParamByName('IDS').AsInteger := 1;   // 1 = Em aberto no banco
@@ -1319,7 +1327,7 @@ begin
   if(DModule.qAux.RecordCount = 0)then
   begin
       //EFETUA PAGAMENTO
-      With TF01010.Create(self, cdsPagamentoidPagamento.AsInteger, 2) do  // 1 =Pagamento, 2=IsenÁ„o
+      With TF01010.Create(self, cdsPagamentoidPagamento.AsInteger, 2) do  // 1 =Pagamento, 2=Isen√ß√£o
       Begin
         ShowModal;
         Free;
@@ -1329,8 +1337,8 @@ begin
   begin
       if(DModule.qAux.RecordCount > 0)then
       begin
-          //EXISTEM PAGAMENTOS ANTERIORES EM ATRASO, N√O … POSSÕVEL CONCLUIR.
-          ShowMessage('PAGAMENTO ANTERIOR EM ABERTO. N√O … POSSÕVEL CONCLUIR. (' + inttostr( DModule.qAux.RecordCount ) + ')');
+          //EXISTEM PAGAMENTOS ANTERIORES EM ATRASO, N√ÉO √â POSS√çVEL CONCLUIR.
+          ShowMessage('PAGAMENTO ANTERIOR EM ABERTO. N√ÉO √â POSS√çVEL CONCLUIR. (' + inttostr( DModule.qAux.RecordCount ) + ')');
       end;
   end;
 end;
@@ -1391,7 +1399,7 @@ end;
 
 procedure TF01001.cdsRelAvaFisicaCalcFields(DataSet: TDataSet);
 VAR
-SOMA: REAL;
+SOMA, DC: REAL;
 begin
   inherited;
 
@@ -1399,7 +1407,7 @@ begin
   BEGIN
 
     //Porcentagem Gordura
-    SOMA := 0.0;
+    SOMA := 0.0; DC := 0.0;
     case ClientDataSet1idProtocoloAvaFisica.AsInteger of
       1:  BEGIN
           //PROTOCOLO DE FAULKNER (1968)
@@ -1411,38 +1419,133 @@ begin
           cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
           cdsRelAvaFisicaporcentagemGordura.AsFloat := ((SOMA) * 0.153)+ 5.783;
           END;
+      2:  BEGIN
+          //POLLOCK 3 DOBRAS
+          IF(ClientDataSet1sexo.AsString = 'M')THEN
+          BEGIN
+            //MASCULINO: peitoral, abdominal e coxa
+            SOMA := cdsRelAvaFisicadobra_peitoral_mm.AsFloat +
+            cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
+            cdsRelAvaFisicadobra_coxa_mm.AsFloat
+          END ELSE
+          BEGIN
+            //FEMININO: tr√≠ceps + supra-iliaca + coxa
+            SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+            cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+            cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+          END;
+
+
+
+          //DC = 1,0994921 ‚Äì 0,0009929(Œ£) + 0,0000023(Œ£)¬≤ ‚Äì 0,0001392(idade)
+          DC := ( 1.0994921 - (0.0009929 * SOMA) + (0.0000023 * MATH.Power(SOMA,2)) - (0.0001392 * ClientDataSet1IDADE.AsInteger) );
+
+          //G% = [(4,95 / DC) ‚Äì 4,50] x 100
+          CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+
+
+          END;
+      3:  BEGIN
+          //POLLOCK 7 DOBRAS
+          //(subescapular + tr√≠ceps + peitoral + axilar-media + supra-iliaca + abd√¥men + coxa)
+          SOMA :=
+          cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+          cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+          cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+          cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
+          cdsRelAvaFisicadobra_axiliar_mm.AsFloat +
+          cdsRelAvaFisicadobra_coxa_mm.AsFloat +
+          cdsRelAvaFisicadobra_peitoral_mm.AsFloat;
+
+          // DC: DENCIDADE CORPORAL
+          IF(ClientDataSet1sexo.AsString = 'M')THEN
+          BEGIN
+            //MASCULINO:
+            //DC = 1,11200000 ‚Äì (0,000434999 x Œ£) + [0,00000055 x (Œ£)¬≤]‚Äì [0,0002882 (idade)]
+            DC := ( 1.11200000 - (0.000434999 * SOMA) + ( (0.00000055 * MATH.Power(SOMA,2)) - (0.0002882 * ClientDataSet1IDADE.AsInteger) )  );
+          END ELSE
+          BEGIN
+            //FEMININO: 1,0970 ‚Äì (0,00046971 x Œ£) + [0,00000056 x (Œ£)¬≤] ‚Äì [0,00012828 (idade)]
+            DC := ( 1.0970 - (0.00046971 * SOMA) + ( (0.00000056 * MATH.Power(SOMA,2)) - (0.00012828 * ClientDataSet1IDADE.AsInteger) )  );
+
+          END;
+
+          //G% = [(4,95 / DC) ‚Äì 4,50] x 100
+          CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+
+
+          END;
+      4:  BEGIN
+          // PROTOCOLO DE GUEDES
+          IF(ClientDataSet1sexo.AsString = 'M')THEN
+          BEGIN
+            //MASCULINO:
+            //Homens : Tr√≠ceps, suprai-l√≠aca e abdome
+            //HOMENS: Densidade = 1,17136 - 0,06706 log (TR + SI+AB )
+            SOMA :=
+            cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+            cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+            cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
+            DC := 1.17136 - (0.06706 * MATH.Log10(SOMA));
+
+          END ELSE
+          BEGIN
+            //FEMININO
+            //Mulheres: Subescapular, supra-il√≠aca e coxa
+            //MULHERES: Densidade = 1,16650- 0,07063 log (CX + SI+ SB)
+            SOMA :=
+            cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+            cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+            cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+            DC := 1.16650 - (0.07063 * MATH.Log10(SOMA));
+          END;
+
+          //G% = [(4,95 / DC) ‚Äì 4,50] x 100
+          CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+
+          END;
+
     end;
 
-    //Peso Gordura
-    //Peso Gordo= Peso Corporal x % Gordura
-    cdsRelAvaFisicapesoGordura.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat*(cdsRelAvaFisicaporcentagemGordura.AsFloat / 100.0)  ;
-    cdsRelAvaFisicapesoGordura.AsFloat := RoundTo( cdsRelAvaFisicapesoGordura.AsFloat, -2);
-
-    //Peso Residual
-    //Peso Residual (masc)=PT( peso total) x (24,1/100)
-    //Peso Residual (fem)=PT x (20,9/100)
-    IF(ClientDataSet1sexo.AsString = 'M')THEN
+    IF NOT(cdsRelAvaFisicaporcentagemGordura.IsNull)THEN
     BEGIN
-        cdsRelAvaFisicapesoResidual.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat * 0.241;
+        //Peso Gordura
+        //Peso Gordo= Peso Corporal x %Gordura
+        cdsRelAvaFisicapesoGordura.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat*(cdsRelAvaFisicaporcentagemGordura.AsFloat / 100.0)  ;
+        cdsRelAvaFisicapesoGordura.AsFloat := RoundTo( cdsRelAvaFisicapesoGordura.AsFloat, -2);
+
+        //Peso Residual: Equa√ß√£o de Wurch
+        //Peso Residual (masc)=PT( peso total) x (24,1/100)
+        //Peso Residual (fem)=PT x (20,9/100)
+        IF(ClientDataSet1sexo.AsString = 'M')THEN
+        BEGIN
+            cdsRelAvaFisicapesoResidual.AsFloat := RoundTo( (cdsRelAvaFisicamed_peso_cm.asfloat * 0.241), -2);
+        END ELSE
+        BEGIN
+            cdsRelAvaFisicapesoResidual.AsFloat := RoundTo((cdsRelAvaFisicamed_peso_cm.asfloat * 0.209), -2);
+        END;
+
+        //Peso Osseo:  Equa√ß√£o de Von Doblen
+        //Peso √ìsseo= 3.02 * ((Estatura¬≤ x (Punho/100) x (f√™mur/100) x 400) ^ 0.712)
+        cdsRelAvaFisicapesoOsseo.AsFloat :=
+        (cdsRelAvaFisicamed_altura_cm.AsFloat * cdsRelAvaFisicamed_altura_cm.AsFloat) *
+        (cdsRelAvaFisicado_BIESTILOIDE_cm.AsFloat/ 100) *
+        (cdsRelAvaFisicado_BICONDILIANO_cm.AsFloat/100) * 400;
+        cdsRelAvaFisicapesoOsseo.AsFloat := (3.02 *(math.Power(cdsRelAvaFisicapesoOsseo.AsFloat, 0.712)));
+        cdsRelAvaFisicapesoOsseo.AsFloat := RoundTo(cdsRelAvaFisicapesoOsseo.AsFloat ,-2);
+
+        //Peso Muscular
+        //Peso Muscular= (Peso Corporal ‚Äì (PG+PO+PR))
+        cdsRelAvaFisicaPesoMuscular.AsFloat := RoundTo((cdsRelAvaFisicamed_peso_cm.asfloat - (cdsRelAvaFisicapesoGordura.AsFloat + cdsRelAvaFisicapesoOsseo.AsFloat + cdsRelAvaFisicapesoResidual.AsFloat)), -2);
+
+        //Massa Corporal Magra
+        //Peso Magro= Peso Corporal ‚Äì Peso Gordo
+        cdsRelAvaFisicamassaMagraCorporal.AsFloat := RoundTo((cdsRelAvaFisicamed_peso_cm.asfloat - cdsRelAvaFisicapesoGordura.AsFloat), -2);
+
     END ELSE
     BEGIN
-        cdsRelAvaFisicapesoResidual.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat * 0.209;
+        SHOWMESSAGE('ESCOLHA UM PROTOCOLO PARA C√ÅLCULO DA % DE GORDURA NO PERFIL DO USU√ÅRIO.');
     END;
-
-    //Peso Osseo
-    //Peso ”sseo= Estatura≤ x (Punho/100) x (fÍmur/100) x 400
-    {cdsRelAvaFisicapesoOsseo.AsFloat :=
-    (cdsRelAvaFisicamed_altura_cm.AsFloat * cdsRelAvaFisicamed_altura_cm.AsFloat) * (punho / 100) * (fÍmur/100) * 400;
-    }
-
-    //Peso Muscular
-    //Peso Muscular= (Peso Corporal ñ (PG+PO+PR))
-    cdsRelAvaFisicaPesoMuscular.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat - (cdsRelAvaFisicapesoGordura.AsFloat + cdsRelAvaFisicapesoOsseo.AsFloat + cdsRelAvaFisicapesoResidual.AsFloat);
-
-    //Massa Corporal Magra
-    //Peso Magro= Peso Corporal ñ Peso Gordo
-    cdsRelAvaFisicamassaMagraCorporal.AsFloat := cdsRelAvaFisicamed_peso_cm.asfloat - cdsRelAvaFisicapesoGordura.AsFloat;
-
 
   END;
 
@@ -1521,7 +1624,7 @@ begin
 
   END;
 
-  //SITUA«√O DO ALUNO
+  //SITUA√á√ÉO DO ALUNO
   DModule.qAux.SQL.Text := 'SELECT * FROM alunomodalidade where idAluno = ' + ClientDataSet1idAluno.AsString ;
   DModule.qAux.Close;
   DModule.qAux.Open;
@@ -1566,7 +1669,7 @@ begin
     BEGIN
       ClientDataSet1idade.AsInteger := (DateUtils.YearsBetween(DATE, cxDBDateEdit1.Date));
 
-      // CONTROLE DE PAINEL DADOS-RESPONS¡VEL
+      // CONTROLE DE PAINEL DADOS-RESPONS√ÅVEL
       if(ClientDataSet1idade.AsInteger >= 18)then
       begin
           DBEdit4.Enabled := false;
@@ -1627,7 +1730,7 @@ end;
 procedure TF01001.DBEdit15Change(Sender: TObject);
 begin
   inherited;
-  //PROTOCOLO DE COMPOSI«√O CORPORAL
+  //PROTOCOLO DE COMPOSI√á√ÉO CORPORAL
   if (ClientDataSet1idProtocoloAvaFisica.IsNull) then
   begin
       LabelAvisoProtocolo.Visible := true;
@@ -1653,21 +1756,21 @@ begin
             CPF := StringReplace(CPF, '_', ' ', [rfReplaceAll, rfIgnoreCase]);
             CPF := StringReplace(CPF, ' ', EmptyStr, [rfReplaceAll]);
 
-            //VERIFICA SE … UM CPF V¡LIDO
+            //VERIFICA SE √â UM CPF V√ÅLIDO
             STATUS := isCPF(CPF);
             if (STATUS = false) then
             begin
                 DBEdit9.Font.Color := clRED;
                 IF(LENGTH(CPF) = 11)THEN
                 BEGIN
-                  ShowMessage('ERRO: CPF INV¡LIDO');
+                  ShowMessage('ERRO: CPF INV√ÅLIDO');
                   ClientDataSet1CPF.Clear;
                 END;
 
             end else
             begin
-                // NESSE CASO O CPF … V¡LIDO!
-                //AGORA, VERIFICA SE ESSE CPF J¡ ESTA SENDO UTILIZADO POR OUTRO ALUNO
+                // NESSE CASO O CPF √â V√ÅLIDO!
+                //AGORA, VERIFICA SE ESSE CPF J√Å ESTA SENDO UTILIZADO POR OUTRO ALUNO
                 DModule.qAux.SQL.Text := 'select A.* From ALUNO A where A.CPF =:IDCPF';
                 DModule.qAux.ParamByName('IDCPF').AsString := DBEdit9.Text;
                 DModule.qAux.Close;
@@ -1754,7 +1857,7 @@ procedure TF01001.DBGridBelezaFichasAlunoKeyDown(Sender: TObject; var Key: Word;
 begin
     inherited;
     if (key = 46) then
-    //Deleta Ficha de ExercÌcios
+    //Deleta Ficha de Exerc√≠cios
     begin
       if MessageDlg('Deseja Apagar Item [COD:' + CDSFichaAlunoidFichaAluno.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       begin
@@ -1783,7 +1886,7 @@ procedure TF01001.DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
 begin
   inherited;
   if (key = 46) then
-  //Deleta Ficha de ExercÌcios
+  //Deleta Ficha de Exerc√≠cios
   begin
     if MessageDlg('Deseja Apagar Item [COD:' + CDSAvaFisicaidAvaliacaoFisica.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
@@ -1796,7 +1899,7 @@ procedure TF01001.DBGridBeleza5DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
   inherited;
-  if(column.Title.Caption = 'SITUA«√O')then
+  if(column.Title.Caption = 'SITUA√á√ÉO')then
   begin
       if(cdsPagamentodataVencimento.AsDateTime < DModule.datahoje ) AND (cdsPagamentoidstatusPagamento.AsInteger = 1)then
       begin
@@ -1846,7 +1949,7 @@ procedure TF01001.DBGridBelezaAnamneseKeyDown(Sender: TObject; var Key: Word;
 begin
   inherited;
   if (key = 46) then
-  //Deleta Ficha de ExercÌcios
+  //Deleta Ficha de Exerc√≠cios
   begin
     if MessageDlg('Deseja Apagar Item [COD:' + CDSAnamneseidAnamnese.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
@@ -1888,7 +1991,7 @@ var
 begin
   inherited;
 
-  //PROTOCOLO DE COMPOSI«√O CORPORAL
+  //PROTOCOLO DE COMPOSI√á√ÉO CORPORAL
   if (ClientDataSet1idProtocoloAvaFisica.IsNull) then
   begin
       LabelAvisoProtocolo.Visible := true;
@@ -1917,7 +2020,7 @@ begin
   DSAnamnese.DataSet.close;
   DSAnamnese.DataSet.open;
 
-  //PESQUISA AVALIA«√O FÕSICA
+  //PESQUISA AVALIA√á√ÉO F√çSICA
   qAvaFisica.Params[0].AsInteger := ClientDataSet1idAluno.AsInteger;
   DSAvaFisica.DataSet.close;
   DSAvaFisica.DataSet.open;
@@ -1925,7 +2028,7 @@ begin
   if (ds.DataSet.State = dsInsert) OR (ds.DataSet.State = dsEdit) then
   begin
 
-        //Se estiver no modo de ediÁ„o ou inserÁ„o, n„o Faz nada!
+        //Se estiver no modo de edi√ß√£o ou inser√ß√£o, n√£o Faz nada!
   END ELSE
   BEGIN
       // Foto na pasta local img_Aluno
@@ -2033,7 +2136,7 @@ begin
     if (ds.DataSet.State = dsEdit) then
     begin
 
-        // CONTROLE DE PAINEL DADOS-RESPONS¡VEL
+        // CONTROLE DE PAINEL DADOS-RESPONS√ÅVEL
         if(ClientDataSet1idade.AsInteger >= 18)then
         begin
             DBEdit4.Enabled := false;
@@ -2052,17 +2155,17 @@ begin
             end;
         end;
 
-        //CASO O USU¡RIO SEJA UM INSTRUTOR, VERIFICA SE ELE … O INSTRUTOR
-        //DESSE ALUNO CUJO REGISTRO SER¡ EDITADO.
+        //CASO O USU√ÅRIO SEJA UM INSTRUTOR, VERIFICA SE ELE √â O INSTRUTOR
+        //DESSE ALUNO CUJO REGISTRO SER√Å EDITADO.
         IF(DModule.administrador = FALSE)THEN
         BEGIN
             IF(ClientDataSet1idInstrutor.AsInteger <> DModule.idusuario)THEN
             BEGIN
-              //NESSE CASO O INSTRUTOR, N√O … INTRUTOR DESTE ALUNO
-              //POR ISSO N√O PODER¡ ALTERAR O REGISTRO DE EXERCÕCIOS.
+              //NESSE CASO O INSTRUTOR, N√ÉO √â INTRUTOR DESTE ALUNO
+              //POR ISSO N√ÉO PODER√Å ALTERAR O REGISTRO DE EXERC√çCIOS.
               pagFichaExercicios.TabVisible := true;
               btnNovoFicha.visible := FALSE;
-              //Impede exclus„o se necess·rio
+              //Impede exclus√£o se necess√°rio
               DBGridBelezaFichasAluno.OnKeyDown := nil;
               DBGridBelezaFichasAluno.OnDblClick := nil;
 
@@ -2070,7 +2173,7 @@ begin
             begin
               pagFichaExercicios.TabVisible := true;
               btnNovoFicha.visible := true;
-              //Impede exclus„o se necess·rio
+              //Impede exclus√£o se necess√°rio
               DBGridBelezaFichasAluno.OnKeyDown := DBGridBelezaFichasAlunoKeyDown;
               DBGridBelezaFichasAluno.OnDblClick := DBGridBelezaFichasAlunoDblClick;
             end;
@@ -2137,14 +2240,14 @@ begin
 
   inherited;
 
-  {CONTROLE DE USU¡RIOS POR FUNCIONALIDADE}
+  {CONTROLE DE USU√ÅRIOS POR FUNCIONALIDADE}
   if(DModule.administrador = true)then
   begin
     //Aba Perfil
     pagPerfil.TabVisible := true;
     PanelPerfil.Enabled := true;
 
-    //Aba AvaliaÁıes
+    //Aba Avalia√ß√µes
     pagAvaliacoes.TabVisible := true;
     btnNovaAnamnes.visible := TRUE;
     btnNovaAnamnes.enabled := TRUE;
@@ -2172,7 +2275,7 @@ begin
           pagPerfil.TabVisible := true;
           PanelPerfil.Enabled := FALSE;
 
-          //Aba AvaliaÁıes
+          //Aba Avalia√ß√µes
           pagAvaliacoes.TabVisible := true;
           btnNovaAnamnes.visible := TRUE;
           btnNovaAnamnes.enabled := TRUE;
@@ -2232,11 +2335,11 @@ begin
               pagPerfil.TabVisible := true;
               PanelPerfil.Enabled := FALSE;
 
-              //ABA AVALIA«√O -- AQUI JA TEMOS A CERTEZA DE QUE O USU¡RIO N√O … UM AVALIADOR
+              //ABA AVALIA√á√ÉO -- AQUI JA TEMOS A CERTEZA DE QUE O USU√ÅRIO N√ÉO √â UM AVALIADOR
               pagAvaliacoes.TabVisible := true;
               btnNovaAnamnes.visible := FALSE;
               btnNovaAvaFisica.visible := FALSE;
-              //Impede exclus„o se necess·rio
+              //Impede exclus√£o se necess√°rio
               DBGridBelezaAnamnese.OnKeyDown := nil;
               DBGridBelezaFisica.OnKeyDown := nil;
               DBGridBelezaPostural.OnKeyDown := nil;
@@ -2284,17 +2387,17 @@ begin
                   //ABAMENSALIDADES
                   pagMensalidades.TabVisible := TRUE;
 
-                  //ABA AVALIA«√O -- AQUI JA TEMOS A CERTEZA DE QUE O USU¡RIO N√O … UM AVALIADOR
+                  //ABA AVALIA√á√ÉO -- AQUI JA TEMOS A CERTEZA DE QUE O USU√ÅRIO N√ÉO √â UM AVALIADOR
                   pagAvaliacoes.TabVisible := true;
                   btnNovaAvaFisica.visible := FALSE;
                   btnNovaAnamnes.visible := FALSE;
-                  //Impede exclus„o se necess·rio
+                  //Impede exclus√£o se necess√°rio
                   DBGridBelezaAnamnese.OnKeyDown := nil;
                   DBGridBelezaFisica.OnKeyDown := nil;
                   DBGridBelezaPostural.OnKeyDown := nil;
                   DBGridBelezaDadosClinicos.OnKeyDown := nil;
 
-                  //ABA FICHA DE EXERCICIO -- AQUI JA TEMOS A CERTEZA DE QUE O USU¡RIO N√O … UM INSTRUTOR
+                  //ABA FICHA DE EXERCICIO -- AQUI JA TEMOS A CERTEZA DE QUE O USU√ÅRIO N√ÉO √â UM INSTRUTOR
                   pagFichaExercicios.TabVisible := TRUE;
                   btnNovoFicha.Visible := FALSE;
               END;
@@ -2307,7 +2410,7 @@ begin
 
 
   {CONTROLE DE PAGECONTROLAVALIACOES}
-  //AVALIA«√O ANAMNESE
+  //AVALIA√á√ÉO ANAMNESE
   IF(DMODULE.confAvaAnamnese = TRUE)THEN
   BEGIN
     TabSheet1.TabVisible := TRUE;
@@ -2316,7 +2419,7 @@ begin
     TabSheet1.TabVisible := FALSE;
   END;
 
-  //AVALIA«√O FÕSICA
+  //AVALIA√á√ÉO F√çSICA
   IF(DMODULE.confAvaFisica = TRUE)THEN
   BEGIN
     TabSheet2.TabVisible := TRUE;
@@ -2325,7 +2428,7 @@ begin
     TabSheet2.TabVisible := FALSE;
   END;
 
-  //AVALIA«√O POSTURAL
+  //AVALIA√á√ÉO POSTURAL
   IF(DMODULE.confAvaPostural = TRUE)THEN
   BEGIN
     TabSheet3.TabVisible := TRUE;
@@ -2334,7 +2437,7 @@ begin
     TabSheet3.TabVisible := FALSE;
   END;
 
-  //AVALIA«√O DADOS CLÕNICOS
+  //AVALIA√á√ÉO DADOS CL√çNICOS
   IF(DMODULE.confAvaDadosClinicos = TRUE)THEN
   BEGIN
     TabSheet4.TabVisible := TRUE;
@@ -2383,7 +2486,7 @@ begin
   begin
     if (aMsgDlg.Components[i] is TButton) then
     begin
-      { Apenas entra na condiÁ„o se o objeto for um button }
+      { Apenas entra na condi√ß√£o se o objeto for um button }
       dlgButton := TButton(aMsgDlg.Components[i]);
       //dlgButton.Width := 151; //
       if CaptionIndex > High(Captions) then//Captura o Index dos captions dos buttons criado no array
@@ -2417,17 +2520,17 @@ var
   duasChavesPrimarias :boolean;
   I : integer;
 begin
-  //INICIALIZA«√O DE VARI¡VEIS
+  //INICIALIZA√á√ÉO DE VARI√ÅVEIS
   idRegistro := 0;
   idRegistro2 := 0;
   duasChavesPrimarias := false;
 
-  // INSER«√O NA TABELA LOGSISTEMA
+  // INSER√á√ÉO NA TABELA LOGSISTEMA
   if not DModule.cdsLog.Active then
           DModule.cdsLog.Open;
   DModule.cdsLog.Append;
 
-  //TIPO DA OPERA«√O
+  //TIPO DA OPERA√á√ÉO
   Case UpdateKind of
   ukModify :
             begin
@@ -2570,17 +2673,17 @@ var
   duasChavesPrimarias :boolean;
   I : integer;
 begin
-  //INICIALIZA«√O DE VARI¡VEIS
+  //INICIALIZA√á√ÉO DE VARI√ÅVEIS
   idRegistro := 0;
   idRegistro2 := 0;
   duasChavesPrimarias := false;
 
-  // INSER«√O NA TABELA LOGSISTEMA
+  // INSER√á√ÉO NA TABELA LOGSISTEMA
   if not DModule.cdsLog.Active then
           DModule.cdsLog.Open;
   DModule.cdsLog.Append;
 
-  //TIPO DA OPERA«√O
+  //TIPO DA OPERA√á√ÉO
   Case UpdateKind of
   ukModify :
             begin
@@ -2724,17 +2827,17 @@ var
   duasChavesPrimarias :boolean;
   I : integer;
 begin
-  //INICIALIZA«√O DE VARI¡VEIS
+  //INICIALIZA√á√ÉO DE VARI√ÅVEIS
   idRegistro := 0;
   idRegistro2 := 0;
   duasChavesPrimarias := false;
 
-  // INSER«√O NA TABELA LOGSISTEMA
+  // INSER√á√ÉO NA TABELA LOGSISTEMA
   if not DModule.cdsLog.Active then
           DModule.cdsLog.Open;
   DModule.cdsLog.Append;
 
-  //TIPO DA OPERA«√O
+  //TIPO DA OPERA√á√ÉO
   Case UpdateKind of
   ukModify :
             begin
@@ -2878,17 +2981,17 @@ var
   duasChavesPrimarias :boolean;
   I : integer;
 begin
-  //INICIALIZA«√O DE VARI¡VEIS
+  //INICIALIZA√á√ÉO DE VARI√ÅVEIS
   idRegistro := 0;
   idRegistro2 := 0;
   duasChavesPrimarias := false;
 
-  // INSER«√O NA TABELA LOGSISTEMA
+  // INSER√á√ÉO NA TABELA LOGSISTEMA
   if not DModule.cdsLog.Active then
           DModule.cdsLog.Open;
   DModule.cdsLog.Append;
 
-  //TIPO DA OPERA«√O
+  //TIPO DA OPERA√á√ÉO
   Case UpdateKind of
   ukModify :
             begin
@@ -3127,7 +3230,7 @@ begin
 
     IF trim(EditModalidade.Text ) <> '' THEN
     BEGIN
-        //verifica se n„o h· mensalidades j· pagas
+        //verifica se n√£o h√° mensalidades j√° pagas
         DModule.qAux.SQL.Text := 'SELECT P.* FROM PAGAMENTO P WHERE P. IDPAGAMENTO = ' +
         '(SELECT max(IDPAGAMENTO) FROM PAGAMENTO PA WHERE PA.idAluno =:idA AND PA.idmodalidade =:idM AND ((PA.idstatusPagamento = 2)OR(PA.idstatusPagamento = 3)) )';
         DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
@@ -3135,19 +3238,19 @@ begin
         DModule.qAux.close;
         DModule.qAux.open;
 
-        //SE H¡ MENSALIDADES JA PAGAS, MATRÕCULA S” PODE SER REALIZADA SE "DATA_HOJE > (DATAVENCIMENTO_DA_ULTIMA_MENSALIDADE_PAGA_OU_ISENTA + 30_DIAS)"
+        //SE H√Å MENSALIDADES JA PAGAS, MATR√çCULA S√ì PODE SER REALIZADA SE "DATA_HOJE > (DATAVENCIMENTO_DA_ULTIMA_MENSALIDADE_PAGA_OU_ISENTA + 30_DIAS)"
         DATA_VENCIMENTO_ULTIMO_PAGAMENTO := DModule.qAux.FieldByName('dataVencimento').AsDateTime;
 
         if(   DModule.datahoje  > ( IncMonth(DATA_VENCIMENTO_ULTIMO_PAGAMENTO,1))      )
-        or(DATA_VENCIMENTO_ULTIMO_PAGAMENTO = NULL)  then   {null caso n„o tenha nenhum registro anterior}
+        or(DATA_VENCIMENTO_ULTIMO_PAGAMENTO = NULL)  then   {null caso n√£o tenha nenhum registro anterior}
         begin
 
               //INCLUI MODALIDADE
               DSModalidade.DataSet.Append;
               CDSModalidadeidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
               cdsModalidadeidmodalidade.AsInteger := strtoint(EditModalidade.Text);
-              cdsModalidadedataInscriÁ„o.AsDateTime := DMODULE.datahoje;
-              cdsModalidadediavencimento.AsInteger := DayOf(cdsModalidadedataInscriÁ„o.AsDateTime);
+              cdsModalidadedataInscri√ß√£o.AsDateTime := DMODULE.datahoje;
+              cdsModalidadediavencimento.AsInteger := DayOf(cdsModalidadedataInscri√ß√£o.AsDateTime);
               CDSModalidade.Post;
 
               //GERA PAGAMENTOS DOS PROXIMOS 12 MESES
@@ -3203,8 +3306,8 @@ begin
 
         end else
         begin
-            ShowMessage('Aluno possui mensalidade isenta ou quitada atÈ '+ datetostr(IncMonth(DATA_VENCIMENTO_ULTIMO_PAGAMENTO,1)) +
-            '. MatrÌcula sÛ poder· ser realizada apÛs esta data.');
+            ShowMessage('Aluno possui mensalidade isenta ou quitada at√© '+ datetostr(IncMonth(DATA_VENCIMENTO_ULTIMO_PAGAMENTO,1)) +
+            '. Matr√≠cula s√≥ poder√° ser realizada ap√≥s esta data.');
         end;
 
     END ELSE
@@ -3234,10 +3337,10 @@ begin
   inherited;
   if NOT(DSModalidade.DataSet.IsEmpty) then
   begin
-      if MessageDlg('DESEJA CANCELAR MATRÕCULA ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      if MessageDlg('DESEJA CANCELAR MATR√çCULA ['+ cdsModalidadeDESCRICAOMODALIDADE.AsString + '] ?',mtConfirmation, [mbYes, mbNo], 0) = mrYes then
       begin
 
-        //verifica se n„o h· mensalidades EM ABERTO e DATA DE HOJE > DATA DE VENCIMENTO dela
+        //verifica se n√£o h√° mensalidades EM ABERTO e DATA DE HOJE > DATA DE VENCIMENTO dela
         DModule.qAux.SQL.Text := 'SELECT P.* FROM PAGAMENTO P WHERE P.idAluno=:idA AND P.idmodalidade =:idM AND P.idstatusPagamento = 1 AND CURDATE() > P.DATAVENCIMENTO;';
         DModule.qAux.ParamByName('idA').AsInteger := ClientDataSet1idAluno.AsInteger;
         DModule.qAux.ParamByName('idM').AsInteger := cdsModalidadeidmodalidade.AsInteger;
@@ -3247,7 +3350,7 @@ begin
         if(DModule.qAux.RecordCount>0)then
         begin
             //EMITE AVISO DAS MENSALIDADES EM ABERTO
-            With TF01011.Create(self, ClientDataSet1idAluno.AsInteger, cdsModalidadeidmodalidade.AsInteger) do  // 1 =Pagamento, 2=IsenÁ„o
+            With TF01011.Create(self, ClientDataSet1idAluno.AsInteger, cdsModalidadeidmodalidade.AsInteger) do  // 1 =Pagamento, 2=Isen√ß√£o
             Begin
                   if(ShowModal = mrOk)then
                   begin
@@ -3277,7 +3380,7 @@ begin
                         }
                   end else
                   begin
-                        //ShowMessage('FunfÙ n„o mano');
+                        //ShowMessage('Funf√¥ n√£o mano');
                   end;
                   Free;
             End;
@@ -3340,7 +3443,7 @@ begin
   inherited;
   if(PageControlAvaliacoes.TabIndex = 1)then
   begin
-    //avaliaÁ„o fÌsica
+    //avalia√ß√£o f√≠sica
     With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
     Begin
       ShowModal;
@@ -3373,7 +3476,7 @@ end;
 procedure TF01001.btnPagamentoClick(Sender: TObject);
 begin
   inherited;
-  // VERIFICA SE H¡ PAGAMENTOS ANTERIORES AO ITEM SELECIONADO, EM ABERTO.
+  // VERIFICA SE H√Å PAGAMENTOS ANTERIORES AO ITEM SELECIONADO, EM ABERTO.
   DModule.qAux.SQL.Text := 'select p.* from pagamento p where p.idAluno =:idA and p.idModalidade =:idM and p.idStatusPagamento =:idS and (SELECT DATEDIFF(p.dataVencimento, :vdata)) < 0 ';
   DModule.qAux.ParamByName('IDA').AsInteger := cdsPagamentoidAluno.AsInteger;
   DModule.qAux.ParamByName('IDS').AsInteger := 1;   // 1 = Em aberto no banco
@@ -3385,7 +3488,7 @@ begin
   if(DModule.qAux.RecordCount = 0)then
   begin
       //EFETUA PAGAMENTO
-      With TF01010.Create(self, cdsPagamentoidPagamento.AsInteger, 1) do  // 1 =Pagamento, 2=IsenÁ„o
+      With TF01010.Create(self, cdsPagamentoidPagamento.AsInteger, 1) do  // 1 =Pagamento, 2=Isen√ß√£o
       Begin
         ShowModal;
         Free;
@@ -3395,8 +3498,8 @@ begin
   begin
       if(DModule.qAux.RecordCount > 0)then
       begin
-          //EXISTEM PAGAMENTOS ANTERIORES EM ATRASO, N√O … POSSÕVEL CONCLUIR.
-          ShowMessage('PAGAMENTO ANTERIOR EM ABERTO. N√O … POSSÕVEL CONCLUIR. (' + inttostr( DModule.qAux.RecordCount ) + ')');
+          //EXISTEM PAGAMENTOS ANTERIORES EM ATRASO, N√ÉO √â POSS√çVEL CONCLUIR.
+          ShowMessage('PAGAMENTO ANTERIOR EM ABERTO. N√ÉO √â POSS√çVEL CONCLUIR. (' + inttostr( DModule.qAux.RecordCount ) + ')');
       end;
   end;
 end;
