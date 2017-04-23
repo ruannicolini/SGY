@@ -3,8 +3,8 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
-  ExplicitTop = -150
+  ExplicitLeft = -147
+  ExplicitTop = -365
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -522,6 +522,30 @@
               Caption = 'pesoOsseo'
               FocusControl = cxDBCalcEdit5
             end
+            object Label21: TLabel
+              Left = 949
+              Top = 322
+              Width = 91
+              Height = 16
+              Caption = 'somatotipoEndo'
+              FocusControl = cxDBCalcEdit6
+            end
+            object Label23: TLabel
+              Left = 945
+              Top = 232
+              Width = 87
+              Height = 16
+              Caption = 'somatotipoEcto'
+              FocusControl = cxDBCalcEdit7
+            end
+            object Label24: TLabel
+              Left = 945
+              Top = 280
+              Width = 93
+              Height = 16
+              Caption = 'somatotipoMeso'
+              FocusControl = cxDBCalcEdit8
+            end
             object cxGroupBox1: TcxGroupBox
               Left = 24
               Top = 8
@@ -967,6 +991,30 @@
               DataBinding.DataField = 'pesoOsseo'
               DataBinding.DataSource = dsRelAvaFisica
               TabOrder = 6
+              Width = 121
+            end
+            object cxDBCalcEdit6: TcxDBCalcEdit
+              Left = 949
+              Top = 338
+              DataBinding.DataField = 'somatotipoEndo'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 7
+              Width = 121
+            end
+            object cxDBCalcEdit7: TcxDBCalcEdit
+              Left = 945
+              Top = 248
+              DataBinding.DataField = 'somatotipoEcto'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 8
+              Width = 121
+            end
+            object cxDBCalcEdit8: TcxDBCalcEdit
+              Left = 945
+              Top = 296
+              DataBinding.DataField = 'somatotipoMeso'
+              DataBinding.DataSource = dsRelAvaFisica
+              TabOrder = 9
               Width = 121
             end
           end
@@ -2232,7 +2280,7 @@
     Left = 472
     Top = 16
     Bitmap = {
-      494C01010F002C00C40310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00C80310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3740,7 +3788,7 @@
     Left = 440
     Top = 16
     Bitmap = {
-      494C01010100140024015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140028015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8619,7 +8667,7 @@
     DataSet = CDSAnamnese
     OnDataChange = dsAnamneseDataChange
     Left = 950
-    Top = 530
+    Top = 522
   end
   object CDSAnamnese: TClientDataSet
     Aggregates = <>
@@ -8629,7 +8677,7 @@
     AfterCancel = CDSAnamneseAfterCancel
     AfterDelete = CDSAnamneseAfterDelete
     Left = 918
-    Top = 530
+    Top = 522
     object CDSAnamneseidAnamnese: TIntegerField
       FieldName = 'idAnamnese'
       Origin = 'idAnamnese'
@@ -8713,7 +8761,7 @@
     DataSet = qAnamnese
     BeforeUpdateRecord = pAnamneseBeforeUpdateRecord
     Left = 894
-    Top = 530
+    Top = 522
   end
   object qAnamnese: TFDQuery
     Connection = DModule.FDConnection
@@ -8724,7 +8772,7 @@
       'WHERE AN.IDALUNO =:IDA'
       'ORDER BY AN.DATAANAMNESE DESC, AN.IDANAMNESE DESC')
     Left = 862
-    Top = 530
+    Top = 522
     ParamData = <
       item
         Name = 'IDA'
@@ -9214,8 +9262,8 @@
       'select ap.*, p.nomepatologia from AnamnesePatologia ap '
       'left outer join patologia p on p.idPatologia = ap.idpatologia'
       'where ap.idAnamnese =:idA')
-    Left = 862
-    Top = 570
+    Left = 886
+    Top = 562
     ParamData = <
       item
         Name = 'IDA'
@@ -9251,8 +9299,8 @@
   end
   object pAnamnesePatologia: TDataSetProvider
     DataSet = qAnamnesePatologia
-    Left = 888
-    Top = 568
+    Left = 968
+    Top = 560
   end
   object cdsAnamnesePatologia: TClientDataSet
     Aggregates = <>

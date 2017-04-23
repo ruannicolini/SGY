@@ -195,6 +195,9 @@ type
     procedure ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure DSDataChange(Sender: TObject; Field: TField);
+    procedure BSalvarClick(Sender: TObject);
+    procedure Action5Execute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -216,6 +219,56 @@ implementation
 uses UDataModule;
 
 { TF01017 }
+
+procedure TF01017.Action5Execute(Sender: TObject);
+var
+corDefault: TColor;
+begin
+  inherited;
+  //destaca Campos Obrigatórios
+  corDefault := clblack;
+  Label21.font.Color := corDefault;  //dobra tricipal
+  Label22.font.Color := corDefault; //dobra subscapular
+  Label29.font.Color := corDefault; //dobra supra iliac
+  Label25.font.Color := corDefault; //dobra coxa
+  Label24.font.Color := corDefault; //dobra abdominal
+  Label28.font.Color := corDefault; //dobra peitoral
+  Label23.font.Color := corDefault; //dobra axiliar
+
+  Label3.font.Color := corDefault;  //MED peso
+  Label4.font.Color := corDefault;  //MED altura
+  Label11.font.Color := corDefault; //MED braço direito relaxado
+  Label13.font.Color := corDefault; //MED coxa direita
+
+  Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+  Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+
+end;
+
+procedure TF01017.BSalvarClick(Sender: TObject);
+var
+corDefault: TColor;
+begin
+  inherited;
+  //destaca Campos Obrigatórios
+  corDefault := clblack;
+  Label21.font.Color := corDefault;  //dobra tricipal
+  Label22.font.Color := corDefault; //dobra subscapular
+  Label29.font.Color := corDefault; //dobra supra iliac
+  Label25.font.Color := corDefault; //dobra coxa
+  Label24.font.Color := corDefault; //dobra abdominal
+  Label28.font.Color := corDefault; //dobra peitoral
+  Label23.font.Color := corDefault; //dobra axiliar
+
+  Label3.font.Color := corDefault;  //MED peso
+  Label4.font.Color := corDefault;  //MED altura
+  Label11.font.Color := corDefault; //MED braço direito relaxado
+  Label13.font.Color := corDefault; //MED coxa direita
+
+  Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+  Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+
+end;
 
 procedure TF01017.ClientDataSet1AfterInsert(DataSet: TDataSet);
 begin
@@ -291,7 +344,60 @@ begin
   BExcluir.ENABLED := FALSE;
 end;
 
+procedure TF01017.DSDataChange(Sender: TObject; Field: TField);
+var
+corDefault : Tcolor;
+begin
+  inherited;
+  {
+  if ((ds.DataSet.State = dsInsert) or (ds.DataSet.State = dsEdit)) then
+  begin
+      corDefault := $000069D2;
+      Label21.font.Color := corDefault;  //dobra tricipal
+      Label22.font.Color := corDefault; //dobra subscapular
+      Label29.font.Color := corDefault; //dobra supra iliac
+      Label25.font.Color := corDefault; //dobra coxa
+      Label24.font.Color := corDefault; //dobra abdominal
+      Label28.font.Color := corDefault; //dobra peitoral
+      Label23.font.Color := corDefault; //dobra axiliar
+
+      Label3.font.Color := corDefault;  //MED peso
+      Label4.font.Color := corDefault;  //MED altura
+      Label11.font.Color := corDefault; //MED braço direito relaxado
+      Label13.font.Color := corDefault; //MED coxa direita
+
+      Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+      Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+
+  end ELSE
+  BEGIN
+    if ((ds.DataSet.State = dsInsert) or (ds.DataSet.State = dsEdit)) then
+    begin
+        corDefault := clBLACK;
+        Label21.font.Color := corDefault;  //dobra tricipal
+        Label22.font.Color := corDefault; //dobra subscapular
+        Label29.font.Color := corDefault; //dobra supra iliac
+        Label25.font.Color := corDefault; //dobra coxa
+        Label24.font.Color := corDefault; //dobra abdominal
+        Label28.font.Color := corDefault; //dobra peitoral
+        Label23.font.Color := corDefault; //dobra axiliar
+
+        Label3.font.Color := corDefault;  //MED peso
+        Label4.font.Color := corDefault;  //MED altura
+        Label11.font.Color := corDefault; //MED braço direito relaxado
+        Label13.font.Color := corDefault; //MED coxa direita
+
+        Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+        Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+    end;
+
+  END;
+  }
+end;
+
 procedure TF01017.DSStateChange(Sender: TObject);
+var
+corDefault : TColor;
 begin
   inherited;
   if (ds.DataSet.State = dsInsert) then
@@ -309,6 +415,29 @@ begin
     ClientDataSet1nomeAvaliador.AsString := DModule.nomeusuario;
 
   end;
+
+  //destaca Campos Obrigatórios
+  if ((ds.DataSet.State = dsInsert) or (ds.DataSet.State = dsEdit)) then
+  begin
+      corDefault := $000069D2;
+      Label21.font.Color := corDefault;  //dobra tricipal
+      Label22.font.Color := corDefault; //dobra subscapular
+      Label29.font.Color := corDefault; //dobra supra iliac
+      Label25.font.Color := corDefault; //dobra coxa
+      Label24.font.Color := corDefault; //dobra abdominal
+      Label28.font.Color := corDefault; //dobra peitoral
+      Label23.font.Color := corDefault; //dobra axiliar
+
+      Label3.font.Color := corDefault;  //MED peso
+      Label4.font.Color := corDefault;  //MED altura
+      Label11.font.Color := corDefault; //MED braço direito relaxado
+      Label13.font.Color := corDefault; //MED coxa direita
+
+      Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+      Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+  end;
+  
+
 end;
 
 procedure TF01017.FormShow(Sender: TObject);

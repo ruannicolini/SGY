@@ -4,8 +4,6 @@ inherited F01017: TF01017
   ClientHeight = 680
   ClientWidth = 884
   Position = poOwnerFormCenter
-  ExplicitLeft = -97
-  ExplicitTop = -186
   ExplicitWidth = 884
   ExplicitHeight = 680
   PixelsPerInch = 96
@@ -14,18 +12,17 @@ inherited F01017: TF01017
     Width = 884
     Height = 645
     ActivePage = TbDados
-    ExplicitWidth = 924
+    ExplicitWidth = 884
     ExplicitHeight = 645
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 916
+      ExplicitWidth = 876
       ExplicitHeight = 617
       inherited grDados: TGroupBox
         Width = 876
         Height = 617
-        ExplicitLeft = 2
-        ExplicitWidth = 916
+        ExplicitWidth = 876
         ExplicitHeight = 617
         object Label1: TLabel
           Left = 12
@@ -985,17 +982,17 @@ inherited F01017: TF01017
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 916
+      ExplicitWidth = 876
       ExplicitHeight = 617
       inherited GBFiltros: TGroupBox
         Width = 876
-        ExplicitWidth = 916
+        ExplicitWidth = 876
         inherited Panel1: TPanel
           Width = 867
-          ExplicitWidth = 907
+          ExplicitWidth = 867
           inherited BtnLimparFiltros: TButton
             Left = 822
-            ExplicitLeft = 862
+            ExplicitLeft = 822
           end
         end
       end
@@ -1005,17 +1002,17 @@ inherited F01017: TF01017
       end
       inherited PanelFiltros: TPanel
         Width = 876
-        ExplicitWidth = 916
+        ExplicitWidth = 876
         inherited btnFiltrar: TButton
           Left = 825
-          ExplicitLeft = 865
+          ExplicitLeft = 825
         end
       end
     end
   end
   inherited Panel2: TPanel
     Width = 884
-    ExplicitWidth = 924
+    ExplicitWidth = 884
     inherited BFechar: TSpeedButton
       Left = 850
       ExplicitLeft = 690
@@ -1432,7 +1429,7 @@ inherited F01017: TF01017
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C000C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00100210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
