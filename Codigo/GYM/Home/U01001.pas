@@ -23,7 +23,7 @@ uses
   cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
   Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch,
   frxChart, cxCalc, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series,
-  VCLTee.TeeProcs, VCLTee.Chart;
+  VCLTee.TeeProcs, VCLTee.Chart, frxCrypt;
 
 type
   TF01001 = class(TFBase)
@@ -583,6 +583,9 @@ type
     cdsRelAvaFisicado_BIMALEOLAR_cm: TSingleField;
     frxDBDataset6: TfrxDBDataset;
     report_AvaFisica: TfrxReport;
+    frxCrypt1: TfrxCrypt;
+    cdsRelAvaFisicaRCQ: TFloatField;
+    cdsRelAvaFisicaclassificacaoRCQ: TStringField;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -683,7 +686,7 @@ type
     function MsgDlgButtonPersonal(const Msg: string; DlgType: TMsgDlgType;
     Buttons: TMsgDlgButtons; Captions: array of string): Integer;
     procedure OcultarSheets(PageControl: TPageControl);
-
+    FUNCTION getClassificacaoRCQ (rcq: Real; IDADE:  INTEGER; sexo: String): String;
 
   end;
 
@@ -1091,6 +1094,7 @@ end;
 
 procedure TF01001.btnImprimirAvaFisicaClick(Sender: TObject);
 var iMensagem : integer;
+  I: INTEGER;
 begin
   inherited;
 
@@ -1110,7 +1114,27 @@ begin
                           qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
                           cdsRelAvaFisica.close;
                           cdsRelAvaFisica.open;
-                          //REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+
+                          //
+                          {
+                          cdsRelAvaFisica.First;
+                          for I := 0 to cdsRelAvaFisica.FieldCount-1  do
+                          begin
+                            IF((cdsRelAvaFisica.Fields.Fields[I].IsNull))then
+                            begin
+                              //SHOWMESSAGE(cdsRelAvaFisica.Fields.Fields[I].FieldName + ': '+ cdsRelAvaFisica.Fields.Fields[I].ClassName);
+                              IF((cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TFloatField') or (cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TSingleField')) THEN
+                              BEGIN
+                                  cdsRelAvaFisica.edit;
+                                  cdsRelAvaFisica.Fields.Fields[I].AsFloat := 0.00;
+                                  cdsRelAvaFisica.post;
+                              END;
+                            end;
+                          end;
+                          }
+
+
+
                           report_AvaFisica.ShowReport(TRUE);
                           //report_AvaFisica.Print;
                         EXCEPT
@@ -1384,12 +1408,23 @@ BU, BF, Bc, Pc, E: REAL;
 begin
   inherited;
 
+  //IMC
   if NOT(CDSrelAVAFISICAmed_peso_cm.IsNull) and NOT(CDSrelAVAFISICAmed_altura_cm.IsNull) then
   begin
     CDSrelAVAFISICAIMC.AsFloat := CDSrelAVAFISICAmed_peso_cm.AsFloat/ (CDSrelAVAFISICAmed_altura_cm.AsFloat * CDSrelAVAFISICAmed_altura_cm.AsFloat) ;
     CDSrelAVAFISICAIMC.AsFloat := RoundTo (CDSrelAVAFISICAIMC.AsFloat, -2);
   end;
 
+  //RCQ
+  if NOT(CDSrelAVAFISICAmed_cintura_cm.IsNull) and NOT(CDSrelAVAFISICAmed_quadril_cm.IsNull) then
+  begin
+    CDSrelAVAFISICARCQ.AsFloat := cdsRelAvaFisicamed_cintura_cm.AsFloat/ cdsRelAvaFisicamed_quadril_cm.AsFloat;
+    CDSrelAVAFISICARCQ.AsFloat := RoundTo (CDSrelAVAFISICARCQ.AsFloat, -2);
+    cdsRelAvaFisicaclassificacaoRCQ.AsString := getClassificacaoRCQ(CDSrelAVAFISICARCQ.AsFloat, clientdataset1idade.AsInteger, ClientDataSet1sexo.AsString);
+    //showmessage(cdsRelAvaFisicaclassificacaoRCQ.AsString);
+  end;
+
+  //PORCENTAGEM DE GORDURA
   IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
   BEGIN
 
@@ -1497,6 +1532,7 @@ begin
 
     end;
 
+    //COMPOSIÇÃO CORPORAL
     IF NOT(cdsRelAvaFisicaporcentagemGordura.IsNull)THEN
     BEGIN
         //Peso Gordura
@@ -1540,6 +1576,8 @@ begin
   BEGIN
       SHOWMESSAGE('ESCOLHA UM PROTOCOLO PARA CÁLCULO DA % DE GORDURA NO PERFIL DO USUÁRIO.');
   END;
+
+
 
   {SOMATOTIPIA}
 
@@ -2501,6 +2539,245 @@ begin
 
 end;
 
+function TF01001.getClassificacaoRCQ(rcq: Real; IDADE:  INTEGER; sexo: String): String;
+begin
+  //
+ IF(SEXO = 'F')THEN
+ BEGIN
+    IF (IDADE <= 29) THEN
+    BEGIN
+                   IF (rcq < 0.71)THEN
+                   BEGIN
+                       RESULT := 'BAIXO';
+                   END else
+                   BEGIN
+                       if(rcq <= 0.77)THEN
+                       BEGIN
+                           RESULT :=  'MODERADO';
+                       END else
+                       BEGIN
+                           if(RCQ <= 0.82) THEN
+                           BEGIN
+                               RESULT := 'ALTO';
+                           END else
+                               RESULT := 'ELEVADO';
+
+                       END
+                   END;
+
+    END;
+
+
+    IF(IDADE <= 39)THEN
+    BEGIN
+                       IF (rcq < 0.72)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.78)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 0.84) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF (IDADE <= 49) THEN
+    BEGIN
+                       IF (rcq < 0.73)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.79)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 0.87) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF(IDADE <= 59)THEN
+    BEGIN
+                      IF (rcq < 0.74)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.81)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 0.88) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF (IDADE >= 60) THEN
+    BEGIN
+                      IF (rcq < 0.76)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.83)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 0.90) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+ END;
+
+
+ IF(SEXO = 'M')THEN
+ BEGIN
+    IF (IDADE <= 29) THEN
+    BEGIN
+                   IF (rcq < 0.83)THEN
+                   BEGIN
+                       RESULT := 'BAIXO';
+                   END else
+                   BEGIN
+                       if(rcq <= 0.88)THEN
+                       BEGIN
+                           RESULT :=  'MODERADO';
+                       END else
+                       BEGIN
+                           if(RCQ <= 0.94) THEN
+                           BEGIN
+                               RESULT := 'ALTO';
+                           END else
+                               RESULT := 'ELEVADO';
+
+                       END
+                   END;
+
+    END;
+
+
+    IF(IDADE <= 39)THEN
+    BEGIN
+                       IF (rcq < 0.84)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.91)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 0.96) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF (IDADE <= 49) THEN
+    BEGIN
+                       IF (rcq < 0.88)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.95)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 1) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF(IDADE <= 59)THEN
+    BEGIN
+                      IF (rcq < 0.90)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.96)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 1.02) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+    IF (IDADE >= 60) THEN
+    BEGIN
+                      IF (rcq < 0.91)THEN
+                       BEGIN
+                           RESULT := 'BAIXO';
+                       END else
+                       BEGIN
+                           if(rcq <= 0.98)THEN
+                           BEGIN
+                               RESULT :=  'MODERADO';
+                           END else
+                           BEGIN
+                               if(RCQ <= 1.03) THEN
+                               BEGIN
+                                   RESULT := 'ALTO';
+                               END else
+                                   RESULT := 'ELEVADO';
+
+                           END
+                       END;
+    END;
+
+ END;
+
+
+end;
+
 procedure TF01001.editBModalidadeButtonClick(Sender: TObject;
   var query_result: TFDQuery);
 begin
@@ -3296,6 +3573,7 @@ begin
     cdsRelAvaFisicasomatotipoEcto.AsString + ';' +
     cdsRelAvaFisicasomatotipoMeso.AsString + ';' +
     cdsRelAvaFisicasomatotipoEndo.AsString + ';';
+
   END;
 
   {IF SENDER.Name = 'memoProtocolo' then
