@@ -12,7 +12,9 @@ uses
   Datasnap.DBClient, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, DBGridBeleza,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit,
-  cxDBEdit, Vcl.Mask, Vcl.DBCtrls, cxMaskEdit, cxSpinEdit, Math;
+  cxDBEdit, Vcl.Mask, Vcl.DBCtrls, cxMaskEdit, cxSpinEdit, Math,
+  VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
+  VCLTee.Chart;
 
 type
   TF01017 = class(TFBase)
@@ -75,33 +77,9 @@ type
     DBEdit28: TDBEdit;
     Label29: TLabel;
     DBEdit29: TDBEdit;
-    GroupBox3: TGroupBox;
-    Label30: TLabel;
-    cxDBSpinEdit1: TcxDBSpinEdit;
-    Label31: TLabel;
-    cxDBSpinEdit2: TcxDBSpinEdit;
-    Label32: TLabel;
-    cxDBSpinEdit3: TcxDBSpinEdit;
-    Label33: TLabel;
-    cxDBSpinEdit4: TcxDBSpinEdit;
-    Label34: TLabel;
-    cxDBSpinEdit5: TcxDBSpinEdit;
-    Label35: TLabel;
-    cxDBSpinEdit6: TcxDBSpinEdit;
-    Label36: TLabel;
-    cxDBSpinEdit7: TcxDBSpinEdit;
     cxDBMaskEdit6: TcxDBMaskEdit;
     cxDBSpinEdit8: TcxDBSpinEdit;
     cxDBSpinEdit9: TcxDBSpinEdit;
-    GroupBox4: TGroupBox;
-    Label37: TLabel;
-    Label38: TLabel;
-    Label39: TLabel;
-    Label40: TLabel;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
-    DBEdit20: TDBEdit;
-    DBEdit30: TDBEdit;
     FDQuery1idAvaliacaoFisica: TIntegerField;
     FDQuery1idAluno: TIntegerField;
     FDQuery1dataAvaliacaoFisica: TDateField;
@@ -132,13 +110,6 @@ type
     FDQuery1dobra_biciptal_mm: TSingleField;
     FDQuery1dobra_peitoral_mm: TSingleField;
     FDQuery1dobra_suprailiac_mm: TSingleField;
-    FDQuery1flex_colunaCervicalFlexaoLateral_grau: TIntegerField;
-    FDQuery1flex_troncoFlexao_grau: TIntegerField;
-    FDQuery1flex_ombroDireitoAbducao_grau: TIntegerField;
-    FDQuery1flex_ombroEsquerdoAbducao_grau: TIntegerField;
-    FDQuery1flex_quadrilDireitoFlexao_grau: TIntegerField;
-    FDQuery1flex_quadrilEsquerdoFlexao_grau: TIntegerField;
-    FDQuery1flex_quadrilAbducao_grau: TIntegerField;
     FDQuery1tipoProtocolo: TStringField;
     FDQuery1do_BIESTILOIDE_cm: TSingleField;
     FDQuery1do_BIEPICONDILIANO_cm: TSingleField;
@@ -175,19 +146,21 @@ type
     ClientDataSet1dobra_biciptal_mm: TSingleField;
     ClientDataSet1dobra_peitoral_mm: TSingleField;
     ClientDataSet1dobra_suprailiac_mm: TSingleField;
-    ClientDataSet1flex_colunaCervicalFlexaoLateral_grau: TIntegerField;
-    ClientDataSet1flex_troncoFlexao_grau: TIntegerField;
-    ClientDataSet1flex_ombroDireitoAbducao_grau: TIntegerField;
-    ClientDataSet1flex_ombroEsquerdoAbducao_grau: TIntegerField;
-    ClientDataSet1flex_quadrilDireitoFlexao_grau: TIntegerField;
-    ClientDataSet1flex_quadrilEsquerdoFlexao_grau: TIntegerField;
-    ClientDataSet1flex_quadrilAbducao_grau: TIntegerField;
     ClientDataSet1tipoProtocolo: TStringField;
     ClientDataSet1do_BIESTILOIDE_cm: TSingleField;
     ClientDataSet1do_BIEPICONDILIANO_cm: TSingleField;
     ClientDataSet1do_BICONDILIANO_cm: TSingleField;
     ClientDataSet1do_BIMALEOLAR_cm: TSingleField;
     ClientDataSet1NOMEALUNO: TStringField;
+    GroupBox3: TGroupBox;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    DBEdit31: TDBEdit;
+    DBEdit32: TDBEdit;
+    DBEdit33: TDBEdit;
+    DBEdit34: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure DSStateChange(Sender: TObject);
@@ -240,8 +213,8 @@ begin
   Label11.font.Color := corDefault; //MED braço direito relaxado
   Label13.font.Color := corDefault; //MED coxa direita
 
-  Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
-  Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+  Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+  Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
 
 end;
 
@@ -249,24 +222,103 @@ procedure TF01017.BSalvarClick(Sender: TObject);
 var
 corDefault: TColor;
 begin
-  inherited;
-  //destaca Campos Obrigatórios
-  corDefault := clblack;
-  Label21.font.Color := corDefault;  //dobra tricipal
-  Label22.font.Color := corDefault; //dobra subscapular
-  Label29.font.Color := corDefault; //dobra supra iliac
-  Label25.font.Color := corDefault; //dobra coxa
-  Label24.font.Color := corDefault; //dobra abdominal
-  Label28.font.Color := corDefault; //dobra peitoral
-  Label23.font.Color := corDefault; //dobra axiliar
 
-  Label3.font.Color := corDefault;  //MED peso
-  Label4.font.Color := corDefault;  //MED altura
-  Label11.font.Color := corDefault; //MED braço direito relaxado
-  Label13.font.Color := corDefault; //MED coxa direita
+  // verificação campos obrigatórios
+  if not (ClientDataSet1dobra_triciptal_mm.IsNull)then
+  begin
+    if not (ClientDataSet1dobra_subescapular_mm.IsNull)then
+    begin
+        if not (ClientDataSet1dobra_coxa_mm.IsNull)then
+        begin
+            if not (ClientDataSet1dobra_abdominal_mm.IsNull)then
+            begin
+                if not (ClientDataSet1dobra_peitoral_mm.IsNull)then
+                begin
+                    if not (ClientDataSet1dobra_axiliar_mm.IsNull)then
+                    begin
+                        if not (ClientDataSet1med_peso_cm.IsNull)then
+                        begin
+                            if not (ClientDataSet1med_altura_cm.IsNull)then
+                            begin
+                                if not (ClientDataSet1med_bracoDireitoRelaxado_cm.IsNull)then
+                                begin
+                                    if not (ClientDataSet1med_coxaDireita_cm.IsNull)then
+                                    begin
+                                        if not (ClientDataSet1do_BIEPICONDILIANO_cm.IsNull)then
+                                        begin
+                                            if not (ClientDataSet1do_BICONDILIANO_cm.IsNull)then
+                                            begin
 
-  Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
-  Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+                                                inherited;
+                                                //destaca Campos Obrigatórios
+                                                corDefault := clblack;
+                                                Label21.font.Color := corDefault;  //dobra tricipal
+                                                Label22.font.Color := corDefault; //dobra subscapular
+                                                Label29.font.Color := corDefault; //dobra supra iliac
+                                                Label25.font.Color := corDefault; //dobra coxa
+                                                Label24.font.Color := corDefault; //dobra abdominal
+                                                Label28.font.Color := corDefault; //dobra peitoral
+                                                Label23.font.Color := corDefault; //dobra axiliar
+
+                                                Label3.font.Color := corDefault;  //MED peso
+                                                Label4.font.Color := corDefault;  //MED altura
+                                                Label11.font.Color := corDefault; //MED braço direito relaxado
+                                                Label13.font.Color := corDefault; //MED coxa direita
+
+                                                Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+                                                Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+
+
+                                            end else
+                                            begin
+                                              showmessage('Informe Medida do BICONDILIANO.');
+                                            end;
+                                        end else
+                                        begin
+                                          showmessage('Informe Medida do BIEPICONDILIANO.');
+                                        end;
+
+
+                                    end else
+                                    begin
+                                      showmessage('Informe Medida da Coxa Direita.');
+                                    end;
+                                end else
+                                begin
+                                  showmessage('Informe Medida do Braço Direito.');
+                                end;
+                            end else
+                            begin
+                              showmessage('Informe a Altura do Aluno.');
+                            end;
+                        end else
+                        begin
+                          showmessage('Informe o Peso do Aluno.');
+                        end;
+                    end else
+                    begin
+                      showmessage('Informe Valor da Dobra  Axiliar.');
+                    end;
+                end else
+                begin
+                  showmessage('Informe Valor da Dobra Peitoral.');
+                end;
+            end else
+            begin
+              showmessage('Informe Valor da Dobra Abdominal.');
+            end;
+        end else
+        begin
+          showmessage('Informe Valor da Dobra Coxa.');
+        end;
+    end else
+    begin
+      showmessage('Informe Valor da Dobra Subescapular.');
+    end;
+  end else
+  begin
+    showmessage('Informe Valor da Dobra Tricipal.');
+  end;
 
 end;
 
@@ -433,8 +485,8 @@ begin
       Label11.font.Color := corDefault; //MED braço direito relaxado
       Label13.font.Color := corDefault; //MED coxa direita
 
-      Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
-      Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+      Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+      Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
   end;
   
 

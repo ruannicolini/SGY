@@ -2,45 +2,45 @@ inherited F01017: TF01017
   BorderStyle = bsNone
   Caption = 'F01017'
   ClientHeight = 680
-  ClientWidth = 884
+  ClientWidth = 719
   Position = poOwnerFormCenter
-  ExplicitWidth = 884
+  ExplicitWidth = 719
   ExplicitHeight = 680
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl: TPageControl
-    Width = 884
+    Width = 719
     Height = 645
     ActivePage = TbDados
-    ExplicitWidth = 884
+    ExplicitWidth = 719
     ExplicitHeight = 645
     inherited TbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 876
+      ExplicitWidth = 711
       ExplicitHeight = 617
       inherited grDados: TGroupBox
-        Width = 876
+        Width = 711
         Height = 617
-        ExplicitWidth = 876
+        ExplicitWidth = 711
         ExplicitHeight = 617
         object Label1: TLabel
           Left = 12
-          Top = 14
+          Top = 12
           Width = 22
           Height = 13
           Caption = 'COD'
         end
         object Label2: TLabel
           Left = 12
-          Top = 55
+          Top = 57
           Width = 34
           Height = 13
           Caption = 'ALUNO'
         end
         object DBEdit1: TDBEdit
           Left = 12
-          Top = 30
+          Top = 28
           Width = 81
           Height = 21
           TabStop = False
@@ -51,7 +51,7 @@ inherited F01017: TF01017
         end
         object DBEdit2: TDBEdit
           Left = 12
-          Top = 71
+          Top = 73
           Width = 41
           Height = 21
           TabStop = False
@@ -62,7 +62,7 @@ inherited F01017: TF01017
         end
         object cxDBTextEdit1: TcxDBTextEdit
           Left = 52
-          Top = 71
+          Top = 73
           TabStop = False
           DataBinding.DataField = 'NOMEALUNO'
           DataBinding.DataSource = DS
@@ -72,7 +72,7 @@ inherited F01017: TF01017
         end
         object GroupBox1: TGroupBox
           Left = 12
-          Top = 102
+          Top = 109
           Width = 504
           Height = 281
           Caption = ' MEDIDAS '
@@ -501,10 +501,10 @@ inherited F01017: TF01017
           end
         end
         object GroupBox2: TGroupBox
-          Left = 525
-          Top = 102
-          Width = 339
-          Height = 281
+          Left = 12
+          Top = 391
+          Width = 504
+          Height = 159
           Caption = 'DOBRAS'
           TabOrder = 4
           object Label21: TLabel
@@ -550,8 +550,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label24: TLabel
-            Left = 13
-            Top = 144
+            Left = 339
+            Top = 21
             Width = 96
             Height = 11
             Caption = 'ABDOMINAL (mm)'
@@ -564,8 +564,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label25: TLabel
-            Left = 13
-            Top = 185
+            Left = 339
+            Top = 62
             Width = 61
             Height = 11
             Caption = 'COXA (mm)'
@@ -578,8 +578,8 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label26: TLabel
-            Left = 13
-            Top = 226
+            Left = 339
+            Top = 103
             Width = 108
             Height = 11
             Caption = 'PANTURRILHA (mm)'
@@ -661,8 +661,8 @@ inherited F01017: TF01017
             TabOrder = 2
           end
           object DBEdit24: TDBEdit
-            Left = 13
-            Top = 160
+            Left = 339
+            Top = 37
             Width = 150
             Height = 21
             DataField = 'dobra_abdominal_mm'
@@ -670,8 +670,8 @@ inherited F01017: TF01017
             TabOrder = 3
           end
           object DBEdit25: TDBEdit
-            Left = 13
-            Top = 201
+            Left = 339
+            Top = 78
             Width = 150
             Height = 21
             DataField = 'dobra_coxa_mm'
@@ -679,8 +679,8 @@ inherited F01017: TF01017
             TabOrder = 4
           end
           object DBEdit26: TDBEdit
-            Left = 13
-            Top = 242
+            Left = 339
+            Top = 119
             Width = 150
             Height = 21
             DataField = 'dobra_panturrilha_mm'
@@ -716,19 +716,19 @@ inherited F01017: TF01017
           end
         end
         object GroupBox3: TGroupBox
-          Left = 12
-          Top = 386
-          Width = 504
-          Height = 197
-          Caption = ' FLEXIBILIDADE (EM GRAUS)'
+          Left = 523
+          Top = 109
+          Width = 176
+          Height = 441
+          Caption = 'DI'#194'METROS '#211'SSEOS'
           TabOrder = 5
           object Label30: TLabel
-            Left = 14
-            Top = 21
-            Width = 204
+            Left = 13
+            Top = 62
+            Width = 142
             Height = 11
-            Caption = 'COLUNA CERVICAL (FLEX'#195'O LATERAL)'
-            FocusControl = cxDBSpinEdit1
+            Caption = 'BIEPIC'#212'NDILIANO - C (cm)'
+            FocusControl = DBEdit31
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -9
@@ -737,12 +737,12 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label31: TLabel
-            Left = 14
-            Top = 62
-            Width = 98
+            Left = 13
+            Top = 21
+            Width = 112
             Height = 11
-            Caption = 'TRONCO (FLEX'#195'O)'
-            FocusControl = cxDBSpinEdit2
+            Caption = 'BIESTIL'#211'IDE - P (cm)'
+            FocusControl = DBEdit32
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -9
@@ -751,12 +751,12 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label32: TLabel
-            Left = 14
+            Left = 13
             Top = 103
-            Width = 126
+            Width = 122
             Height = 11
-            Caption = 'OMBRO DIR (ABDU'#199#195'O)'
-            FocusControl = cxDBSpinEdit3
+            Caption = 'BIC'#212'NDILIANO - J (cm)'
+            FocusControl = DBEdit33
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -9
@@ -765,174 +765,12 @@ inherited F01017: TF01017
             ParentFont = False
           end
           object Label33: TLabel
-            Left = 14
-            Top = 144
-            Width = 127
-            Height = 11
-            Caption = 'OMBRO ESQ (ABDU'#199#195'O)'
-            FocusControl = cxDBSpinEdit4
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label34: TLabel
-            Left = 258
-            Top = 21
-            Width = 124
-            Height = 11
-            Caption = 'QUADRIL DIR (FLEX'#195'O)'
-            FocusControl = cxDBSpinEdit5
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label35: TLabel
-            Left = 258
-            Top = 62
-            Width = 125
-            Height = 11
-            Caption = 'QUADRIL ESQ (FLEX'#195'O)'
-            FocusControl = cxDBSpinEdit6
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label36: TLabel
-            Left = 258
-            Top = 103
-            Width = 113
-            Height = 11
-            Caption = 'QUADRIL (ABDU'#199#195'O)'
-            FocusControl = cxDBSpinEdit7
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object cxDBSpinEdit1: TcxDBSpinEdit
-            Left = 14
-            Top = 37
-            DataBinding.DataField = 'flex_colunaCervicalFlexaoLateral_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 0
-            Width = 232
-          end
-          object cxDBSpinEdit2: TcxDBSpinEdit
-            Left = 14
-            Top = 78
-            DataBinding.DataField = 'flex_troncoFlexao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 2
-            Width = 232
-          end
-          object cxDBSpinEdit3: TcxDBSpinEdit
-            Left = 14
-            Top = 119
-            DataBinding.DataField = 'flex_ombroDireitoAbducao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 4
-            Width = 232
-          end
-          object cxDBSpinEdit4: TcxDBSpinEdit
-            Left = 14
-            Top = 160
-            DataBinding.DataField = 'flex_ombroEsquerdoAbducao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 6
-            Width = 232
-          end
-          object cxDBSpinEdit5: TcxDBSpinEdit
-            Left = 258
-            Top = 37
-            DataBinding.DataField = 'flex_quadrilDireitoFlexao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 1
-            Width = 232
-          end
-          object cxDBSpinEdit6: TcxDBSpinEdit
-            Left = 258
-            Top = 78
-            DataBinding.DataField = 'flex_quadrilEsquerdoFlexao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 3
-            Width = 232
-          end
-          object cxDBSpinEdit7: TcxDBSpinEdit
-            Left = 258
-            Top = 119
-            DataBinding.DataField = 'flex_quadrilAbducao_grau'
-            DataBinding.DataSource = DS
-            TabOrder = 5
-            Width = 232
-          end
-        end
-        object GroupBox4: TGroupBox
-          Left = 525
-          Top = 386
-          Width = 339
-          Height = 197
-          Caption = 'DI'#194'METROS '#211'SSEOS'
-          TabOrder = 6
-          object Label37: TLabel
-            Left = 13
-            Top = 62
-            Width = 142
-            Height = 11
-            Caption = 'BIEPIC'#212'NDILIANO - C (cm)'
-            FocusControl = DBEdit3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label38: TLabel
-            Left = 13
-            Top = 21
-            Width = 112
-            Height = 11
-            Caption = 'BIESTIL'#211'IDE - P (cm)'
-            FocusControl = DBEdit4
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label39: TLabel
-            Left = 13
-            Top = 103
-            Width = 122
-            Height = 11
-            Caption = 'BIC'#212'NDILIANO - J (cm)'
-            FocusControl = DBEdit20
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -9
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label40: TLabel
             Left = 13
             Top = 144
             Width = 114
             Height = 11
             Caption = 'BIMALEOLAR - T (cm)'
-            FocusControl = DBEdit30
+            FocusControl = DBEdit34
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -9
@@ -940,7 +778,7 @@ inherited F01017: TF01017
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object DBEdit3: TDBEdit
+          object DBEdit31: TDBEdit
             Left = 13
             Top = 78
             Width = 150
@@ -949,7 +787,7 @@ inherited F01017: TF01017
             DataSource = DS
             TabOrder = 1
           end
-          object DBEdit4: TDBEdit
+          object DBEdit32: TDBEdit
             Left = 13
             Top = 37
             Width = 150
@@ -958,7 +796,7 @@ inherited F01017: TF01017
             DataSource = DS
             TabOrder = 0
           end
-          object DBEdit20: TDBEdit
+          object DBEdit33: TDBEdit
             Left = 13
             Top = 119
             Width = 150
@@ -967,7 +805,7 @@ inherited F01017: TF01017
             DataSource = DS
             TabOrder = 2
           end
-          object DBEdit30: TDBEdit
+          object DBEdit34: TDBEdit
             Left = 13
             Top = 160
             Width = 150
@@ -982,39 +820,39 @@ inherited F01017: TF01017
     inherited TbFiltros: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
-      ExplicitWidth = 876
+      ExplicitWidth = 711
       ExplicitHeight = 617
       inherited GBFiltros: TGroupBox
-        Width = 876
-        ExplicitWidth = 876
+        Width = 711
+        ExplicitWidth = 711
         inherited Panel1: TPanel
-          Width = 867
-          ExplicitWidth = 867
+          Width = 702
+          ExplicitWidth = 702
           inherited BtnLimparFiltros: TButton
-            Left = 822
-            ExplicitLeft = 822
+            Left = 657
+            ExplicitLeft = 657
           end
         end
       end
       inherited DBGridBeleza1: TDBGridBeleza
-        Width = 876
+        Width = 711
         Height = 506
       end
       inherited PanelFiltros: TPanel
-        Width = 876
-        ExplicitWidth = 876
+        Width = 711
+        ExplicitWidth = 711
         inherited btnFiltrar: TButton
-          Left = 825
-          ExplicitLeft = 825
+          Left = 660
+          ExplicitLeft = 660
         end
       end
     end
   end
   inherited Panel2: TPanel
-    Width = 884
-    ExplicitWidth = 884
+    Width = 719
+    ExplicitWidth = 719
     inherited BFechar: TSpeedButton
-      Left = 850
+      Left = 685
       ExplicitLeft = 690
     end
     inherited BFirst: TSpeedButton
@@ -1139,27 +977,6 @@ inherited F01017: TF01017
     end
     object ClientDataSet1dobra_suprailiac_mm: TSingleField
       FieldName = 'dobra_suprailiac_mm'
-    end
-    object ClientDataSet1flex_colunaCervicalFlexaoLateral_grau: TIntegerField
-      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
-    end
-    object ClientDataSet1flex_troncoFlexao_grau: TIntegerField
-      FieldName = 'flex_troncoFlexao_grau'
-    end
-    object ClientDataSet1flex_ombroDireitoAbducao_grau: TIntegerField
-      FieldName = 'flex_ombroDireitoAbducao_grau'
-    end
-    object ClientDataSet1flex_ombroEsquerdoAbducao_grau: TIntegerField
-      FieldName = 'flex_ombroEsquerdoAbducao_grau'
-    end
-    object ClientDataSet1flex_quadrilDireitoFlexao_grau: TIntegerField
-      FieldName = 'flex_quadrilDireitoFlexao_grau'
-    end
-    object ClientDataSet1flex_quadrilEsquerdoFlexao_grau: TIntegerField
-      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
-    end
-    object ClientDataSet1flex_quadrilAbducao_grau: TIntegerField
-      FieldName = 'flex_quadrilAbducao_grau'
     end
     object ClientDataSet1tipoProtocolo: TStringField
       FieldName = 'tipoProtocolo'
@@ -1355,41 +1172,6 @@ inherited F01017: TF01017
       FieldName = 'dobra_suprailiac_mm'
       Origin = 'dobra_suprailiac_mm'
     end
-    object FDQuery1flex_colunaCervicalFlexaoLateral_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
-      Origin = 'flex_colunaCervicalFlexaoLateral_grau'
-    end
-    object FDQuery1flex_troncoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_troncoFlexao_grau'
-      Origin = 'flex_troncoFlexao_grau'
-    end
-    object FDQuery1flex_ombroDireitoAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_ombroDireitoAbducao_grau'
-      Origin = 'flex_ombroDireitoAbducao_grau'
-    end
-    object FDQuery1flex_ombroEsquerdoAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_ombroEsquerdoAbducao_grau'
-      Origin = 'flex_ombroEsquerdoAbducao_grau'
-    end
-    object FDQuery1flex_quadrilDireitoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilDireitoFlexao_grau'
-      Origin = 'flex_quadrilDireitoFlexao_grau'
-    end
-    object FDQuery1flex_quadrilEsquerdoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
-      Origin = 'flex_quadrilEsquerdoFlexao_grau'
-    end
-    object FDQuery1flex_quadrilAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilAbducao_grau'
-      Origin = 'flex_quadrilAbducao_grau'
-    end
     object FDQuery1tipoProtocolo: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tipoProtocolo'
@@ -1429,7 +1211,7 @@ inherited F01017: TF01017
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C00100210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C001C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

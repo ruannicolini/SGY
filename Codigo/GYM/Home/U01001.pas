@@ -22,7 +22,8 @@ uses
   System.Bluetooth.Components, frxExportImage, dxBar, dxRibbonRadialMenu,
   cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
   Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch,
-  frxChart, cxCalc;
+  frxChart, cxCalc, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series,
+  VCLTee.TeeProcs, VCLTee.Chart;
 
 type
   TF01001 = class(TFBase)
@@ -474,7 +475,7 @@ type
     DSAvaFisica: TDataSource;
     frxDBDataset5: TfrxDBDataset;
     frxChartObject1: TfrxChartObject;
-    report_AvaFisicaGrafico: TfrxReport;
+    report_Comparativo: TfrxReport;
     CDSAvaFisicaIMC: TFloatField;
     Panel3: TPanel;
     DBEditBeleza2: TDBEditBeleza;
@@ -515,13 +516,6 @@ type
     qRelAvaFisicadobra_biciptal_mm: TSingleField;
     qRelAvaFisicadobra_peitoral_mm: TSingleField;
     qRelAvaFisicadobra_suprailiac_mm: TSingleField;
-    qRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField;
-    qRelAvaFisicaflex_troncoFlexao_grau: TIntegerField;
-    qRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField;
-    qRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField;
-    qRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField;
-    qRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField;
-    qRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField;
     qRelAvaFisicatipoProtocolo: TStringField;
     qRelAvaFisicaNOMEALUNO: TStringField;
     qRelAvaFisicaidprotocoloavafisica: TIntegerField;
@@ -559,13 +553,6 @@ type
     cdsRelAvaFisicadobra_biciptal_mm: TSingleField;
     cdsRelAvaFisicadobra_peitoral_mm: TSingleField;
     cdsRelAvaFisicadobra_suprailiac_mm: TSingleField;
-    cdsRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField;
-    cdsRelAvaFisicaflex_troncoFlexao_grau: TIntegerField;
-    cdsRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField;
-    cdsRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField;
-    cdsRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField;
-    cdsRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField;
-    cdsRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField;
     cdsRelAvaFisicatipoProtocolo: TStringField;
     cdsRelAvaFisicaNOMEALUNO: TStringField;
     cdsRelAvaFisicaidprotocoloavafisica: TIntegerField;
@@ -580,24 +567,12 @@ type
     cdsRelAvaFisicasomatotipoMeso: TFloatField;
     cdsRelAvaFisicasomatotipoEndo: TFloatField;
     cdsRelAvaFisicaIMC: TFloatField;
-    Label15: TLabel;
     Panel4: TPanel;
     btnImprimirAvaFisica: TSpeedButton;
     btnNovaAvaFisica: TSpeedButton;
     Panel5: TPanel;
     btnImprimirAnamnes: TSpeedButton;
     btnNovaAnamnes: TSpeedButton;
-    DBEdit16: TDBEdit;
-    Label16: TLabel;
-    cxDBCalcEdit1: TcxDBCalcEdit;
-    Label17: TLabel;
-    cxDBCalcEdit2: TcxDBCalcEdit;
-    Label18: TLabel;
-    cxDBCalcEdit3: TcxDBCalcEdit;
-    Label19: TLabel;
-    cxDBCalcEdit4: TcxDBCalcEdit;
-    Label20: TLabel;
-    cxDBCalcEdit5: TcxDBCalcEdit;
     qRelAvaFisicado_BIESTILOIDE_cm: TSingleField;
     qRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField;
     qRelAvaFisicado_BICONDILIANO_cm: TSingleField;
@@ -606,12 +581,8 @@ type
     cdsRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField;
     cdsRelAvaFisicado_BICONDILIANO_cm: TSingleField;
     cdsRelAvaFisicado_BIMALEOLAR_cm: TSingleField;
-    Label21: TLabel;
-    cxDBCalcEdit6: TcxDBCalcEdit;
-    Label23: TLabel;
-    cxDBCalcEdit7: TcxDBCalcEdit;
-    Label24: TLabel;
-    cxDBCalcEdit8: TcxDBCalcEdit;
+    frxDBDataset6: TfrxDBDataset;
+    report_AvaFisica: TfrxReport;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -701,6 +672,7 @@ type
     procedure btnNovaAvaFisicaClick(Sender: TObject);
     procedure btnImprimirAvaFisicaClick(Sender: TObject);
     procedure DSAvaFisicaDataChange(Sender: TObject; Field: TField);
+    procedure report_AvaFisicaBeforePrint(Sender: TfrxReportComponent);
   private
     { Private declarations }
   public
@@ -1125,8 +1097,8 @@ begin
   if(PageControlAvaliacoes.TabIndex = 1)then
   begin
 
-      iMensagem := MsgDlgButtonPersonal('Selecione Relatório: ', mtConfirmation, [mbYes,mbNo],
-      ['Av. Física', 'Rel. Geral']);
+      iMensagem := MsgDlgButtonPersonal('Relatório', mtConfirmation, [mbYes,mbNo],
+      ['Av. Física', 'Comparativo']);
       case iMensagem of
          6:
             // Rel. Ava Física
@@ -1139,6 +1111,8 @@ begin
                           cdsRelAvaFisica.close;
                           cdsRelAvaFisica.open;
                           //REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
+                          report_AvaFisica.ShowReport(TRUE);
+                          //report_AvaFisica.Print;
                         EXCEPT
                           RAISE;
                         END;
@@ -1194,7 +1168,7 @@ begin
                           CDSAvaFisica.open;
 
                           //IMPRIME RELATÓRIO
-                          report_AvaFisicaGrafico.ShowReport(TRUE);
+                          report_comparativo.ShowReport(TRUE);
 
                           //VOLTA A CONSULTA NORMAL
                           qavafisica.sql.Text :=
@@ -1410,6 +1384,12 @@ BU, BF, Bc, Pc, E: REAL;
 begin
   inherited;
 
+  if NOT(CDSrelAVAFISICAmed_peso_cm.IsNull) and NOT(CDSrelAVAFISICAmed_altura_cm.IsNull) then
+  begin
+    CDSrelAVAFISICAIMC.AsFloat := CDSrelAVAFISICAmed_peso_cm.AsFloat/ (CDSrelAVAFISICAmed_altura_cm.AsFloat * CDSrelAVAFISICAmed_altura_cm.AsFloat) ;
+    CDSrelAVAFISICAIMC.AsFloat := RoundTo (CDSrelAVAFISICAIMC.AsFloat, -2);
+  end;
+
   IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
   BEGIN
 
@@ -1434,17 +1414,20 @@ begin
                 //MASCULINO: peitoral, abdominal e coxa
                 SOMA := cdsRelAvaFisicadobra_peitoral_mm.AsFloat +
                 cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
-                cdsRelAvaFisicadobra_coxa_mm.AsFloat
+                cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+
+                //DC = (1,10938-(0,0008267 x 3 dobras)+(0,0000016 x (3 dobras)2 – (0,0002574 x idade)
+                DC := 1.10938 - (0.0008267 * soma) + (0.0000016 * MATH.Power(SOMA,2)) - (0.0002574 * ClientDataSet1IDADE.AsInteger);
               END ELSE
               BEGIN
                 //FEMININO: tríceps + supra-iliaca + coxa
                 SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
                 cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
                 cdsRelAvaFisicadobra_coxa_mm.AsFloat;
-              END;
+                //DC = 1,0994921 – 0,0009929(Σ) + 0,0000023(Σ)² – 0,0001392(idade)
+                DC := ( 1.0994921 - (0.0009929 * SOMA) + (0.0000023 * MATH.Power(SOMA,2)) - (0.0001392 * ClientDataSet1IDADE.AsInteger) );
 
-              //DC = 1,0994921 – 0,0009929(Σ) + 0,0000023(Σ)² – 0,0001392(idade)
-              DC := ( 1.0994921 - (0.0009929 * SOMA) + (0.0000023 * MATH.Power(SOMA,2)) - (0.0001392 * ClientDataSet1IDADE.AsInteger) );
+              END;
 
               //G% = [(4,95 / DC) – 4,50] x 100
               CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
@@ -1548,6 +1531,8 @@ begin
         //Massa Corporal Magra
         //Peso Magro= Peso Corporal – Peso Gordo
         cdsRelAvaFisicamassaMagraCorporal.AsFloat := RoundTo((cdsRelAvaFisicamed_peso_cm.asfloat - cdsRelAvaFisicapesoGordura.AsFloat), -2);
+
+
 
     END;
 
@@ -3284,6 +3269,40 @@ begin
     TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Stretched := false;
 
   end;
+end;
+
+procedure TF01001.report_AvaFisicaBeforePrint(Sender: TfrxReportComponent);
+begin
+  inherited;
+  //showmessage(SENDER.Name);
+  IF SENDER.Name = 'Chart1' then
+  BEGIN
+    TfrxChartView(SENDER).SeriesData[0].XSource :=
+    'PesoMuscular; PesoGordo; PesoResidual; Peso Ósseo';
+
+    TfrxChartView(SENDER).SeriesData[0].YSource :=
+    cdsRelAvaFisicaPesoMuscular.AsString + ';' +
+    cdsRelAvaFisicapesoGordura.AsString + ';' +
+    cdsRelAvaFisicapesoResidual.AsString + ';' +
+    cdsRelAvaFisicapesoOsseo.AsString + ';';
+  END;
+
+  IF SENDER.Name = 'ChartSomatotipo' then
+  BEGIN
+    TfrxChartView(SENDER).SeriesData[0].XSource :=
+    'ECTOMORFIA; MESOMORFIA; ENDOMORFIA';
+
+    TfrxChartView(SENDER).SeriesData[0].YSource :=
+    cdsRelAvaFisicasomatotipoEcto.AsString + ';' +
+    cdsRelAvaFisicasomatotipoMeso.AsString + ';' +
+    cdsRelAvaFisicasomatotipoEndo.AsString + ';';
+  END;
+
+  {IF SENDER.Name = 'memoProtocolo' then
+  BEGIN
+    TfrxMemoView(SENDER).Text := 'COMPOSIÇÃO CORPORAL - ' + ClientDataSet1descricaoprotocoloAvaFisica.AsString;
+  END;}
+
 end;
 
 procedure TF01001.SpeedButton3Click(Sender: TObject);

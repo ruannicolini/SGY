@@ -3,8 +3,7 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -147
-  ExplicitTop = -365
+  ExplicitLeft = -237
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -475,77 +474,6 @@
           object pagAvaliacoes: TcxTabSheet
             Caption = 'AVALIA'#199#213'ES'
             ImageIndex = 5
-            object Label15: TLabel
-              Left = 818
-              Top = 226
-              Width = 121
-              Height = 16
-              Caption = 'porcentagemGordura'
-            end
-            object Label16: TLabel
-              Left = 818
-              Top = 274
-              Width = 73
-              Height = 16
-              Caption = 'pesoGordura'
-              FocusControl = cxDBCalcEdit1
-            end
-            object Label17: TLabel
-              Left = 822
-              Top = 312
-              Width = 75
-              Height = 16
-              Caption = 'pesoResidual'
-              FocusControl = cxDBCalcEdit2
-            end
-            object Label18: TLabel
-              Left = 822
-              Top = 352
-              Width = 122
-              Height = 16
-              Caption = 'massaMagraCorporal'
-              FocusControl = cxDBCalcEdit3
-            end
-            object Label19: TLabel
-              Left = 822
-              Top = 390
-              Width = 78
-              Height = 16
-              Caption = 'PesoMuscular'
-              FocusControl = cxDBCalcEdit4
-            end
-            object Label20: TLabel
-              Left = 824
-              Top = 432
-              Width = 62
-              Height = 16
-              Caption = 'pesoOsseo'
-              FocusControl = cxDBCalcEdit5
-            end
-            object Label21: TLabel
-              Left = 949
-              Top = 322
-              Width = 91
-              Height = 16
-              Caption = 'somatotipoEndo'
-              FocusControl = cxDBCalcEdit6
-            end
-            object Label23: TLabel
-              Left = 945
-              Top = 232
-              Width = 87
-              Height = 16
-              Caption = 'somatotipoEcto'
-              FocusControl = cxDBCalcEdit7
-            end
-            object Label24: TLabel
-              Left = 945
-              Top = 280
-              Width = 93
-              Height = 16
-              Caption = 'somatotipoMeso'
-              FocusControl = cxDBCalcEdit8
-            end
             object cxGroupBox1: TcxGroupBox
               Left = 24
               Top = 8
@@ -943,79 +871,6 @@
                 Height = 37
                 Width = 790
               end
-            end
-            object DBEdit16: TDBEdit
-              Left = 818
-              Top = 248
-              Width = 121
-              Height = 24
-              DataField = 'porcentagemGordura'
-              DataSource = dsRelAvaFisica
-              TabOrder = 1
-            end
-            object cxDBCalcEdit1: TcxDBCalcEdit
-              Left = 818
-              Top = 290
-              DataBinding.DataField = 'pesoGordura'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 2
-              Width = 121
-            end
-            object cxDBCalcEdit2: TcxDBCalcEdit
-              Left = 822
-              Top = 328
-              DataBinding.DataField = 'pesoResidual'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 3
-              Width = 121
-            end
-            object cxDBCalcEdit3: TcxDBCalcEdit
-              Left = 822
-              Top = 368
-              DataBinding.DataField = 'massaMagraCorporal'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 4
-              Width = 121
-            end
-            object cxDBCalcEdit4: TcxDBCalcEdit
-              Left = 822
-              Top = 406
-              DataBinding.DataField = 'PesoMuscular'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 5
-              Width = 121
-            end
-            object cxDBCalcEdit5: TcxDBCalcEdit
-              Left = 824
-              Top = 448
-              DataBinding.DataField = 'pesoOsseo'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 6
-              Width = 121
-            end
-            object cxDBCalcEdit6: TcxDBCalcEdit
-              Left = 949
-              Top = 338
-              DataBinding.DataField = 'somatotipoEndo'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 7
-              Width = 121
-            end
-            object cxDBCalcEdit7: TcxDBCalcEdit
-              Left = 945
-              Top = 248
-              DataBinding.DataField = 'somatotipoEcto'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 8
-              Width = 121
-            end
-            object cxDBCalcEdit8: TcxDBCalcEdit
-              Left = 945
-              Top = 296
-              DataBinding.DataField = 'somatotipoMeso'
-              DataBinding.DataSource = dsRelAvaFisica
-              TabOrder = 9
-              Width = 121
             end
           end
           object pagFichaExercicios: TcxTabSheet
@@ -2035,13 +1890,13 @@
     end
   end
   inherited DS: TDataSource
-    Left = 632
-    Top = 16
+    Left = 304
+    Top = 40
   end
   inherited ClientDataSet1: TClientDataSet
     OnCalcFields = ClientDataSet1CalcFields
-    Left = 568
-    Top = 16
+    Left = 240
+    Top = 40
     object ClientDataSet1IDADE: TIntegerField
       FieldKind = fkInternalCalc
       FieldName = 'IDADE'
@@ -2137,8 +1992,8 @@
     end
   end
   inherited DataSetProvider1: TDataSetProvider
-    Left = 536
-    Top = 16
+    Left = 208
+    Top = 40
   end
   inherited FDQuery1: TFDQuery
     Connection = DModule.FDConnection
@@ -2150,8 +2005,8 @@
       
         'LEFT OUTER JOIN PROTOCOLOAVAFISICA P ON P.IDPROTOCOLOAVAFISICA =' +
         ' A.IDPROTOCOLOAVAFISICA')
-    Left = 504
-    Top = 16
+    Left = 176
+    Top = 40
     object FDQuery1idAluno: TIntegerField
       FieldName = 'idAluno'
       Origin = 'idAluno'
@@ -2277,10 +2132,10 @@
     end
   end
   inherited ImageListBase: TImageList
-    Left = 472
-    Top = 16
+    Left = 144
+    Top = 40
     Bitmap = {
-      494C01010F002C00C80310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00D40310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -2816,8 +2671,8 @@
       000000000000}
   end
   inherited Acoes: TActionList
-    Left = 600
-    Top = 17
+    Left = 272
+    Top = 41
     inherited ActionReajustarDBGridBeleza1: TAction
       OnExecute = ActionReajustarDBGridBeleza1Execute
     end
@@ -2910,8 +2765,8 @@
     Connection = DModule.FDConnection
     SQL.Strings = (
       'select * from treino')
-    Left = 840
-    Top = 116
+    Left = 672
+    Top = 4
     object qTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       Origin = 'idTreino'
@@ -2927,15 +2782,15 @@
   end
   object pTreino: TDataSetProvider
     DataSet = qTreino
-    Left = 872
-    Top = 115
+    Left = 696
+    Top = 3
   end
   object CDSTreino: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'pTreino'
-    Left = 896
-    Top = 114
+    Left = 720
+    Top = 2
     object CDSTreinoidTreino: TIntegerField
       FieldName = 'idTreino'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2948,14 +2803,14 @@
   end
   object DSTreino: TDataSource
     DataSet = CDSTreino
-    Left = 928
-    Top = 113
+    Left = 744
+    Top = 1
   end
   object DSModalidade: TDataSource
     DataSet = cdsModalidade
     OnDataChange = DSModalidadeDataChange
-    Left = 928
-    Top = 65
+    Left = 616
+    Top = 8
   end
   object cdsModalidade: TClientDataSet
     Aggregates = <>
@@ -2964,8 +2819,8 @@
     AfterPost = cdsModalidadeAfterPost
     AfterCancel = cdsModalidadeAfterCancel
     AfterDelete = cdsModalidadeAfterDelete
-    Left = 896
-    Top = 65
+    Left = 588
+    Top = 8
     object cdsModalidadeidAluno: TIntegerField
       FieldName = 'idAluno'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -2993,8 +2848,8 @@
   object pModalidade: TDataSetProvider
     DataSet = QMODALIDADE
     BeforeUpdateRecord = pModalidadeBeforeUpdateRecord
-    Left = 872
-    Top = 65
+    Left = 564
+    Top = 8
   end
   object QMODALIDADE: TFDQuery
     Connection = DModule.FDConnection
@@ -3006,8 +2861,8 @@
         'LEFT OUTER JOIN MODALIDADE M ON M.IDMODALIDADE = AM.IDMODALIDADE' +
         ' '
       'WHERE AM.IDALUNO =:IDA')
-    Left = 840
-    Top = 65
+    Left = 540
+    Top = 8
     ParamData = <
       item
         Name = 'IDA'
@@ -3054,8 +2909,8 @@
   object pPagamento: TDataSetProvider
     DataSet = qPagamento
     BeforeUpdateRecord = pPagamentoBeforeUpdateRecord
-    Left = 872
-    Top = 15
+    Left = 427
+    Top = 7
   end
   object cdsPagamento: TClientDataSet
     Aggregates = <>
@@ -3065,8 +2920,8 @@
     AfterPost = cdsPagamentoAfterPost
     AfterCancel = cdsPagamentoAfterCancel
     AfterDelete = cdsPagamentoAfterDelete
-    Left = 904
-    Top = 15
+    Left = 451
+    Top = 7
     object cdsPagamentoidPagamento: TIntegerField
       FieldName = 'idPagamento'
       ProviderFlags = [pfInWhere, pfInKey]
@@ -3112,8 +2967,8 @@
   object DSPagamento: TDataSource
     DataSet = cdsPagamento
     OnDataChange = DSPagamentoDataChange
-    Left = 928
-    Top = 15
+    Left = 475
+    Top = 7
   end
   object qPagamento: TFDQuery
     Connection = DModule.FDConnection
@@ -3126,8 +2981,8 @@
         'left outer join statusPagamento st on st.idStatusPagamento = p.i' +
         'dstatusPagamento '
       'where p.idAluno =:idA order by(p.dataVencimento)')
-    Left = 848
-    Top = 15
+    Left = 403
+    Top = 7
     ParamData = <
       item
         Name = 'IDA'
@@ -3785,10 +3640,10 @@
   object ImageListAUX: TImageList
     Height = 95
     Width = 95
-    Left = 440
-    Top = 16
+    Left = 112
+    Top = 40
     Bitmap = {
-      494C01010100140028015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140034015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -9566,7 +9421,7 @@
       'WHERE AV.IDALUNO =:IDA'
       'ORDER BY AV.DATAAVALIACAOFISICA DESC, AV.IDAVALIACAOFISICA DESC')
     Left = 854
-    Top = 170
+    Top = 66
     ParamData = <
       item
         Name = 'IDA'
@@ -9744,7 +9599,7 @@
   object PAvaFisica: TDataSetProvider
     DataSet = qAvaFisica
     Left = 886
-    Top = 170
+    Top = 66
   end
   object CDSAvaFisica: TClientDataSet
     Aggregates = <>
@@ -9752,7 +9607,7 @@
     ProviderName = 'PAvaFisica'
     OnCalcFields = CDSAvaFisicaCalcFields
     Left = 910
-    Top = 170
+    Top = 66
     object CDSAvaFisicaidAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
       Origin = 'idAvaliacaoFisica'
@@ -9899,7 +9754,7 @@
     DataSet = CDSAvaFisica
     OnDataChange = DSAvaFisicaDataChange
     Left = 942
-    Top = 168
+    Top = 64
   end
   object frxDBDataset5: TfrxDBDataset
     UserName = 'frxDBDataset5'
@@ -9941,14 +9796,14 @@
       'IMC=IMC')
     DataSource = DSAvaFisica
     BCDToCurrency = False
-    Left = 884
-    Top = 250
+    Left = 876
+    Top = 122
   end
   object frxChartObject1: TfrxChartObject
-    Left = 912
-    Top = 250
+    Left = 904
+    Top = 122
   end
-  object report_AvaFisicaGrafico: TfrxReport
+  object report_Comparativo: TfrxReport
     Version = '5.1.5'
     DataSet = frxDBDataset5
     DataSetName = 'frxDBDataset5'
@@ -9959,14 +9814,14 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42843.385856840300000000
-    ReportOptions.LastChange = 42844.470955555550000000
+    ReportOptions.LastChange = 42849.881527604160000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 856
-    Top = 250
+    Left = 848
+    Top = 122
     Datasets = <
       item
         DataSet = frxDBDataset5
@@ -10211,9 +10066,9 @@
           '           * Menor igual a 18.5    =   BAIXO PESO'
           '           * De 18.6 a 24.9          =   PESO IDEAL'
           '           * De 25.0 a 29.9          =   SOBREPESO           '
-          '           * De 30.0 a 34.9          =   OPESIDADE GRAU I'
-          '           * De 35.0 a 39.9          =   OPESIDADE GRAU II'
-          '           * Maior igual a 40.0     =   OPESIDADE GRAVE')
+          '           * De 30.0 a 34.9          =   OBESIDADE GRAU I'
+          '           * De 35.0 a 39.9          =   OBESIDADE GRAU II'
+          '           * Maior igual a 40.0     =   OBESIDADE GRAVE')
         ParentFont = False
       end
       object Chart1: TfrxChartView
@@ -11578,7 +11433,7 @@
         ' A.idprotocoloavafisica'
       'WHERE AV.idAVALIACAOFISICA =:IDAVF')
     Left = 846
-    Top = 210
+    Top = 178
     ParamData = <
       item
         Name = 'IDAVF'
@@ -11738,41 +11593,6 @@
       FieldName = 'dobra_suprailiac_mm'
       Origin = 'dobra_suprailiac_mm'
     end
-    object qRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
-      Origin = 'flex_colunaCervicalFlexaoLateral_grau'
-    end
-    object qRelAvaFisicaflex_troncoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_troncoFlexao_grau'
-      Origin = 'flex_troncoFlexao_grau'
-    end
-    object qRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_ombroDireitoAbducao_grau'
-      Origin = 'flex_ombroDireitoAbducao_grau'
-    end
-    object qRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_ombroEsquerdoAbducao_grau'
-      Origin = 'flex_ombroEsquerdoAbducao_grau'
-    end
-    object qRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilDireitoFlexao_grau'
-      Origin = 'flex_quadrilDireitoFlexao_grau'
-    end
-    object qRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
-      Origin = 'flex_quadrilEsquerdoFlexao_grau'
-    end
-    object qRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'flex_quadrilAbducao_grau'
-      Origin = 'flex_quadrilAbducao_grau'
-    end
     object qRelAvaFisicatipoProtocolo: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'tipoProtocolo'
@@ -11826,151 +11646,171 @@
     Params = <>
     ProviderName = 'pRelAvaFisica'
     OnCalcFields = cdsRelAvaFisicaCalcFields
-    Left = 910
-    Top = 210
+    Left = 894
+    Top = 178
     object cdsRelAvaFisicaidAvaliacaoFisica: TIntegerField
       FieldName = 'idAvaliacaoFisica'
+      Origin = 'idAvaliacaoFisica'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsRelAvaFisicaidAluno: TIntegerField
       FieldName = 'idAluno'
+      Origin = 'idAluno'
       Required = True
     end
     object cdsRelAvaFisicadataAvaliacaoFisica: TDateField
       FieldName = 'dataAvaliacaoFisica'
+      Origin = 'dataAvaliacaoFisica'
       Required = True
     end
     object cdsRelAvaFisicanomeAvaliador: TStringField
       FieldName = 'nomeAvaliador'
+      Origin = 'nomeAvaliador'
       Size = 60
     end
     object cdsRelAvaFisicamed_peso_cm: TSingleField
       FieldName = 'med_peso_cm'
+      Origin = 'med_peso_cm'
     end
     object cdsRelAvaFisicamed_altura_cm: TSingleField
       FieldName = 'med_altura_cm'
+      Origin = 'med_altura_cm'
     end
     object cdsRelAvaFisicamed_cervical_cm: TSingleField
       FieldName = 'med_cervical_cm'
+      Origin = 'med_cervical_cm'
     end
     object cdsRelAvaFisicamed_torax_cm: TSingleField
       FieldName = 'med_torax_cm'
+      Origin = 'med_torax_cm'
     end
     object cdsRelAvaFisicamed_quadril_cm: TSingleField
       FieldName = 'med_quadril_cm'
+      Origin = 'med_quadril_cm'
     end
     object cdsRelAvaFisicamed_cintura_cm: TSingleField
       FieldName = 'med_cintura_cm'
+      Origin = 'med_cintura_cm'
     end
     object cdsRelAvaFisicamed_abdomen_cm: TSingleField
       FieldName = 'med_abdomen_cm'
+      Origin = 'med_abdomen_cm'
     end
     object cdsRelAvaFisicamed_bracoDireitoContraido_cm: TSingleField
       FieldName = 'med_bracoDireitoContraido_cm'
+      Origin = 'med_bracoDireitoContraido_cm'
     end
     object cdsRelAvaFisicamed_bracoDireitoRelaxado_cm: TSingleField
       FieldName = 'med_bracoDireitoRelaxado_cm'
+      Origin = 'med_bracoDireitoRelaxado_cm'
     end
     object cdsRelAvaFisicamed_antibracoDireito_cm: TSingleField
       FieldName = 'med_antibracoDireito_cm'
+      Origin = 'med_antibracoDireito_cm'
     end
     object cdsRelAvaFisicamed_coxaDireita_cm: TSingleField
       FieldName = 'med_coxaDireita_cm'
+      Origin = 'med_coxaDireita_cm'
     end
     object cdsRelAvaFisicamed_panturrilhaDireita_cm: TSingleField
       FieldName = 'med_panturrilhaDireita_cm'
+      Origin = 'med_panturrilhaDireita_cm'
     end
     object cdsRelAvaFisicamed_bracoEsquerdoContraido_cm: TSingleField
       FieldName = 'med_bracoEsquerdoContraido_cm'
+      Origin = 'med_bracoEsquerdoContraido_cm'
     end
     object cdsRelAvaFisicamed_bracoEsquerdoRelaxado_cm: TSingleField
       FieldName = 'med_bracoEsquerdoRelaxado_cm'
+      Origin = 'med_bracoEsquerdoRelaxado_cm'
     end
     object cdsRelAvaFisicamed_antibracoEsquerdo_cm: TSingleField
       FieldName = 'med_antibracoEsquerdo_cm'
+      Origin = 'med_antibracoEsquerdo_cm'
     end
     object cdsRelAvaFisicamed_coxaEsquerda_cm: TSingleField
       FieldName = 'med_coxaEsquerda_cm'
+      Origin = 'med_coxaEsquerda_cm'
     end
     object cdsRelAvaFisicamed_panturrilhaEsquerda_cm: TSingleField
       FieldName = 'med_panturrilhaEsquerda_cm'
+      Origin = 'med_panturrilhaEsquerda_cm'
     end
     object cdsRelAvaFisicadobra_triciptal_mm: TSingleField
       FieldName = 'dobra_triciptal_mm'
+      Origin = 'dobra_triciptal_mm'
     end
     object cdsRelAvaFisicadobra_subescapular_mm: TSingleField
       FieldName = 'dobra_subescapular_mm'
+      Origin = 'dobra_subescapular_mm'
     end
     object cdsRelAvaFisicadobra_axiliar_mm: TSingleField
       FieldName = 'dobra_axiliar_mm'
+      Origin = 'dobra_axiliar_mm'
     end
     object cdsRelAvaFisicadobra_abdominal_mm: TSingleField
       FieldName = 'dobra_abdominal_mm'
+      Origin = 'dobra_abdominal_mm'
     end
     object cdsRelAvaFisicadobra_coxa_mm: TSingleField
       FieldName = 'dobra_coxa_mm'
+      Origin = 'dobra_coxa_mm'
     end
     object cdsRelAvaFisicadobra_panturrilha_mm: TSingleField
       FieldName = 'dobra_panturrilha_mm'
+      Origin = 'dobra_panturrilha_mm'
     end
     object cdsRelAvaFisicadobra_biciptal_mm: TSingleField
       FieldName = 'dobra_biciptal_mm'
+      Origin = 'dobra_biciptal_mm'
     end
     object cdsRelAvaFisicadobra_peitoral_mm: TSingleField
       FieldName = 'dobra_peitoral_mm'
+      Origin = 'dobra_peitoral_mm'
     end
     object cdsRelAvaFisicadobra_suprailiac_mm: TSingleField
       FieldName = 'dobra_suprailiac_mm'
-    end
-    object cdsRelAvaFisicaflex_colunaCervicalFlexaoLateral_grau: TIntegerField
-      FieldName = 'flex_colunaCervicalFlexaoLateral_grau'
-    end
-    object cdsRelAvaFisicaflex_troncoFlexao_grau: TIntegerField
-      FieldName = 'flex_troncoFlexao_grau'
-    end
-    object cdsRelAvaFisicaflex_ombroDireitoAbducao_grau: TIntegerField
-      FieldName = 'flex_ombroDireitoAbducao_grau'
-    end
-    object cdsRelAvaFisicaflex_ombroEsquerdoAbducao_grau: TIntegerField
-      FieldName = 'flex_ombroEsquerdoAbducao_grau'
-    end
-    object cdsRelAvaFisicaflex_quadrilDireitoFlexao_grau: TIntegerField
-      FieldName = 'flex_quadrilDireitoFlexao_grau'
-    end
-    object cdsRelAvaFisicaflex_quadrilEsquerdoFlexao_grau: TIntegerField
-      FieldName = 'flex_quadrilEsquerdoFlexao_grau'
-    end
-    object cdsRelAvaFisicaflex_quadrilAbducao_grau: TIntegerField
-      FieldName = 'flex_quadrilAbducao_grau'
+      Origin = 'dobra_suprailiac_mm'
     end
     object cdsRelAvaFisicatipoProtocolo: TStringField
       FieldName = 'tipoProtocolo'
+      Origin = 'tipoProtocolo'
       FixedChar = True
       Size = 1
     end
     object cdsRelAvaFisicaNOMEALUNO: TStringField
       FieldName = 'NOMEALUNO'
+      Origin = 'nomeAluno'
+      ProviderFlags = []
       Size = 80
     end
     object cdsRelAvaFisicaidprotocoloavafisica: TIntegerField
       FieldName = 'idprotocoloavafisica'
+      Origin = 'idProtocoloAvaFisica'
+      ProviderFlags = []
     end
     object cdsRelAvaFisicadescricaoprotocoloavafisica: TStringField
       FieldName = 'descricaoprotocoloavafisica'
+      Origin = 'descricaoprotocoloAvaFisica'
+      ProviderFlags = []
       Size = 50
     end
     object cdsRelAvaFisicado_BIESTILOIDE_cm: TSingleField
       FieldName = 'do_BIESTILOIDE_cm'
+      Origin = 'do_BIESTILOIDE_cm'
     end
     object cdsRelAvaFisicado_BIEPICONDILIANO_cm: TSingleField
       FieldName = 'do_BIEPICONDILIANO_cm'
+      Origin = 'do_BIEPICONDILIANO_cm'
     end
     object cdsRelAvaFisicado_BICONDILIANO_cm: TSingleField
       FieldName = 'do_BICONDILIANO_cm'
+      Origin = 'do_BICONDILIANO_cm'
     end
     object cdsRelAvaFisicado_BIMALEOLAR_cm: TSingleField
       FieldName = 'do_BIMALEOLAR_cm'
+      Origin = 'do_BIMALEOLAR_cm'
     end
     object cdsRelAvaFisicaporcentagemGordura: TFloatField
       FieldKind = fkInternalCalc
@@ -12015,12 +11855,675 @@
   end
   object PRelAvaFisica: TDataSetProvider
     DataSet = qRelAvaFisica
-    Left = 878
-    Top = 210
+    Left = 870
+    Top = 178
   end
   object dsRelAvaFisica: TDataSource
     DataSet = cdsRelAvaFisica
-    Left = 934
-    Top = 210
+    Left = 918
+    Top = 178
+  end
+  object frxDBDataset6: TfrxDBDataset
+    UserName = 'frxDBDataset6'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'idAvaliacaoFisica=idAvaliacaoFisica'
+      'idAluno=idAluno'
+      'dataAvaliacaoFisica=dataAvaliacaoFisica'
+      'nomeAvaliador=nomeAvaliador'
+      'med_peso_cm=med_peso_cm'
+      'med_altura_cm=med_altura_cm'
+      'med_cervical_cm=med_cervical_cm'
+      'med_torax_cm=med_torax_cm'
+      'med_quadril_cm=med_quadril_cm'
+      'med_cintura_cm=med_cintura_cm'
+      'med_abdomen_cm=med_abdomen_cm'
+      'med_bracoDireitoContraido_cm=med_bracoDireitoContraido_cm'
+      'med_bracoDireitoRelaxado_cm=med_bracoDireitoRelaxado_cm'
+      'med_antibracoDireito_cm=med_antibracoDireito_cm'
+      'med_coxaDireita_cm=med_coxaDireita_cm'
+      'med_panturrilhaDireita_cm=med_panturrilhaDireita_cm'
+      'med_bracoEsquerdoContraido_cm=med_bracoEsquerdoContraido_cm'
+      'med_bracoEsquerdoRelaxado_cm=med_bracoEsquerdoRelaxado_cm'
+      'med_antibracoEsquerdo_cm=med_antibracoEsquerdo_cm'
+      'med_coxaEsquerda_cm=med_coxaEsquerda_cm'
+      'med_panturrilhaEsquerda_cm=med_panturrilhaEsquerda_cm'
+      'dobra_triciptal_mm=dobra_triciptal_mm'
+      'dobra_subescapular_mm=dobra_subescapular_mm'
+      'dobra_axiliar_mm=dobra_axiliar_mm'
+      'dobra_abdominal_mm=dobra_abdominal_mm'
+      'dobra_coxa_mm=dobra_coxa_mm'
+      'dobra_panturrilha_mm=dobra_panturrilha_mm'
+      'dobra_biciptal_mm=dobra_biciptal_mm'
+      'dobra_peitoral_mm=dobra_peitoral_mm'
+      'dobra_suprailiac_mm=dobra_suprailiac_mm'
+      'tipoProtocolo=tipoProtocolo'
+      'NOMEALUNO=NOMEALUNO'
+      'idprotocoloavafisica=idprotocoloavafisica'
+      'descricaoprotocoloavafisica=descricaoprotocoloavafisica'
+      'do_BIESTILOIDE_cm=do_BIESTILOIDE_cm'
+      'do_BIEPICONDILIANO_cm=do_BIEPICONDILIANO_cm'
+      'do_BICONDILIANO_cm=do_BICONDILIANO_cm'
+      'do_BIMALEOLAR_cm=do_BIMALEOLAR_cm'
+      'porcentagemGordura=porcentagemGordura'
+      'pesoOsseo=pesoOsseo'
+      'pesoGordura=pesoGordura'
+      'PesoMuscular=PesoMuscular'
+      'pesoResidual=pesoResidual'
+      'massaMagraCorporal=massaMagraCorporal'
+      'somatotipoEcto=somatotipoEcto'
+      'somatotipoMeso=somatotipoMeso'
+      'somatotipoEndo=somatotipoEndo'
+      'IMC=IMC')
+    DataSource = dsRelAvaFisica
+    BCDToCurrency = False
+    Left = 894
+    Top = 226
+  end
+  object report_AvaFisica: TfrxReport
+    Version = '5.1.5'
+    DataSet = frxDBDataset6
+    DataSetName = 'frxDBDataset6'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbSave, pbZoom, pbFind, pbPageSetup, pbNavigator]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 42849.663924664400000000
+    ReportOptions.LastChange = 42849.885018206020000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    OnBeforePrint = report_AvaFisicaBeforePrint
+    Left = 838
+    Top = 226
+    Datasets = <
+      item
+        DataSet = frxDBDataset6
+        DataSetName = 'frxDBDataset6'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Height = 132.000000000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo3: TfrxMemoView
+          Left = 19.897650000000000000
+          Top = 74.488250000000000000
+          Width = 548.031850000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' ALUNO: [frxDBDataset6."NOMEALUNO"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object SysMemo1: TfrxSysMemoView
+          Left = 605.724800000000000000
+          Top = 17.897650000000000000
+          Width = 94.488250000000000000
+          Height = 37.795300000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[DATE]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo4: TfrxMemoView
+          Left = 18.897650000000000000
+          Top = 94.267780000000000000
+          Width = 680.315400000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' AVALIADOR: [frxDBDataset6."nomeAvaliador"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo1: TfrxMemoView
+          Left = 566.929500000000000000
+          Top = 73.929190000000000000
+          Width = 132.283550000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            ' DATA: [frxDBDataset6."dataAvaliacaoFisica"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo2: TfrxMemoView
+          Left = 151.181200000000000000
+          Top = 18.677180000000000000
+          Width = 415.748300000000000000
+          Height = 37.795300000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -27
+          Font.Name = 'Arial'
+          Font.Style = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'AVALIA'#199#195'O F'#205'SICA')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo16: TfrxMemoView
+          Left = 19.000000000000000000
+          Top = 114.102350000000000000
+          Width = 680.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftBottom]
+          Memo.UTF8W = (
+            ' PROTOCOLO: [frxDBDataset6."descricaoprotocoloavafisica"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object Memo5: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 627.354670000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'SOMATOTIPO')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object ChartSomatotipo: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 646.047620000000000000
+        Width = 680.315400000000000000
+        Height = 185.196970000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080B4178697356697369626C65080D4672616D652E5669736962
+          6C6508175669657733444F7074696F6E732E456C65766174696F6E033B011856
+          69657733444F7074696F6E732E4F7274686F676F6E616C08195669657733444F
+          7074696F6E732E50657273706563746976650200165669657733444F7074696F
+          6E732E526F746174696F6E0368010B56696577334457616C6C73080A42657665
+          6C4F75746572070662764E6F6E6505436F6C6F720707636C57686974650D4465
+          6661756C7443616E766173060E54474449506C757343616E76617311436F6C6F
+          7250616C65747465496E646578020D000A545069655365726965730753657269
+          6573310D5856616C7565732E4F72646572070B6C6F417363656E64696E670C59
+          56616C7565732E4E616D6506035069650D5956616C7565732E4F726465720706
+          6C6F4E6F6E651A4672616D652E496E6E657242727573682E4261636B436F6C6F
+          720705636C526564224672616D652E496E6E657242727573682E477261646965
+          6E742E456E64436F6C6F720706636C47726179224672616D652E496E6E657242
+          727573682E4772616469656E742E4D6964436F6C6F720707636C576869746524
+          4672616D652E496E6E657242727573682E4772616469656E742E537461727443
+          6F6C6F720440404000214672616D652E496E6E657242727573682E4772616469
+          656E742E56697369626C65091B4672616D652E4D6964646C6542727573682E42
+          61636B436F6C6F720708636C59656C6C6F77234672616D652E4D6964646C6542
+          727573682E4772616469656E742E456E64436F6C6F720482828200234672616D
+          652E4D6964646C6542727573682E4772616469656E742E4D6964436F6C6F7207
+          07636C5768697465254672616D652E4D6964646C6542727573682E4772616469
+          656E742E5374617274436F6C6F720706636C47726179224672616D652E4D6964
+          646C6542727573682E4772616469656E742E56697369626C65091A4672616D65
+          2E4F7574657242727573682E4261636B436F6C6F720707636C477265656E2246
+          72616D652E4F7574657242727573682E4772616469656E742E456E64436F6C6F
+          720440404000224672616D652E4F7574657242727573682E4772616469656E74
+          2E4D6964436F6C6F720707636C5768697465244672616D652E4F757465724272
+          7573682E4772616469656E742E5374617274436F6C6F720708636C53696C7665
+          72214672616D652E4F7574657242727573682E4772616469656E742E56697369
+          626C65090B4672616D652E57696474680204194F74686572536C6963652E4C65
+          67656E642E56697369626C6508000000}
+        ChartElevation = 315
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtFixedData
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+          end>
+      end
+      object memoComposicaoCorporal: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 266.078850000000000000
+        Width = 680.315400000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'COMPOSI'#199#195'O CORPORAL')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Chart1: TfrxChartView
+        Left = 18.897650000000000000
+        Top = 284.771800000000000000
+        Width = 680.315400000000000000
+        Height = 185.196970000000000000
+        HighlightColor = clBlack
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Chart = {
+          5450463006544368617274054368617274044C656674020003546F7002000557
+          696474680390010648656967687403FA00144261636B57616C6C2E50656E2E56
+          697369626C65080B4178697356697369626C65080D4672616D652E5669736962
+          6C6508175669657733444F7074696F6E732E456C65766174696F6E033B011856
+          69657733444F7074696F6E732E4F7274686F676F6E616C08195669657733444F
+          7074696F6E732E50657273706563746976650200165669657733444F7074696F
+          6E732E526F746174696F6E0368010B56696577334457616C6C73080A42657665
+          6C4F75746572070662764E6F6E6505436F6C6F720707636C57686974650D4465
+          6661756C7443616E766173060E54474449506C757343616E76617311436F6C6F
+          7250616C65747465496E646578020D000A545069655365726965730753657269
+          6573310D5856616C7565732E4F72646572070B6C6F417363656E64696E670C59
+          56616C7565732E4E616D6506035069650D5956616C7565732E4F726465720706
+          6C6F4E6F6E651A4672616D652E496E6E657242727573682E4261636B436F6C6F
+          720705636C526564224672616D652E496E6E657242727573682E477261646965
+          6E742E456E64436F6C6F720706636C47726179224672616D652E496E6E657242
+          727573682E4772616469656E742E4D6964436F6C6F720707636C576869746524
+          4672616D652E496E6E657242727573682E4772616469656E742E537461727443
+          6F6C6F720440404000214672616D652E496E6E657242727573682E4772616469
+          656E742E56697369626C65091B4672616D652E4D6964646C6542727573682E42
+          61636B436F6C6F720708636C59656C6C6F77234672616D652E4D6964646C6542
+          727573682E4772616469656E742E456E64436F6C6F720482828200234672616D
+          652E4D6964646C6542727573682E4772616469656E742E4D6964436F6C6F7207
+          07636C5768697465254672616D652E4D6964646C6542727573682E4772616469
+          656E742E5374617274436F6C6F720706636C47726179224672616D652E4D6964
+          646C6542727573682E4772616469656E742E56697369626C65091A4672616D65
+          2E4F7574657242727573682E4261636B436F6C6F720707636C477265656E2246
+          72616D652E4F7574657242727573682E4772616469656E742E456E64436F6C6F
+          720440404000224672616D652E4F7574657242727573682E4772616469656E74
+          2E4D6964436F6C6F720707636C5768697465244672616D652E4F757465724272
+          7573682E4772616469656E742E5374617274436F6C6F720708636C53696C7665
+          72214672616D652E4F7574657242727573682E4772616469656E742E56697369
+          626C65090B4672616D652E57696474680204194F74686572536C6963652E4C65
+          67656E642E56697369626C6508000000}
+        ChartElevation = 315
+        SeriesData = <
+          item
+            InheritedName = 'TfrxSeriesItem2'
+            DataType = dtFixedData
+            SortOrder = soNone
+            TopN = 0
+            XType = xtText
+          end>
+      end
+      object Memo8: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 849.748300000000000000
+        Width = 680.315400000000000000
+        Height = 107.716535430000000000
+        DisplayFormat.FormatStr = '%2.2f'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Memo.UTF8W = (
+          ''
+          '           * Menor igual a 18.5    =   BAIXO PESO'
+          '           * De 18.6 a 24.9          =   PESO IDEAL'
+          '           * De 25.0 a 29.9          =   SOBREPESO           '
+          '           * De 30.0 a 34.9          =   OPESIDADE GRAU I'
+          '           * De 35.0 a 39.9          =   OPESIDADE GRAU II'
+          '           * Maior igual a 40.0     =   OPESIDADE GRAVE')
+        ParentFont = False
+      end
+      object Memo6: TfrxMemoView
+        Left = 18.897650000000000000
+        Top = 830.850650000000000000
+        Width = 680.315400000000000000
+        Height = 18.897637800000000000
+        DisplayFormat.FormatStr = '%2.2f'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftLeft, ftRight, ftTop]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'IMC: [frxDBDataset6."IMC"]')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo10: TfrxMemoView
+        Left = 195.000000000000000000
+        Top = 152.000000000000000000
+        Width = 151.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'ALTURA')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo11: TfrxMemoView
+        Left = 195.000000000000000000
+        Top = 171.889888270000000000
+        Width = 151.181102360000000000
+        Height = 75.692950000000000000
+        DisplayFormat.FormatStr = '%2.2f'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."med_altura_cm"] m')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo12: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 152.000000000000000000
+        Width = 151.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'IMC')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo13: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 171.889888270000000000
+        Width = 151.181102360000000000
+        Height = 75.692950000000000000
+        DisplayFormat.FormatStr = '%2.2f'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."IMC"]')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo14: TfrxMemoView
+        Left = 548.000000000000000000
+        Top = 152.000000000000000000
+        Width = 151.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '% GORDURA')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo15: TfrxMemoView
+        Left = 548.000000000000000000
+        Top = 171.889888270000000000
+        Width = 151.181102360000000000
+        Height = 75.692950000000000000
+        DisplayFormat.FormatStr = '%2.2f'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."porcentagemGordura"] %')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo7: TfrxMemoView
+        Left = 20.000000000000000000
+        Top = 151.000000000000000000
+        Width = 151.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'PESO')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo9: TfrxMemoView
+        Left = 20.000000000000000000
+        Top = 171.889888270000000000
+        Width = 151.181102360000000000
+        Height = 75.692950000000000000
+        DisplayFormat.FormatStr = '%g'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."med_peso_cm"] Kg')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo17: TfrxMemoView
+        Left = 18.000000000000000000
+        Top = 490.000000000000000000
+        Width = 326.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'IMC')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo18: TfrxMemoView
+        Left = 18.000000000000000000
+        Top = 511.889888270000000000
+        Width = 326.181102360000000000
+        Height = 71.913420000000000000
+        DisplayFormat.FormatStr = '%g'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."med_peso_cm"] Kg')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo19: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 491.000000000000000000
+        Width = 326.181102360000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'MASSA CORPORAL MAGRA')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo20: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 511.889888270000000000
+        Width = 326.181102360000000000
+        Height = 71.913420000000000000
+        DisplayFormat.FormatStr = '%g'
+        DisplayFormat.Kind = fkNumeric
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        Fill.BackColor = clWhite
+        HAlign = haCenter
+        Memo.UTF8W = (
+          '[frxDBDataset6."med_peso_cm"] Kg')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo21: TfrxMemoView
+        Left = 18.000000000000000000
+        Top = 569.000000000000000000
+        Width = 326.488250000000000000
+        Height = 34.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'OBESIDADE I')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo22: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 569.000000000000000000
+        Width = 326.488250000000000000
+        Height = 34.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Color = clSilver
+        Frame.Typ = [ftLeft, ftRight, ftBottom]
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'OBESIDADE I')
+        ParentFont = False
+        VAlign = vaCenter
+      end
+      object Memo23: TfrxMemoView
+        Left = 371.000000000000000000
+        Top = 229.000000000000000000
+        Width = 151.488250000000000000
+        Height = 18.897650000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -9
+        Font.Name = 'Arial'
+        Font.Style = []
+        HAlign = haCenter
+        Memo.UTF8W = (
+          'OBSIDADE')
+        ParentFont = False
+      end
+    end
   end
 end
