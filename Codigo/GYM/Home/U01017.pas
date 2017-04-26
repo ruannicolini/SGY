@@ -212,6 +212,8 @@ begin
   Label4.font.Color := corDefault;  //MED altura
   Label11.font.Color := corDefault; //MED braço direito relaxado
   Label13.font.Color := corDefault; //MED coxa direita
+  Label7.font.Color := corDefault;  //MED quadril
+  Label8.font.Color := corDefault;  //MED cintura
 
   Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
   Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
@@ -248,26 +250,40 @@ begin
                                         begin
                                             if not (ClientDataSet1do_BICONDILIANO_cm.IsNull)then
                                             begin
+                                                if not (ClientDataSet1MED_CINTURA_cm.IsNull)then
+                                                begin
+                                                    if not (ClientDataSet1MED_QUADRIL_cm.IsNull)then
+                                                    begin
 
-                                                inherited;
-                                                //destaca Campos Obrigatórios
-                                                corDefault := clblack;
-                                                Label21.font.Color := corDefault;  //dobra tricipal
-                                                Label22.font.Color := corDefault; //dobra subscapular
-                                                Label29.font.Color := corDefault; //dobra supra iliac
-                                                Label25.font.Color := corDefault; //dobra coxa
-                                                Label24.font.Color := corDefault; //dobra abdominal
-                                                Label28.font.Color := corDefault; //dobra peitoral
-                                                Label23.font.Color := corDefault; //dobra axiliar
+                                                        inherited;
+                                                        //destaca Campos Obrigatórios
+                                                        corDefault := clblack;
+                                                        Label21.font.Color := corDefault;  //dobra tricipal
+                                                        Label22.font.Color := corDefault; //dobra subscapular
+                                                        Label29.font.Color := corDefault; //dobra supra iliac
+                                                        Label25.font.Color := corDefault; //dobra coxa
+                                                        Label24.font.Color := corDefault; //dobra abdominal
+                                                        Label28.font.Color := corDefault; //dobra peitoral
+                                                        Label23.font.Color := corDefault; //dobra axiliar
 
-                                                Label3.font.Color := corDefault;  //MED peso
-                                                Label4.font.Color := corDefault;  //MED altura
-                                                Label11.font.Color := corDefault; //MED braço direito relaxado
-                                                Label13.font.Color := corDefault; //MED coxa direita
+                                                        Label3.font.Color := corDefault;  //MED peso
+                                                        Label4.font.Color := corDefault;  //MED altura
+                                                        Label11.font.Color := corDefault; //MED braço direito relaxado
+                                                        Label13.font.Color := corDefault; //MED coxa direita
+                                                        Label7.font.Color := corDefault;  //MED quadril
+                                                        Label8.font.Color := corDefault;  //MED cintura
 
-                                                Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
-                                                Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+                                                        Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+                                                        Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
 
+                                                    end else
+                                                    begin
+                                                      showmessage('Informe Medida do QUADRIL.');
+                                                    end;
+                                                end else
+                                                begin
+                                                  showmessage('Informe Medida dA CINTURA.');
+                                                end;
 
                                             end else
                                             begin
@@ -484,6 +500,8 @@ begin
       Label4.font.Color := corDefault;  //MED altura
       Label11.font.Color := corDefault; //MED braço direito relaxado
       Label13.font.Color := corDefault; //MED coxa direita
+      Label7.font.Color := corDefault;  //MED quadril
+      Label8.font.Color := corDefault;  //MED cintura
 
       Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
       Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)

@@ -1396,7 +1396,7 @@ begin
   if NOT(cdsRelAnamnesepeso.IsNull) and NOT(cdsRelAnamnesealtura.IsNull) then
   begin
     cdsRelAnamneseIMC.AsFloat := cdsRelAnamnesepeso.AsFloat/ (cdsRelAnamnesealtura.AsFloat * cdsRelAnamnesealtura.AsFloat) ;
-    CDSAVAFISICAIMC.AsFloat := RoundTo (cdsRelAnamneseIMC.AsFloat, -2);
+    cdsRelAnamneseIMC.AsFloat := RoundTo (cdsRelAnamneseIMC.AsFloat, -2);
   end;
 
 end;
@@ -1416,13 +1416,20 @@ begin
   end;
 
   //RCQ
-  if NOT(CDSrelAVAFISICAmed_cintura_cm.IsNull) and NOT(CDSrelAVAFISICAmed_quadril_cm.IsNull) then
+  if NOT(ClientDataSet1IDADE.IsNull)then
   begin
-    CDSrelAVAFISICARCQ.AsFloat := cdsRelAvaFisicamed_cintura_cm.AsFloat/ cdsRelAvaFisicamed_quadril_cm.AsFloat;
-    CDSrelAVAFISICARCQ.AsFloat := RoundTo (CDSrelAVAFISICARCQ.AsFloat, -2);
-    cdsRelAvaFisicaclassificacaoRCQ.AsString := getClassificacaoRCQ(CDSrelAVAFISICARCQ.AsFloat, clientdataset1idade.AsInteger, ClientDataSet1sexo.AsString);
-    //showmessage(cdsRelAvaFisicaclassificacaoRCQ.AsString);
-  end;
+      if NOT(CDSrelAVAFISICAmed_cintura_cm.IsNull) and NOT(CDSrelAVAFISICAmed_quadril_cm.IsNull) then
+      begin
+        CDSrelAVAFISICARCQ.AsFloat := cdsRelAvaFisicamed_cintura_cm.AsFloat/ cdsRelAvaFisicamed_quadril_cm.AsFloat;
+        CDSrelAVAFISICARCQ.AsFloat := RoundTo (CDSrelAVAFISICARCQ.AsFloat, -2);
+        cdsRelAvaFisicaclassificacaoRCQ.AsString := getClassificacaoRCQ(CDSrelAVAFISICARCQ.AsFloat, clientdataset1idade.AsInteger, ClientDataSet1sexo.AsString);
+        //showmessage(cdsRelAvaFisicaclassificacaoRCQ.AsString);
+      end;
+  END ELSE
+  BEGIN
+    SHOWMESSAGE('INFORME A DATA DE NASCIMENTO DO ALUNO.');
+    EXIT;
+  END;
 
   //PORCENTAGEM DE GORDURA
   IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
@@ -1434,69 +1441,101 @@ begin
       1:  BEGIN
           //PROTOCOLO DE FAULKNER (1968)
           //G% = [(TR + SB + SI + AB) x 0.153] + 5.783
-          cdsRelAvaFisicaidprotocoloavafisica.AsInteger := 1;
-          SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
-          cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
-          cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
-          cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
-          cdsRelAvaFisicaporcentagemGordura.AsFloat := ((SOMA) * 0.153)+ 5.783;
+          IF (NOT(cdsRelAvaFisicadobra_triciptal_mm.ISNULL)AND
+             NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) AND
+             NOT(cdsRelAvaFisicadobra_subescapular_mm.ISNULL) AND
+             NOT(cdsRelAvaFisicadobra_abdominal_mm.ISNULL) )THEN
+          BEGIN
+              SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+              cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+              cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+              cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
+              cdsRelAvaFisicaporcentagemGordura.AsFloat := ((SOMA) * 0.153)+ 5.783;
+              END;
           END;
 
       2:  BEGIN
               //POLLOCK 3 DOBRAS
               IF(ClientDataSet1sexo.AsString = 'M')THEN
               BEGIN
-                //MASCULINO: peitoral, abdominal e coxa
-                SOMA := cdsRelAvaFisicadobra_peitoral_mm.AsFloat +
-                cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
-                cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+                  //MASCULINO: peitoral, abdominal e coxa
+                  IF (NOT(cdsRelAvaFisicadobra_peitoral_mm.ISNULL)AND
+                     NOT(cdsRelAvaFisicadobra_coxa_mm.ISNULL) AND
+                     NOT(cdsRelAvaFisicadobra_abdominal_mm.ISNULL) AND
+                     NOT(CLIENTDATASET1IDADE.ISNULL) )THEN
+                  BEGIN
+                      SOMA := cdsRelAvaFisicadobra_peitoral_mm.AsFloat +
+                      cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
+                      cdsRelAvaFisicadobra_coxa_mm.AsFloat;
 
-                //DC = (1,10938-(0,0008267 x 3 dobras)+(0,0000016 x (3 dobras)2 – (0,0002574 x idade)
-                DC := 1.10938 - (0.0008267 * soma) + (0.0000016 * MATH.Power(SOMA,2)) - (0.0002574 * ClientDataSet1IDADE.AsInteger);
+                      //DC = (1,10938-(0,0008267 x 3 dobras)+(0,0000016 x (3 dobras)2 – (0,0002574 x idade)
+                      DC := 1.10938 - (0.0008267 * soma) + (0.0000016 * MATH.Power(SOMA,2)) - (0.0002574 * ClientDataSet1IDADE.AsInteger);
+                  END;
+
               END ELSE
               BEGIN
-                //FEMININO: tríceps + supra-iliaca + coxa
-                SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
-                cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
-                cdsRelAvaFisicadobra_coxa_mm.AsFloat;
-                //DC = 1,0994921 – 0,0009929(Σ) + 0,0000023(Σ)² – 0,0001392(idade)
-                DC := ( 1.0994921 - (0.0009929 * SOMA) + (0.0000023 * MATH.Power(SOMA,2)) - (0.0001392 * ClientDataSet1IDADE.AsInteger) );
-
+                  //FEMININO: tríceps + supra-iliaca + coxa
+                  IF (NOT(cdsRelAvaFisicadobra_triciptal_mm.ISNULL)AND
+                     NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) AND
+                     NOT(cdsRelAvaFisicadobra_COXA_mm.ISNULL) AND
+                     NOT(CLIENTDATASET1IDADE.ISNULL) )THEN
+                  BEGIN
+                      SOMA := cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+                      cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+                      cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+                      //DC = 1,0994921 – 0,0009929(Σ) + 0,0000023(Σ)² – 0,0001392(idade)
+                      DC := ( 1.0994921 - (0.0009929 * SOMA) + (0.0000023 * MATH.Power(SOMA,2)) - (0.0001392 * ClientDataSet1IDADE.AsInteger) );
+                  END;
               END;
 
               //G% = [(4,95 / DC) – 4,50] x 100
-              CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+              IF(DC <> 0.0)THEN
+              BEGIN
+                  CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+              END;
 
           END;
 
       3:  BEGIN
               //POLLOCK 7 DOBRAS
-              //(subescapular + tríceps + peitoral + axilar-media + supra-iliaca + abdômen + coxa)
-              SOMA :=
-              cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
-              cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
-              cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
-              cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
-              cdsRelAvaFisicadobra_axiliar_mm.AsFloat +
-              cdsRelAvaFisicadobra_coxa_mm.AsFloat +
-              cdsRelAvaFisicadobra_peitoral_mm.AsFloat;
-
-              // DC: DENCIDADE CORPORAL
-              IF(ClientDataSet1sexo.AsString = 'M')THEN
+              IF (NOT(cdsRelAvaFisicadobra_triciptal_mm.ISNULL)AND
+                 NOT(cdsRelAvaFisicadobra_subescapular_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicadobra_abdominal_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicadobra_axiliar_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicadobra_coxa_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicadobra_peitoral_mm.ISNULL) AND
+                 NOT(cdsRelAvaFisicamed_altura_cm.ISNULL) ) THEN
               BEGIN
-                //MASCULINO:
-                //DC = 1,11200000 – (0,000434999 x Σ) + [0,00000055 x (Σ)²]– [0,0002882 (idade)]
-                DC := ( 1.11200000 - (0.000434999 * SOMA) + ( (0.00000055 * MATH.Power(SOMA,2)) - (0.0002882 * ClientDataSet1IDADE.AsInteger) )  );
-              END ELSE
-              BEGIN
-                //FEMININO: 1,0970 – (0,00046971 x Σ) + [0,00000056 x (Σ)²] – [0,00012828 (idade)]
-                DC := ( 1.0970 - (0.00046971 * SOMA) + ( (0.00000056 * MATH.Power(SOMA,2)) - (0.00012828 * ClientDataSet1IDADE.AsInteger) )  );
+                  //(subescapular + tríceps + peitoral + axilar-media + supra-iliaca + abdômen + coxa)
+                  SOMA :=
+                  cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+                  cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+                  cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+                  cdsRelAvaFisicadobra_abdominal_mm.AsFloat +
+                  cdsRelAvaFisicadobra_axiliar_mm.AsFloat +
+                  cdsRelAvaFisicadobra_coxa_mm.AsFloat +
+                  cdsRelAvaFisicadobra_peitoral_mm.AsFloat;
 
+                  // DC: DENCIDADE CORPORAL
+                  IF(ClientDataSet1sexo.AsString = 'M')THEN
+                  BEGIN
+                    //MASCULINO:
+                    //DC = 1,11200000 – (0,000434999 x Σ) + [0,00000055 x (Σ)²]– [0,0002882 (idade)]
+                    DC := ( 1.11200000 - (0.000434999 * SOMA) + ( (0.00000055 * MATH.Power(SOMA,2)) - (0.0002882 * ClientDataSet1IDADE.AsInteger) )  );
+                  END ELSE
+                  BEGIN
+                    //FEMININO: 1,0970 – (0,00046971 x Σ) + [0,00000056 x (Σ)²] – [0,00012828 (idade)]
+                    DC := ( 1.0970 - (0.00046971 * SOMA) + ( (0.00000056 * MATH.Power(SOMA,2)) - (0.00012828 * ClientDataSet1IDADE.AsInteger) )  );
+
+                  END;
+
+                  //G% = [(4,95 / DC) – 4,50] x 100
+                  IF(DC <> 0.0)THEN
+                  BEGIN
+                      CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+                  END;
               END;
-
-              //G% = [(4,95 / DC) – 4,50] x 100
-              CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
-
 
           END;
 
@@ -1507,33 +1546,47 @@ begin
                 //MASCULINO:
                 //Homens : Tríceps, suprai-líaca e abdome
                 //HOMENS: Densidade = 1,17136 - 0,06706 log (TR + SI+AB )
-                SOMA :=
-                cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
-                cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
-                cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
-                DC := 1.17136 - (0.06706 * MATH.Log10(SOMA));
+                IF (NOT(cdsRelAvaFisicadobra_triciptal_mm.ISNULL)AND
+                   NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) AND
+                   NOT(cdsRelAvaFisicadobra_abdominal_mm.ISNULL))THEN
+                BEGIN
+                    SOMA :=
+                    cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+                    cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+                    cdsRelAvaFisicadobra_abdominal_mm.AsFloat;
+                    DC := 1.17136 - (0.06706 * MATH.Log10(SOMA));
+                END;
 
               END ELSE
               BEGIN
                 //FEMININO
                 //Mulheres: Subescapular, supra-ilíaca e coxa
                 //MULHERES: Densidade = 1,16650- 0,07063 log (CX + SI+ SB)
-                SOMA :=
-                cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
-                cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
-                cdsRelAvaFisicadobra_coxa_mm.AsFloat;
-                DC := 1.16650 - (0.07063 * MATH.Log10(SOMA));
+                IF (NOT(cdsRelAvaFisicadobra_subescapular_mm.ISNULL)AND
+                   NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) AND
+                   NOT(cdsRelAvaFisicadobra_coxa_mm.ISNULL))THEN
+                BEGIN
+                    SOMA :=
+                    cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+                    cdsRelAvaFisicadobra_suprailiac_mm.AsFloat +
+                    cdsRelAvaFisicadobra_coxa_mm.AsFloat;
+                    DC := 1.16650 - (0.07063 * MATH.Log10(SOMA));
+                END;
               END;
 
               //G% = [(4,95 / DC) – 4,50] x 100
-              CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+              IF(DC <> 0.0)THEN
+              BEGIN
+                CdsRelAvaFisicaporcentagemGordura.AsFloat := ((4.95 / DC) - 4.50) * 100;
+              END;
 
           END;
 
     end;
 
     //COMPOSIÇÃO CORPORAL
-    IF NOT(cdsRelAvaFisicaporcentagemGordura.IsNull)THEN
+    IF (  (NOT(cdsRelAvaFisicaporcentagemGordura.IsNull)) and (NOT(cdsRelAvaFisicamed_peso_cm.IsNull))and
+          (NOT(cdsRelAvaFisicado_BICONDILIANO_cm.IsNull)) and (NOT(cdsRelAvaFisicado_BIESTILOIDE_cm.IsNull))  )THEN
     BEGIN
         //Peso Gordura
         //Peso Gordo= Peso Corporal x %Gordura
@@ -1568,8 +1621,6 @@ begin
         //Peso Magro= Peso Corporal – Peso Gordo
         cdsRelAvaFisicamassaMagraCorporal.AsFloat := RoundTo((cdsRelAvaFisicamed_peso_cm.asfloat - cdsRelAvaFisicapesoGordura.AsFloat), -2);
 
-
-
     END;
 
   END ELSE
@@ -1578,68 +1629,84 @@ begin
   END;
 
 
-
   {SOMATOTIPIA}
 
   //ENDOMORFIA
-  //Fórmula de De Rose et al. (1984)
-  //Endomorfia = – 0,7182 + 0,1451(Σc) – 0,00068 (Σc)^2 + 0,0000014 (Σc)^3
-  // Σc = [(tricipital + subescapular + supraespinhal) x (170.18/estatura)]
-  // obs: supraespinhal = supraIlíaca;
-  //obs: multiplicar estatura por 100 caso tenha q converter de metros para centímetros
-  cdsRelAvaFisicasomatotipoEndo.AsFloat :=
-  (cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
-  cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
-  cdsRelAvaFisicadobra_suprailiac_mm.AsFloat)          * (170.18 / (cdsRelAvaFisicamed_altura_cm.AsFloat * 100));
-  cdsRelAvaFisicasomatotipoEndo.AsFloat :=
-  (cdsRelAvaFisicasomatotipoEndo.AsFloat * 0.1451) -
-  ( math.Power(cdsRelAvaFisicasomatotipoEndo.AsFloat,2) * 0.00068) +
-  ( math.Power(cdsRelAvaFisicasomatotipoEndo.AsFloat,3) * 0.0000014)   - 0.7182;
-  cdsRelAvaFisicasomatotipoEndo.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoEndo.AsFloat,-2);
+  IF (NOT(cdsRelAvaFisicadobra_triciptal_mm.ISNULL)AND
+     NOT(cdsRelAvaFisicadobra_subescapular_mm.ISNULL) AND
+     NOT(cdsRelAvaFisicadobra_suprailiac_mm.ISNULL) )THEN
+  BEGIN
+      //Fórmula de De Rose et al. (1984)
+      //Endomorfia = – 0,7182 + 0,1451(Σc) – 0,00068 (Σc)^2 + 0,0000014 (Σc)^3
+      // Σc = [(tricipital + subescapular + supraespinhal) x (170.18/estatura)]
+      // obs: supraespinhal = supraIlíaca;
+      //obs: multiplicar estatura por 100 caso tenha q converter de metros para centímetros
+      cdsRelAvaFisicasomatotipoEndo.AsFloat :=
+      (cdsRelAvaFisicadobra_triciptal_mm.AsFloat +
+      cdsRelAvaFisicadobra_subescapular_mm.AsFloat +
+      cdsRelAvaFisicadobra_suprailiac_mm.AsFloat)          * (170.18 / (cdsRelAvaFisicamed_altura_cm.AsFloat * 100));
+      cdsRelAvaFisicasomatotipoEndo.AsFloat :=
+      (cdsRelAvaFisicasomatotipoEndo.AsFloat * 0.1451) -
+      ( math.Power(cdsRelAvaFisicasomatotipoEndo.AsFloat,2) * 0.00068) +
+      ( math.Power(cdsRelAvaFisicasomatotipoEndo.AsFloat,3) * 0.0000014)   - 0.7182;
+      cdsRelAvaFisicasomatotipoEndo.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoEndo.AsFloat,-2);
+  END;
 
   //ECTOMORFIA
   // IP = (Estatura / raiz cúbica do peso do aluno);
-  indicePonderal := (cdsRelAvaFisicamed_altura_cm.AsFloat * 100) / (Math.power(cdsRelAvaFisicamed_peso_cm.AsFloat, 0.333333));
-  if (indicePonderal <= 38.25)then
-  begin
-        cdsRelAvaFisicasomatotipoEcto.AsFloat := 0.1;
-  end else
-  begin
-    if ((indicePonderal > 38.25) and (indicePonderal < 40.75))then
-    begin
-        cdsRelAvaFisicasomatotipoEcto.AsFloat := (0.463 * indicePonderal) - 17.63;
-    end else
-    begin
-        if (indicePonderal >= 40.75)then
+  IF (NOT(cdsRelAvaFisicaMED_ALTURA_cm.ISNULL)AND
+      NOT(cdsRelAvaFisicaMED_PESO_cm.ISNULL) ) THEN
+  BEGIN
+      indicePonderal := (cdsRelAvaFisicamed_altura_cm.AsFloat * 100) / (Math.power(cdsRelAvaFisicamed_peso_cm.AsFloat, 0.333333));
+      if (indicePonderal <= 38.25)then
+      begin
+            cdsRelAvaFisicasomatotipoEcto.AsFloat := 0.1;
+      end else
+      begin
+        if ((indicePonderal > 38.25) and (indicePonderal < 40.75))then
         begin
-            cdsRelAvaFisicasomatotipoEcto.AsFloat := (0.732 * indicePonderal) - 28.58;
+            cdsRelAvaFisicasomatotipoEcto.AsFloat := (0.463 * indicePonderal) - 17.63;
+        end else
+        begin
+            if (indicePonderal >= 40.75)then
+            begin
+                cdsRelAvaFisicasomatotipoEcto.AsFloat := (0.732 * indicePonderal) - 28.58;
+            end;
         end;
-    end;
-    cdsRelAvaFisicasomatotipoEcto.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoEcto.AsFloat,-2);
-  end;
+        cdsRelAvaFisicasomatotipoEcto.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoEcto.AsFloat,-2);
+      end;
+  END;
 
 
   //MESOMORFIA
-  //BU = Diâmetro ósseo do Úmero em centímetros
-  BU := cdsRelAvaFisicado_BIEPICONDILIANO_cm.AsFloat;
+  IF (NOT(cdsRelAvaFisicado_BIEPICONDILIANO_cm.ISNULL)AND
+     NOT(cdsRelAvaFisicado_BICONDILIANO_cm.ISNULL) AND
+     NOT(cdsRelAvaFisicamed_bracoDireitoRelaxado_cm.ISNULL) AND
+     NOT(cdsRelAvaFisicamed_coxaDireita_cm.ISNULL) AND
+     NOT(cdsRelAvaFisicamed_altura_cm.ISNULL) ) THEN
+  BEGIN
+      //BU = Diâmetro ósseo do Úmero em centímetros
+      BU := cdsRelAvaFisicado_BIEPICONDILIANO_cm.AsFloat;
 
-  //BF = Diâmetro ósseo do Fêmur em centímetros
-  BF := cdsRelAvaFisicado_BICONDILIANO_cm.AsFloat;
+      //BF = Diâmetro ósseo do Fêmur em centímetros
+      BF := cdsRelAvaFisicado_BICONDILIANO_cm.AsFloat;
 
-  //Bc = Braço corrigido em centímetros
-  //Bc = Circunferência do braço (cm) – dobra cutânea do tríceps (cm)
-  BC := cdsRelAvaFisicamed_bracoDireitoRelaxado_cm.AsFloat - (cdsRelAvaFisicadobra_triciptal_mm.AsFloat / 10);
+      //Bc = Braço corrigido em centímetros
+      //Bc = Circunferência do braço (cm) – dobra cutânea do tríceps (cm)
+      BC := cdsRelAvaFisicamed_bracoDireitoRelaxado_cm.AsFloat - (cdsRelAvaFisicadobra_triciptal_mm.AsFloat / 10);
 
-  //Pc =Perna Corrigida em centímetros
-  //Pc = Circunferência da perna (cm) – dobra cutânea da perna (cm)
-  PC := cdsRelAvaFisicamed_coxaDireita_cm.AsFloat - (cdsRelAvaFisicadobra_coxa_mm.AsFloat / 10);
+      //Pc =Perna Corrigida em centímetros
+      //Pc = Circunferência da perna (cm) – dobra cutânea da perna (cm)
+      PC := cdsRelAvaFisicamed_coxaDireita_cm.AsFloat - (cdsRelAvaFisicadobra_coxa_mm.AsFloat / 10);
 
-  //E = Estatura em centímetros
-  E := cdsRelAvaFisicamed_altura_cm.AsFloat * 100;
-  //showmessage('0.858 * ('+ Floattostr(BU) +'))+ (0.601 * ('+ Floattostr(BF) +')) + (0.188 * ('+ Floattostr(BC) +')) + (0.161 * ('+ Floattostr(PC) +')) - (0.131 * ('+ Floattostr(E) +')) + 4.50');
-  //MESOMORFIA = 0, 858 (BU) + 0,601 (BF) + 0,188 (Bc) + 0,161 (Pc) – 0,131 (E) + 4,50
-  cdsRelAvaFisicasomatotipoMeso.AsFloat := (0.858 * (BU))+ (0.601 * (BF)) + (0.188 * (Bc)) + (0.161 * (Pc)) - (0.131 * (E)) + 4.50;
-  cdsRelAvaFisicasomatotipoMeso.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoMeso.AsFloat,-2);
+      //E = Estatura em centímetros
+      E := cdsRelAvaFisicamed_altura_cm.AsFloat * 100;
+      //showmessage('0.858 * ('+ Floattostr(BU) +'))+ (0.601 * ('+ Floattostr(BF) +')) + (0.188 * ('+ Floattostr(BC) +')) + (0.161 * ('+ Floattostr(PC) +')) - (0.131 * ('+ Floattostr(E) +')) + 4.50');
+      //MESOMORFIA = 0, 858 (BU) + 0,601 (BF) + 0,188 (Bc) + 0,161 (Pc) – 0,131 (E) + 4,50
+      cdsRelAvaFisicasomatotipoMeso.AsFloat := (0.858 * (BU))+ (0.601 * (BF)) + (0.188 * (Bc)) + (0.161 * (Pc)) - (0.131 * (E)) + 4.50;
+      cdsRelAvaFisicasomatotipoMeso.AsFloat := RoundTo(cdsRelAvaFisicasomatotipoMeso.AsFloat,-2);
+
+  END;
 
 end;
 
@@ -3531,7 +3598,7 @@ var
 caminho : string;
 begin
   inherited;
-
+{
 // Foto na pasta local img_Aluno
   caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
 
@@ -3546,6 +3613,7 @@ begin
     TfrxPictureView(REPORT_ANAMNESEPATOLOGIA.FindObject('Picture1')).Stretched := false;
 
   end;
+  }
 end;
 
 procedure TF01001.report_AvaFisicaBeforePrint(Sender: TfrxReportComponent);

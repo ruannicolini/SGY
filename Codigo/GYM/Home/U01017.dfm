@@ -204,9 +204,9 @@ inherited F01017: TF01017
           object Label12: TLabel
             Left = 177
             Top = 144
-            Width = 113
+            Width = 114
             Height = 11
-            Caption = 'ANTIBRA'#199'O DIR (cm)'
+            Caption = 'ANTEBRA'#199'O DIR (cm)'
             FocusControl = DBEdit12
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -274,9 +274,9 @@ inherited F01017: TF01017
           object Label17: TLabel
             Left = 340
             Top = 144
-            Width = 114
+            Width = 115
             Height = 11
-            Caption = 'ANTIBRA'#199'O ESQ (cm)'
+            Caption = 'ANTEBRA'#199'O ESQ (cm)'
             FocusControl = DBEdit17
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -1211,7 +1211,7 @@ inherited F01017: TF01017
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C001C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
