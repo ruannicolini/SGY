@@ -286,6 +286,20 @@ begin
       DModule.avaliador := Dmodule.qAux.FieldByName('avaliador').AsBoolean;
       PanelNomeUsuario.Caption := Dmodule.nomeusuario;
 
+      {showmessage(
+      'admin:' + Dmodule.qAux.FieldByName('administrador').asstring + #13 +
+      'instrutor:' + Dmodule.qAux.FieldByName('instrutor').asstring + #13 +
+      'atendente:' + Dmodule.qAux.FieldByName('atendente').asstring + #13 +
+      'avaliador:' + Dmodule.qAux.FieldByName('avaliador').asstring + #13
+      );
+
+      showmessage(
+      'admin:' + booltostr(DModule.administrador) + #13 +
+      'instrutor:' + booltostr(DModule.instrutor) + #13 +
+      'atendente:' + booltostr(DModule.atendente) + #13 +
+      'avaliador:' + booltostr(DModule.avaliador)
+      );   }
+
       // VERIFICA SE USUÁRIO ESTA ATIVO ATUALMENTE
       if ( Dmodule.qAux.FieldByName('ativo').AsBoolean = FALSE ) then
       begin

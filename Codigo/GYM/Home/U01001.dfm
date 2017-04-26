@@ -3,8 +3,6 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
-  ExplicitTop = -365
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -19,13 +17,10 @@
   inherited PageControl: TPageControl
     Width = 1008
     Height = 706
-    ActivePage = TbDados
     TabStop = False
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -52,7 +47,7 @@
           ParentFont = False
           TabOrder = 0
           TabStop = False
-          Properties.ActivePage = pagAvaliacoes
+          Properties.ActivePage = pagPerfil
           Properties.CustomButtons.Buttons = <>
           Properties.NavigatorPosition = npLeftTop
           Properties.Style = 9
@@ -598,7 +593,7 @@
                     Left = 3
                     Top = 3
                     Width = 776
-                    Height = 398
+                    Height = 392
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
@@ -661,7 +656,7 @@
                   end
                   object Panel3: TPanel
                     Left = 0
-                    Top = 404
+                    Top = 398
                     Width = 782
                     Height = 40
                     Align = alBottom
@@ -669,6 +664,7 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 1
+                    ExplicitTop = 395
                     object LabelAvisoProtocolo: TLabel
                       Left = 328
                       Top = 11
@@ -683,7 +679,7 @@
                       ParentFont = False
                       Visible = False
                     end
-                    object DBEditBeleza2: TDBEditBeleza
+                    object DBEditBelezaProtocolo: TDBEditBeleza
                       Left = 38
                       Top = 10
                       Width = 275
@@ -728,15 +724,16 @@
                       Font.Name = 'Tahoma'
                       Font.Style = []
                       ParentFont = False
+                      ReadOnly = True
                       TabOrder = 1
                       OnChange = DBEdit15Change
                     end
                   end
                   object Panel4: TPanel
                     Left = 0
-                    Top = 444
+                    Top = 438
                     Width = 782
-                    Height = 30
+                    Height = 36
                     Align = alBottom
                     BevelOuter = bvNone
                     Color = 15329769
@@ -744,7 +741,7 @@
                     TabOrder = 2
                     object btnImprimirAvaFisica: TSpeedButton
                       Left = 631
-                      Top = 0
+                      Top = 2
                       Width = 151
                       Height = 30
                       Align = alCustom
@@ -753,8 +750,8 @@
                       OnClick = btnImprimirAvaFisicaClick
                     end
                     object btnNovaAvaFisica: TSpeedButton
-                      Left = 478
-                      Top = 0
+                      Left = 474
+                      Top = 2
                       Width = 151
                       Height = 30
                       Align = alCustom
@@ -1495,8 +1492,6 @@
       end
     end
     inherited TbFiltros: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -12141,7 +12136,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42849.663924664400000000
-    ReportOptions.LastChange = 42850.688144884260000000
+    ReportOptions.LastChange = 42851.588432650460000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'

@@ -652,15 +652,19 @@ begin
     //DModule.qAcesso.SQL.Add('where s.idInterface =:idInterf and s.idTipousuario =:idTU ');
     DModule.qAcesso.SQL.Add('where s.idInterface =:idInterf and (   (1<>1) ');
 
+    //showmessage('admin: ' + BoolToStr(Dmodule.administrador));
     if(Dmodule.administrador = true )then
     DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 1) ');
 
+    //showmessage('instrutor: ' + BoolToStr(Dmodule.instrutor));
     if(Dmodule.instrutor = true )then
     DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 2) ');
 
+    //showmessage('atendente: ' + BoolToStr(Dmodule.atendente));
     if(Dmodule.atendente = true )then
     DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 3) ');
 
+    //showmessage('avaliador: ' + BoolToStr(Dmodule.avaliador));
     if(Dmodule.avaliador = true )then
     DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
 
@@ -696,6 +700,7 @@ begin
           begin
               if(Dmodule.cdsAcessoconsultar.AsBoolean = true)then
               begin
+                //showmessage(Dmodule.cdsAcessoconsultar.AsString);
                 resultado := true;
                 break;
               end;

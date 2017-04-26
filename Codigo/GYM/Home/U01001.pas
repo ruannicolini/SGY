@@ -478,7 +478,7 @@ type
     report_Comparativo: TfrxReport;
     CDSAvaFisicaIMC: TFloatField;
     Panel3: TPanel;
-    DBEditBeleza2: TDBEditBeleza;
+    DBEditBelezaProtocolo: TDBEditBeleza;
     DBEdit15: TDBEdit;
     FDQuery1idProtocoloAvaFisica: TIntegerField;
     FDQuery1descricaoprotocoloAvaFisica: TStringField;
@@ -1111,32 +1111,39 @@ begin
                 BEGIN
                     TRY
                         TRY
-                          qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
-                          cdsRelAvaFisica.close;
-                          cdsRelAvaFisica.open;
-
-                          //
-                          {
-                          cdsRelAvaFisica.First;
-                          for I := 0 to cdsRelAvaFisica.FieldCount-1  do
-                          begin
-                            IF((cdsRelAvaFisica.Fields.Fields[I].IsNull))then
+                            if NOT(ClientDataSet1IDADE.IsNull)then
                             begin
-                              //SHOWMESSAGE(cdsRelAvaFisica.Fields.Fields[I].FieldName + ': '+ cdsRelAvaFisica.Fields.Fields[I].ClassName);
-                              IF((cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TFloatField') or (cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TSingleField')) THEN
-                              BEGIN
-                                  cdsRelAvaFisica.edit;
-                                  cdsRelAvaFisica.Fields.Fields[I].AsFloat := 0.00;
-                                  cdsRelAvaFisica.post;
-                              END;
-                            end;
-                          end;
-                          }
+                                IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
+                                BEGIN
+                                    qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
+                                    cdsRelAvaFisica.close;
+                                    cdsRelAvaFisica.open;
+                                    {
+                                    cdsRelAvaFisica.First;
+                                    for I := 0 to cdsRelAvaFisica.FieldCount-1  do
+                                    begin
+                                      IF((cdsRelAvaFisica.Fields.Fields[I].IsNull))then
+                                      begin
+                                        //SHOWMESSAGE(cdsRelAvaFisica.Fields.Fields[I].FieldName + ': '+ cdsRelAvaFisica.Fields.Fields[I].ClassName);
+                                        IF((cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TFloatField') or (cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TSingleField')) THEN
+                                        BEGIN
+                                            cdsRelAvaFisica.edit;
+                                            cdsRelAvaFisica.Fields.Fields[I].AsFloat := 0.00;
+                                            cdsRelAvaFisica.post;
+                                        END;
+                                      end;
+                                    end;
+                                    }
+                                    report_AvaFisica.ShowReport(TRUE);
+                                END ELSE
+                                BEGIN
+                                    SHOWMESSAGE('ESCOLHA UM PROTOCOLO PARA CÁLCULO DA % DE GORDURA NO PERFIL DO USUÁRIO.');
+                                END;
+                            END ELSE
+                            BEGIN
+                              SHOWMESSAGE('INFORME A DATA DE NASCIMENTO DO ALUNO.');
+                            END
 
-
-
-                          report_AvaFisica.ShowReport(TRUE);
-                          //report_AvaFisica.Print;
                         EXCEPT
                           RAISE;
                         END;
@@ -2411,6 +2418,7 @@ begin
     btnNovaAnamnes.enabled := TRUE;
     btnNovaAvaFisica.visible := TRUE;
     btnNovaAvaFisica.enabled := TRUE;
+    DBEditBelezaProtocolo.ReadOnly := false;
 
     //ABA FICHA DE EXERCICIO
     pagFichaExercicios.TabVisible := true;
@@ -2439,6 +2447,7 @@ begin
           btnNovaAnamnes.enabled := TRUE;
           btnNovaAvaFisica.visible := TRUE;
           btnNovaAvaFisica.enabled := TRUE;
+          DBEditBelezaProtocolo.ReadOnly := false;
 
           //ABA FICHA DE EXERCICIO
           pagFichaExercicios.TabVisible := FALSE;
@@ -2497,6 +2506,8 @@ begin
               pagAvaliacoes.TabVisible := true;
               btnNovaAnamnes.visible := FALSE;
               btnNovaAvaFisica.visible := FALSE;
+              DBEditBelezaProtocolo.ReadOnly := true;
+
               //Impede exclusão se necessário
               DBGridBelezaAnamnese.OnKeyDown := nil;
               DBGridBelezaFisica.OnKeyDown := nil;
@@ -2549,6 +2560,8 @@ begin
                   pagAvaliacoes.TabVisible := true;
                   btnNovaAvaFisica.visible := FALSE;
                   btnNovaAnamnes.visible := FALSE;
+                  DBEditBelezaProtocolo.ReadOnly := true;
+
                   //Impede exclusão se necessário
                   DBGridBelezaAnamnese.OnKeyDown := nil;
                   DBGridBelezaFisica.OnKeyDown := nil;
@@ -3630,6 +3643,11 @@ begin
     cdsRelAvaFisicapesoGordura.AsString + ';' +
     cdsRelAvaFisicapesoResidual.AsString + ';' +
     cdsRelAvaFisicapesoOsseo.AsString + ';';
+    //TfrxChartView(SENDER).SeriesData[0].Source3 := '$00011936;$00ED254E;$00F9DC5C;$002D52FF;';
+
+    // Tira 3D
+    //TfrxChartView(SENDER).chart.View3D := false;
+
   END;
 
   IF SENDER.Name = 'ChartSomatotipo' then
