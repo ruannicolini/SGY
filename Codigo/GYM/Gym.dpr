@@ -28,7 +28,8 @@ uses
   U01014 in 'Home\U01014.pas' {F01014},
   U01015 in 'Home\U01015.pas' {F01015},
   U01016 in 'Home\U01016.pas' {F01016},
-  U01017 in 'Home\U01017.pas' {F01017};
+  U01017 in 'Home\U01017.pas' {F01017},
+  UPrincipalAdmin in 'UPrincipalAdmin.pas' {FPrincipalAdmin};
 
 {$R *.res}
 

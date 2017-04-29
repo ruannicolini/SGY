@@ -19,7 +19,6 @@ type
     imgBackground: TImage;
     PanelLinhaSuperior: TPanel;
     PanelPrincipal: TPanel;
-    imgMenu: TImage;
     PanelMenuImg: TPanel;
     imgBtnAluno: TImage;
     imgBtnPagamento: TImage;
@@ -65,7 +64,7 @@ implementation
 {$R *.dfm}
 
 uses ubase, vcl.themes, vcl.styles, UDataModule, U01009, ShellApi, uFuncao,
-  UHPI, math;
+  UHPI, math, UPrincipalAdmin;
 
 procedure TFPrincipal.ApplicationEvents1Exception(Sender: TObject;
   E: Exception);
@@ -350,6 +349,19 @@ begin
   DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
   DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
 
+  if(DMODULE.administrador = TRUE)then
+  begin
+    //showmessage('1');
+
+    With TFPrincipalAdmin.Create(Application) do
+    Begin
+      Pointer((@Application.MainForm)^) := FPrincipalAdmin;
+      fprincipal.Hide;
+      ShowModal;
+      Free;
+      Pointer((@Application.MainForm)^) := fprincipal;
+    End;
+  end;
 
 end;
 

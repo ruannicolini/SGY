@@ -3,6 +3,7 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
+  ExplicitTop = 6
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -21,6 +22,8 @@
     ExplicitWidth = 1008
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited grDados: TGroupBox
@@ -664,7 +667,6 @@
                     Color = 15329769
                     ParentBackground = False
                     TabOrder = 1
-                    ExplicitTop = 395
                     object LabelAvisoProtocolo: TLabel
                       Left = 328
                       Top = 11
@@ -1492,6 +1494,8 @@
       end
     end
     inherited TbFiltros: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
       ExplicitWidth = 1000
       ExplicitHeight = 678
       inherited GBFiltros: TGroupBox
@@ -2131,7 +2135,7 @@
     Left = 144
     Top = 40
     Bitmap = {
-      494C01010F002C00DC0310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00E80310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3639,7 +3643,7 @@
     Left = 112
     Top = 40
     Bitmap = {
-      494C0101010014003C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140048015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -9510,7 +9514,6 @@
     Top = 618
   end
   object cdsRelAnamnese: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelAnamnese'
