@@ -27,16 +27,20 @@ object FPrincipalAdmin: TFPrincipalAdmin
     object PanelMenu: TPanel
       Left = 0
       Top = 23
-      Width = 227
+      Width = 230
       Height = 706
       Align = alLeft
       BevelOuter = bvNone
+      Color = 13553358
+      ParentBackground = False
       TabOrder = 0
       object ScrollBox1: TScrollBox
-        Left = 0
-        Top = 0
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
         Width = 227
-        Height = 706
+        Height = 700
+        Margins.Right = 0
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -45,11 +49,14 @@ object FPrincipalAdmin: TFPrincipalAdmin
         ParentCtl3D = False
         ParentDoubleBuffered = False
         TabOrder = 0
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitHeight = 706
         object dxTileControl1: TdxTileControl
           Left = 0
           Top = 0
           Width = 225
-          Height = 704
+          Height = 698
           LookAndFeel.NativeStyle = True
           OptionsView.CenterContentHorz = True
           OptionsView.GroupLayout = glVertical
@@ -60,6 +67,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
           OptionsView.ItemIndent = 1
           OptionsView.ItemWidth = 110
           TabOrder = 0
+          ExplicitHeight = 704
           object dxTileControl1Group1: TdxTileControlGroup
             Index = 0
           end
@@ -297,337 +305,599 @@ object FPrincipalAdmin: TFPrincipalAdmin
       Visible = False
     end
     object PanelIndicadores: TPanel
-      Left = 227
+      Left = 230
       Top = 23
-      Width = 788
+      Width = 785
       Height = 706
       Align = alClient
       BevelOuter = bvNone
       Color = 13553358
       ParentBackground = False
       TabOrder = 2
-      object ScrollBoxIndicadores: TScrollBox
-        Left = 0
-        Top = 0
-        Width = 788
-        Height = 706
+      ExplicitLeft = 227
+      ExplicitWidth = 788
+      object PageControl1: TPageControl
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 779
+        Height = 700
+        ActivePage = tbsIndAluno
         Align = alClient
-        BevelInner = bvNone
-        BevelOuter = bvNone
-        DoubleBuffered = False
-        Ctl3D = False
-        ParentCtl3D = False
-        ParentDoubleBuffered = False
+        MultiLine = True
         TabOrder = 0
-        object ScrollBoxGrafico3: TScrollBox
-          AlignWithMargins = True
-          Left = 3
-          Top = 425
-          Width = 780
-          Height = 208
-          Margins.Bottom = 0
-          HorzScrollBar.Range = 738
-          VertScrollBar.Range = 208
-          VertScrollBar.Visible = False
-          Align = alTop
-          AutoScroll = False
-          BevelInner = bvNone
-          BevelOuter = bvNone
-          BorderStyle = bsNone
-          Ctl3D = False
-          ParentCtl3D = False
-          TabOrder = 0
-          ExplicitWidth = 763
-          object Panel4: TPanel
-            AlignWithMargins = True
+        TabPosition = tpRight
+        ExplicitWidth = 782
+        object tbsIndAluno: TTabSheet
+          Caption = 'Alunos'
+          ExplicitWidth = 754
+          object ScrollBoxIndAluno: TScrollBox
             Left = 0
             Top = 0
-            Width = 780
-            Height = 208
-            Margins.Left = 0
-            Margins.Top = 0
-            Margins.Right = 0
-            Margins.Bottom = 0
-            Align = alTop
-            BevelKind = bkFlat
+            Width = 751
+            Height = 692
+            Align = alClient
+            BevelInner = bvNone
             BevelOuter = bvNone
-            Caption = 'Panel1'
-            Color = clMoneyGreen
-            ParentBackground = False
+            DoubleBuffered = False
+            Ctl3D = False
+            ParentCtl3D = False
+            ParentDoubleBuffered = False
             TabOrder = 0
-            object ChartObjetivo: TChart
+            ExplicitWidth = 754
+            object ScrollBoxGrafico3: TScrollBox
               AlignWithMargins = True
-              Left = 312
-              Top = 3
-              Width = 461
-              Height = 198
-              Margins.Left = 0
-              Title.Font.Color = 2565927
-              Title.Font.Style = [fsBold]
-              Title.Text.Strings = (
-                'OBJETIVO - ALUNOS')
-              View3D = False
-              View3DOptions.Elevation = 315
-              View3DOptions.Orthogonal = False
-              View3DOptions.Perspective = 0
-              View3DOptions.Rotation = 360
-              Align = alRight
-              Color = clBtnHighlight
+              Left = 3
+              Top = 214
+              Width = 743
+              Height = 208
+              Margins.Bottom = 0
+              HorzScrollBar.Range = 738
+              VertScrollBar.Range = 208
+              VertScrollBar.Visible = False
+              Align = alTop
+              AutoScroll = False
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 0
-              DefaultCanvas = 'TGDIPlusCanvas'
-              ColorPaletteIndex = 13
-              object PieSeries2: TPieSeries
-                Marks.Emboss.Color = 8487297
-                Marks.Font.Name = '@Malgun Gothic Semilight'
-                Marks.Frame.Color = -1157627904
-                Marks.Frame.Width = 0
-                Marks.Shadow.Color = 8487297
-                Marks.Visible = False
-                Marks.Callout.Style = psSmallDot
-                Marks.Callout.ArrowHeadSize = 0
-                Marks.Callout.Length = 0
-                XValues.Order = loAscending
-                YValues.Name = 'Pie'
-                YValues.Order = loNone
-                Frame.InnerBrush.BackColor = clRed
-                Frame.InnerBrush.Gradient.EndColor = clGray
-                Frame.InnerBrush.Gradient.MidColor = clWhite
-                Frame.InnerBrush.Gradient.StartColor = 4210752
-                Frame.InnerBrush.Gradient.Visible = True
-                Frame.MiddleBrush.BackColor = clYellow
-                Frame.MiddleBrush.Gradient.EndColor = 8553090
-                Frame.MiddleBrush.Gradient.MidColor = clWhite
-                Frame.MiddleBrush.Gradient.StartColor = clGray
-                Frame.MiddleBrush.Gradient.Visible = True
-                Frame.OuterBrush.BackColor = clGreen
-                Frame.OuterBrush.Gradient.EndColor = 4210752
-                Frame.OuterBrush.Gradient.MidColor = clWhite
-                Frame.OuterBrush.Gradient.StartColor = clSilver
-                Frame.OuterBrush.Gradient.Visible = True
-                Frame.Width = 1
-                Shadow.Visible = False
-                Bevel.UseBorder = False
-                Gradient.EndColor = 6144242
-                Gradient.StartColor = 6144242
-                OtherSlice.Legend.Visible = False
-                PiePen.EndStyle = esFlat
-                PiePen.Fill.Gradient.EndColor = clWhite
-                PiePen.Fill.Gradient.MidColor = clWhite
-                PiePen.Fill.Gradient.Visible = True
-                PiePen.JoinStyle = jsMitter
+              ExplicitWidth = 746
+              object Panel4: TPanel
+                AlignWithMargins = True
+                Left = 0
+                Top = 0
+                Width = 743
+                Height = 208
+                Margins.Left = 0
+                Margins.Top = 0
+                Margins.Right = 0
+                Margins.Bottom = 0
+                Align = alTop
+                BevelKind = bkFlat
+                BevelOuter = bvNone
+                Caption = 'Panel1'
+                Color = clMoneyGreen
+                ParentBackground = False
+                TabOrder = 0
+                ExplicitWidth = 746
+                object ChartObjetivo: TChart
+                  AlignWithMargins = True
+                  Left = 275
+                  Top = 3
+                  Width = 461
+                  Height = 198
+                  Margins.Left = 0
+                  BackImage.Inside = True
+                  Title.Font.Color = 2565927
+                  Title.Font.Style = [fsBold]
+                  Title.Text.Strings = (
+                    'OBJETIVO - ALUNOS')
+                  View3D = False
+                  View3DOptions.Elevation = 315
+                  View3DOptions.Orthogonal = False
+                  View3DOptions.Perspective = 0
+                  View3DOptions.Rotation = 360
+                  Align = alRight
+                  Color = clBtnHighlight
+                  TabOrder = 0
+                  ExplicitLeft = 278
+                  DefaultCanvas = 'TGDIPlusCanvas'
+                  ColorPaletteIndex = 13
+                  object PieSeries2: TPieSeries
+                    Marks.Emboss.Color = 8487297
+                    Marks.Font.Name = '@Malgun Gothic Semilight'
+                    Marks.Frame.Color = -1157627904
+                    Marks.Frame.Width = 0
+                    Marks.Shadow.Color = 8487297
+                    Marks.Visible = False
+                    Marks.Callout.Style = psSmallDot
+                    Marks.Callout.ArrowHeadSize = 0
+                    Marks.Callout.Length = 0
+                    XValues.Order = loAscending
+                    YValues.Name = 'Pie'
+                    YValues.Order = loNone
+                    Frame.InnerBrush.BackColor = clRed
+                    Frame.InnerBrush.Gradient.EndColor = clGray
+                    Frame.InnerBrush.Gradient.MidColor = clWhite
+                    Frame.InnerBrush.Gradient.StartColor = 4210752
+                    Frame.InnerBrush.Gradient.Visible = True
+                    Frame.MiddleBrush.BackColor = clYellow
+                    Frame.MiddleBrush.Gradient.EndColor = 8553090
+                    Frame.MiddleBrush.Gradient.MidColor = clWhite
+                    Frame.MiddleBrush.Gradient.StartColor = clGray
+                    Frame.MiddleBrush.Gradient.Visible = True
+                    Frame.OuterBrush.BackColor = clGreen
+                    Frame.OuterBrush.Gradient.EndColor = 4210752
+                    Frame.OuterBrush.Gradient.MidColor = clWhite
+                    Frame.OuterBrush.Gradient.StartColor = clSilver
+                    Frame.OuterBrush.Gradient.Visible = True
+                    Frame.Width = 1
+                    Shadow.Visible = False
+                    Bevel.UseBorder = False
+                    Gradient.EndColor = 6144242
+                    Gradient.StartColor = 6144242
+                    OtherSlice.Legend.Visible = False
+                    PiePen.EndStyle = esFlat
+                    PiePen.Fill.Gradient.EndColor = clWhite
+                    PiePen.Fill.Gradient.MidColor = clWhite
+                    PiePen.Fill.Gradient.Visible = True
+                    PiePen.JoinStyle = jsMitter
+                  end
+                end
+                object ChartIdade: TChart
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Width = 269
+                  Height = 198
+                  Title.Font.Color = 2565927
+                  Title.Font.Style = [fsBold]
+                  Title.Text.Strings = (
+                    'FAIXA ET'#193'RIA - ALUNOS')
+                  View3D = False
+                  View3DOptions.Elevation = 315
+                  View3DOptions.Orthogonal = False
+                  View3DOptions.Perspective = 0
+                  View3DOptions.Rotation = 360
+                  Align = alClient
+                  Color = clBtnHighlight
+                  TabOrder = 1
+                  ExplicitWidth = 272
+                  DefaultCanvas = 'TGDIPlusCanvas'
+                  ColorPaletteIndex = 12
+                  object Series1: TBarSeries
+                    Legend.Visible = False
+                    BarBrush.Gradient.EndColor = 15790320
+                    BarBrush.Gradient.Visible = True
+                    ConePercent = 3
+                    Marks.Frame.Visible = False
+                    Marks.Angle = 29
+                    ShowInLegend = False
+                    Transparency = 10
+                    BarStyle = bsRectGradient
+                    Dark3D = False
+                    Gradient.EndColor = 15790320
+                    Gradient.Visible = True
+                    Sides = 44
+                    XValues.Name = 'X'
+                    XValues.Order = loAscending
+                    YValues.Name = 'Bar'
+                    YValues.Order = loNone
+                  end
+                end
               end
             end
-            object ChartIdade: TChart
+            object ScrollBoxGrafico1: TScrollBox
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 306
-              Height = 198
-              Title.Font.Color = 2565927
-              Title.Font.Style = [fsBold]
-              Title.Text.Strings = (
-                'FAIXA ET'#193'RIA - ALUNOS')
-              View3D = False
-              View3DOptions.Elevation = 315
-              View3DOptions.Orthogonal = False
-              View3DOptions.Perspective = 0
-              View3DOptions.Rotation = 360
-              Align = alClient
-              Color = clBtnHighlight
+              Width = 743
+              Height = 208
+              Margins.Bottom = 0
+              HorzScrollBar.Range = 738
+              VertScrollBar.Range = 208
+              VertScrollBar.Visible = False
+              Align = alTop
+              AutoScroll = False
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 1
-              DefaultCanvas = 'TGDIPlusCanvas'
-              ColorPaletteIndex = 12
-              object Series1: TBarSeries
-                Legend.Visible = False
-                BarBrush.Gradient.EndColor = 15790320
-                BarBrush.Gradient.Visible = True
-                ConePercent = 3
-                Marks.Frame.Visible = False
-                Marks.Angle = 29
-                ShowInLegend = False
-                Transparency = 10
-                BarStyle = bsRectGradient
-                Dark3D = False
-                Gradient.EndColor = 15790320
-                Gradient.Visible = True
-                Sides = 44
-                XValues.Name = 'X'
-                XValues.Order = loAscending
-                YValues.Name = 'Bar'
-                YValues.Order = loNone
+              ExplicitWidth = 746
+              object Panel2: TPanel
+                AlignWithMargins = True
+                Left = 0
+                Top = 0
+                Width = 743
+                Height = 208
+                Margins.Left = 0
+                Margins.Top = 0
+                Margins.Right = 0
+                Margins.Bottom = 0
+                Align = alTop
+                BevelKind = bkFlat
+                BevelOuter = bvNone
+                Caption = 'Panel1'
+                Color = clMoneyGreen
+                ParentBackground = False
+                TabOrder = 0
+                ExplicitWidth = 746
+                object ChartAlunoModalidade: TChart
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Width = 404
+                  Height = 198
+                  Title.Font.Color = 2565927
+                  Title.Font.Style = [fsBold]
+                  Title.Text.Strings = (
+                    'ALUNOS - MODALIDADE')
+                  View3D = False
+                  View3DOptions.Elevation = 315
+                  View3DOptions.Orthogonal = False
+                  View3DOptions.Perspective = 0
+                  View3DOptions.Rotation = 360
+                  Align = alLeft
+                  Color = clBtnHighlight
+                  TabOrder = 0
+                  DefaultCanvas = 'TGDIPlusCanvas'
+                  ColorPaletteIndex = 12
+                  object BarSeries1: TBarSeries
+                    Legend.Visible = False
+                    BarBrush.Gradient.EndColor = 15790320
+                    BarBrush.Gradient.Visible = True
+                    ConePercent = 3
+                    Marks.Frame.Visible = False
+                    Marks.Style = smsValue
+                    ShowInLegend = False
+                    Transparency = 10
+                    BarStyle = bsRectGradient
+                    Dark3D = False
+                    Gradient.EndColor = 15790320
+                    Gradient.Visible = True
+                    Sides = 44
+                    XValues.Name = 'X'
+                    XValues.Order = loAscending
+                    YValues.Name = 'Bar'
+                    YValues.Order = loNone
+                  end
+                end
+                object Panel3: TPanel
+                  AlignWithMargins = True
+                  Left = 410
+                  Top = 3
+                  Width = 326
+                  Height = 198
+                  Margins.Left = 0
+                  Align = alClient
+                  Caption = 'PROFESSORES'
+                  TabOrder = 1
+                  ExplicitTop = 0
+                  ExplicitWidth = 332
+                  ExplicitHeight = 204
+                  object DBGridBeleza1: TDBGridBeleza
+                    Left = 1
+                    Top = 1
+                    Width = 324
+                    Height = 196
+                    Hint = 'Clique no Titulo da Coluna para Ordenar'
+                    Align = alClient
+                    BorderStyle = bsNone
+                    Color = clSilver
+                    DataSource = dsProf
+                    FixedColor = 16762447
+                    GradientEndColor = 16382457
+                    GradientStartColor = clSilver
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                    ParentFont = False
+                    ParentShowHint = False
+                    ShowHint = True
+                    TabOrder = 0
+                    TitleFont.Charset = DEFAULT_CHARSET
+                    TitleFont.Color = clBackground
+                    TitleFont.Height = -12
+                    TitleFont.Name = 'Tahoma'
+                    TitleFont.Style = [fsBold]
+                    Cor_2 = 16382457
+                    Direcao_Cor2 = dg_Horiz
+                    Direcao_Enter = dg_Horiz
+                    ClickTituloOrdenar = True
+                    MarcarLinhaInteira = True
+                    CorLinhaMarcada = 15854564
+                    CorFonteLinhaMarcada = clGreen
+                    BloquearExportacoes = False
+                  end
+                end
               end
             end
           end
         end
-        object ScrollBoxGrafico1: TScrollBox
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 780
-          Height = 208
-          Margins.Bottom = 0
-          HorzScrollBar.Range = 738
-          VertScrollBar.Range = 208
-          VertScrollBar.Visible = False
-          Align = alTop
-          AutoScroll = False
-          BevelInner = bvNone
-          BevelOuter = bvNone
-          BorderStyle = bsNone
-          Ctl3D = False
-          ParentCtl3D = False
-          TabOrder = 1
-          ExplicitWidth = 763
-          object Panel2: TPanel
-            AlignWithMargins = True
+        object tbsIndFat: TTabSheet
+          Caption = 'Faturamento'
+          ImageIndex = 1
+          ExplicitWidth = 754
+          object ScrollBoxIndFaturamento: TScrollBox
             Left = 0
             Top = 0
-            Width = 780
-            Height = 208
-            Margins.Left = 0
-            Margins.Top = 0
-            Margins.Right = 0
-            Margins.Bottom = 0
-            Align = alTop
-            BevelKind = bkFlat
+            Width = 751
+            Height = 692
+            Align = alClient
+            BevelInner = bvNone
             BevelOuter = bvNone
-            Caption = 'Panel1'
-            Color = clMoneyGreen
-            ParentBackground = False
+            DoubleBuffered = False
+            Ctl3D = False
+            ParentCtl3D = False
+            ParentDoubleBuffered = False
             TabOrder = 0
-            object ChartAlunoModalidade: TChart
+            ExplicitWidth = 754
+            object ScrollBox5: TScrollBox
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 404
-              Height = 198
-              Title.Font.Color = 2565927
-              Title.Font.Style = [fsBold]
-              Title.Text.Strings = (
-                'ALUNOS - MODALIDADE')
-              View3D = False
-              View3DOptions.Elevation = 315
-              View3DOptions.Orthogonal = False
-              View3DOptions.Perspective = 0
-              View3DOptions.Rotation = 360
-              Align = alLeft
-              Color = clBtnHighlight
+              Width = 743
+              Height = 208
+              Margins.Bottom = 0
+              HorzScrollBar.Range = 738
+              VertScrollBar.Range = 208
+              VertScrollBar.Visible = False
+              Align = alTop
+              AutoScroll = False
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Ctl3D = False
+              ParentCtl3D = False
               TabOrder = 0
-              DefaultCanvas = 'TGDIPlusCanvas'
-              ColorPaletteIndex = 12
-              object BarSeries1: TBarSeries
-                Legend.Visible = False
-                BarBrush.Gradient.EndColor = 15790320
-                BarBrush.Gradient.Visible = True
-                ConePercent = 3
-                Marks.Frame.Visible = False
-                Marks.Style = smsValue
-                ShowInLegend = False
-                Transparency = 10
-                BarStyle = bsRectGradient
-                Dark3D = False
-                Gradient.EndColor = 15790320
-                Gradient.Visible = True
-                Sides = 44
-                XValues.Name = 'X'
-                XValues.Order = loAscending
-                YValues.Name = 'Bar'
-                YValues.Order = loNone
+              ExplicitWidth = 746
+              object Panel7: TPanel
+                AlignWithMargins = True
+                Left = 0
+                Top = 0
+                Width = 743
+                Height = 208
+                Margins.Left = 0
+                Margins.Top = 0
+                Margins.Right = 0
+                Margins.Bottom = 0
+                Align = alTop
+                BevelKind = bkFlat
+                BevelOuter = bvNone
+                Caption = 'Panel1'
+                Color = clMoneyGreen
+                ParentBackground = False
+                TabOrder = 0
+                ExplicitWidth = 746
+                object Panel8: TPanel
+                  Left = 410
+                  Top = 0
+                  Width = 329
+                  Height = 204
+                  Align = alClient
+                  Caption = 'PROFESSORES'
+                  ParentBackground = False
+                  TabOrder = 0
+                  ExplicitLeft = 413
+                  ExplicitTop = -1
+                  ExplicitWidth = 332
+                end
+                object Panel5: TPanel
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Width = 404
+                  Height = 198
+                  Align = alLeft
+                  BevelOuter = bvNone
+                  Caption = 'Panel5'
+                  Color = clMenu
+                  ParentBackground = False
+                  TabOrder = 1
+                  ExplicitLeft = -7
+                  ExplicitTop = -7
+                  ExplicitHeight = 213
+                  object PanelCabecarioGrafFatMes: TPanel
+                    AlignWithMargins = True
+                    Left = 3
+                    Top = 3
+                    Width = 398
+                    Height = 27
+                    Margins.Bottom = 0
+                    Align = alTop
+                    BevelOuter = bvNone
+                    Caption = ' FATURAMENTO - M'#202'S'
+                    Color = clBtnHighlight
+                    ParentBackground = False
+                    TabOrder = 0
+                    object DateTimePicker1: TDateTimePicker
+                      AlignWithMargins = True
+                      Left = 3
+                      Top = 3
+                      Width = 68
+                      Height = 21
+                      Margins.Right = 1
+                      Align = alLeft
+                      Date = 42856.681952951390000000
+                      Format = 'MM/yyyy'
+                      Time = 42856.681952951390000000
+                      DateMode = dmUpDown
+                      TabOrder = 0
+                      OnChange = DateTimePicker1Change
+                    end
+                  end
+                  object ChartFaturamentoMes: TChart
+                    AlignWithMargins = True
+                    Left = 0
+                    Top = 30
+                    Width = 404
+                    Height = 168
+                    Margins.Left = 0
+                    Margins.Top = 0
+                    Margins.Right = 0
+                    Margins.Bottom = 0
+                    BackImage.Inside = True
+                    Legend.CheckBoxesStyle = cbsRadio
+                    MarginLeft = 1
+                    MarginRight = 1
+                    MarginTop = 1
+                    Title.Font.Color = 2565927
+                    Title.Font.Style = [fsBold]
+                    Title.Text.Strings = (
+                      'OBJETIVO - ALUNOS')
+                    Title.Visible = False
+                    Hover.Visible = False
+                    View3D = False
+                    View3DOptions.Elevation = 315
+                    View3DOptions.Orthogonal = False
+                    View3DOptions.Perspective = 0
+                    View3DOptions.Rotation = 360
+                    Align = alClient
+                    Color = clBtnHighlight
+                    TabOrder = 1
+                    ExplicitLeft = 278
+                    ExplicitTop = 3
+                    ExplicitWidth = 461
+                    ExplicitHeight = 198
+                    DefaultCanvas = 'TGDIPlusCanvas'
+                    ColorPaletteIndex = 13
+                    object PieSeries1: TPieSeries
+                      Marks.Emboss.Color = 8487297
+                      Marks.Font.Name = '@Malgun Gothic Semilight'
+                      Marks.Frame.Color = -1157627904
+                      Marks.Frame.Width = 0
+                      Marks.Shadow.Color = 8487297
+                      Marks.Visible = False
+                      Marks.Callout.Style = psSmallDot
+                      Marks.Callout.ArrowHeadSize = 0
+                      Marks.Callout.Length = 0
+                      XValues.Order = loAscending
+                      YValues.Name = 'Pie'
+                      YValues.Order = loNone
+                      Frame.InnerBrush.BackColor = clRed
+                      Frame.InnerBrush.Gradient.EndColor = clGray
+                      Frame.InnerBrush.Gradient.MidColor = clWhite
+                      Frame.InnerBrush.Gradient.StartColor = 4210752
+                      Frame.InnerBrush.Gradient.Visible = True
+                      Frame.MiddleBrush.BackColor = clYellow
+                      Frame.MiddleBrush.Gradient.EndColor = 8553090
+                      Frame.MiddleBrush.Gradient.MidColor = clWhite
+                      Frame.MiddleBrush.Gradient.StartColor = clGray
+                      Frame.MiddleBrush.Gradient.Visible = True
+                      Frame.OuterBrush.BackColor = clGreen
+                      Frame.OuterBrush.Gradient.EndColor = 4210752
+                      Frame.OuterBrush.Gradient.MidColor = clWhite
+                      Frame.OuterBrush.Gradient.StartColor = clSilver
+                      Frame.OuterBrush.Gradient.Visible = True
+                      Frame.Width = 1
+                      Shadow.Visible = False
+                      Bevel.Bright = 34
+                      Bevel.UseBorder = False
+                      Gradient.EndColor = 6144242
+                      Gradient.StartColor = 6144242
+                      OtherSlice.Legend.Visible = False
+                      PiePen.EndStyle = esFlat
+                      PiePen.Fill.Gradient.EndColor = clWhite
+                      PiePen.Fill.Gradient.MidColor = clWhite
+                      PiePen.Fill.Gradient.Visible = True
+                      PiePen.JoinStyle = jsMitter
+                    end
+                  end
+                end
               end
             end
-            object Panel3: TPanel
-              Left = 410
-              Top = 0
-              Width = 366
-              Height = 204
-              Align = alClient
-              Caption = 'PROFESSORES'
-              ParentBackground = False
-              TabOrder = 1
-            end
-          end
-        end
-        object ScrollBoxGrafico2: TScrollBox
-          AlignWithMargins = True
-          Left = 3
-          Top = 214
-          Width = 780
-          Height = 208
-          Margins.Bottom = 0
-          HorzScrollBar.Range = 738
-          VertScrollBar.Range = 208
-          VertScrollBar.Visible = False
-          Align = alTop
-          AutoScroll = False
-          BevelInner = bvNone
-          BevelOuter = bvNone
-          BorderStyle = bsNone
-          Ctl3D = False
-          ParentCtl3D = False
-          TabOrder = 2
-          ExplicitWidth = 763
-          object Panel1: TPanel
-            AlignWithMargins = True
-            Left = 0
-            Top = 0
-            Width = 780
-            Height = 208
-            Margins.Left = 0
-            Margins.Top = 0
-            Margins.Right = 0
-            Margins.Bottom = 0
-            Align = alTop
-            BevelKind = bkFlat
-            BevelOuter = bvNone
-            Caption = 'Panel1'
-            Color = clMoneyGreen
-            ParentBackground = False
-            TabOrder = 0
-            object ChartFaturamento: TChart
+            object ScrollBoxGrafico2: TScrollBox
               AlignWithMargins = True
               Left = 3
-              Top = 3
-              Width = 770
-              Height = 198
-              Title.Font.Color = 2565927
-              Title.Font.Style = [fsBold]
-              Title.Text.Strings = (
-                'FATURAMENTO - '#218'LTIMOS 12 MESES')
-              View3D = False
-              View3DOptions.Elevation = 315
-              View3DOptions.Orthogonal = False
-              View3DOptions.Perspective = 0
-              View3DOptions.Rotation = 360
-              View3DWalls = False
-              Align = alClient
-              Color = clBtnHighlight
-              TabOrder = 0
-              DefaultCanvas = 'TGDIPlusCanvas'
-              ColorPaletteIndex = 0
-              object FastLineSeries1: TFastLineSeries
-                Legend.Visible = False
-                Marks.Children = <
-                  item
-                    Shape.ShapeStyle = fosRectangle
-                    Shape.Visible = False
-                    Shape.Style = smsValue
-                  end>
-                Marks.Emboss.Color = 8487297
-                Marks.Font.Color = clSilver
-                Marks.Shadow.Color = 8487297
-                Marks.Visible = True
-                Marks.Style = smsValue
-                Marks.BackColor = clBlack
-                Marks.Callout.Length = 20
-                Marks.Color = clBlack
-                SeriesColor = 4210688
-                ShowInLegend = False
-                LinePen.Color = 1279279104
-                LinePen.Width = 6
-                XValues.Name = 'X'
-                XValues.Order = loAscending
-                YValues.Name = 'Y'
-                YValues.Order = loNone
+              Top = 214
+              Width = 743
+              Height = 208
+              Margins.Bottom = 0
+              HorzScrollBar.Range = 738
+              VertScrollBar.Range = 208
+              VertScrollBar.Visible = False
+              Align = alTop
+              AutoScroll = False
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Ctl3D = False
+              ParentCtl3D = False
+              TabOrder = 1
+              ExplicitWidth = 746
+              object Panel1: TPanel
+                AlignWithMargins = True
+                Left = 0
+                Top = 0
+                Width = 743
+                Height = 208
+                Margins.Left = 0
+                Margins.Top = 0
+                Margins.Right = 0
+                Margins.Bottom = 0
+                Align = alTop
+                BevelKind = bkFlat
+                BevelOuter = bvNone
+                Caption = 'Panel1'
+                Color = clMoneyGreen
+                ParentBackground = False
+                TabOrder = 0
+                ExplicitWidth = 746
+                object ChartFaturamento: TChart
+                  AlignWithMargins = True
+                  Left = 3
+                  Top = 3
+                  Width = 733
+                  Height = 198
+                  Title.Font.Color = 2565927
+                  Title.Font.Style = [fsBold]
+                  Title.Text.Strings = (
+                    'FATURAMENTO - '#218'LTIMOS 12 MESES')
+                  View3D = False
+                  View3DOptions.Elevation = 315
+                  View3DOptions.Orthogonal = False
+                  View3DOptions.Perspective = 0
+                  View3DOptions.Rotation = 360
+                  View3DWalls = False
+                  Align = alClient
+                  Color = clBtnHighlight
+                  TabOrder = 0
+                  ExplicitWidth = 736
+                  DefaultCanvas = 'TGDIPlusCanvas'
+                  ColorPaletteIndex = 0
+                  object FastLineSeries1: TFastLineSeries
+                    Legend.Visible = False
+                    Marks.Children = <
+                      item
+                        Shape.ShapeStyle = fosRectangle
+                        Shape.Visible = False
+                        Shape.Style = smsValue
+                      end>
+                    Marks.Emboss.Color = 8487297
+                    Marks.Font.Color = clSilver
+                    Marks.Shadow.Color = 8487297
+                    Marks.Visible = True
+                    Marks.Style = smsValue
+                    Marks.BackColor = clBlack
+                    Marks.Callout.Length = 20
+                    Marks.Color = clBlack
+                    SeriesColor = 4210688
+                    ShowInLegend = False
+                    LinePen.Color = 1279279104
+                    LinePen.Width = 6
+                    XValues.Name = 'X'
+                    XValues.Order = loAscending
+                    YValues.Name = 'Y'
+                    YValues.Order = loNone
+                  end
+                end
               end
             end
           end
@@ -635,43 +905,78 @@ object FPrincipalAdmin: TFPrincipalAdmin
       end
     end
   end
-  object fdGMatriculaModalidade: TFDQuery
+  object qProf: TFDQuery
     Connection = DModule.FDConnection
     SQL.Strings = (
+      'SELECT U.IDUSUARIO, U.NOMEUSUARIO, '
+      'COUNT(A.idInstrutor) as QTDALUNO FROM USUARIO U '#13#10#10
+      'LEFT OUTER JOIN ALUNO A ON A.idInstrutor = U.idusuario '#13#10#10
+      'WHERE U.INSTRUTOR = TRUE AND U.ATIVO =TRUE'#10' AND A.IDALUNO IN '
       
-        'select count(*) AS valor, mo.descricaoModalidade AS tipo from al' +
-        'unomodalidade am '#10'left outer join modalidade mo on mo.idmodalida' +
-        'de = am.idmodalidade'#10'group by am.idModalidade;')
-    Left = 958
-    Top = 245
-    object fdGMatriculaModalidadevalor: TLargeintField
-      AutoGenerateValue = arDefault
-      FieldName = 'valor'
-      Origin = 'valor'
+        '(SELECT IDALUNO from alunomodalidade WHERE idmodalidade =:idMod)' +
+        #13#10#10
+      'GROUP BY U.idusuario;')
+    Left = 685
+    Top = 630
+    ParamData = <
+      item
+        Name = 'IDMOD'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qProfIDUSUARIO: TIntegerField
+      FieldName = 'IDUSUARIO'
+      Origin = 'idusuario'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object fdGMatriculaModalidadetipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'tipo'
+    object qProfNOMEUSUARIO: TStringField
+      FieldName = 'NOMEUSUARIO'
+      Origin = 'nomeUsuario'
+      Required = True
       Size = 50
     end
+    object qProfQTDALUNO: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTDALUNO'
+      Origin = 'QTDALUNO'
+      ProviderFlags = []
+    end
   end
-  object cdsfdGMatriculaModalidade: TClientDataSet
+  object pProf: TDataSetProvider
+    DataSet = qProf
+    Left = 717
+    Top = 630
+  end
+  object cdsProf: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'pGMatriculaModalidade'
-    Left = 894
-    Top = 253
-    object cdsfdGMatriculaModalidadevalor: TLargeintField
-      FieldName = 'valor'
+    ProviderName = 'pProf'
+    OnCalcFields = cdsProfCalcFields
+    Left = 749
+    Top = 630
+    object cdsProfIDUSUARIO: TIntegerField
+      FieldName = 'IDUSUARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object cdsfdGMatriculaModalidadetipo: TStringField
-      FieldName = 'tipo'
+    object cdsProfNOMEUSUARIO: TStringField
+      FieldName = 'NOMEUSUARIO'
+      Required = True
       Size = 50
     end
+    object cdsProfQTDALUNO: TLargeintField
+      FieldName = 'QTDALUNO'
+    end
+    object cdsProfqtfFichasAtrasadas: TIntegerField
+      FieldKind = fkInternalCalc
+      FieldName = 'qtfFichasAtrasadas'
+    end
   end
-  object pGMatriculaModalidade: TDataSetProvider
-    DataSet = fdGMatriculaModalidade
-    Left = 926
-    Top = 245
+  object dsProf: TDataSource
+    DataSet = cdsProf
+    Left = 781
+    Top = 630
   end
 end
