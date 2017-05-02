@@ -49,9 +49,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
         ParentCtl3D = False
         ParentDoubleBuffered = False
         TabOrder = 0
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitHeight = 706
         object dxTileControl1: TdxTileControl
           Left = 0
           Top = 0
@@ -67,7 +64,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
           OptionsView.ItemIndent = 1
           OptionsView.ItemWidth = 110
           TabOrder = 0
-          ExplicitHeight = 704
           object dxTileControl1Group1: TdxTileControlGroup
             Index = 0
           end
@@ -89,6 +85,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item1Click
           end
           object dxTileControl1Item4: TdxTileControlItem
             GroupIndex = 0
@@ -108,6 +105,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item4Click
           end
           object dxTileControl1Item2: TdxTileControlItem
             GroupIndex = 0
@@ -127,10 +125,11 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item2Click
           end
           object dxTileControl1Item5: TdxTileControlItem
             GroupIndex = 0
-            IndexInGroup = 3
+            IndexInGroup = 4
             Size = tcisLarge
             Style.Gradient = gmForwardDiagonal
             Style.GradientBeginColor = 6316128
@@ -146,10 +145,11 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item5Click
           end
           object dxTileControl1Item3: TdxTileControlItem
             GroupIndex = 0
-            IndexInGroup = 4
+            IndexInGroup = 3
             Size = tcisLarge
             Style.Gradient = gmForwardDiagonal
             Style.GradientBeginColor = 6316128
@@ -165,6 +165,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item3Click
           end
           object dxTileControl1Item6: TdxTileControlItem
             GroupIndex = 0
@@ -184,6 +185,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item6Click
           end
           object dxTileControl1Item7: TdxTileControlItem
             GroupIndex = 0
@@ -203,6 +205,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item7Click
           end
           object dxTileControl1Item8: TdxTileControlItem
             GroupIndex = 0
@@ -222,6 +225,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item8Click
           end
           object dxTileControl1Item10: TdxTileControlItem
             GroupIndex = 0
@@ -241,6 +245,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item10Click
           end
           object dxTileControl1Item11: TdxTileControlItem
             GroupIndex = 0
@@ -260,6 +265,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item11Click
           end
           object dxTileControl1Item9: TdxTileControlItem
             GroupIndex = 0
@@ -314,9 +320,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
       Color = 13553358
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 227
-      ExplicitWidth = 788
-      object PageControl1: TPageControl
+      object PageControlIndicadores: TPageControl
         AlignWithMargins = True
         Left = 3
         Top = 3
@@ -327,10 +331,8 @@ object FPrincipalAdmin: TFPrincipalAdmin
         MultiLine = True
         TabOrder = 0
         TabPosition = tpRight
-        ExplicitWidth = 782
         object tbsIndAluno: TTabSheet
           Caption = 'Alunos'
-          ExplicitWidth = 754
           object ScrollBoxIndAluno: TScrollBox
             Left = 0
             Top = 0
@@ -344,7 +346,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
             ParentCtl3D = False
             ParentDoubleBuffered = False
             TabOrder = 0
-            ExplicitWidth = 754
             object ScrollBoxGrafico3: TScrollBox
               AlignWithMargins = True
               Left = 3
@@ -363,7 +364,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
               Ctl3D = False
               ParentCtl3D = False
               TabOrder = 0
-              ExplicitWidth = 746
               object Panel4: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -377,11 +377,9 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 Align = alTop
                 BevelKind = bkFlat
                 BevelOuter = bvNone
-                Caption = 'Panel1'
                 Color = clMoneyGreen
                 ParentBackground = False
                 TabOrder = 0
-                ExplicitWidth = 746
                 object ChartObjetivo: TChart
                   AlignWithMargins = True
                   Left = 275
@@ -402,7 +400,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   Align = alRight
                   Color = clBtnHighlight
                   TabOrder = 0
-                  ExplicitLeft = 278
                   DefaultCanvas = 'TGDIPlusCanvas'
                   ColorPaletteIndex = 13
                   object PieSeries2: TPieSeries
@@ -464,16 +461,15 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   Align = alClient
                   Color = clBtnHighlight
                   TabOrder = 1
-                  ExplicitWidth = 272
                   DefaultCanvas = 'TGDIPlusCanvas'
                   ColorPaletteIndex = 12
-                  object Series1: TBarSeries
+                  object BarSeries2: TBarSeries
                     Legend.Visible = False
                     BarBrush.Gradient.EndColor = 15790320
                     BarBrush.Gradient.Visible = True
                     ConePercent = 3
                     Marks.Frame.Visible = False
-                    Marks.Angle = 29
+                    Marks.Style = smsValue
                     ShowInLegend = False
                     Transparency = 10
                     BarStyle = bsRectGradient
@@ -507,7 +503,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
               Ctl3D = False
               ParentCtl3D = False
               TabOrder = 1
-              ExplicitWidth = 746
               object Panel2: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -521,16 +516,14 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 Align = alTop
                 BevelKind = bkFlat
                 BevelOuter = bvNone
-                Caption = 'Panel1'
                 Color = clMoneyGreen
                 ParentBackground = False
                 TabOrder = 0
-                ExplicitWidth = 746
                 object ChartAlunoModalidade: TChart
                   AlignWithMargins = True
                   Left = 3
                   Top = 3
-                  Width = 404
+                  Width = 450
                   Height = 198
                   Title.Font.Color = 2565927
                   Title.Font.Style = [fsBold]
@@ -568,33 +561,32 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 end
                 object Panel3: TPanel
                   AlignWithMargins = True
-                  Left = 410
+                  Left = 456
                   Top = 3
-                  Width = 326
+                  Width = 280
                   Height = 198
                   Margins.Left = 0
                   Align = alClient
                   Caption = 'PROFESSORES'
                   TabOrder = 1
-                  ExplicitTop = 0
-                  ExplicitWidth = 332
-                  ExplicitHeight = 204
+                  ExplicitLeft = 410
+                  ExplicitWidth = 326
                   object DBGridBeleza1: TDBGridBeleza
                     Left = 1
                     Top = 1
-                    Width = 324
+                    Width = 278
                     Height = 196
                     Hint = 'Clique no Titulo da Coluna para Ordenar'
                     Align = alClient
                     BorderStyle = bsNone
-                    Color = clSilver
+                    Color = clWhite
                     DataSource = dsProf
                     FixedColor = 16762447
                     GradientEndColor = 16382457
                     GradientStartColor = clSilver
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
-                    Font.Height = -13
+                    Font.Height = -11
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -615,6 +607,46 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     CorLinhaMarcada = 15854564
                     CorFonteLinhaMarcada = clGreen
                     BloquearExportacoes = False
+                    Columns = <
+                      item
+                        Expanded = False
+                        FieldName = 'NOMEUSUARIO'
+                        Title.Caption = 'PROFESSOR'
+                        Title.Font.Charset = DEFAULT_CHARSET
+                        Title.Font.Color = clBackground
+                        Title.Font.Height = -11
+                        Title.Font.Name = '@Malgun Gothic Semilight'
+                        Title.Font.Style = []
+                        Width = 150
+                        Visible = True
+                      end
+                      item
+                        Alignment = taCenter
+                        Expanded = False
+                        FieldName = 'QTDALUNO'
+                        Title.Alignment = taCenter
+                        Title.Caption = 'TOTAL ALUNOS'
+                        Title.Font.Charset = DEFAULT_CHARSET
+                        Title.Font.Color = clBackground
+                        Title.Font.Height = -11
+                        Title.Font.Name = '@Malgun Gothic Semilight'
+                        Title.Font.Style = []
+                        Visible = True
+                      end
+                      item
+                        Alignment = taCenter
+                        Expanded = False
+                        FieldName = 'qtfFichasAtrasadas'
+                        Title.Alignment = taCenter
+                        Title.Caption = 'FICHAS PENDENTES'
+                        Title.Font.Charset = DEFAULT_CHARSET
+                        Title.Font.Color = clBackground
+                        Title.Font.Height = -11
+                        Title.Font.Name = '@Malgun Gothic Semilight'
+                        Title.Font.Style = []
+                        Width = 109
+                        Visible = True
+                      end>
                   end
                 end
               end
@@ -624,7 +656,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
         object tbsIndFat: TTabSheet
           Caption = 'Faturamento'
           ImageIndex = 1
-          ExplicitWidth = 754
           object ScrollBoxIndFaturamento: TScrollBox
             Left = 0
             Top = 0
@@ -638,7 +669,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
             ParentCtl3D = False
             ParentDoubleBuffered = False
             TabOrder = 0
-            ExplicitWidth = 754
             object ScrollBox5: TScrollBox
               AlignWithMargins = True
               Left = 3
@@ -657,7 +687,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
               Ctl3D = False
               ParentCtl3D = False
               TabOrder = 0
-              ExplicitWidth = 746
               object Panel7: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -671,44 +700,26 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 Align = alTop
                 BevelKind = bkFlat
                 BevelOuter = bvNone
-                Caption = 'Panel1'
-                Color = clMoneyGreen
+                Color = clMenu
                 ParentBackground = False
                 TabOrder = 0
-                ExplicitWidth = 746
-                object Panel8: TPanel
-                  Left = 410
-                  Top = 0
-                  Width = 329
-                  Height = 204
-                  Align = alClient
-                  Caption = 'PROFESSORES'
-                  ParentBackground = False
-                  TabOrder = 0
-                  ExplicitLeft = 413
-                  ExplicitTop = -1
-                  ExplicitWidth = 332
-                end
                 object Panel5: TPanel
                   AlignWithMargins = True
                   Left = 3
                   Top = 3
                   Width = 404
-                  Height = 198
+                  Height = 199
+                  Margins.Bottom = 2
                   Align = alLeft
                   BevelOuter = bvNone
                   Caption = 'Panel5'
                   Color = clMenu
                   ParentBackground = False
-                  TabOrder = 1
-                  ExplicitLeft = -7
-                  ExplicitTop = -7
-                  ExplicitHeight = 213
+                  TabOrder = 0
                   object PanelCabecarioGrafFatMes: TPanel
-                    AlignWithMargins = True
-                    Left = 3
-                    Top = 3
-                    Width = 398
+                    Left = 0
+                    Top = 0
+                    Width = 404
                     Height = 27
                     Margins.Bottom = 0
                     Align = alTop
@@ -717,6 +728,8 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     Color = clBtnHighlight
                     ParentBackground = False
                     TabOrder = 0
+                    ExplicitLeft = -18
+                    ExplicitTop = -13
                     object DateTimePicker1: TDateTimePicker
                       AlignWithMargins = True
                       Left = 3
@@ -736,9 +749,9 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   object ChartFaturamentoMes: TChart
                     AlignWithMargins = True
                     Left = 0
-                    Top = 30
+                    Top = 27
                     Width = 404
-                    Height = 168
+                    Height = 172
                     Margins.Left = 0
                     Margins.Top = 0
                     Margins.Right = 0
@@ -762,10 +775,9 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     Align = alClient
                     Color = clBtnHighlight
                     TabOrder = 1
-                    ExplicitLeft = 278
-                    ExplicitTop = 3
-                    ExplicitWidth = 461
-                    ExplicitHeight = 198
+                    ExplicitLeft = -30
+                    ExplicitTop = 30
+                    ExplicitHeight = 168
                     DefaultCanvas = 'TGDIPlusCanvas'
                     ColorPaletteIndex = 13
                     object PieSeries1: TPieSeries
@@ -818,7 +830,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
               Left = 3
               Top = 214
               Width = 743
-              Height = 208
+              Height = 260
               Margins.Bottom = 0
               HorzScrollBar.Range = 738
               VertScrollBar.Range = 208
@@ -831,13 +843,12 @@ object FPrincipalAdmin: TFPrincipalAdmin
               Ctl3D = False
               ParentCtl3D = False
               TabOrder = 1
-              ExplicitWidth = 746
               object Panel1: TPanel
                 AlignWithMargins = True
                 Left = 0
                 Top = 0
                 Width = 743
-                Height = 208
+                Height = 260
                 Margins.Left = 0
                 Margins.Top = 0
                 Margins.Right = 0
@@ -849,13 +860,12 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 Color = clMoneyGreen
                 ParentBackground = False
                 TabOrder = 0
-                ExplicitWidth = 746
                 object ChartFaturamento: TChart
                   AlignWithMargins = True
                   Left = 3
                   Top = 3
                   Width = 733
-                  Height = 198
+                  Height = 250
                   Title.Font.Color = 2565927
                   Title.Font.Style = [fsBold]
                   Title.Text.Strings = (
@@ -869,7 +879,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   Align = alClient
                   Color = clBtnHighlight
                   TabOrder = 0
-                  ExplicitWidth = 736
+                  ExplicitHeight = 198
                   DefaultCanvas = 'TGDIPlusCanvas'
                   ColorPaletteIndex = 0
                   object FastLineSeries1: TFastLineSeries

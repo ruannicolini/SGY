@@ -15,7 +15,6 @@ object FPrincipal: TFPrincipal
   Position = poScreenCenter
   WindowState = wsMaximized
   OnCreate = FormCreate
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object imgBackground: TImage

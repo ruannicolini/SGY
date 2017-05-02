@@ -35,7 +35,6 @@ type
     procedure FormCreate(Sender: TObject);
     function fncAlturaBarraTarefas: Integer;
     procedure CriarForm(Tela, Desc : String);
-    procedure FormShow(Sender: TObject);
     procedure imgBtnAlunoClick(Sender: TObject);
     procedure imgBtnUsuarioClick(Sender: TObject);
     procedure imgBtnFichaClick(Sender: TObject);
@@ -330,6 +329,38 @@ begin
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
 
+      //ATRIBUI DATAHOJE
+      DModule.qAux.SQL.Text := 'select CURDATE() AS DATAHOJE';
+      DModule.qAux.Close;
+      DModule.qAux.Open;
+      DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
+
+      //OBTEM DADOS DE CONFIGURAÇÃO
+      Dmodule.qAux.close;
+      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
+      Dmodule.qAux.open;
+
+      DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
+      DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
+      DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
+      DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
+      DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
+      DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
+
+      //if(DMODULE.administrador = TRUE)then
+      //begin
+        //showmessage('1');
+
+        With TFPrincipalAdmin.Create(Application) do
+        Begin
+          Pointer((@Application.MainForm)^) := FPrincipalAdmin;
+          fprincipal.Hide;
+          ShowModal;
+          Free;
+          Pointer((@Application.MainForm)^) := fprincipal;
+        End;
+      //end;
+
   end;
 
   //Apaga Numero de acesso Gerado
@@ -337,45 +368,9 @@ begin
   Arquivo.EraseSection('Login');
   Arquivo.Free;
 
-//OBTEM DADOS DE CONFIGURAÇÃO
-  Dmodule.qAux.close;
-  Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
-  Dmodule.qAux.open;
-
-  DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
-  DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
-  DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
-  DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
-  DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
-  DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
-
-  if(DMODULE.administrador = TRUE)then
-  begin
-    //showmessage('1');
-
-    With TFPrincipalAdmin.Create(Application) do
-    Begin
-      Pointer((@Application.MainForm)^) := FPrincipalAdmin;
-      fprincipal.Hide;
-      ShowModal;
-      Free;
-      Pointer((@Application.MainForm)^) := fprincipal;
-    End;
-  end;
-
 end;
 
-procedure TFPrincipal.FormShow(Sender: TObject);
-begin
-    //ATRIBUI DATAHOJE
-    DModule.qAux.SQL.Text := 'select CURDATE() AS DATAHOJE';
-    DModule.qAux.Close;
-    DModule.qAux.Open;
-    DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
-
-end;
-
-procedure TFPrincipal.imgBtnEquipamentoClick(Sender: TObject);
+procedure TFPrincipal.imgBtnEquipamentoClick(Sender: TObject);
 begin
   imgBtnEquipamento.Visible := false;
   Sleep(20);
