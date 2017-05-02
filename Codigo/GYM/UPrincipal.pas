@@ -322,7 +322,7 @@ begin
       DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
       DModule.qAcesso.SQL.Add(')');
 
-      DModule.qAcesso.Open();
+      //DModule.qAcesso.Open();
       //ShowMessage( (DModule.qAcesso.sql.text));
       //ShowMessage(inttostr(DModule.qAcesso.RecordCount));
       DModule.cdsAcesso.Close;
@@ -347,10 +347,10 @@ begin
       DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
       DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
 
-      //if(DMODULE.administrador = TRUE)then
-      //begin
-        //showmessage('1');
-
+      // CHAMA FORM PRINCIPAL-ADMIN
+      if(DMODULE.administrador = TRUE)then
+      begin
+        {
         With TFPrincipalAdmin.Create(Application) do
         Begin
           Pointer((@Application.MainForm)^) := FPrincipalAdmin;
@@ -359,7 +359,8 @@ begin
           Free;
           Pointer((@Application.MainForm)^) := fprincipal;
         End;
-      //end;
+        }
+      end;
 
   end;
 
