@@ -4,16 +4,19 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UDataModule, Vcl.ExtCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UDataModule, Vcl.ExtCtrls, Vcl.Buttons,
+  Vcl.ComCtrls, Vcl.StdCtrls, JvExComCtrls, JvAnimate;
 
 type
   TF01009 = class(TForm)
     PanelStatus: TPanel;
     PanelCAPTION: TPanel;
-    SpeedButton1: TSpeedButton;
+    btnIniciarOk: TSpeedButton;
     PanelCOMPLEMENTO: TPanel;
-    procedure FormShow(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
+    btnCancelar: TButton;
+    Panel1: TPanel;
+    procedure btnIniciarOkClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,6 +35,11 @@ implementation
 { TF01009 }
 
 uses Vcl.FileCtrl, SHELLAPI;
+
+procedure TF01009.btnCancelarClick(Sender: TObject);
+begin
+  close;
+end;
 
 procedure TF01009.ExecutaBackupBD;
 Var
@@ -98,12 +106,36 @@ if (Result) then
  end;
 end;
 
-procedure TF01009.FormShow(Sender: TObject);
+procedure TF01009.btnIniciarOkClick(Sender: TObject);
 begin
+  if( btnIniciarOk.Caption = 'INICIAR') then
+  begin
+
     try
-      ExecutaBackupBD;
-      PanelCAPTION.Caption := 'BACKUP CONCLUÍDO!';
-      SpeedButton1.Visible:= TRUE;
+      TThread.CreateAnonymousThread(
+      procedure ()
+      begin
+          PanelCAPTION.Caption := 'ROTINA DE BACKUP EXECUTANDO. '+#13+'AGUARDE!';
+          btnIniciarOk.Enabled := false;
+          BTNCANCELAR.Enabled := FALSE;
+          ExecutaBackupBD;
+          TThread.Synchronize (TThread.CurrentThread,
+          procedure ()
+          begin
+              //fazer depois que acabar o processo
+              PanelCAPTION.Caption := 'BACKUP CONCLUÍDO!';
+              btnIniciarOk.Enabled := TRUE;
+              btnIniciarOk.Caption := 'OK';
+              //ABRE PASTA ONDE FICA OS BACKUPS
+              ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+          end);
+          // .free aqui!!
+
+      end
+      ).Start;
+
+
+
     except
         ON E: Exception DO
         begin
@@ -111,11 +143,16 @@ begin
              ShowMessage(E.Message);
         end;
     end;
-end;
 
-procedure TF01009.SpeedButton1Click(Sender: TObject);
-begin
-  CLOSE;
+  end ELSE
+  BEGIN
+    if( btnIniciarOk.Caption = 'OK') then
+    begin
+      CLOSE;
+    end;
+  END;
+
+
 end;
 
 Initialization

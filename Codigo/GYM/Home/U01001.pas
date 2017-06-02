@@ -66,7 +66,7 @@ type
     cxGroupBox10: TcxGroupBox;
     DBGridBelezaFichasAluno: TDBGridBeleza;
     DSTreino: TDataSource;
-    pagModalidades: TcxTabSheet;
+    pagMatricula: TcxTabSheet;
     cxGroupBox11: TcxGroupBox;
     cxGroupBox12: TcxGroupBox;
     cxGroupBox13: TcxGroupBox;
@@ -586,6 +586,7 @@ type
     frxCrypt1: TfrxCrypt;
     cdsRelAvaFisicaRCQ: TFloatField;
     cdsRelAvaFisicaclassificacaoRCQ: TStringField;
+    REPORT_FICHAcp: TfrxReport;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -704,7 +705,7 @@ uses
 vcl.themes, vcl.styles, U01010,
 {IMAGENS BLOB}
 { SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013, ValidaCPF, U01014, U01016, DBCommon, U01017;
+  U01013, ValidaCPF, U01014, U01016, DBCommon, U01017, U01018;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -876,60 +877,61 @@ begin
       IF NOT(ClientDataSet1dataNascimento.IsNull)THEN
       BEGIN
 
-          IF NOT(ClientDataSet1idInstrutor.IsNull)THEN
+          //verificação de modalidade ativa e professor.
+          IF(DSModalidade.DataSet.RecordCount = 0)THEN
           BEGIN
-
-              // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
-              IF(DSModalidade.DataSet.RecordCount = 0)THEN
-              BEGIN
-                ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO ESTA MATRICULADO EM NENHUMA MODALIDADE.');
-              END;
-
-
-              {
-              // SALVA FOTO DO ALUNO BLOB
-              IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
-              BEGIN
-                aDest:= tbitmap.create;
-                aDest.Width := 200;
-                aDest.Height := 113;
-                aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
-                //ClientDataSet1foto.Assign(camera.CapturedBitmap);
-                ClientDataSet1foto.Assign(aDest);
-              END;
-              }
-
-
-              //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
-              if(imagemMudou = true)then
-              begin
-                  //SALVA FOTO PASTA
-                  IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
-                  BEGIN
-                    CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
-                  END;
-                  cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
-              end;
-              imagemMudou := false;
-
-              //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
-              cxPageControl1.ActivePageIndex := 0;
-
-              //habilita painel responsável
-              DBEdit4.Enabled := true;
-              DBEdit5.Enabled := true;
-              cxDBMaskEdit5.Enabled := true;
-
-              //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
-              inherited;
-
-              //COR DO CAMPO CPF
-              DBEdit9.Font.Color := clblack;
-
+            // AVISO QUE O ALUNO NÃO POSSUI MATRÍCULA ATIVA
+            ShowMessage('ATENÇÃO!' + #13 + 'ALUNO NÃO POSSUI MATRÍCULA ATIVA.');
+            ClientDataSet1idInstrutor.Clear;
+            ClientDataSet1NOMEINSTRUTORFICHA.Clear;
           END ELSE
           BEGIN
-            ShowMessage('INFORME UM INSTRUTOR PARA O ALUNO (ABA FICHA DE EXERCÍCIOS)');
+              IF (ClientDataSet1idInstrutor.IsNull)THEN
+              BEGIN
+                ShowMessage('INFORME UM PROFESSOR PARA O ALUNO');
+                EXIT;
+              END;
           END;
+
+          {
+          // SALVA FOTO DO ALUNO BLOB
+          IF((ClientDataSet1.State = dsEdit) or (ClientDataSet1.State = dsInsert))THEN
+          BEGIN
+            aDest:= tbitmap.create;
+            aDest.Width := 200;
+            aDest.Height := 113;
+            aDest.Canvas.StretchDraw(Rect(0, 0, aDest.width, aDest.Height), cxDBImage1.Picture.Bitmap);
+            //ClientDataSet1foto.Assign(camera.CapturedBitmap);
+            ClientDataSet1foto.Assign(aDest);
+          END;
+          }
+
+
+          //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
+          if(imagemMudou = true)then
+          begin
+              //SALVA FOTO PASTA
+              IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+              BEGIN
+                CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+              END;
+              cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+          end;
+          imagemMudou := false;
+
+          //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
+          cxPageControl1.ActivePageIndex := 0;
+
+          //habilita painel responsável
+          DBEdit4.Enabled := true;
+          DBEdit5.Enabled := true;
+          cxDBMaskEdit5.Enabled := true;
+
+          //OBS: A INCLUSÃO DA IMAGEM DEVE SER FEITA ANTES DA MUDANÇA DO STATE DO CLIENTDATASET;
+          inherited;
+
+          //COR DO CAMPO CPF
+          DBEdit9.Font.Color := clblack;
 
       END ELSE
       BEGIN
@@ -1037,6 +1039,7 @@ begin
   //Imprimi anamnese
   if(PageControlAvaliacoes.TabIndex = 0)then
   begin
+  {
     IF(DS.DataSet.State = dsEDIT) THEN
     BEGIN
         TRY
@@ -1055,6 +1058,7 @@ begin
     BEGIN
         IF(DS.DataSet.State = dsINSERT)THEN
         BEGIN
+  }
             //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
             TRY
             cdsRelAnamnese.close;
@@ -1085,9 +1089,11 @@ begin
               CDSRelanamnese.CancelUpdates;
               CDSRelanamnese.close;
             END;
+    {
         END;
 
     END;
+    }
 
   end;
 end;
@@ -1107,85 +1113,43 @@ begin
          6:
             // Rel. Ava Física
             begin
-                IF(DS.DataSet.State = dsEDIT) THEN
-                BEGIN
+               //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
+                TRY
                     TRY
-                        TRY
-                            if NOT(ClientDataSet1IDADE.IsNull)then
-                            begin
-                                IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
-                                BEGIN
-                                    qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
-                                    cdsRelAvaFisica.close;
-                                    cdsRelAvaFisica.open;
-                                    {
-                                    cdsRelAvaFisica.First;
-                                    for I := 0 to cdsRelAvaFisica.FieldCount-1  do
-                                    begin
-                                      IF((cdsRelAvaFisica.Fields.Fields[I].IsNull))then
-                                      begin
-                                        //SHOWMESSAGE(cdsRelAvaFisica.Fields.Fields[I].FieldName + ': '+ cdsRelAvaFisica.Fields.Fields[I].ClassName);
-                                        IF((cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TFloatField') or (cdsRelAvaFisica.Fields.Fields[I].ClassName = 'TSingleField')) THEN
-                                        BEGIN
-                                            cdsRelAvaFisica.edit;
-                                            cdsRelAvaFisica.Fields.Fields[I].AsFloat := 0.00;
-                                            cdsRelAvaFisica.post;
-                                        END;
-                                      end;
-                                    end;
-                                    }
-                                    report_AvaFisica.ShowReport(TRUE);
-                                END ELSE
-                                BEGIN
-                                    SHOWMESSAGE('ESCOLHA UM PROTOCOLO PARA CÁLCULO DA % DE GORDURA NO PERFIL DO USUÁRIO.');
-                                END;
+                        if NOT(ClientDataSet1IDADE.IsNull)then
+                        begin
+                            IF NOT(ClientDataSet1idProtocoloAvaFisica.IsNull)THEN
+                            BEGIN
+                                qRelAvaFisica.Params[0].AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
+                                cdsRelAvaFisica.close;
+                                cdsRelAvaFisica.open;
+                                cdsRelAvaFisica.Edit;
+                                cdsRelAvaFisicaNOMEALUNO.AsString := ClientDataSet1NOMEALUNO.AsString;
+                                cdsRelAvaFisicaDESCRICAOPROTOCOLOAVAFISICA.AsString := ClientDataSet1DESCRICAOPROTOCOLOAVAFISICA.AsString;
+                                cdsRelAvaFisica.post;
+                                report_AvaFisica.ShowReport(TRUE);
                             END ELSE
                             BEGIN
-                              SHOWMESSAGE('INFORME A DATA DE NASCIMENTO DO ALUNO.');
-                            END
+                                SHOWMESSAGE('É NECESSÁRIO ESCOLHER UM PROTOCOLO PARA CÁLCULO DA % DE GORDURA.');
+                            END;
+                        END ELSE
+                        BEGIN
+                          SHOWMESSAGE('INFORME A DATA DE NASCIMENTO DO ALUNO.');
+                        END
 
-                        EXCEPT
-                          RAISE;
-                        END;
-                    FINALLY
-                        //dsRelAvaFisica.DataSet.Close;
+                    EXCEPT
+                      RAISE;
                     END;
-                END ELSE
-                BEGIN
-                    IF(DS.DataSet.State = dsINSERT)THEN
-                    BEGIN
-                        //NO MODO INSERT OS DADOS DO CLIENTEDATASET1 AINDA NÃO ESTÃO SALVOS, NESSE CASO EU FAÇO UMA CÓPIA PARA CDSRELFICHA
-                        TRY
-                        cdsRelAvaFisica.close;
-                        cdsRelAvaFisica.open;
-                        cdsRelAvaFisica.EmptyDataSet;
-                        cdsRelAvaFisica.Append;
-                        cdsRelAvaFisicanomealuno.asString := ClientDataSet1nomeAluno.AsString;
-                        cdsRelAvaFisicaidAluno.AsInteger := ClientDataSet1idAluno.AsInteger;
-                        cdsRelAvaFisicaidAvaliacaoFisica.AsInteger := CDSAvaFisicaidAvaliacaoFisica.AsInteger;
-                        cdsRelAvaFisicadataAvaliacaoFisica.AsDateTime := cdsRelAvaFisicadataAvaliacaoFisica.AsDateTime;
-                        cdsRelAvaFisicanomeAvaliador.AsString := DModule.nomeusuario;
-                        cdsRelAvaFisica.Post;
-
-                        //REPORT_ANAMNESEPATOLOGIA.ShowReport(TRUE);
-                        FINALLY
-                          cdsRelAvaFisica.Cancel;
-                          cdsRelAvaFisica.CancelUpdates;
-                          cdsRelAvaFisica.close;
-                        END;
-                    END;
-
+                FINALLY
+                    //dsRelAvaFisica.DataSet.Close;
                 END;
-
-
-
-
 
             end;
 
          7: begin
                 IF(DS.DataSet.State = dsEDIT) THEN
                 BEGIN
+
                     TRY
                         TRY
                           //MUDA A ORDEM CRONOLÓGICA DOS DADOS
@@ -1193,7 +1157,7 @@ begin
                           'SELECT AV.*,A.NOMEALUNO  FROM AVALIACAOFISICA AV '+
                           'LEFT OUTER JOIN ALUNO A ON A.IDALUNO = AV.IDALUNO '+
                           'WHERE AV.IDALUNO =:IDA '+
-                          'ORDER BY AV.DATAAVALIACAOFISICA, AV.IDAVALIACAOFISICA';
+                          'ORDER BY AV.DATAAVALIACAOFISICA, AV.IDAVALIACAOFISICA limit 5';
                           qAvaFisica.Params[0].AsInteger := ClientDataSet1IDaluno.AsInteger;
                           CDSAvaFisica.close;
                           CDSAvaFisica.open;
@@ -1218,7 +1182,14 @@ begin
                     FINALLY
 
                     END;
-                END;//
+                END else
+                begin
+                    IF(DS.DataSet.State = dsINSERT) THEN
+                    BEGIN
+                      SHOWMESSAGE('PARA ACESSAR O RELATÓRIO COMPARATIVO '+
+                      'É NECESSÁRIO SALVAR O CADASTRO DO ALUNO ANTES.');
+                    END;
+                end;
 
             end;
       end;
@@ -1228,9 +1199,102 @@ begin
 end;
 
 procedure TF01001.btnImprimirFichaClick(Sender: TObject);
+var
+ F : Textfile;
+ i : integer;
+ iMensagem : integer;
 begin
   inherited;
+  //DESKTOP-AR85808
+  {
 
+  AssignFile(F, '//192.168.1.200/EPSON');
+  Rewrite(F);
+  Writeln(F, '    só um teste 1só um teste 1só um teste 1só um teste 1só um teste 1');
+  Writeln(F, '    só um teste 2');
+  Writeln(F, '    só um teste 3');
+
+  Writeln(F, #12); // Ejeta página
+  Writeln(F, ''); // pula linha
+  Writeln(F, ''); // pula linha
+  Writeln(F, ''); // pula linha
+  Writeln(F, '' ); // pula linha
+  Writeln(F, ''); // pula linha
+  Writeln(F, #27 + #105''); // Corte de papel
+
+  CloseFile(F);
+    }
+
+  iMensagem := MsgDlgButtonPersonal('IMPRIMIR FICHA', mtConfirmation, [mbYes,mbNo],
+  ['FOLHA A4', 'CUPOM']);
+  case iMensagem of
+     6: begin
+          TRY
+            CDSRelFicha.close;
+            CDSRelFicha.open;
+            CDSRelFicha.EmptyDataSet;
+            CDSRelFicha.Append;
+            CDSRelFichaIDAluno.AsINTEGER := ClientDataSet1IDAluno.AsINTEGER;
+            CDSRelFichanomeAluno.AsString := ClientDataSet1nomeAluno.AsString;
+
+            CDSRelFichaCODFICHA.AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+            CDSRelFichaDATACOMPOSICAO.AsDateTime := CDSFichaAlunodataComposicao.AsDateTime;
+            CDSRelFichaDATAVENCIMENTO.AsDateTime := CDSFichaAlunodataVencimento.AsDateTime;
+
+            CDSRelFichaNOMEINSTRUTORFICHA.AsString := ClientDataSet1NOMEINSTRUTORFICHA.AsString;
+            CDSRelFicha.Post;
+
+            REPORT_FICHA.ShowReport(TRUE);
+          FINALLY
+            CDSRelFicha.Cancel;
+            CDSRelFicha.CancelUpdates;
+            CDSRelFicha.close;
+          END;
+        end;
+
+     7: begin
+            TRY
+
+                  With TF01018.Create(self, CDSFichaAlunoidFichaAluno.AsInteger) do  // 1 =Pagamento, 2=Isenção
+                  Begin
+
+                      if(ShowModal = mrOk)then
+                      begin
+                          TRY
+                              qRelFicha.ParamByName('IDFA').AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+                              DSRelFicha.DataSet.Close;
+                              DSRelFicha.DataSet.Open;
+
+                              if NOT(U01018.resposta = 'COMPLETO')then
+                              begin
+                                  CDSserieFichaAluno.Filtered := false;
+                                  CDSserieFichaAluno.Filter := 'descricaoTreino LIKE '+ QuotedStr('%'+ U01018.resposta + '%');
+                                  CDSserieFichaAluno.Filtered := true;
+                              end;
+
+                              //REPORT_FICHAcp.PrintOptions.Printer := '//192.168.6.200/EPSON';
+                              REPORT_FICHAcp.SelectPrinter;
+                              REPORT_FICHAcp.PrintOptions.ShowDialog := false;
+                              REPORT_FICHAcp.PrepareReport;
+                              REPORT_FICHAcp.print;
+                              //REPORT_FICHAcp.ShowReport(TRUE);
+
+                              //limpa filter
+                              CDSserieFichaAluno.Filtered := false;
+                          EXCEPT
+                              RAISE;
+                          END;
+                      end;
+                      FREE;
+                  End;
+
+            FINALLY
+                DSRelFicha.DataSet.Close;
+            END;
+        end;
+  end;
+
+  {
   IF(DS.DataSet.State = dsEDIT) THEN
   BEGIN
       TRY
@@ -1238,7 +1302,14 @@ begin
             qRelFicha.ParamByName('IDFA').AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
             DSRelFicha.DataSet.Close;
             DSRelFicha.DataSet.Open;
-            REPORT_FICHA.ShowReport(TRUE);
+            REPORT_FICHAcp.PrintOptions.Printer := ' ';
+            //REPORT_FICHAcp.PrintOptions.Printer := '//192.168.6.200/EPSON';
+            REPORT_FICHAcp.PrintOptions.Printer := 'EPSON2';
+            REPORT_FICHAcp.SelectPrinter;
+            REPORT_FICHAcp.PrintOptions.ShowDialog := false;
+            REPORT_FICHAcp.PrepareReport;
+            //REPORT_FICHAcp.print;
+            REPORT_FICHAcp.ShowReport(TRUE);
           EXCEPT
             RAISE;
           END;
@@ -1276,7 +1347,7 @@ begin
       END;
 
   END;
-
+  }
 end;
 
 procedure TF01001.btnFiltrarClick(Sender: TObject);
@@ -1451,6 +1522,7 @@ begin
 
     //Porcentagem Gordura
     SOMA := 0.0; DC := 0.0;
+
     case ClientDataSet1idProtocoloAvaFisica.AsInteger of
       1:  BEGIN
           //PROTOCOLO DE FAULKNER (1968)
@@ -2043,6 +2115,18 @@ begin
   inherited;
   IF NOT(CDSAvaFisica.IsEmpty)THEN
   BEGIN
+      With TF01017.CreateCONSULTA(self, CDSAvaFisicaidAvaliacaoFisica.AsInteger, ClientDataSet1NOMEALUNO.AsString) do
+      Begin
+        ShowModal;
+        Free;
+      End;
+      CDSAvaFisica.CLOSE;
+      CDSAvaFisica.OPEN;
+  END;
+
+  {
+  IF NOT(CDSAvaFisica.IsEmpty)THEN
+  BEGIN
       With TF01017.CreateCONSULTA(self, CDSAvaFisicaidAvaliacaoFisica.AsInteger) do
       Begin
         ShowModal;
@@ -2051,6 +2135,7 @@ begin
       CDSAvaFisica.CLOSE;
       CDSAvaFisica.OPEN;
   END;
+  }
 end;
 
 procedure TF01001.DBGridBelezaFisicaKeyDown(Sender: TObject; var Key: Word;
@@ -2106,7 +2191,7 @@ begin
   inherited;
   IF NOT(CDSAnamnese.IsEmpty)THEN
   BEGIN
-      With TF01016.CreateCONSULTA(self, CDSAnamneseidAnamnese.AsInteger) do
+      With TF01016.CreateCONSULTA(self, CDSAnamneseidAnamnese.AsInteger, ClientDataSet1NOMEALUNO.AsString) do
       Begin
         ShowModal;
         Free;
@@ -2432,7 +2517,7 @@ begin
     PanelBotoesFichaDeExercicios.Enabled := true;
 
     //ABA MODALIDADES
-    pagModalidades.TabVisible := true;
+    pagMatricula.TabVisible := true;
     PanelBotoesModalidades.Enabled := true;
 
     //ABAMENSALIDADES
@@ -2460,7 +2545,7 @@ begin
           pagFichaExercicios.TabVisible := FALSE;
 
           //ABA MODALIDADES
-          pagModalidades.TabVisible := FALSE;
+          pagMatricula.TabVisible := FALSE;
 
           //ABAMENSALIDADES
           pagMensalidades.TabVisible := FALSE;
@@ -2484,7 +2569,7 @@ begin
               PanelPerfil.Enabled := true;
 
               //ABA MODALIDADES
-              pagModalidades.TabVisible := TRUE;
+              pagMatricula.TabVisible := TRUE;
 
               //ABAMENSALIDADES
               pagMensalidades.TabVisible := TRUE;
@@ -2495,7 +2580,7 @@ begin
               PanelPerfil.Enabled := FALSE;
 
               //ABA MODALIDADES
-              pagModalidades.TabVisible := FALSE;
+              pagMatricula.TabVisible := FALSE;
 
               //ABAMENSALIDADES
               pagMensalidades.TabVisible := FALSE;
@@ -2532,7 +2617,7 @@ begin
                   PanelPerfil.Enabled := true;
 
                   //ABA MODALIDADES
-                  pagModalidades.TabVisible := TRUE;
+                  pagMatricula.TabVisible := TRUE;
 
                   //ABAMENSALIDADES
                   pagMensalidades.TabVisible := TRUE;
@@ -2543,7 +2628,7 @@ begin
                   PanelPerfil.Enabled := FALSE;
 
                   //ABA MODALIDADES
-                  pagModalidades.TabVisible := FALSE;
+                  pagMatricula.TabVisible := FALSE;
 
                   //ABAMENSALIDADES
                   pagMensalidades.TabVisible := FALSE;
@@ -2558,7 +2643,7 @@ begin
                   PanelPerfil.Enabled := true;
 
                   //ABA MODALIDADES
-                  pagModalidades.TabVisible := TRUE;
+                  pagMatricula.TabVisible := TRUE;
 
                   //ABAMENSALIDADES
                   pagMensalidades.TabVisible := TRUE;
@@ -3883,39 +3968,31 @@ end;
 procedure TF01001.btnNovaAnamnesClick(Sender: TObject);
 begin
   inherited;
-  if(PageControlAvaliacoes.TabIndex = 0)then
-  begin
-      //anamnese
-      With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
-      Begin
-        ShowModal;
-        Free;
-      End;
 
-      // REFRESH DBGRIDBELEZA3
-      CDSAnamnese.CLOSE;
-      CDSAnamnese.OPEN;
-  end;
+  //anamnese
+  With TF01016.CreateNOVO(self, STRTOINT(DBEDIT1.Text), DBEDIT3.TEXT) do
+  Begin
+    ShowModal;
+    Free;
+  End;
+  CDSAnamnese.CLOSE;
+  CDSAnamnese.OPEN;
+
 end;
 
 procedure TF01001.btnNovaAvaFisicaClick(Sender: TObject);
 begin
   inherited;
-  if(PageControlAvaliacoes.TabIndex = 1)then
-  begin
-    //avaliação física
-    With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
-    Begin
-      ShowModal;
-      Free;
-    End;
-    CDSAvaFisica.CLOSE;
-    CDSAvaFisica.OPEN;
 
-  end else
-  begin
-    //ShowMessage(inttostr(PageControlAvaliacoes.TabIndex));
-  end;
+  //avaliação física
+  With TF01017.CreateNOVO(self, STRTOINT(DBEDIT1.Text) {ClientDataSet1idAluno.AsInteger}, DBEDIT3.TEXT {ClientDataSet1NOMEAluno.ASSTRING}) do
+  Begin
+    ShowModal;
+    Free;
+  End;
+  CDSAvaFisica.CLOSE;
+  CDSAvaFisica.OPEN;
+
 end;
 
 procedure TF01001.btnNovoFichaClick(Sender: TObject);

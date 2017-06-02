@@ -17,7 +17,13 @@ uses
   cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxStyles,
   cxSchedulerStorage, cxSchedulerCustomControls, cxSchedulerDateNavigator,
   cxDateNavigator, Vcl.Buttons, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids,
-  DBGridBeleza;
+  DBGridBeleza, cxImage, dxGDIPlusClasses, Vcl.Menus,
+  Vcl.Imaging.pngimage, Vcl.Imaging.jpeg, IdHashMessageDigest, iniFiles, DateUtils,
+  System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList,
+  Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus,
+  Vcl.PlatformDefaultStyleActnCtrls, VCLTee.TeCanvas, XiButton,
+  Vcl.XPMan, Vcl.AppEvnts, dxTaskbarProgress,
+  cxLabel;
 
 type
   TFPrincipalAdmin = class(TForm)
@@ -61,9 +67,9 @@ type
     Panel7: TPanel;
     Panel5: TPanel;
     PanelCabecarioGrafFatMes: TPanel;
-    ChartFaturamentoMes: TChart;
+    ChartFaturamentoMes1: TChart;
     PieSeries1: TPieSeries;
-    DateTimePicker1: TDateTimePicker;
+    DateTimePicker5: TDateTimePicker;
     qProf: TFDQuery;
     pProf: TDataSetProvider;
     cdsProf: TClientDataSet;
@@ -78,8 +84,19 @@ type
     DBGridBeleza1: TDBGridBeleza;
     ChartIdade: TChart;
     BarSeries2: TBarSeries;
+    Principal: TTabSheet;
+    cxImage1: TcxImage;
+    Panel6: TPanel;
+    PanelNomeUsuario: TcxLabel;
+    AE_erros: TApplicationEvents;
+    Panel8: TPanel;
+    ChartFaturamentoMes: TChart;
+    PieSeries3: TPieSeries;
+    Panel9: TPanel;
+    DateTimePicker1: TDateTimePicker;
+    labelValorFatDia: TcxLabel;
     procedure FormShow(Sender: TObject);
-    procedure DateTimePicker1Change(Sender: TObject);
+    procedure DateTimePicker5Change(Sender: TObject);
     procedure cdsProfCalcFields(DataSet: TDataSet);
     procedure dxTileControl1Item1Click(Sender: TdxTileControlItem);
     procedure dxTileControl1Item11Click(Sender: TdxTileControlItem);
@@ -91,11 +108,15 @@ type
     procedure dxTileControl1Item4Click(Sender: TdxTileControlItem);
     procedure dxTileControl1Item6Click(Sender: TdxTileControlItem);
     procedure dxTileControl1Item8Click(Sender: TdxTileControlItem);
+    procedure FormCreate(Sender: TObject);
+    procedure AE_errosException(Sender: TObject; E: Exception);
+    procedure DateTimePicker1Change(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure geraGraficoFatMes(mes,ano:Tdate);
+    procedure geratodosGraficos();
     procedure CriarForm(Tela, Desc: String);
     function fncAlturaBarraTarefas: Integer;
   end;
@@ -120,6 +141,11 @@ begin
 end;
 }
 
+procedure TFPrincipalAdmin.AE_errosException(Sender: TObject; E: Exception);
+begin
+  showmessage('ERRO: ' + E.ClassName + #13 + 'MENSAGEM: ' + E.Message)
+end;
+
 procedure TFPrincipalAdmin.cdsProfCalcFields(DataSet: TDataSet);
 begin
   DModule.qAux.SQL.Text :=
@@ -131,7 +157,8 @@ begin
   '(A.IDALUNO NOT IN (SELECT idAluno FROM FICHAALUNO)) '+
   'OR '+
   '(    curdate() > '+
-  'DATE_ADD(fa.dataComposicao, INTERVAL (SELECT VENCIMENTOFICHA FROM configuracaounidade WHERE idConfiguracaoUnidade = 1) MONTH)   ) '+
+  ' fa.dataVencimento )' +  // esse ou o de baixo
+//  'DATE_ADD(fa.dataComposicao, INTERVAL (SELECT VENCIMENTOFICHA FROM configuracaounidade WHERE idConfiguracaoUnidade = 1) MONTH)   ) '+
   ')';
 
   DModule.qAux.ParamByName('IDINST').AsInteger := cdsProfIDUSUARIO.AsInteger;
@@ -194,23 +221,21 @@ begin
    end;
 end;
 
-procedure TFPrincipalAdmin.DateTimePicker1Change(Sender: TObject);
+procedure TFPrincipalAdmin.DateTimePicker5Change(Sender: TObject);
 begin
 
-  //Gera Gráfico
-  TThread.CreateAnonymousThread(
-  procedure ()
-  begin
-      geraGraficoFatMes(DateTimePicker1.Date,DateTimePicker1.Date);
+  DModule.qAux.SQL.Text := 'select IFNULL( sum(p.valorCobrado),0) AS VALOR from pagamento p where p.dataPagamento =:DAT';
+  DModule.qAux.ParamByName('DAT').AsString := FormatDateTime('yyyy-mm-dd',DateTimePicker5.Date);
+  DModule.qAux.Close;
+  DModule.qAux.Open;
+  labelValorFatDia.Caption := 'R$ ' + DModule.qAux.FieldByName('VALOR').AsString;
 
-      TThread.Synchronize (TThread.CurrentThread,
-      procedure ()
-      begin
-          //
-      end);
-      // .free aqui!!!
-  end
-  ).Start;
+end;
+
+procedure TFPrincipalAdmin.DateTimePicker1Change(Sender: TObject);
+begin
+  //Gera Gráfico
+  geraGraficoFatMes(DateTimePicker1.Date,DateTimePicker1.Date);
 
 end;
 
@@ -218,6 +243,28 @@ procedure TFPrincipalAdmin.dxTileControl1Item10Click(
   Sender: TdxTileControlItem);
 begin
   CriarForm('F01012', 'Modalidade');
+
+  // Gera os gráficos para o administrados
+  if(DModule.administrador =  true)then
+  begin
+      //Gera Gráfico por thread
+      TThread.CreateAnonymousThread(
+      procedure ()
+      begin
+          //geratodosGraficos;
+          geratodosGraficos;
+
+          TThread.Synchronize (TThread.CurrentThread,
+          procedure ()
+          begin
+              //
+              geratodosGraficos;
+          end);
+          // .free aqui!!!
+      end
+      ).Start;
+  end;
+
 end;
 
 procedure TFPrincipalAdmin.dxTileControl1Item11Click(
@@ -230,7 +277,7 @@ begin
             Begin
               ShowModal;
             End;
-            ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+            //ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
         except
           ON E: Exception DO
           begin
@@ -246,6 +293,28 @@ end;
 procedure TFPrincipalAdmin.dxTileControl1Item1Click(Sender: TdxTileControlItem);
 begin
   CriarForm('F01001', 'Aluno');
+
+  // Gera os gráficos para o administrados
+  if(DModule.administrador =  true)then
+  begin
+      //Gera Gráfico por thread
+      TThread.CreateAnonymousThread(
+      procedure ()
+      begin
+          //geratodosGraficos;
+          geratodosGraficos;
+
+          TThread.Synchronize (TThread.CurrentThread,
+          procedure ()
+          begin
+              //
+              geratodosGraficos;
+          end);
+          // .free aqui!!!
+      end
+      ).Start;
+  end;
+
 end;
 
 procedure TFPrincipalAdmin.dxTileControl1Item2Click(Sender: TdxTileControlItem);
@@ -261,6 +330,28 @@ end;
 procedure TFPrincipalAdmin.dxTileControl1Item4Click(Sender: TdxTileControlItem);
 begin
   CriarForm('F01002', 'Pagamento');
+
+  // Gera os gráficos para o administrados
+  if(DModule.administrador =  true)then
+  begin
+      //Gera Gráfico por thread
+      TThread.CreateAnonymousThread(
+      procedure ()
+      begin
+          //geratodosGraficos;
+          geratodosGraficos;
+
+          TThread.Synchronize (TThread.CurrentThread,
+          procedure ()
+          begin
+              //
+              geratodosGraficos;
+          end);
+          // .free aqui!!!
+      end
+      ).Start;
+  end;
+
 end;
 
 procedure TFPrincipalAdmin.dxTileControl1Item5Click(Sender: TdxTileControlItem);
@@ -281,6 +372,28 @@ end;
 procedure TFPrincipalAdmin.dxTileControl1Item8Click(Sender: TdxTileControlItem);
 begin
   CriarForm('F01008', 'Usuário');
+
+  // Gera os gráficos para o administrados
+  if(DModule.administrador =  true)then
+  begin
+      //Gera Gráfico por thread
+      TThread.CreateAnonymousThread(
+      procedure ()
+      begin
+          //geratodosGraficos;
+          geratodosGraficos;
+
+          TThread.Synchronize (TThread.CurrentThread,
+          procedure ()
+          begin
+              //
+              geratodosGraficos;
+          end);
+          // .free aqui!!!
+      end
+      ).Start;
+  end;
+
 end;
 
 function TFPrincipalAdmin.fncAlturaBarraTarefas: Integer;
@@ -298,17 +411,301 @@ begin
   Result := rRect.Bottom - rRect.Top;
 end;
 
+procedure TFPrincipalAdmin.FormCreate(Sender: TObject);
+var
+  Hora: Integer;
+  Data : TDateTime;
+  HashGeradoAgora, geradoConfig, Serial : String;
+  Arquivo: TIniFile;
+  username, senha : string;
+  CaminhoDB, LoginDB, SenhaDB : String;
+
+begin
+  {IMPEDE QUE DUAS INSTANCIAS DO MESMO PROGRAMA SEJAM CRIADAS}
+  CreateMutex(nil, False, 'SoftCast.OnlyOne'); //cria um mutex usando um nome único
+  if GetLastError = ERROR_ALREADY_EXISTS then  //verifica se houve erro na criação
+  begin
+    MessageBox(0, 'Este programa já está sendo executado','Aviso', MB_ICONSTOP);
+    Halt(0); // cancela execução
+  end;
+
+
+ {
+  //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
+    DModule.idTipoUsuario := 1;
+    DModule.idusuario := 1;
+    DModule.username := 'ADMIN';
+    DModule.nomeusuario := 'ADMINISTRADOR';
+    DModule.administrador := true;
+    // FIM DE TESTE
+
+     }
+  //Obtem Serial HD
+  with GetHPI(Application.ExeName[1]) do
+  begin
+    serial := SerialNumber;
+  end;
+
+  Hora := HourOf(Now);
+  Data := Date();
+  HashGeradoAgora := MD5(IntToStr(Hora) + DateToStr(Data) + Serial);
+
+  Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
+  GeradoConfig := Arquivo.ReadString('Login', 'Numero', GeradoConfig);
+
+  //ShowMessage('HASH gerado agora:  '+ HashGeradoAgora + #13 + 'arquivo config.ini:  ' + GeradoConfig);
+
+  if ((HashGeradoAgora) <> (GeradoConfig)) then
+  begin
+      ShowMessage('Acesso Negado!');
+      Application.Terminate;
+  end else
+  begin
+      //Login - MySQL (user e password)
+      CaminhoDB := Arquivo.ReadString('Config', Crip('Caminho'), CaminhoDB);
+      LoginDB := Arquivo.ReadString('Config', Crip('Login'), LoginDB);
+      SenhaDB := Arquivo.ReadString('Config', Crip('Senha'), SenhaDB);
+      DModule.FDConnection.Params.Values['SERVER'] :=  Crip(CaminhoDB);
+      DMODULE.FDConnection.Params.UserName := Crip(LoginDB);
+      DMODULE.FDConnection.Params.Password := Crip(SenhaDB);
+
+      // LOGIN - Controle de Acesso DE USUÁRIO
+      username := CRIP(Arquivo.ReadString('Login', 'username', username));
+      senha := MD5(CRIP(Arquivo.ReadString('Login', 'userpassword', senha)));
+
+      //Obtem Dados do Usuário (username, senha, idTipoUsuario)
+      //Dmodule.idTipoUsuario := 0;
+      Dmodule.qAux.close;
+      Dmodule.qAux.SQL.Text := 'select * from usuario where username =:idUsuario and senha=:idSenha';
+      Dmodule.qAux.ParamByName('idUsuario').Value := username;
+      Dmodule.qAux.ParamByName('idSenha').Value := senha;
+      Dmodule.qAux.open;
+      Dmodule.idUsuario := Dmodule.qAux.FieldByName('idUsuario').AsInteger;
+      Dmodule.nomeusuario := Dmodule.qAux.FieldByName('nomeUsuario').AsString;
+      Dmodule.username := Dmodule.qAux.FieldByName('username').AsString;
+      Dmodule.senha := Dmodule.qAux.FieldByName('senha').AsString;
+      //FUNCIONALIDADES QUE O USUÁRIOS ESTA HAPITO A DESEMPENHAR
+      DModule.administrador := Dmodule.qAux.FieldByName('administrador').AsBoolean;
+      DModule.instrutor := Dmodule.qAux.FieldByName('instrutor').AsBoolean;
+      DModule.atendente := Dmodule.qAux.FieldByName('atendente').AsBoolean;
+      DModule.avaliador := Dmodule.qAux.FieldByName('avaliador').AsBoolean;
+      PanelNomeUsuario.Caption := Dmodule.nomeusuario;
+
+      {showmessage(
+      'admin:' + Dmodule.qAux.FieldByName('administrador').asstring + #13 +
+      'instrutor:' + Dmodule.qAux.FieldByName('instrutor').asstring + #13 +
+      'atendente:' + Dmodule.qAux.FieldByName('atendente').asstring + #13 +
+      'avaliador:' + Dmodule.qAux.FieldByName('avaliador').asstring + #13
+      );
+
+      showmessage(
+      'admin:' + booltostr(DModule.administrador) + #13 +
+      'instrutor:' + booltostr(DModule.instrutor) + #13 +
+      'atendente:' + booltostr(DModule.atendente) + #13 +
+      'avaliador:' + booltostr(DModule.avaliador)
+      );   }
+
+      // VERIFICA SE USUÁRIO ESTA ATIVO ATUALMENTE
+      if ( Dmodule.qAux.FieldByName('ativo').AsBoolean = FALSE ) then
+      begin
+          ShowMessage('Usuário não está ativo no sistema.');
+          Application.Terminate;
+      end;
+
+      //Obtem Dados de acesso doS TIPOS DE USUÁRIOS VINCULADOS
+      DModule.qAcesso.Close;
+      DModule.qAcesso.SQL.Text := 'select s.*, i.idinterface as interface, m.idmodulo as modulo from seguranca s ';
+      DModule.qAcesso.SQL.Add('left outer join interface i on i.idinterface = s.idinterface ');
+      DModule.qAcesso.SQL.Add('left outer join modulo m on m.idmodulo = i.idmodulo ');
+      DModule.qAcesso.SQL.Add('where (   (1<>1) ');
+
+      if(Dmodule.administrador = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 1) ');
+      if(Dmodule.instrutor = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 2) ');
+      if(Dmodule.atendente = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 3) ');
+      if(Dmodule.avaliador = true )then
+      DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
+      DModule.qAcesso.SQL.Add(')');
+
+      //DModule.qAcesso.Open();
+      //ShowMessage( (DModule.qAcesso.sql.text));
+      //ShowMessage(inttostr(DModule.qAcesso.RecordCount));
+      DModule.cdsAcesso.Close;
+      DModule.cdsAcesso.Open;
+      DModule.cdsAcesso.First;
+
+      //ATRIBUI DATAHOJE
+      DModule.qAux.SQL.Text := 'select CURDATE() AS DATAHOJE';
+      DModule.qAux.Close;
+      DModule.qAux.Open;
+      DModule.dataHoje := DModule.qAux.FieldByName('DATAHOJE').AsDateTime;
+
+      //OBTEM DADOS DE CONFIGURAÇÃO
+      Dmodule.qAux.close;
+      Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
+      Dmodule.qAux.open;
+
+      DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
+      DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
+      DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
+      DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
+      DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
+      DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
+
+
+      // HABILITA AS ABAS DE INDICADORES
+      if(DMODULE.administrador = TRUE)then
+      begin
+        tbsIndAluno.TabVisible := true;
+        tbsIndfat.TabVisible := true;
+
+        {
+        With TFPrincipalAdmin.Create(Application) do
+        Begin
+          ShowModal;
+          Free;
+        End;
+        }
+      end;
+
+  end;
+
+  //Apaga Numero de acesso Gerado
+  Arquivo := TIniFile.Create(GetCurrentDir+'\Config.ini');
+  Arquivo.EraseSection('Login');
+  Arquivo.Free;
+
+end;
+
 procedure TFPrincipalAdmin.FormShow(Sender: TObject);
+begin
+
+  if(DModule.administrador =  true)then
+  begin
+      // Gera os gráficos para o administrados
+      geratodosGraficos;
+  end;
+
+  //Apenas por segurança, esse codigo garante que os eventos do mysql sempre estarão ativos ao executar o programa;
+  DModule.qAux.SQL.Text := 'set global event_scheduler = on';
+  DModule.qAux.Close;
+  DModule.qAux.ExecSQL;
+end;
+
+procedure TFPrincipalAdmin.geraGraficoFatMes(mes, ano: Tdate);
+var
+  strMes, strAno: String;
+begin
+
+  try
+      //conversão date do delphi para dateMysql
+      strMes := FormatDateTime('yyyy-mm-dd',mes);
+      strAno := FormatDateTime('yyyy-mm-dd',ano);
+       {
+      showmessage('Mes: ' + strmes + #13 + 'Ano: ' + strAno);
+      showmessage('Mes: ' + MonthOf(Mes).ToString + #13 + 'Ano: ' + YearOf(Ano).ToString );
+      }
+
+      // reseta valore do gráfico
+      ChartFaturamentoMes.SeriesList.ClearValues;
+
+      //Pago
+      DModule.qAux.SQL.Text :=
+      'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorCobrado) AS VALOR FROM PAGAMENTO M '+
+      'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
+      'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
+      'AND (M.idstatusPagamento = 2) '+
+      'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
+      'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
+      'group by M.idstatusPagamento' ;
+      DModule.qAux.close; DModule.qAux.open;
+      if(DModule.qAux.RecordCount > 0)then
+      begin
+        DModule.qAux.First;
+        ChartFaturamentoMes.Series[0].AddY(
+        DModule.qAux.FieldByName('valor').AsFloat,  // valor
+        'RECEBIDO', //legenda
+        clteecolor
+        );
+      end;
+      //Isento
+      DModule.qAux.SQL.Text :=
+      'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
+      'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
+      'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
+      'AND (M.idstatusPagamento = 3) '+
+      'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
+      'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
+      'group by M.idstatusPagamento' ;
+      DModule.qAux.close; DModule.qAux.open;
+      if(DModule.qAux.RecordCount > 0)then
+      begin
+        DModule.qAux.First;
+        ChartFaturamentoMes.Series[0].AddY(
+        DModule.qAux.FieldByName('valor').AsFloat,  // valor
+        DModule.qAux.FieldByName('tipo').AsString, //legenda
+        clteecolor
+        );
+      end;
+      //EM ABERTO NÃO ATRASADO
+      DModule.qAux.close;
+      DModule.qAux.SQL.Text :=
+      'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
+      'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
+      'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
+      'AND (M.idstatusPagamento = 1) AND (M.dataVencimento > NOW()) '+
+      'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
+      'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
+      'group by M.idstatusPagamento';
+      //showmessage(q4.SQL.Text);
+      DModule.qAux.open;
+      DModule.qAux.First;
+      if(DModule.qAux.RecordCount > 0)then
+      begin
+        ChartFaturamentoMes.Series[0].AddY(
+        DModule.qAux.FieldByName('valor').AsFloat,  // valor
+        'PREVISÃO A RECEBER', //legenda
+        clteecolor
+        );
+      end;
+      //EM ATRASO
+      DModule.qAux.SQL.Text :=
+      'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
+      'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
+      'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
+      'AND (M.idstatusPagamento = 1) AND (M.dataVencimento < NOW()) '+
+      'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
+      'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
+      'group by M.idstatusPagamento';
+      //showmessage(DModule.qAux.SQL.Text);
+      DModule.qAux.close; DModule.qAux.open;
+      if(DModule.qAux.RecordCount > 0)then
+      begin
+        DModule.qAux.First;
+        ChartFaturamentoMes.Series[0].AddY(
+        DModule.qAux.FieldByName('valor').AsFloat,  // valor
+        //'EM ATRASO', //legenda
+        'A RECEBER (ATRASADO)', //legenda
+        clteecolor
+        );
+      end;
+  except
+
+
+  end;
+
+end;
+
+procedure TFPrincipalAdmin.geratodosGraficos;
 var
   Serie : TChartSeries;
 begin
 
   if(Dmodule.administrador = true)then
   begin
-      //Gera Gráfico
-      TThread.CreateAnonymousThread(
-      procedure ()
-      begin
+
           //PESQUISA PROFESSORES DE MUSCULAÇÃO
           qProf.Params[0].AsInteger := 1;
           DSProf.DataSet.close;
@@ -354,6 +751,7 @@ begin
           'LEFT OUTER JOIN OBJETIVO O ON O.IDOBJETIVO = AN.IDOBJETIVO '+
           'WHERE AN.idAnamnese IN (SELECT MAX(IDANAMNESE) FROM ANAMNESE ANAM '+
           'GROUP BY IDALUNO order by dataAnamnese DESC, idAnamnese DESC)'+
+          'AND AN.idAluno IN (SELECT idAluno FROM alunomodalidade WHERE idAluno = AN.IDALUNO)' +
           'group by AN.IDOBJETIVO';
           DModule.qAux.close; DModule.qAux.open;
           if(DModule.qAux.RecordCount > 0)then
@@ -392,6 +790,7 @@ begin
           end;
 
           { GRAFICO FATURAMENTO MES }
+          DateTimePicker1.Date := DATE;
           geraGraficoFatMes( date, date);  //StrToDate('01/04/2017)'
 
           // GRAFICO IDADE
@@ -433,17 +832,13 @@ begin
             end;
           end;
 
-
-          TThread.Synchronize (TThread.CurrentThread,
-          procedure ()
-          begin
-              //fazer depois que acabar o processo
-
-          end);
-          // .free aqui!!
-
-      end
-      ).Start;
+          //FATURAMENTO DO DIA
+          DModule.qAux.SQL.Text := 'select IFNULL( sum(p.valorCobrado),0) AS VALOR from pagamento p where p.dataPagamento =:DAT';
+          DateTimePicker5.Date := DATE;
+          DModule.qAux.ParamByName('DAT').AsString := FormatDateTime('yyyy-mm-dd',DateTimePicker5.Date);
+          DModule.qAux.Close;
+          DModule.qAux.Open;
+          labelValorFatDia.Caption := 'R$ ' + DModule.qAux.FieldByName('VALOR').AsString;
 
   end else
   begin
@@ -452,96 +847,6 @@ begin
     tbsIndFat.TabVisible := false;
   end;
 
-end;
-
-procedure TFPrincipalAdmin.geraGraficoFatMes(mes, ano: Tdate);
-var
-  strMes, strAno: String;
-begin
-
-  //conversão date do delphi para dateMysql
-  strMes := FormatDateTime('yyyy-mm-dd',mes);
-  strAno := FormatDateTime('yyyy-mm-dd',ano);
-
-  // reseta valore do gráfico
-  ChartFaturamentoMes.SeriesList.ClearValues;
-
-  //Pago
-  DModule.qAux.SQL.Text :=
-  'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
-  'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
-  'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
-  'AND (M.idstatusPagamento = 2) '+
-  'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
-  'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
-  'group by M.idstatusPagamento' ;
-  DModule.qAux.close; DModule.qAux.open;
-  if(DModule.qAux.RecordCount > 0)then
-  begin
-    DModule.qAux.First;
-    ChartFaturamentoMes.Series[0].AddY(
-    DModule.qAux.FieldByName('valor').AsFloat,  // valor
-    'RECEBIDO', //legenda
-    clteecolor
-    );
-  end;
-  //Isento
-  DModule.qAux.SQL.Text :=
-  'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
-  'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
-  'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
-  'AND (M.idstatusPagamento = 3) '+
-  'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
-  'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
-  'group by M.idstatusPagamento' ;
-  DModule.qAux.close; DModule.qAux.open;
-  if(DModule.qAux.RecordCount > 0)then
-  begin
-    DModule.qAux.First;
-    ChartFaturamentoMes.Series[0].AddY(
-    DModule.qAux.FieldByName('valor').AsFloat,  // valor
-    DModule.qAux.FieldByName('tipo').AsString, //legenda
-    clteecolor
-    );
-  end;
-  //EM ATRASO
-  DModule.qAux.SQL.Text :=
-  'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
-  'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
-  'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
-  'AND (M.idstatusPagamento = 1) AND (M.dataVencimento < NOW()) '+
-  'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
-  'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
-  'group by M.idstatusPagamento';
-  DModule.qAux.close; DModule.qAux.open;
-  if(DModule.qAux.RecordCount > 0)then
-  begin
-    DModule.qAux.First;
-    ChartFaturamentoMes.Series[0].AddY(
-    DModule.qAux.FieldByName('valor').AsFloat,  // valor
-    'EM ATRASO', //legenda
-    clteecolor
-    );
-  end;
-  //EM ABERTO NÃO ATRASADO
-  DModule.qAux.SQL.Text :=
-  'SELECT SP.descricaoStatusPagamento AS TIPO, COUNT(*) AS QTD, SUM(M.valorModalidade) AS VALOR FROM PAGAMENTO M '+
-  'LEFT OUTER JOIN statuspagamento SP ON SP.idStatusPagamento = M.idStatusPagamento '+
-  'WHERE M.IDALUNO IN (SELECT IDALUNO FROM ALUNOMODALIDADE) '+
-  'AND (M.idstatusPagamento = 1) AND (M.dataVencimento > NOW()) '+
-  'AND ( month(M.dataVencimento) = MONTH( "'+ strMes +'" )) '+
-  'AND ( year(M.dataVencimento) = YEAR( "'+ strAno +'" )) '+
-  'group by M.idstatusPagamento';
-  DModule.qAux.close; DModule.qAux.open;
-  if(DModule.qAux.RecordCount > 0)then
-  begin
-    DModule.qAux.First;
-    ChartFaturamentoMes.Series[0].AddY(
-    DModule.qAux.FieldByName('valor').AsFloat,  // valor
-    'EM ABERTO', //legenda
-    clteecolor
-    );
-  end;
 end;
 
 initialization

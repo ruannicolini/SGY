@@ -29,7 +29,8 @@ uses
   U01015 in 'Home\U01015.pas' {F01015},
   U01016 in 'Home\U01016.pas' {F01016},
   U01017 in 'Home\U01017.pas' {F01017},
-  UPrincipalAdmin in 'UPrincipalAdmin.pas' {FPrincipalAdmin};
+  UPrincipalAdmin in 'UPrincipalAdmin.pas' {FPrincipalAdmin},
+  U01018 in 'Home\U01018.pas' {F01018};
 
 {$R *.res}
 
@@ -37,7 +38,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDmodule, Dmodule);
-  Application.CreateForm(TFPrincipal, FPrincipal);
+  Application.CreateForm(TFPrincipalAdmin, FPrincipalAdmin);
+  //Application.CreateForm(TFPrincipal, FPrincipal);
   Application.CreateForm(TFLogin, FLogin);
   Application.CreateForm(TFBase, FBase);
   Application.CreateForm(TFRelatorios, FRelatorios);

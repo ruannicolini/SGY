@@ -133,6 +133,60 @@ inherited F01012: TF01012
       end
     end
   end
+  inherited Panel2: TPanel
+    inherited BInserir: TSpeedButton
+      Left = 351
+      Top = 4
+      Flat = False
+      Visible = False
+      ExplicitLeft = 351
+      ExplicitTop = 4
+    end
+    inherited BEditar: TSpeedButton
+      Left = 6
+      ExplicitLeft = 6
+    end
+    inherited BExcluir: TSpeedButton
+      Left = 390
+      Top = 4
+      Flat = False
+      Visible = False
+      ExplicitLeft = 390
+      ExplicitTop = 4
+    end
+    inherited BSalvar: TSpeedButton
+      Left = 255
+      ExplicitLeft = 255
+    end
+    inherited BCancelar: TSpeedButton
+      Left = 291
+      ExplicitLeft = 291
+    end
+    inherited BPesquisar: TSpeedButton
+      Left = 41
+      ExplicitLeft = 41
+    end
+    inherited BFirst: TSpeedButton
+      Left = 75
+      ExplicitLeft = 75
+    end
+    inherited BPrior: TSpeedButton
+      Left = 111
+      ExplicitLeft = 111
+    end
+    inherited BNext: TSpeedButton
+      Left = 147
+      ExplicitLeft = 147
+    end
+    inherited BLast: TSpeedButton
+      Left = 183
+      ExplicitLeft = 183
+    end
+    inherited bRelatorio: TSpeedButton
+      Left = 219
+      ExplicitLeft = 219
+    end
+  end
   inherited ClientDataSet1: TClientDataSet
     object ClientDataSet1idModalidade: TIntegerField
       FieldName = 'idModalidade'
@@ -173,7 +227,7 @@ inherited F01012: TF01012
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00B80110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00BC0110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

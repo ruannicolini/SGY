@@ -4,6 +4,7 @@ inherited F01017: TF01017
   ClientHeight = 680
   ClientWidth = 719
   Position = poOwnerFormCenter
+  ExplicitTop = -248
   ExplicitWidth = 719
   ExplicitHeight = 680
   PixelsPerInch = 96
@@ -640,7 +641,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_triciptal_mm'
             DataSource = DS
-            TabOrder = 1
+            TabOrder = 3
           end
           object DBEdit22: TDBEdit
             Left = 13
@@ -658,7 +659,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_axiliar_mm'
             DataSource = DS
-            TabOrder = 2
+            TabOrder = 6
           end
           object DBEdit24: TDBEdit
             Left = 339
@@ -667,7 +668,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_abdominal_mm'
             DataSource = DS
-            TabOrder = 3
+            TabOrder = 2
           end
           object DBEdit25: TDBEdit
             Left = 339
@@ -676,7 +677,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_coxa_mm'
             DataSource = DS
-            TabOrder = 4
+            TabOrder = 5
           end
           object DBEdit26: TDBEdit
             Left = 339
@@ -685,7 +686,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_panturrilha_mm'
             DataSource = DS
-            TabOrder = 5
+            TabOrder = 8
           end
           object DBEdit27: TDBEdit
             Left = 176
@@ -694,7 +695,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_biciptal_mm'
             DataSource = DS
-            TabOrder = 7
+            TabOrder = 4
           end
           object DBEdit28: TDBEdit
             Left = 176
@@ -703,7 +704,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_peitoral_mm'
             DataSource = DS
-            TabOrder = 6
+            TabOrder = 1
           end
           object DBEdit29: TDBEdit
             Left = 176
@@ -712,7 +713,7 @@ inherited F01017: TF01017
             Height = 21
             DataField = 'dobra_suprailiac_mm'
             DataSource = DS
-            TabOrder = 8
+            TabOrder = 7
           end
         end
         object GroupBox3: TGroupBox
@@ -1211,7 +1212,7 @@ inherited F01017: TF01017
     Left = 640
     Top = 0
     Bitmap = {
-      494C01010F002C00200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

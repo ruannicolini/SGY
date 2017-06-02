@@ -3,7 +3,6 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -408,7 +407,7 @@
                 Top = 500
                 Width = 313
                 Height = 50
-                Caption = 'INSTRUTOR'
+                Caption = 'PROFESSOR'
                 TabOrder = 3
                 object DBEdit2: TDBEdit
                   Left = 15
@@ -742,7 +741,7 @@
                     ParentBackground = False
                     TabOrder = 2
                     object btnImprimirAvaFisica: TSpeedButton
-                      Left = 631
+                      Left = 627
                       Top = 2
                       Width = 151
                       Height = 30
@@ -1061,7 +1060,7 @@
                 ParentBackground = False
                 TabOrder = 1
                 object btnImprimirFicha: TSpeedButton
-                  Left = 631
+                  Left = 635
                   Top = 3
                   Width = 151
                   Height = 30
@@ -1082,8 +1081,8 @@
               end
             end
           end
-          object pagModalidades: TcxTabSheet
-            Caption = 'MODALIDADES'
+          object pagMatricula: TcxTabSheet
+            Caption = 'MATR'#205'CULA'
             ImageIndex = 4
             object cxGroupBox11: TcxGroupBox
               Left = 16
@@ -1127,7 +1126,7 @@
                   Height = 70
                   Width = 786
                   object SpeedButton3: TSpeedButton
-                    Left = 342
+                    Left = 338
                     Top = 31
                     Width = 47
                     Height = 23
@@ -1875,7 +1874,7 @@
           Top = 9
           Width = 97
           Height = 17
-          Caption = 'INSTRUTOR'
+          Caption = 'PROFESSOR'
           TabOrder = 12
         end
       end
@@ -2135,7 +2134,7 @@
     Left = 144
     Top = 40
     Bitmap = {
-      494C01010F002C00F00310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00140410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3069,7 +3068,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42821.756040601890000000
+    ReportOptions.LastChange = 42881.633322037040000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3204,9 +3203,10 @@
         RowCount = 0
         object frxDBDataset2nomeExercicio: TfrxMemoView
           Left = 42.330708660000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000000000
           Width = 242.267716540000000000
           Height = 18.897650000000000000
+          StretchMode = smActualHeight
           DataSet = frxDBDataset2
           DataSetName = 'frxDBDataset2'
           Font.Charset = DEFAULT_CHARSET
@@ -3223,9 +3223,10 @@
         end
         object frxDBDataset2idequipamento: TfrxMemoView
           Left = 0.755905510000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000000000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
+          StretchMode = smMaxHeight
           DataField = 'idequipamento'
           DataSet = frxDBDataset2
           DataSetName = 'frxDBDataset2'
@@ -3244,9 +3245,10 @@
         end
         object Memo5: TfrxMemoView
           Left = 284.598425200000000000
-          Top = 1.779530000000022000
+          Top = 1.779530000000000000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
+          StretchMode = smMaxHeight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -3643,7 +3645,7 @@
     Left = 112
     Top = 40
     Bitmap = {
-      494C01010100140050015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100140074015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8739,7 +8741,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42838.527142581000000000
-    ReportOptions.LastChange = 42851.561756643520000000
+    ReportOptions.LastChange = 42885.632434062500000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -9213,8 +9215,8 @@
           VAlign = vaCenter
         end
         object Memo39: TfrxMemoView
-          Left = 18.141732283464600000
-          Top = 243.961040000000000000
+          Left = 18.141732280000000000
+          Top = 246.425196850393700000
           Width = 226.771653540000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -13908,5 +13910,248 @@
   object frxCrypt1: TfrxCrypt
     Left = 926
     Top = 122
+  end
+  object REPORT_FICHAcp: TfrxReport
+    Version = '5.1.5'
+    DataSet = frxDBDataset1
+    DataSetName = 'frxDBDataset1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintMode = pmSplit
+    PrintOptions.PrintOnSheet = 124
+    ReportOptions.CreateDate = 42779.735011747710000000
+    ReportOptions.LastChange = 42881.802552384260000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 134
+    Top = 380
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset1'
+      end
+      item
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      Orientation = poLandscape
+      PaperWidth = 80.000000000000000000
+      PaperHeight = 150.000000000000000000
+      PaperSize = 256
+      Columns = 1
+      ColumnWidth = 75.000000000000000000
+      ColumnPositions.Strings = (
+        '0')
+      Duplex = dmSimplex
+      EndlessHeight = True
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        Height = 73.783550000000010000
+        Top = 18.897650000000000000
+        Width = 302.362400000000000000
+        object Memo1: TfrxMemoView
+          Left = 20.181200000000000000
+          Top = 15.897650000000000000
+          Width = 261.685039370000000000
+          Height = 24.015770000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'FICHA DE EXERC'#205'CIOS')
+          ParentFont = False
+        end
+        object Memo2: TfrxMemoView
+          Left = 20.000000000000000000
+          Top = 52.708720000000000000
+          Width = 262.330708660000000000
+          Height = 15.677180000000000000
+          StretchMode = smActualHeight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Fill.BackColor = clWhite
+          Memo.UTF8W = (
+            ' ALUNO: [frxDBDataset1."nomeAluno"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Gradient1: TfrxGradientView
+          Left = 20.181200000000000000
+          Top = 43.692950000000000000
+          Width = 262.330708660000000000
+          Height = 7.559055120000000000
+          EndColor = clTeal
+          Style = gsHorizCenter
+          Color = 12632192
+        end
+        object SysMemo1: TfrxSysMemoView
+          Left = 187.500000000000000000
+          Top = 0.602350000000001300
+          Width = 94.488249999999990000
+          Height = 11.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          HAlign = haRight
+          Memo.UTF8W = (
+            '[DATE]')
+          ParentFont = False
+        end
+      end
+      object GroupHeader1: TfrxGroupHeader
+        FillType = ftBrush
+        Height = 30.236220470000000000
+        Top = 154.960730000000000000
+        Width = 302.362400000000000000
+        Condition = 'frxDBDataset2."idTreino"'
+        object Memo4: TfrxMemoView
+          Align = baClient
+          Width = 302.362400000000000000
+          Height = 30.236220470000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Fill.BackColor = clBlack
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'TREINO [frxDBDataset2."descricaoTreino"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        Height = 18.141732280000000000
+        Top = 253.228510000000000000
+        Width = 302.362400000000000000
+        AllowSplit = True
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        RowCount = 0
+        Stretched = True
+        object frxDBDataset2nomeExercicio: TfrxMemoView
+          Left = 48.377952760000000000
+          Width = 196.913385830000000000
+          Height = 13.228346460000000000
+          StretchMode = smActualHeight
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.500000000000000000
+          Memo.UTF8W = (
+            ' [frxDBDataset2."nomeExercicio"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo5: TfrxMemoView
+          Left = 245.255905510000000000
+          Width = 36.661417320000000000
+          Height = 13.228346460000000000
+          StretchMode = smMaxHeight
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftTop, ftBottom]
+          Frame.Width = 0.500000000000000000
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."qtdSerie"]x[frxDBDataset2."qtdRepeticao"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDataset2idequipamento: TfrxMemoView
+          Left = 22.677165350000000000
+          Width = 25.700787400000000000
+          Height = 13.228346460000000000
+          StretchMode = smMaxHeight
+          DataField = 'idequipamento'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.500000000000000000
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."idequipamento"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object GroupHeader2: TfrxGroupHeader
+        FillType = ftBrush
+        Height = 22.677180000000000000
+        Top = 207.874150000000000000
+        Width = 302.362400000000000000
+        Condition = 'frxDBDataset2."idgrupoExercicio"'
+        object frxDBDataset2descricaoGrupoExercicio: TfrxMemoView
+          Align = baClient
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
+          DataField = 'descricaoGrupoExercicio'
+          DataSet = frxDBDataset2
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Fill.BackColor = cl3DLight
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDataset2."descricaoGrupoExercicio"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+      end
+      object GroupFooter1: TfrxGroupFooter
+        FillType = ftBrush
+        Height = 3.779530000000000000
+        Top = 294.803340000000000000
+        Width = 302.362400000000000000
+      end
+      object GroupFooter2: TfrxGroupFooter
+        FillType = ftBrush
+        Height = 7.677180000000000000
+        Top = 321.260050000000000000
+        Width = 302.362400000000000000
+      end
+    end
   end
 end

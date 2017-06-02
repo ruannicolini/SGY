@@ -102,6 +102,8 @@ type
     procedure DataSetProvider1BeforeUpdateRecord(Sender: TObject;
       SourceDS: TDataSet; DeltaDS: TCustomClientDataSet;
       UpdateKind: TUpdateKind; var Applied: Boolean);
+    procedure EditBExercicioDepoisPesquisa(Sender: TObject;
+      var query_result: TDataSet);
   private
     { Private declarations }
   public
@@ -223,10 +225,9 @@ begin
         CDSSerieFicha.First;
         while not CDSSerieFicha.IsEmpty do
         BEGIN
-          ShowMessage(INTTOSTR(CDSSerieFicha.RecordCount));
           CDSSerieFicha.Delete;
         END;
-        ShowMessage('FIM: ' + INTTOSTR(CDSSerieFicha.RecordCount));
+
         {
         DModule.qAux.SQL.Text := 'DELETE FROM FichaPreDefinidaSerie WHERE idFichaPreDefinida =:IDF';
         DModule.qAux.ParamByName('IDF').AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
@@ -347,6 +348,21 @@ begin
   query_result.ParamByName('idT').Value := strtoint(Edittreino.Text);
 end;
 
+procedure TF01005.EditBExercicioDepoisPesquisa(Sender: TObject;
+  var query_result: TDataSet);
+begin
+  inherited;
+  // CONTROLE DE EDITSERIE
+  IF( query_result.FieldByName('tipomedida').AsString = 'U')THEN
+  BEGIN
+    editSerie.Enabled := TRUE;
+  END ELSE
+  BEGIN
+    editSerie.Enabled := FALSE;
+  END;
+
+end;
+
 procedure TF01005.EditBTreinoKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
@@ -418,6 +434,7 @@ begin
     BEGIN
       IF (trim(editSerie.Text ) <> '') AND (trim(editRepeticoes.Text ) <> '') THEN
       BEGIN
+
           // SE APAGOU TODOS OS REGISTROS
           IF(DsSerieFicha.DataSet.RecordCount = 0)THEN
           BEGIN
@@ -443,13 +460,29 @@ begin
           CDSSerieFichaidFichaPreDefinida.AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;
           CDSSerieFichaidTreino.AsInteger := strtoint(Edittreino.Text);
           CDSSerieFichaidExercicio.AsInteger := strtoint(Editexercicio.Text);
-          CDSSerieFichaqtdSerie.AsInteger := strtoint(editSerie.Text);
+
+          IF(editSerie.Enabled = FALSE)THEN
+          BEGIN
+            //NESSE CASO É UM EXERCICIO COM UNIDADE "TEMPO"
+            CDSSerieFichaqtdSerie.AsInteger := 1;
+          END ELSE
+          BEGIN
+            CDSSerieFichaqtdSerie.AsInteger := strtoint(editSerie.Text);
+          END;
           CDSSerieFichaqtdRepeticao.AsInteger := strtoint(editRepeticoes.Text);
+
+          //Grava registro
           CDSSerieFicha.Post;
 
           //Limpa EditBelezaExercicio
           Editexercicio.Clear;
           EditBexercicio.Clear;
+          EditBexercicio.SetFocus;
+
+          //atualiza CDSserieFicha
+          CDSserieFicha.Close;
+          CDSserieFicha.Open;
+          editSerie.Enabled := TRUE;
 
           //REFRESH
           qSerieFicha.Params[0].AsInteger := ClientDataSet1idFichaPreDefinida.AsInteger;

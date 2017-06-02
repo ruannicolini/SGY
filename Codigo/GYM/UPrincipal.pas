@@ -221,8 +221,8 @@ begin
     Halt(0); // cancela execução
   end;
 
-       {
 
+ {
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
     DModule.idusuario := 1;
@@ -231,8 +231,7 @@ begin
     DModule.administrador := true;
     // FIM DE TESTE
 
-                }
-
+     }
   //Obtem Serial HD
   with GetHPI(Application.ExeName[1]) do
   begin
@@ -350,7 +349,7 @@ begin
       // CHAMA FORM PRINCIPAL-ADMIN
       if(DMODULE.administrador = TRUE)then
       begin
-        {
+
         With TFPrincipalAdmin.Create(Application) do
         Begin
           Pointer((@Application.MainForm)^) := FPrincipalAdmin;
@@ -359,7 +358,7 @@ begin
           Free;
           Pointer((@Application.MainForm)^) := fprincipal;
         End;
-        }
+        {}
       end;
 
   end;
@@ -416,7 +415,8 @@ begin
             Begin
               ShowModal;
             End;
-            ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
+            //ABRE PASTA ONDE FICAM OS BACKUPS
+            //ShellExecute(Application.HANDLE, 'open', PChar(ExtractFilePath(Application.ExeName) + '\backup'),nil,nil,SW_SHOWMAXIMIZED);
         except
           ON E: Exception DO
           begin

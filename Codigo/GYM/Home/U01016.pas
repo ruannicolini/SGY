@@ -132,7 +132,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor CreateCONSULTA(AOwner: TComponent; IDANAM: INTEGER);
+    constructor CreateCONSULTA(AOwner: TComponent; IDANAM: INTEGER; NOMEALUNO:STRING);
     constructor CreateNOVO(AOwner: TComponent; IDA: INTEGER; NOMEALUNO:STRING);
   end;
 
@@ -283,7 +283,7 @@ begin
   //ShowMessage(E.Message);
 end;
 
-constructor TF01016.CreateCONSULTA(AOwner: TComponent; IDANAM: INTEGER);
+constructor TF01016.CreateCONSULTA(AOwner: TComponent; IDANAM: INTEGER; NOMEALUNO:STRING);
 begin
   //
   inherited Create(AOwner);
@@ -301,6 +301,10 @@ begin
 
   DS.DataSet.Close;
   DS.DataSet.Open;
+
+  ClientDataSet1.Edit;
+  ClientDataSet1NOMEALUNO.AsString := NOMEALUNO;
+  ClientDataSet1.Post;
 
 end;
 

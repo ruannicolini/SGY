@@ -1,7 +1,7 @@
 object FRelatorios: TFRelatorios
   Left = 282
   Top = 68
-  BorderIcons = [biSystemMenu, biMinimize]
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Relat'#243'rios '
   ClientHeight = 349
@@ -20936,7 +20936,6 @@ object FRelatorios: TFRelatorios
     BevelOuter = bvNone
     Caption = 'Panel1'
     TabOrder = 0
-    ExplicitWidth = 481
     object Label1: TLabel
       Left = 11
       Top = 330
@@ -21269,7 +21268,10 @@ object FRelatorios: TFRelatorios
       object tbRelatsUsuarios: TTabSheet
         Caption = 'Usu'#225'rios'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 458
+        ExplicitHeight = 0
         object gridRelatsUsuario: TDBGrid
           Left = 0
           Top = 0
@@ -21845,7 +21847,7 @@ object FRelatorios: TFRelatorios
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 297000
     PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 119
     Units = utMillimeters
     AllowPrintToArchive = True
     AllowPrintToFile = True
@@ -22217,7 +22219,7 @@ object FRelatorios: TFRelatorios
     Left = 180
     Top = 142
     Bitmap = {
-      494C010107003C00200110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107003C00240110001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

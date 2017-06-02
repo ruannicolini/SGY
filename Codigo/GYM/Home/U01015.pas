@@ -3,8 +3,9 @@ unit U01015;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls, SHDocVw;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls,
+  SHDocVw, Winapi.ActiveX, ShockwaveFlashObjects_TLB;
 
 type
   TF01015 = class(TForm)
@@ -42,7 +43,8 @@ begin
        BEGIN
           STATUS := TRUE;
           TComponent(FT) := Application.FindComponent('F01015');
-          TF01015(Screen.Forms[i]).WebBrowser1.Navigate('https://www.youtube.com/embed/'+ IDYOUTUBE + '?autoplay=1');
+          // https://www.youtube.com/embed/nYBcAihJ0Ro?autoplay=1
+          TF01015(Screen.Forms[i]).WebBrowser1.Navigate('www.youtube.com/embed/'+ IDYOUTUBE +'?autoplay=1');
        END;
   END;
 

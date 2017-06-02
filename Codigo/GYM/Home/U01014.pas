@@ -476,7 +476,7 @@ begin
 
     //DataVencimento
     //OBS: NÃO SE GUIAR POE ESSA DATA DE VENCIMENTO, É MELHOR REFAZER  CÁLCULO A PARTIR DA DATA DE COMPOSIÇÃO E A QTDMESESVENCIMENTOFICHA DA TABELA CONFIGURAÇÃOUNIDADE
-    DModule.qAux.SQL.Text := 'SELECT VALOR FROM PARAMETROS WHERE PARAMETRO = "DURACAOFICHAEMMESES" ';
+    DModule.qAux.SQL.Text := 'SELECT vencimentoficha as VALOR FROM configuracaounidade WHERE idconfiguracaounidade = 1 ';
     DModule.qAux.Close;
     DModule.qAux.Open;
     ClientDataSet1dataVencimento.AsDateTime := IncMonth(DModule.datahoje, DModule.qAux.FieldByName('VALOR').AsINTEGER);

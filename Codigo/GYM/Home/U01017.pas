@@ -171,11 +171,13 @@ type
     procedure DSDataChange(Sender: TObject; Field: TField);
     procedure BSalvarClick(Sender: TObject);
     procedure Action5Execute(Sender: TObject);
+    procedure BCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    constructor CreateCONSULTA(AOwner: TComponent; IDAVAF: INTEGER);
+    //constructor CreateCONSULTA(AOwner: TComponent; IDAVAF: INTEGER);
+    constructor CreateCONSULTA(AOwner: TComponent; IDAVAF: INTEGER; NOMEALUNO: STRING);
     constructor CreateNOVO(AOwner: TComponent; IDA: INTEGER; NOMEALUNO:STRING);
   end;
 
@@ -217,13 +219,25 @@ begin
 
   Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
   Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+  Label31.font.Color := corDefault; //DIAMETRO BIESTILÓIDE - P (cm)
 
+end;
+
+procedure TF01017.BCancelarClick(Sender: TObject);
+begin
+  inherited;
+  if  NOT((ds.DataSet.State = dsInsert) or (ds.DataSet.State = dsEdit)) then
+  begin
+    //Enconde aba Filtros
+    tbFiltros.TABVisible := false;
+  end;
 end;
 
 procedure TF01017.BSalvarClick(Sender: TObject);
 var
 corDefault: TColor;
 begin
+  DBEDIT1.SetFocus;
 
   // verificação campos obrigatórios
   if not (ClientDataSet1dobra_triciptal_mm.IsNull)then
@@ -254,28 +268,37 @@ begin
                                                 begin
                                                     if not (ClientDataSet1MED_QUADRIL_cm.IsNull)then
                                                     begin
+                                                        if not (ClientDataSet1DO_BIESTILOIDE_CM.IsNull)then
+                                                        begin
 
-                                                        inherited;
-                                                        //destaca Campos Obrigatórios
-                                                        corDefault := clblack;
-                                                        Label21.font.Color := corDefault;  //dobra tricipal
-                                                        Label22.font.Color := corDefault; //dobra subscapular
-                                                        Label29.font.Color := corDefault; //dobra supra iliac
-                                                        Label25.font.Color := corDefault; //dobra coxa
-                                                        Label24.font.Color := corDefault; //dobra abdominal
-                                                        Label28.font.Color := corDefault; //dobra peitoral
-                                                        Label23.font.Color := corDefault; //dobra axiliar
+                                                            inherited;
+                                                            //destaca Campos Obrigatórios
+                                                            corDefault := clblack;
+                                                            Label21.font.Color := corDefault;  //dobra tricipal
+                                                            Label22.font.Color := corDefault; //dobra subscapular
+                                                            Label29.font.Color := corDefault; //dobra supra iliac
+                                                            Label25.font.Color := corDefault; //dobra coxa
+                                                            Label24.font.Color := corDefault; //dobra abdominal
+                                                            Label28.font.Color := corDefault; //dobra peitoral
+                                                            Label23.font.Color := corDefault; //dobra axiliar
 
-                                                        Label3.font.Color := corDefault;  //MED peso
-                                                        Label4.font.Color := corDefault;  //MED altura
-                                                        Label11.font.Color := corDefault; //MED braço direito relaxado
-                                                        Label13.font.Color := corDefault; //MED coxa direita
-                                                        Label7.font.Color := corDefault;  //MED quadril
-                                                        Label8.font.Color := corDefault;  //MED cintura
+                                                            Label3.font.Color := corDefault;  //MED peso
+                                                            Label4.font.Color := corDefault;  //MED altura
+                                                            Label11.font.Color := corDefault; //MED braço direito relaxado
+                                                            Label13.font.Color := corDefault; //MED coxa direita
+                                                            Label7.font.Color := corDefault;  //MED quadril
+                                                            Label8.font.Color := corDefault;  //MED cintura
 
-                                                        Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
-                                                        Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+                                                            Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
+                                                            Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+                                                            Label31.font.Color := corDefault; //DIAMETRO BIESTILÓIDE - P (cm)
+                                                            //Enconde aba Filtros
+                                                            tbFiltros.TabVisible := false;
 
+                                                        end else
+                                                        begin
+                                                          showmessage('Informe Medida do BIESTILOIDE.');
+                                                        end;
                                                     end else
                                                     begin
                                                       showmessage('Informe Medida do QUADRIL.');
@@ -362,7 +385,7 @@ begin
   showmessage(e.Message);
 end;
 
-constructor TF01017.CreateCONSULTA(AOwner: TComponent; IDAVAF: INTEGER);
+constructor TF01017.CreateCONSULTA(AOwner: TComponent; IDAVAF: INTEGER; NOMEALUNO: STRING);
 begin
   //
   inherited Create(AOwner);
@@ -379,6 +402,11 @@ begin
 
   DS.DataSet.Close;
   DS.DataSet.Open;
+
+  ClientDataSet1.Edit;
+  ClientDataSet1NOMEALUNO.AsString := NOMEALUNO;
+  ClientDataSet1.Post;
+
 end;
 
 constructor TF01017.CreateNOVO(AOwner: TComponent; IDA: INTEGER;
@@ -457,6 +485,7 @@ begin
 
         Label37.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
         Label39.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+        Label31.font.Color := corDefault; //DIAMETRO BIESTILÓIDE - P (cm)
     end;
 
   END;
@@ -477,7 +506,7 @@ begin
     ClientDataSet1NOMEALUNO.AsString := NOMEALUNOF;
 
     //DataComposicao
-    ClientDataSet1dataAvaliacaoFisica.AsDateTime := DModule.datahoje;
+    ClientDataSet1dataAvaliacaoFisica.Asstring := datetostr(date);
 
     //NOMEAVALIADOR
     ClientDataSet1nomeAvaliador.AsString := DModule.nomeusuario;
@@ -505,8 +534,8 @@ begin
 
       Label30.font.Color := corDefault; //DIAMETRO BIEPICÔNDILIANO - C (cm)
       Label32.font.Color := corDefault; //DIAMETRO BICÔNDILIANO - J (cm)
+      Label31.font.Color := corDefault; //DIAMETRO BIESTILÓIDE - P (cm)
   end;
-  
 
 end;
 

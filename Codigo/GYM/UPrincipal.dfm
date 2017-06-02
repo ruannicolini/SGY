@@ -20766,9 +20766,9 @@ object FPrincipal: TFPrincipal
       TabOrder = 0
       object imgBtnAluno: TImage
         Left = 4
-        Top = 1
+        Top = 4
         Width = 220
-        Height = 428
+        Height = 425
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000000E3
           000001B608060000008DBA31BC0000000467414D410000B18F0BFC6105000000

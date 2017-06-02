@@ -2,7 +2,6 @@ inherited F01014: TF01014
   Caption = 'F01014'
   ClientHeight = 670
   ClientWidth = 833
-  ExplicitLeft = -173
   ExplicitWidth = 849
   ExplicitHeight = 709
   PixelsPerInch = 96
@@ -284,9 +283,9 @@ inherited F01014: TF01014
                 mostrar_Botao = True
                 sql.Strings = (
                   
-                    'select ex.idExercicio, ex.idGrupoExercicio, ex.tipomedida,  ex.n' +
-                    'omeExercicio from Exercicio ex where ex.nomeExercicio like :varD' +
-                    'escricao AND '
+                    'select ex.idExercicio, ex.nomeExercicio, ex.idGrupoExercicio, ex' +
+                    '.tipomedida from Exercicio ex where ex.nomeExercicio like :varDe' +
+                    'scricao AND '
                   
                     ' ex.idGrupoExercicio =:idG and ex.idexercicio not in (select dis' +
                     'tinct idexercicio from serieFichaAluno where idFichaAluno =:idFA' +
@@ -584,7 +583,7 @@ inherited F01014: TF01014
     Left = 760
     Top = 8
     Bitmap = {
-      494C01010F002C00040210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C000C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

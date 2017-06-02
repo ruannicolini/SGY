@@ -9,6 +9,7 @@ inherited F01005: TF01005
   inherited PageControl: TPageControl
     Width = 858
     Height = 706
+    ActivePage = TbDados
     ExplicitWidth = 858
     ExplicitHeight = 706
     inherited TbDados: TTabSheet
@@ -135,9 +136,9 @@ inherited F01005: TF01005
               object Label26: TLabel
                 Left = 619
                 Top = 15
-                Width = 62
+                Width = 57
                 Height = 13
-                Caption = 'REPETI'#199#213'ES'
+                Caption = 'REPET/ MIN'
               end
               object Edittreino: TEdit
                 Left = 13
@@ -279,12 +280,13 @@ inherited F01005: TF01005
                 mostrar_Botao = True
                 sql.Strings = (
                   
-                    'select ex.idExercicio, ex.idGrupoExercicio, ex.nomeExercicio fro' +
-                    'm Exercicio ex where ex.nomeExercicio like :varDescricao AND '
+                    'select ex.idExercicio,  ex.nomeExercicio, ex.idGrupoExercicio, e' +
+                    'x.tipomedida from Exercicio ex '
                   
-                    ' ex.idGrupoExercicio =:idG and ex.idexercicio not in (select dis' +
-                    'tinct idexercicio from fichapredefinidaserie where idFichapredef' +
-                    'inida =:idFA and idTreino =:idT)')
+                    'where ex.nomeExercicio like :varDescricao AND ex.idGrupoExercici' +
+                    'o =:idG and ex.idexercicio not in (select distinct idexercicio f' +
+                    'rom fichapredefinidaserie where idfichapredefinida =:idFA and id' +
+                    'Treino =:idT)')
                 database = 'gym'
                 campo = 'NOMEEXERCICIO'
                 Sempre_Mostrar_Janela = False
@@ -293,6 +295,7 @@ inherited F01005: TF01005
                 CorBorda = clGray
                 NovoLayout = False
                 OnButtonClick = EditBExercicioButtonClick
+                DepoisPesquisa = EditBExercicioDepoisPesquisa
               end
               object editRepeticoes: TSpinEdit
                 Left = 619
@@ -545,7 +548,7 @@ inherited F01005: TF01005
     Left = 504
     Top = 32
     Bitmap = {
-      494C01010F002C00000210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00080210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
