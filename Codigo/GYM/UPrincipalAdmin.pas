@@ -65,11 +65,6 @@ type
     ScrollBoxIndFaturamento: TScrollBox;
     ScrollBox5: TScrollBox;
     Panel7: TPanel;
-    Panel5: TPanel;
-    PanelCabecarioGrafFatMes: TPanel;
-    ChartFaturamentoMes1: TChart;
-    PieSeries1: TPieSeries;
-    DateTimePicker5: TDateTimePicker;
     qProf: TFDQuery;
     pProf: TDataSetProvider;
     cdsProf: TClientDataSet;
@@ -94,7 +89,12 @@ type
     PieSeries3: TPieSeries;
     Panel9: TPanel;
     DateTimePicker1: TDateTimePicker;
+    Panel5: TPanel;
+    PanelCabecarioGrafFatMes: TPanel;
+    DateTimePicker5: TDateTimePicker;
     labelValorFatDia: TcxLabel;
+    Image1: TImage;
+    Panel10: TPanel;
     procedure FormShow(Sender: TObject);
     procedure DateTimePicker5Change(Sender: TObject);
     procedure cdsProfCalcFields(DataSet: TDataSet);
@@ -427,6 +427,7 @@ begin
   begin
     MessageBox(0, 'Este programa já está sendo executado','Aviso', MB_ICONSTOP);
     Halt(0); // cancela execução
+    exit
   end;
 
 
@@ -627,7 +628,7 @@ begin
         ChartFaturamentoMes.Series[0].AddY(
         DModule.qAux.FieldByName('valor').AsFloat,  // valor
         'RECEBIDO', //legenda
-        clteecolor
+        { $006B402B } clteecolor
         );
       end;
       //Isento
@@ -646,7 +647,7 @@ begin
         ChartFaturamentoMes.Series[0].AddY(
         DModule.qAux.FieldByName('valor').AsFloat,  // valor
         DModule.qAux.FieldByName('tipo').AsString, //legenda
-        clteecolor
+        { $00637B1D } clteecolor
         );
       end;
       //EM ABERTO NÃO ATRASADO
@@ -667,7 +668,7 @@ begin
         ChartFaturamentoMes.Series[0].AddY(
         DModule.qAux.FieldByName('valor').AsFloat,  // valor
         'PREVISÃO A RECEBER', //legenda
-        clteecolor
+        { $00144CF1 } clteecolor
         );
       end;
       //EM ATRASO
@@ -688,7 +689,7 @@ begin
         DModule.qAux.FieldByName('valor').AsFloat,  // valor
         //'EM ATRASO', //legenda
         'A RECEBER (ATRASADO)', //legenda
-        clteecolor
+        { $000E08B3 } clteecolor
         );
       end;
   except

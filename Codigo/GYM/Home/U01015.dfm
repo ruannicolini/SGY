@@ -24,8 +24,9 @@ object F01015: TF01015
     Height = 201
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 351
-    ExplicitWidth = 104
+    ExplicitLeft = 232
+    ExplicitTop = -8
+    ExplicitWidth = 207
     ControlData = {
       4C000000332E0000C61400000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800

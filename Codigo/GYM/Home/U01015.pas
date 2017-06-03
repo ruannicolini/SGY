@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.OleCtrls,
-  SHDocVw, Winapi.ActiveX, ShockwaveFlashObjects_TLB;
+  SHDocVw, ActiveX, ShockwaveFlashObjects_TLB, Vcl.OleServer,
+  Vcl.StdCtrls;
 
 type
   TF01015 = class(TForm)
@@ -31,9 +32,8 @@ VAR
   STATUS: BOOLEAN;
   I: Integer;
   FT : TF01015;
-  TESTE : TF01015;
-begin
 
+begin
   //VERIFICA SE FORM JA ESTA EM EXECUÇÃO
   STATUS := FALSE;
   for I := 0 to Screen.FormCount - 1 do
@@ -44,7 +44,10 @@ begin
           STATUS := TRUE;
           TComponent(FT) := Application.FindComponent('F01015');
           // https://www.youtube.com/embed/nYBcAihJ0Ro?autoplay=1
-          TF01015(Screen.Forms[i]).WebBrowser1.Navigate('www.youtube.com/embed/'+ IDYOUTUBE +'?autoplay=1');
+          //TF01015(Screen.Forms[i]).WebBrowser1.Navigate('www.youtube.com/embed/'+ IDYOUTUBE +'?autoplay=1');
+
+           TF01015(Screen.Forms[i]).WebBrowser1.Navigate('https://www.youtube.com/v/'+ IDYOUTUBE +'&autoplay=1&controls=1');
+
        END;
   END;
 
@@ -61,8 +64,11 @@ begin
       Top := Screen.Height - Height - fncAlturaBarraTarefas;
       Left := Screen.Width - Width;
 
-      // ATRIBUI O LINK
-      WebBrowser1.Navigate('https://www.youtube.com/embed/'+ IDYOUTUBE + '?autoplay=1');
+      // ESSE LINK MELHOR PQ NÃO APRESENTA A BARRA, MAS PARU DE FUNCIONAR
+      //WebBrowser1.Navigate('https://www.youtube.com/embed/'+ IDYOUTUBE + '?autoplay=1');
+      // ENTÃO, TO USANDO ESSE AQUI.
+      WebBrowser1.Navigate('https://www.youtube.com/v/'+ IDYOUTUBE +'&autoplay=1&controls=1');
+
 
       //EXIBE O FORM
       Show;

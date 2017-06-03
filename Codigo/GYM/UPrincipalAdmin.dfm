@@ -2178,6 +2178,8 @@ object FPrincipalAdmin: TFPrincipalAdmin
             ParentCtl3D = False
             ParentDoubleBuffered = False
             TabOrder = 0
+            ExplicitLeft = -296
+            ExplicitTop = -16
             object ScrollBox5: TScrollBox
               AlignWithMargins = True
               Left = 3
@@ -2212,188 +2214,31 @@ object FPrincipalAdmin: TFPrincipalAdmin
                 Color = clSilver
                 ParentBackground = False
                 TabOrder = 0
-                object Panel5: TPanel
-                  AlignWithMargins = True
-                  Left = 3
-                  Top = 3
-                  Width = 404
-                  Height = 199
-                  Margins.Right = 1
-                  Margins.Bottom = 2
-                  Align = alLeft
-                  BevelOuter = bvNone
-                  Caption = 'Panel5'
-                  Color = clSilver
-                  ParentBackground = False
-                  TabOrder = 0
-                  object PanelCabecarioGrafFatMes: TPanel
-                    Left = 0
-                    Top = 0
-                    Width = 404
-                    Height = 27
-                    Margins.Bottom = 0
-                    Align = alTop
-                    BevelOuter = bvNone
-                    Caption = ' FATURAMENTO - DIA'
-                    Color = 1644825
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 1411839
-                    Font.Height = -11
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    ParentBackground = False
-                    ParentFont = False
-                    TabOrder = 0
-                    object DateTimePicker5: TDateTimePicker
-                      AlignWithMargins = True
-                      Left = 3
-                      Top = 3
-                      Width = 81
-                      Height = 21
-                      Margins.Right = 1
-                      Align = alLeft
-                      Date = 42887.681952951390000000
-                      Time = 42887.681952951390000000
-                      DateMode = dmUpDown
-                      TabOrder = 0
-                      OnChange = DateTimePicker5Change
-                    end
-                  end
-                  object ChartFaturamentoMes1: TChart
-                    AlignWithMargins = True
-                    Left = 0
-                    Top = 28
-                    Width = 404
-                    Height = 170
-                    Margins.Left = 0
-                    Margins.Top = 1
-                    Margins.Right = 0
-                    Margins.Bottom = 1
-                    BackImage.Inside = True
-                    Legend.CheckBoxesStyle = cbsRadio
-                    MarginLeft = 1
-                    MarginRight = 1
-                    MarginTop = 2
-                    Title.Font.Color = 2565927
-                    Title.Font.Style = [fsBold]
-                    Title.Text.Strings = (
-                      'OBJETIVO - ALUNOS')
-                    Title.Visible = False
-                    Hover.Visible = False
-                    View3D = False
-                    View3DOptions.Elevation = 315
-                    View3DOptions.Orthogonal = False
-                    View3DOptions.Perspective = 0
-                    View3DOptions.Rotation = 360
-                    Align = alClient
-                    BevelOuter = bvNone
-                    Color = 1644825
-                    TabOrder = 1
-                    ExplicitTop = 27
-                    ExplicitHeight = 172
-                    DefaultCanvas = 'TGDIPlusCanvas'
-                    ColorPaletteIndex = 13
-                    object labelValorFatDia: TcxLabel
-                      AlignWithMargins = True
-                      Left = 3
-                      Top = 3
-                      Margins.Bottom = 30
-                      Align = alClient
-                      AutoSize = False
-                      Caption = 'R$ 640,00'
-                      ParentColor = False
-                      ParentFont = False
-                      Style.BorderColor = clBlack
-                      Style.BorderStyle = ebsNone
-                      Style.Color = 1644825
-                      Style.Edges = [bLeft, bTop, bRight, bBottom]
-                      Style.Font.Charset = DEFAULT_CHARSET
-                      Style.Font.Color = 174
-                      Style.Font.Height = -53
-                      Style.Font.Name = 'Yu Gothic UI Semilight'
-                      Style.Font.Style = [fsBold]
-                      Style.HotTrack = False
-                      Style.Shadow = False
-                      Style.TextColor = 33023
-                      Style.TextStyle = [fsBold]
-                      Style.TransparentBorder = True
-                      Style.IsFontAssigned = True
-                      Properties.Alignment.Horz = taCenter
-                      Properties.Alignment.Vert = taVCenter
-                      ExplicitLeft = 48
-                      ExplicitWidth = 353
-                      ExplicitHeight = 164
-                      Height = 137
-                      Width = 398
-                      AnchorX = 202
-                      AnchorY = 72
-                    end
-                    object PieSeries1: TPieSeries
-                      Marks.Emboss.Color = 8487297
-                      Marks.Font.Name = '@Malgun Gothic Semilight'
-                      Marks.Frame.Color = -1157627904
-                      Marks.Frame.Width = 0
-                      Marks.Shadow.Color = 8487297
-                      Marks.Visible = False
-                      Marks.Callout.Style = psSmallDot
-                      Marks.Callout.ArrowHeadSize = 0
-                      Marks.Callout.Length = 0
-                      XValues.Order = loAscending
-                      YValues.Name = 'Pie'
-                      YValues.Order = loNone
-                      Frame.InnerBrush.BackColor = clRed
-                      Frame.InnerBrush.Gradient.EndColor = clGray
-                      Frame.InnerBrush.Gradient.MidColor = clWhite
-                      Frame.InnerBrush.Gradient.StartColor = 4210752
-                      Frame.InnerBrush.Gradient.Visible = True
-                      Frame.MiddleBrush.BackColor = clYellow
-                      Frame.MiddleBrush.Gradient.EndColor = 8553090
-                      Frame.MiddleBrush.Gradient.MidColor = clWhite
-                      Frame.MiddleBrush.Gradient.StartColor = clGray
-                      Frame.MiddleBrush.Gradient.Visible = True
-                      Frame.OuterBrush.BackColor = clGreen
-                      Frame.OuterBrush.Gradient.EndColor = 4210752
-                      Frame.OuterBrush.Gradient.MidColor = clWhite
-                      Frame.OuterBrush.Gradient.StartColor = clSilver
-                      Frame.OuterBrush.Gradient.Visible = True
-                      Frame.Width = 1
-                      Shadow.Visible = False
-                      Bevel.Bright = 34
-                      Bevel.UseBorder = False
-                      Gradient.EndColor = 6144242
-                      Gradient.StartColor = 6144242
-                      OtherSlice.Legend.Visible = False
-                      PiePen.EndStyle = esFlat
-                      PiePen.Fill.Gradient.EndColor = clWhite
-                      PiePen.Fill.Gradient.MidColor = clWhite
-                      PiePen.Fill.Gradient.Visible = True
-                      PiePen.JoinStyle = jsMitter
-                    end
-                  end
-                end
                 object Panel8: TPanel
                   AlignWithMargins = True
-                  Left = 411
-                  Top = 3
-                  Width = 328
-                  Height = 199
-                  Margins.Bottom = 2
+                  Left = 405
+                  Top = 0
+                  Width = 334
+                  Height = 201
+                  Margins.Left = 1
+                  Margins.Top = 0
                   Align = alClient
                   BevelOuter = bvNone
-                  TabOrder = 1
-                  ExplicitLeft = 410
-                  ExplicitWidth = 329
-                  ExplicitHeight = 198
+                  TabOrder = 0
+                  ExplicitLeft = 411
+                  ExplicitTop = 3
+                  ExplicitWidth = 328
+                  ExplicitHeight = 199
                   object ChartFaturamentoMes: TChart
                     AlignWithMargins = True
                     Left = 0
-                    Top = 28
-                    Width = 328
+                    Top = 31
+                    Width = 334
                     Height = 170
                     Margins.Left = 0
                     Margins.Top = 1
                     Margins.Right = 0
-                    Margins.Bottom = 1
+                    Margins.Bottom = 0
                     BackImage.Inside = True
                     BottomWall.Dark3D = False
                     MarginTop = 2
@@ -2409,9 +2254,10 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     View3DOptions.Rotation = 360
                     Align = alClient
                     BevelOuter = bvNone
-                    Color = clBtnHighlight
+                    Color = clHighlightText
                     TabOrder = 0
-                    ExplicitWidth = 329
+                    ExplicitTop = 28
+                    ExplicitWidth = 328
                     DefaultCanvas = 'TGDIPlusCanvas'
                     ColorPaletteIndex = 13
                     object PieSeries3: TPieSeries
@@ -2458,26 +2304,26 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   object Panel9: TPanel
                     AlignWithMargins = True
                     Left = 0
-                    Top = 0
-                    Width = 328
+                    Top = 3
+                    Width = 334
                     Height = 27
                     Margins.Left = 0
-                    Margins.Top = 0
                     Margins.Right = 0
                     Margins.Bottom = 0
                     Align = alTop
                     BevelOuter = bvNone
-                    Caption = ' FATURAMENTO - M'#202'S (R$)'
-                    Color = clWindow
+                    Caption = 'MENSALIDADES (R$)'
+                    Color = 16382457
                     Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWindowText
+                    Font.Color = clBlack
                     Font.Height = -11
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentBackground = False
                     ParentFont = False
                     TabOrder = 1
-                    ExplicitWidth = 329
+                    ExplicitTop = 0
+                    ExplicitWidth = 328
                     object DateTimePicker1: TDateTimePicker
                       AlignWithMargins = True
                       Left = 3
@@ -2492,6 +2338,293 @@ object FPrincipalAdmin: TFPrincipalAdmin
                       DateMode = dmUpDown
                       TabOrder = 0
                       OnChange = DateTimePicker1Change
+                    end
+                  end
+                end
+                object Panel5: TPanel
+                  AlignWithMargins = True
+                  Left = 0
+                  Top = 0
+                  Width = 404
+                  Height = 204
+                  Margins.Left = 0
+                  Margins.Top = 0
+                  Margins.Right = 0
+                  Margins.Bottom = 0
+                  Align = alLeft
+                  BevelOuter = bvNone
+                  Color = clSilver
+                  ParentBackground = False
+                  TabOrder = 1
+                  ExplicitLeft = 3
+                  ExplicitTop = 3
+                  ExplicitHeight = 199
+                  object PanelCabecarioGrafFatMes: TPanel
+                    AlignWithMargins = True
+                    Left = 3
+                    Top = 3
+                    Width = 398
+                    Height = 27
+                    Margins.Bottom = 0
+                    Align = alTop
+                    BevelOuter = bvNone
+                    Caption = ' FATURAMENTO - DIA'
+                    Color = 16382457
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -11
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentBackground = False
+                    ParentFont = False
+                    TabOrder = 0
+                    ExplicitTop = 4
+                    object DateTimePicker5: TDateTimePicker
+                      AlignWithMargins = True
+                      Left = 3
+                      Top = 3
+                      Width = 81
+                      Height = 21
+                      Margins.Right = 1
+                      Align = alLeft
+                      Date = 42887.681952951390000000
+                      Time = 42887.681952951390000000
+                      DateMode = dmUpDown
+                      TabOrder = 0
+                      OnChange = DateTimePicker5Change
+                    end
+                  end
+                  object Panel10: TPanel
+                    AlignWithMargins = True
+                    Left = 3
+                    Top = 31
+                    Width = 398
+                    Height = 170
+                    Margins.Top = 1
+                    Align = alClient
+                    BevelOuter = bvNone
+                    Color = clHighlightText
+                    ParentBackground = False
+                    TabOrder = 1
+                    ExplicitLeft = 160
+                    ExplicitTop = 56
+                    ExplicitWidth = 185
+                    ExplicitHeight = 41
+                    object Image1: TImage
+                      Left = 266
+                      Top = 0
+                      Width = 132
+                      Height = 170
+                      Align = alRight
+                      Center = True
+                      Picture.Data = {
+                        0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000080
+                        000000800806000000C33E61CB0000000467414D410000B18F0BFC6105000000
+                        097048597300000B1300000B1301009A9C180000146449444154785EED5D0BB4
+                        244759BE3E50C107083E0145507988463D28C811E561884625484C0E217766EE
+                        862C1B1F89184483BC2E81DDEE9EBBBB865502DCBDD53D771330612566792487
+                        B8124D62629024AE68028B24D124C42C59D6840D41D8CDC6EFABFEABA6BAA77B
+                        E63E7AA6E7DEA9FF9CEFDC3BF557575557FDF5D7FFD7ABA7D622CD5CD079422B
+                        8CB73722754F2B50C75A61F25FAD28993B7DAB7A9A44F1B45EE98C2DF1F7B7A2
+                        783F1AFCD11E04EA2804E3F2565BBD54A27B5A6FD488928B4D833783E48BAD48
+                        ED010E660441F3D4679A51E775A76CFFD063E5514F6B9DA6A39D4F45E31E9106
+                        FEFC6BDBEABB193E33DBF98E6698BCB611AA7F7585806804C997F1D70F0FEB81
+                        9A51BCC534EC4C186F92E00C21CE8B3044EC461C2D2816181EA03DFE7626ECBC
+                        44A27A5A4BC45EDE0A92FBD998ECD59B66E71F27AC42A2B6D00223CFB86884F1
+                        BFC170DCE887873544E8D567388D3827C1A5444310C3C40BB5E0A4CFDEE23C9F
+                        0A028787306937A35D3F2A8F791A57B20D08553E683CDFD04E7E128D7E88F19B
+                        91FA9766BBD33C7576F7B7F51B1EE03D5CD66CC72F96243C8D13A50D27BD16E3
+                        B80417D28630F919A8FDBB330D9CE23EF4F6774E6F7EFF0FEBE1218C83A2E101
+                        D8D788E233FDF0304624BD366DA0121F9F934368D4773422F535A7317B00B5FF
+                        8D56105F62868732EF81AE25042FDAF0AEE447240B4F7550CEF5FBCCA6F9F9C7
+                        405D5FC4DE8CB037B227A351AF1CD4F08508924F23ADD6393B767CFB743BF995
+                        4698FC0DC27B868766947CB815AA5F9522959216C2283999F30FF4365E3C3BFB
+                        ADC2F2B452D296BC34062B163DF6F44C0355033B3CB0C74330C2A2C925400F0F
+                        D41C52BC941E7DF49B9AEDE40F202C0F65E3C7FB67C2C5E7492C4FCBA5BCEBC7
+                        71B919C4FF9CADE4EA60868756B4F85C333C207C5F369E3A38B3A5F3CB52C429
+                        BAA35A2365E274018DF0C0745B3D4BA27B5A0E89FB662A736E4390FCA2F37B68
+                        602F972268A2FAE73080F09BA0DA7F4C82A7F87FCE7E38A2ED903079855E9330
+                        E141729B99B5F4B40C42E5655C3F771D60984003BE4C8A504A28CBCBF53C8279
+                        2650FFE36A068EFF1086BF377C0A10870A617B1A4479D7EFB42D0B3F08F5FB75
+                        13364CF4150034227AF47928D323F699405D8F1EFE64896149AF5C06F17F9B78
+                        78A73709CBD320CABB7EE84D6FB7BF870CF4D619294686A8C6D993337183E4BD
+                        9C6492283DD46CAB5F80A6F83FC6D54213A81384E5A98CF2AE1F2B18FFDFCBDF
+                        23419828298AA566B0EB99E0DD6AE2B05169240ABB2FB9B60C878DC6D69D4F17
+                        96A7221A91EB578E30B9408AA2091AE8240C3F0F1A7E235277D120E59433E725
+                        245A5FA2A6B0CFC3701CB49835B154E4FAE1FF1B4DE50D13BA5743E0A42853B3
+                        B3B3DF8CF0F33371C2E4EAC6D68B7E80420995FE5594F53A0A823C524888FF9D
+                        340AF1FC0D361D18B4DE282CA0BCEBD78A169EEFFC1E1E82E4EE4610BF408A91
+                        EE3B8CD415B978DBC8A386C8851F81B1F741B87EAFE2441285F635DBE6BF8FB3
+                        8B4837C4B87F8033963414E92D98E766A2F88F74669EBA848A19B9EB873CAE61
+                        AF9622E8052534D4171CFE571B51E734DDF3A3F81FDC6797031890278B77934E
+                        37EB55C8C153CC134375B87EC8F3DDEE9C3DC6EA57B3C1BBFCE4F6D6DCE2715A
+                        1315AF322E191862BED28C169ED308E33FB4E1D00E347A25FBC9A6BCEB87BFB3
+                        F677D508D4C3336D352D59EB891B846F73E3A0C1AE3C3DFCE0F742E56FA47DE0
+                        F2568C20F9DCF4ECC5DF03C1DAE584DFC8052929CA645291EBE78E9795224CEE
+                        402FFC59C95AB69AAB4FBA71A019DEA585228C77BAE1D540EDD1C66EA86EB661
+                        C8478A33994423C954C6505DBF407DE2CCED0B4F946CA7B85AE7CED6514D37DA
+                        9DDF696D5E7C0A7E0FCFFB0893B7D2C68130D85547D70399281A95EB4721A36B
+                        27D94EC11FDF9051ED41721B57EE6898E1F77D367C08809DF10886BC1351A6E3
+                        D3FF19AEBEEE7A221343C376FDD8AB69814B76537A66318C2FCCC40BE3CB38D5
+                        8B9EF97AFCCE6E0A19122080FF0B03F3C79BA1FA531B16A97B68FC4A512783F0
+                        E219D70FEAFF03A642560D185DB4BC252BCEE73F19F95CDFE5AB6318EFDF24EB
+                        FFD5E5BB44E85D4EB3F38F83F7F12113068D70CD526718D73CE9C992EE8B97BB
+                        7E50CFE89D6D3D3E73C3C65CE787B883878D8BCAFB4D34E2DBA0BAAFEDAA5342
+                        EDA1C52D594D71B9366B58C687200027706EBE785FE0A8A02EE56C21D4FF7F98
+                        30BAA752ECF54D835D3FF549779D7D1089F1360B6179B39D6A355BB6B2AA7D1F
+                        1B1E43C3AFD3EE70C26B016C813FE19432CAF3800D0FE3862EFF7AA5BEAE1FFC
+                        74A8E425ADB6F52331283B3A4D0155BD84FF795663D4080C7FDC87D06CC7BFED
+                        843D0C4DF773F22AEB8FF2AE1F2766E4C51FE2D020D1564CE954727C9353A147
+                        39FF7EEAEC7BBE8B469F0D1F1340137D8AE5C6FF560BC228BCB319EC7A927EA1
+                        F54445AE1F2B80BF6742F5BB12AD874EDDBDFB5BE4DFBE34D3EEFC9A495F2350
+                        07E8DE69378FF684091F1BC0EE995B3C8E654F5721E38F1A1EB4D4554B7DEF35
+                        43E5AE9FBA54A2F410F86703FB1AC1C24F48502F71BC875B9553ED3772B881EA
+                        7F25D2D7EBFA1036FAFF7B616C45F87B3634C2EFD36EC05F9E39B8439E1B1DC2
+                        EC1E844DD1FCE3312C7EDEF2832414D6FA20BC54AFEB0797AC6C0B75BA18A38E
+                        A615A21E2C1202AA76D79DD208E39DE961926433D3D7BE77909CC7397E79AC90
+                        38F6E2F9F789A074D31B12CE08E36748D696E8EDA0CCF6AC010D5661AD6DCABB
+                        7E74E9A802315EFF9344D144979082815EFAC799F30061BC9D3D5DA269A24080
+                        F7EF360ED2A35DC18646235E993EA7AE2DDABCD98FB8F5DB55C7C341BC5FB2EB
+                        21F04E31F1F2F5B36609D62E8F60A52F9F6EF87C87FE3F4CDE295134A1A1CFB5
+                        F10C4275B3BB7C4B82CDF05BAEFBC4D9344EA9724C45F8ED69B8BAA2DFE6CD41
+                        C4210282F40D5B8E0A0121FF88645348D058D749DC23EE54F69AA4BEAE5FCEEF
+                        E5B97D369CBC3C0043C9391CCACA80F0BC9DAADDC48146B9464F2605F16BF0BF
+                        5ED7E758CAE1411E2BA541954B158CBC1EEE96A72204F125924521F19D24EEDA
+                        178052D70FE02C9F44CB903EE31F245F9C893ABF2441DA48EA51CD34A43034F0
+                        AF1B8E3C8F97C734E9E35C511C53F3F037ED0BF6426A8BBC76C913B54DD716A9
+                        0C7B25F91EA2E631F1D6FC10D0CFF52378918344CD10781DDA09F2531B47590B
+                        39DDDC51B265EB0679CC926EC42E7F6F5683744E9368A58486F833E7F90AA00E
+                        E67B36378840F017DC783341E73784BD3609BD8C872DCD0BCDE971DA7941E07C
+                        899A25C7E0D346917B0A172E1B2D767D6EB068CB167A903C6A49AF06162F37DF
+                        8BF45E2FD1CA496B19756DC1F32B06D4FCCB2575334CDAF281F74833EC9C23EC
+                        B54B76C1C575FDE425F58B86C9D512B5873811223EBB5B69577173077AE49965
+                        EE5AD9966DD75DA401C9E16890FA7749EF137434C7AA11C61731DD7427B13A60
+                        C2A9295DE158B354E6FA99300D4ED53AAADE10A742C1DFEBC6A52DC10643E3CD
+                        BBE12E786944DE5D24E959421B4F1D5CE9F16DE49D3926B66284F1E57A2F423A
+                        D1E52E58DDE29E461E3B4AF7D22567E10576B232F2708DBA52D72F07AEDAC923
+                        9A9AA1FA79A865DE056CE21C46DA2773D56FD05D013CC123C96408E55DB4F138
+                        A790234ECA403BBD92F9F4BB22262B48CB8756ED51FC96747F60EE8E01FCA68D
+                        24598D17A5054EDA656A97E0CB51CD33BEBE75A3CCF533A03A0D93CDAE3144A3
+                        90BDB81B27DDDC81F177695BB620389254865C4311E97F96AB7010CA93F07B5B
+                        C6B8D47CDD4851912661598D51BB7CC48768D4A5134D322B9A82F574B69B9FBB
+                        A7A1764ADDAFEE11A75284F165F2488FEB075EC38D0B41D21B3125FA14A76EF1
+                        CC5FB971A0AAF5E60EAEE6E1B7AB264B811EFC80249921F4EEA4287E3F707D41
+                        1ECF10355D51FC7EE04595A996898FE71064C3D129206C2F92A4A51E921D1464
+                        D6BB04D748B47E7B8F4B15C2DCB937C8F5630F9CD9D279B64E1FA46D83EECC97
+                        D10C6F653AE88DCB3E25C4235A92B4257A0CECD945F1CB40612ADABB8F465CD6
+                        B175A4F3D7BA0EE04AE6CA70833B4DADEBC1F13420186F13567DC4655AA7C0A5
+                        A0841B15D6D7F513E347270E82FA7D21277C0C5F2FDC44F189056A72C9E07631
+                        493E43F41CF246683AA4A93DBC8718C3C22BD0405765F8CE590243693ADD387D
+                        7004EF7BAEDE8BE0EE824AF13E779A9A135E6E3D109C0C13767D840A31539259
+                        68B725DE4DB78E60E5C9233DAE1F0F5152F269FCD8714E6B96E42C34809D6BA7
+                        ADC01DB378EE046A0E13BE5C7028D1791490DE201AC62DC43B8BEA98FBF284A5
+                        A9B145FD7426AD60D733856509EF3BF0FC02DEF74B10E297A43798F6BF6340DC
+                        E3C4D4A5831D12A51ED29B168BD5265557E1054879D78F9B38F1FF7DEE8C9618
+                        94CAC4D308E24BD2E9DAD56FD962E5AF741128B75DFB4E2BB00EA1EC1BDDFCF2
+                        60CFA5119C6EF5CADE31C0DB432499F1A7E92DF14FB92F66D0EF7EDDBCEB87DE
+                        F62A77DD5B570C2AC8C6E11CBB5193156ED942EF59DEDE42343467DE74794C1A
+                        25D7C6400036BB796511C7143E68978CCB8B7AB99A2EB424B13688D3ADEE4BD8
+                        97E9B33B8773EEB4EEDD21C125BD4D9B7C017D7E8653F5BAE1AB056D0B9DE112
+                        89AB90ECB106D022A533713C5A5694A759B5E430E38633BDE5CC388E0D950900
+                        709644F1B49EA98F001CE64A1CFD548EE71EC343910D3232EA23001E23026745
+                        F5F4B7D849D234A3212F00E305BD416694DF3FF202307EE0BC09BC93D1EC14F6
+                        0230AE880F8DE438B91780F1C54866090709000C947BECDC3A275078ED0AD7F1
+                        09FE9FDD3D73D8F288DCD22E67EFB2FCEE0C5ACA5777B97C770A99D3AB2E2FBF
+                        4D4CAF2F38FC8269666E0B739E777601D7F75E47F2EF91457C68E847C7FA08C0
+                        1133E98182A4C7BD82E43CFD9043B05CB79B677A1655E0DED8B3F1A8D4FCCBA4
+                        DBC3D367B95152822D216DBB73960B56126C093DE42369DAEA587E6D9DEE1578
+                        87353F4CFE31EF6A7112C8A45DDB7BC93E452EA4D11330CFB8E04CAD7E685854
+                        2A00AC34100B6B5E1686C9EDF8CD2B58DE43C0627DAFBBBA251B32344FF3B93E
+                        6FA65DF5F2AFDE1D63F908FB84E6697E723FD3B33CE4834AF9ACE573D5D0C91B
+                        657A3F7AD2572C3FFD90834D1B69393773A072D35BC12C1FB09B33EB7A2F6E52
+                        41DE6F603D5B61CEA1B1846F1CAC8ACA04A011A82F705143ABAD02BE474508D4
+                        01EE63D0ABA4057CAE664A530D87BC1138DEA85B009C43991EC382B5270A509B
+                        00C048BA867CFC3F789FA0C76A702B8D4A18DA852795EBD3003064C84701EC07
+                        923CAA47238A6F623DC375BCB488EF05609DC30BC084637C05809F47DDD279B6
+                        F6910BF91E55203D33B0F01CFC5FB83BBA4601F0180778019870D469033C84CC
+                        B7C21DB49F59F1A81EB230B48D0B3F791E519B00A0E1AF229F5B9D8BF81E1521
+                        5437B39E2100F953451A756A00EF058C00DE0D9C708CAD0098210005CB7C74C9
+                        A362C810E02E5FBBA84F03D02809E3739BEE3DF71ED583D7E747C91B7A2ED610
+                        D428001EE3002F00138E1A6D0075274F08F7DFB4E8C14B33F0F77CDE45C49D3D
+                        ACCF2A517644BF326226F997D2F05E407F04C9A779A955ADE7FAAA202F00CB07
+                        EA646BFE28787AB5DEC2F3791954D5E071FBA169022F00CB031AC45EEAC4EDE0
+                        F096B8657E45F71C2D0B6172C729C3B85FB05400E0FF93EFDE68E511EF362A9F
+                        B79471DB5C71BC6161F1B9CCBB52EAA3018EE9DE9F3D2133B1E01904DE5ACE3A
+                        4B6F044BF6E5E30C1BBC6145375A9554AE013C72D82655C6859BBFCCF37990A4
+                        19261FD0874478B42CC7AF02A31700F7FAF60907EB89F52537A2656E346D46C9
+                        5FB83796E9CBAE4BEE4C5E0D462B00707368E4D8FB0027189C0E3763BF7CAAB6
+                        CB0F938F95B9825A23B8715789110B80F7022C64C186C4C39E2EAFDFD73E788B
+                        991B77B5F0025017E009E9CA0265EE4804DCFB90F324C34536AD55C00B407DB8
+                        45571608461E4F195B1EEF4C14560F7112C78DBB5A8C540038F6CB19FB893F1F
+                        4817D07CEF80174EE7F87B0B6D008441582AFD90F5683500D058E57DBEEB09E6
+                        FE5F4EF94220B21FD48056702FA466C7A16790895301462E001E5DC0A2B7F7F5
+                        C0F26FE7F97205FE475B91DA03D88F455489510B00EFC1BF1CB640D51F535C93
+                        E0F678DE0FACEB2C1D1A8B3E4F37548C540068FC91CFAB628AF81309F8FCD616
+                        B8A0F3040C05E9C7AB4786D1AE05782FA00850FFD6E8A3A117C5A7705168E8F6
+                        5290DC56F4699B55931780E5831754E94B9E1DA211C81BBD589F5583B794E5F3
+                        AB8C9841D14B7A011800F4487E23A06C1A78CD50B9002477F305F1FFBD3D3C0F
+                        0BB87BB737A3F8DD30981BBCD28D9FD3313B79AA006D0D69AAE150A900788C05
+                        A081FDB6F049466D0200ABF64B8DF4EBDD2BFEB49BC792C07B883736789F7001
+                        BF4E01F067034781B13D1BE8BD8091C01F0F9F708CB100C47F47BEBF2164E8D0
+                        7B0DB8E5BC8057A70DA0AF58BFB067E9D3A35A04EA28AF93E79E83227E7D1AC0
+                        632CE00560C251A700DCDADABCF8148C4DFB0B781E150143ED3DD3D1CEA76208
+                        F85411BF4623D07B01A3807703271C5E00261CE32C00D773ADBB6C6CF2A80841
+                        F2B9746791BAA2885F9F0010FE8B61A3419FD3C4F50A8047EDA85100E2FDD36D
+                        F52C7E3FB098EF5111EEE5F942AE0A16F0862F00ADB9C5E38A323607221BA1DA
+                        C0A3E2127E2B77C536A33822F83FAF9333CF3483E4E386A711263B30B6E9EF0E
+                        EB5DB3617C61861F251F769EE5973AE75C7EE6683A6C1297878AD90A21B557AC
+                        23FD8B5D3ECAA6ECB351729827755C7E6E8DA396F7E2C72281DFD3ED10261F33
+                        CF64209FEF1D1AF1DA93A28CF58BB5D54934509A51E7750C43E1DF228F594A2B
+                        237D66265C7C9E046BD2972805C96D697AEA2EF71205D21961FC0CF32C2A7151
+                        822D35C3CE39868F8A7CB504A7E41A4E813A76E6F685270A47935CE3927E3B38
+                        48AECB6FDE84F09C68D3AEEFBDDE98FE8E8F87B16D3F94EDA2DFE9E3CA0819FD
+                        673EE32ED483AC60F31B05FD32C20EA6C87EE4207D09C3D3C7A3D20630D0378E
+                        B87CF92AB905D34B793A1F375F08A49B377A59E60E6334C4D70C4FC3FD3AB806
+                        BFE8EDF073B77CD4F55EF9F7C82048EE370751864A503F6F2E2C8047ADE03027
+                        4D345CD2EAD2BB7CE385401D6806BB9E244D347CE23807F554B826ED315AE8E1
+                        8CD7D08E9AB44720C68D473DA0DBDD08E21748938C9E36CDCF3F06966B0BDAE0
+                        4AAA2114EA08FE1EF5182692FBB9050FC3F0C66A0E804E4DFD3F6122BE8CBE45
+                        DE5D0000000049454E44AE426082}
+                      Proportional = True
+                      ExplicitLeft = 272
+                      ExplicitTop = 27
+                      ExplicitHeight = 172
+                    end
+                    object labelValorFatDia: TcxLabel
+                      AlignWithMargins = True
+                      Left = 3
+                      Top = 3
+                      Margins.Bottom = 0
+                      Align = alClient
+                      AutoSize = False
+                      Caption = 'R$ 22.500'
+                      ParentColor = False
+                      ParentFont = False
+                      Style.BorderColor = clBlack
+                      Style.BorderStyle = ebsNone
+                      Style.Color = clWhite
+                      Style.Edges = [bLeft, bTop, bRight, bBottom]
+                      Style.Font.Charset = DEFAULT_CHARSET
+                      Style.Font.Color = 174
+                      Style.Font.Height = -53
+                      Style.Font.Name = 'Yu Gothic UI Semilight'
+                      Style.Font.Style = [fsBold]
+                      Style.HotTrack = False
+                      Style.Shadow = False
+                      Style.TextColor = 10389598
+                      Style.TextStyle = [fsBold]
+                      Style.TransparentBorder = False
+                      Style.IsFontAssigned = True
+                      Properties.Alignment.Horz = taCenter
+                      Properties.Alignment.Vert = taVCenter
+                      Transparent = True
+                      ExplicitTop = 34
+                      ExplicitWidth = 398
+                      ExplicitHeight = 165
+                      Height = 167
+                      Width = 260
+                      AnchorX = 133
+                      AnchorY = 87
                     end
                   end
                 end
@@ -2516,7 +2649,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
               ParentCtl3D = False
               TabOrder = 1
               object Panel1: TPanel
-                AlignWithMargins = True
                 Left = 0
                 Top = 0
                 Width = 746
@@ -2536,10 +2668,8 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   AlignWithMargins = True
                   Left = 3
                   Top = 3
-                  Width = 738
-                  Height = 251
-                  Margins.Right = 1
-                  Margins.Bottom = 2
+                  Width = 736
+                  Height = 250
                   Title.Font.Color = 2565927
                   Title.Font.Style = [fsBold]
                   Title.Text.Strings = (
@@ -2551,10 +2681,11 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   View3DOptions.Rotation = 360
                   View3DWalls = False
                   Align = alClient
-                  Color = clBtnHighlight
+                  BevelOuter = bvNone
+                  Color = clHighlightText
                   TabOrder = 0
-                  ExplicitWidth = 736
-                  ExplicitHeight = 250
+                  ExplicitWidth = 738
+                  ExplicitHeight = 251
                   DefaultCanvas = 'TGDIPlusCanvas'
                   ColorPaletteIndex = 0
                   object FastLineSeries1: TFastLineSeries
