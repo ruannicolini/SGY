@@ -26,8 +26,8 @@ object DModule: TDModule
   object FDConnection: TFDConnection
     ConnectionName = 'gym'
     Params.Strings = (
-      'Database=gym'
       'Server='
+      'Database=gym'
       'User_Name=root'
       'Password=root'
       'DriverID=MySQL')

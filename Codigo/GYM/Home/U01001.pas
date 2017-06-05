@@ -1205,11 +1205,11 @@ var
  iMensagem : integer;
 begin
   inherited;
-  //DESKTOP-AR85808
   {
-
-  AssignFile(F, '//192.168.1.200/EPSON');
+  //DESKTOP-AR85808
+  AssignFile(F, '//192.168.1.200/EPSONCOMPARTILHADA');
   Rewrite(F);
+
   Writeln(F, '    só um teste 1só um teste 1só um teste 1só um teste 1só um teste 1');
   Writeln(F, '    só um teste 2');
   Writeln(F, '    só um teste 3');
@@ -1223,7 +1223,7 @@ begin
   Writeln(F, #27 + #105''); // Corte de papel
 
   CloseFile(F);
-    }
+  }
 
   iMensagem := MsgDlgButtonPersonal('IMPRIMIR FICHA', mtConfirmation, [mbYes,mbNo],
   ['FOLHA A4', 'CUPOM']);
@@ -1272,11 +1272,12 @@ begin
                                   CDSserieFichaAluno.Filtered := true;
                               end;
 
-                              //REPORT_FICHAcp.PrintOptions.Printer := '//192.168.6.200/EPSON';
-                              REPORT_FICHAcp.SelectPrinter;
-                              REPORT_FICHAcp.PrintOptions.ShowDialog := false;
+                              //REPORT_FICHAcp.PrintOptions.Printer := '//192.168.1.200/EPSONCOMPARTILHADA';
+                              //REPORT_FICHAcp.SelectPrinter;
+                              //REPORT_FICHAcp.PrintOptions.ShowDialog := false;
                               REPORT_FICHAcp.PrepareReport;
                               REPORT_FICHAcp.print;
+                              //showmessage(REPORT_FICHAcp.PrintOptions.Printer);
                               //REPORT_FICHAcp.ShowReport(TRUE);
 
                               //limpa filter

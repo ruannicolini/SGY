@@ -9,7 +9,8 @@ uses
   FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, FireDAC.Comp.UI, Dialogs, Datasnap.Provider,
-  Datasnap.DBClient, Windows;
+  Datasnap.DBClient, Windows,
+  Vcl.Forms;
 
 type
   TDModule = class(TDataModule)
@@ -194,6 +195,15 @@ begin
   FDConnection.Params.DriverID := 'MYSQL';
   FDConnection.DriverName := 'MYSQL';
   FDPhysMySQLDriverLink1.DriverID := 'MYSQL';
+  //CONFIGURAÇÕES DO BD
+  TRY
+    FDPhysMySQLDriverLink1.vendorlib := ExtractFilePath(Application.ExeName) + 'libmysql.dll';
+  EXCEPT
+    on E: Exception do
+    BEGIN
+      SHOWMESSAGE('ERRO! CLASSE: ' + E.ClassName + #13 + 'MENSAGEM: ' + E.Message);
+    END;
+  END;
 end;
 
 

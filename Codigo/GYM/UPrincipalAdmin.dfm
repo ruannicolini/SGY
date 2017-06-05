@@ -289,6 +289,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
             Text2.AssignedValues = []
             Text3.AssignedValues = []
             Text4.AssignedValues = []
+            OnClick = dxTileControl1Item9Click
           end
         end
       end
@@ -333,7 +334,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
         Top = 3
         Width = 782
         Height = 700
-        ActivePage = tbsIndFat
+        ActivePage = Principal
         Align = alClient
         MultiLine = True
         TabOrder = 0
@@ -2178,8 +2179,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
             ParentCtl3D = False
             ParentDoubleBuffered = False
             TabOrder = 0
-            ExplicitLeft = -296
-            ExplicitTop = -16
             object ScrollBox5: TScrollBox
               AlignWithMargins = True
               Left = 3
@@ -2225,10 +2224,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   Align = alClient
                   BevelOuter = bvNone
                   TabOrder = 0
-                  ExplicitLeft = 411
-                  ExplicitTop = 3
-                  ExplicitWidth = 328
-                  ExplicitHeight = 199
                   object ChartFaturamentoMes: TChart
                     AlignWithMargins = True
                     Left = 0
@@ -2256,8 +2251,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     BevelOuter = bvNone
                     Color = clHighlightText
                     TabOrder = 0
-                    ExplicitTop = 28
-                    ExplicitWidth = 328
                     DefaultCanvas = 'TGDIPlusCanvas'
                     ColorPaletteIndex = 13
                     object PieSeries3: TPieSeries
@@ -2322,8 +2315,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     ParentBackground = False
                     ParentFont = False
                     TabOrder = 1
-                    ExplicitTop = 0
-                    ExplicitWidth = 328
                     object DateTimePicker1: TDateTimePicker
                       AlignWithMargins = True
                       Left = 3
@@ -2356,9 +2347,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   Color = clSilver
                   ParentBackground = False
                   TabOrder = 1
-                  ExplicitLeft = 3
-                  ExplicitTop = 3
-                  ExplicitHeight = 199
                   object PanelCabecarioGrafFatMes: TPanel
                     AlignWithMargins = True
                     Left = 3
@@ -2378,7 +2366,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     ParentBackground = False
                     ParentFont = False
                     TabOrder = 0
-                    ExplicitTop = 4
                     object DateTimePicker5: TDateTimePicker
                       AlignWithMargins = True
                       Left = 3
@@ -2406,10 +2393,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                     Color = clHighlightText
                     ParentBackground = False
                     TabOrder = 1
-                    ExplicitLeft = 160
-                    ExplicitTop = 56
-                    ExplicitWidth = 185
-                    ExplicitHeight = 41
                     object Image1: TImage
                       Left = 266
                       Top = 0
@@ -2618,9 +2601,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                       Properties.Alignment.Horz = taCenter
                       Properties.Alignment.Vert = taVCenter
                       Transparent = True
-                      ExplicitTop = 34
-                      ExplicitWidth = 398
-                      ExplicitHeight = 165
                       Height = 167
                       Width = 260
                       AnchorX = 133
@@ -2684,8 +2664,6 @@ object FPrincipalAdmin: TFPrincipalAdmin
                   BevelOuter = bvNone
                   Color = clHighlightText
                   TabOrder = 0
-                  ExplicitWidth = 738
-                  ExplicitHeight = 251
                   DefaultCanvas = 'TGDIPlusCanvas'
                   ColorPaletteIndex = 0
                   object FastLineSeries1: TFastLineSeries

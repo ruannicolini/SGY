@@ -2134,7 +2134,7 @@
     Left = 144
     Top = 40
     Bitmap = {
-      494C01010F002C00180410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C001C0410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3645,7 +3645,7 @@
     Left = 112
     Top = 40
     Bitmap = {
-      494C01010100140078015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010014007C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13917,13 +13917,13 @@
     DataSetName = 'frxDBDataset1'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Buttons = [pbPrint, pbSave, pbExport, pbZoom, pbFind, pbPageSetup, pbTools, pbNavigator, pbNoEmail]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintMode = pmSplit
     PrintOptions.PrintOnSheet = 124
     ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42881.802552384260000000
+    ReportOptions.LastChange = 42891.504658842590000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -13979,7 +13979,7 @@
         end
         object Memo2: TfrxMemoView
           Left = 20.000000000000000000
-          Top = 52.708720000000000000
+          Top = 51.708720000000000000
           Width = 262.330708660000000000
           Height = 15.677180000000000000
           StretchMode = smActualHeight

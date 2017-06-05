@@ -111,6 +111,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure AE_errosException(Sender: TObject; E: Exception);
     procedure DateTimePicker1Change(Sender: TObject);
+    procedure dxTileControl1Item9Click(Sender: TdxTileControlItem);
   private
     { Private declarations }
   public
@@ -129,7 +130,7 @@ implementation
 {$R *.dfm}
 
 uses ubase, vcl.themes, vcl.styles, U01009, ShellApi, uFuncao,
-  UHPI, math, ActiveX;
+  UHPI, math, ActiveX, UConfig;
 
 {
 // TIRA O SCROLL DO TWebBrowser
@@ -394,6 +395,27 @@ begin
       ).Start;
   end;
 
+end;
+
+procedure TFPrincipalAdmin.dxTileControl1Item9Click(Sender: TdxTileControlItem);
+begin
+  if(DModule.administrador = true)then
+  begin
+        try
+            With TFConfig.Create(self) do
+            Begin
+              ShowModal;
+            End;
+        except
+          ON E: Exception DO
+          begin
+              ShowMessage(E.Message);
+          end;
+        end;
+  end else
+  begin
+       ShowMessage('Permissão Negada');
+  end;
 end;
 
 function TFPrincipalAdmin.fncAlturaBarraTarefas: Integer;
@@ -688,7 +710,7 @@ begin
         ChartFaturamentoMes.Series[0].AddY(
         DModule.qAux.FieldByName('valor').AsFloat,  // valor
         //'EM ATRASO', //legenda
-        'A RECEBER (ATRASADO)', //legenda
+        'A RENOVAR (ATRASADO)', //legenda
         { $000E08B3 } clteecolor
         );
       end;

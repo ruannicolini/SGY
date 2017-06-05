@@ -57,7 +57,7 @@ begin
 
       inherited Create(AOwner);
       //TAMANHO DO FORM
-      Width := 440;
+      Width := 431; // 440;
       Height := 300;
 
       //POSIÇÃO DO FORM NA TELA
