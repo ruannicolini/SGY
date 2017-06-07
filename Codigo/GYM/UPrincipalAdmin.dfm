@@ -2775,7 +2775,7 @@ object FPrincipalAdmin: TFPrincipalAdmin
   end
   object AE_erros: TApplicationEvents
     OnException = AE_errosException
-    Left = 893
-    Top = 598
+    Left = 813
+    Top = 630
   end
 end

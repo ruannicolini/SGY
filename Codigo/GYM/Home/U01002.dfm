@@ -67,6 +67,7 @@
           Width = 20
           Height = 13
           Caption = 'LOG'
+          Visible = False
         end
         object Label4: TLabel
           Left = 24
@@ -229,6 +230,7 @@
           DataSource = DS
           ReadOnly = True
           TabOrder = 9
+          Visible = False
         end
         object DBEdit6: TDBEdit
           Left = 24
@@ -933,7 +935,7 @@
   end
   inherited ImageListBase: TImageList
     Bitmap = {
-      494C01010F002C00040210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00080210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E

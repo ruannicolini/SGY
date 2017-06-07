@@ -31,7 +31,8 @@ uses
   U01017 in 'Home\U01017.pas' {F01017},
   UPrincipalAdmin in 'UPrincipalAdmin.pas' {FPrincipalAdmin},
   U01018 in 'Home\U01018.pas' {F01018},
-  UConfig in 'UConfig.pas' {FConfig};
+  UConfig in 'UConfig.pas' {FConfig},
+  UmetodosServidor in 'UmetodosServidor.pas';
 
 {$R *.res}
 

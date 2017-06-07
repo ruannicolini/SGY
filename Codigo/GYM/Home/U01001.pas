@@ -23,7 +23,8 @@ uses
   cxClasses, dxCustomTileControl, dxTileControl, Vcl.ToolWin, Vcl.ActnMan,
   Vcl.ActnCtrls, Vcl.Ribbon, Vcl.RibbonLunaStyleActnCtrls, dxToggleSwitch,
   frxChart, cxCalc, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series,
-  VCLTee.TeeProcs, VCLTee.Chart, frxCrypt;
+  VCLTee.TeeProcs, VCLTee.Chart, frxCrypt, Data.DBXDataSnap, IPPeerClient,
+  Data.DBXCommon, Data.SqlExpr, Datasnap.DSConnect, System.JSON, Data.DBXJSONCommon;
 
 type
   TF01001 = class(TFBase)
@@ -587,6 +588,8 @@ type
     cdsRelAvaFisicaRCQ: TFloatField;
     cdsRelAvaFisicaclassificacaoRCQ: TStringField;
     REPORT_FICHAcp: TfrxReport;
+    SQLConnection1: TSQLConnection;
+    DSProviderConnection1: TDSProviderConnection;
     procedure ClientDataSet1AfterInsert(DataSet: TDataSet);
     procedure cxDBImage1PropertiesAssignPicture(Sender: TObject;
       const Picture: TPicture);
@@ -702,10 +705,10 @@ implementation
 {$R *.dfm}
 
 uses
+IWSystem ,
 vcl.themes, vcl.styles, U01010,
-{IMAGENS BLOB}
-{ SysUtils, Classes, Graphics, }GIFImg, JPEG, PngImage, U01011, u_relatorios,
-  U01013, ValidaCPF, U01014, U01016, DBCommon, U01017, U01018;
+GIFImg, JPEG, PngImage, U01011, u_relatorios,
+U01013, ValidaCPF, U01014, U01016, DBCommon, U01017, U01018, UmetodosServidor;
 
 
 procedure TF01001.Action5Execute(Sender: TObject);
@@ -868,7 +871,11 @@ begin
 end;
 
 procedure TF01001.BSalvarClick(Sender: TObject);
-VAR
+var
+  ser: TServerMethods1Client;
+  ms: TStream;
+  jsa: TJSONArray;
+  picType : integer;
   aDest : TBitmap;
 begin
   if TRIM(DBEdit3.Text) <> '' then
@@ -910,12 +917,42 @@ begin
           //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
           if(imagemMudou = true)then
           begin
+              {
               //SALVA FOTO PASTA
               IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
               BEGIN
                 CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
               END;
               cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+              }
+
+              try
+                  SQLConnection1.open;
+                  if SQLConnection1.Connected then
+                  begin
+                    ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+                    ms := TMemoryStream.Create;
+                    cxImage1.Picture.Graphic.SaveToStream(ms);
+                    ms.Position := 0;
+                    jsa := TJSONArray.Create;
+                    jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
+
+                    if(ser.setFotoAluno(jsa, clientdataset1idAluno.AsInteger) = true)then
+                    begin
+                      // ShowMessage('imagem enviada com sucesso.');
+                    end else
+                    begin
+                      ShowMessage('Falha ao enviar imagem.');
+                    end;
+                    ser.Free;
+                  end;
+                  SQLConnection1.close;
+              except
+              on e:exception do
+                  ShowMessage('Erro ao salvar imagem do aluno. Verifique a conexão com o servidor de imagens. '
+                              + #13 + e.message);
+              end;
+
           end;
           imagemMudou := false;
 
@@ -2248,6 +2285,9 @@ end;
 procedure TF01001.DSDataChange(Sender: TObject; Field: TField);
 var
   caminho : string;
+  ser: TServerMethods1Client;
+  cdsteste: TDataSet;
+  fotoStream : TStream;
 begin
   inherited;
 
@@ -2291,6 +2331,7 @@ begin
         //Se estiver no modo de edição ou inserção, não Faz nada!
   END ELSE
   BEGIN
+      {
       // Foto na pasta local img_Aluno
       caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
 
@@ -2298,12 +2339,43 @@ begin
       if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
       begin
         cxImage1.Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
-        //cxImage1.Style.Color := $00515128;//$002E2E2E;
       end else
       begin
         ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
         cxImage1.Style.Color := clWindow;
       end;
+      }
+
+      // Assimila foto do servidor
+      try
+          SQLConnection1.Open;
+          if SQLConnection1.Connected then
+          begin
+
+              ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+              fotoStream := ser.getFotoAluno(clientdataset1idAluno.AsInteger);
+              
+              if not(fotoStream = nil)then
+              begin
+                fotoStream.Position := 0;
+                cxImage1.Picture.Bitmap.LoadFromStream(fotoStream);
+              end else
+              begin
+                cxImage1.Picture := nil;
+                ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+              end;
+              ser.Free;
+          end;
+          SQLConnection1.close;
+      except
+      on e:exception do
+          begin
+              ImageListAUX.GetBitmap(1, cxImage1.Picture.Bitmap);
+              //ShowMessage('Erro ao requerer servidor de imagens: ' + #13 + e.message);
+          end;
+      end;
+
+
   end;
 
 end;
