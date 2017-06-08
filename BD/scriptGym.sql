@@ -31,7 +31,8 @@ videoYoutube tinyint(1) not null,
 avaAnamnese tinyint(1) not null,
 avaFisica tinyint(1) not null,
 avaPostural tinyint(1) not null,
-avaDadosClinicos tinyint(1) not null
+avaDadosClinicos tinyint(1) not null,
+servidorImagens tinyint(1) not null
 );
 
 create table logSistema(

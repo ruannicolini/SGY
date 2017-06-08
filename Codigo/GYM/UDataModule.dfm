@@ -31,6 +31,7 @@ object DModule: TDModule
       'User_Name=root'
       'Password=root'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnectionBeforeConnect
     Left = 24

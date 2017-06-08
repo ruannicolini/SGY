@@ -3,6 +3,8 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
+  ExplicitLeft = -237
+  ExplicitTop = -279
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -1725,7 +1727,6 @@
       end
       inherited PanelFiltros: TPanel
         Width = 1000
-        ExplicitTop = -3
         ExplicitWidth = 1000
         inherited btnFiltrar: TButton
           Left = 949
@@ -2135,7 +2136,7 @@
     Left = 144
     Top = 40
     Bitmap = {
-      494C01010F002C00280410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C00300410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3069,7 +3070,7 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42881.633322037040000000
+    ReportOptions.LastChange = 42881.633322037000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3153,7 +3154,7 @@
           Color = 12632192
         end
         object Memo3: TfrxMemoView
-          Left = 520.795275589999900000
+          Left = 520.795275590000000000
           Top = 76.267780000000000000
           Width = 196.535560000000000000
           Height = 22.299212600000000000
@@ -3196,15 +3197,16 @@
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
-        Height = 22.677180000000000000
+        Height = 26.456710000000000000
         Top = 321.260050000000000000
         Width = 349.606525000000000000
         DataSet = frxDBDataset2
         DataSetName = 'frxDBDataset2'
         RowCount = 0
+        Stretched = True
         object frxDBDataset2nomeExercicio: TfrxMemoView
           Left = 42.330708660000000000
-          Top = 1.779530000000000000
+          Top = 2.779530000000022000
           Width = 242.267716540000000000
           Height = 18.897650000000000000
           StretchMode = smActualHeight
@@ -3224,7 +3226,7 @@
         end
         object frxDBDataset2idequipamento: TfrxMemoView
           Left = 0.755905510000000000
-          Top = 1.779530000000000000
+          Top = 2.779530000000022000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
           StretchMode = smMaxHeight
@@ -3246,7 +3248,7 @@
         end
         object Memo5: TfrxMemoView
           Left = 284.598425200000000000
-          Top = 1.779530000000000000
+          Top = 2.779530000000022000
           Width = 64.252010000000000000
           Height = 18.897650000000000000
           StretchMode = smMaxHeight
@@ -3293,7 +3295,7 @@
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Height = 22.677180000000000000
-        Top = 476.220780000000000000
+        Top = 480.000310000000000000
         Width = 718.110700000000000000
         object Memo6: TfrxMemoView
           Left = 0.779530000000000000
@@ -3315,13 +3317,13 @@
       object GroupFooter1: TfrxGroupFooter
         FillType = ftBrush
         Height = 3.779530000000000000
-        Top = 366.614410000000000000
+        Top = 370.393940000000000000
         Width = 349.606525000000000000
       end
       object GroupFooter2: TfrxGroupFooter
         FillType = ftBrush
         Height = 22.677180000000000000
-        Top = 393.071120000000000000
+        Top = 396.850650000000000000
         Width = 349.606525000000000000
       end
     end
@@ -3530,6 +3532,7 @@
     Top = 642
   end
   object CDSRelFicha: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'pRelFicha'
@@ -3646,7 +3649,7 @@
     Left = 112
     Top = 40
     Bitmap = {
-      494C01010200140094015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020014009C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -14160,7 +14163,6 @@
     LoginPrompt = False
     Params.Strings = (
       'DriverUnit=Data.DBXDataSnap'
-      'HostName=192.168.1.200'
       'Port=211'
       'CommunicationProtocol=tcp/ip'
       'DatasnapContext=datasnap/'
@@ -14168,7 +14170,9 @@
         'DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland' +
         '.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKey' +
         'Token=91d62ebb5b0d1b1b'
-      'Filters={}')
+      'Filters={}'
+      'HostName=localhost')
+    AfterConnect = SQLConnection1AfterConnect
     Left = 742
     Top = 450
     UniqueId = '{848DCBD6-7745-4FF9-AF03-68615E5C31F1}'

@@ -157,7 +157,7 @@ object FConfig: TFConfig
         Left = 8
         Top = 192
         Width = 427
-        Height = 85
+        Height = 98
         Caption = 'HABILITAR'
         TabOrder = 1
         object cxDBCheckBox3: TcxDBCheckBox
@@ -186,6 +186,15 @@ object FConfig: TFConfig
           DataBinding.DataSource = dsConfig
           TabOrder = 2
           Width = 121
+        end
+        object cxDBCheckBox2: TcxDBCheckBox
+          Left = 17
+          Top = 67
+          Caption = 'SERVIDOR DE IMAGENS'
+          DataBinding.DataField = 'servidorImagens'
+          DataBinding.DataSource = dsConfig
+          TabOrder = 3
+          Width = 240
         end
       end
     end
@@ -258,6 +267,11 @@ object FConfig: TFConfig
       Origin = 'avaDadosClinicos'
       Required = True
     end
+    object qConfigservidorImagens: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'servidorImagens'
+      Origin = 'servidorImagens'
+    end
   end
   object pConfig: TDataSetProvider
     DataSet = qConfig
@@ -322,6 +336,9 @@ object FConfig: TFConfig
     object cdsConfigavaDadosClinicos: TBooleanField
       FieldName = 'avaDadosClinicos'
       Required = True
+    end
+    object cdsConfigservidorImagens: TBooleanField
+      FieldName = 'servidorImagens'
     end
   end
   object dsConfig: TDataSource

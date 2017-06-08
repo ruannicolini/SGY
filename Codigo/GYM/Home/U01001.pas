@@ -680,6 +680,7 @@ type
     procedure btnImprimirAvaFisicaClick(Sender: TObject);
     procedure DSAvaFisicaDataChange(Sender: TObject; Field: TField);
     procedure report_AvaFisicaBeforePrint(Sender: TfrxReportComponent);
+    procedure SQLConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -913,48 +914,54 @@ begin
           END;
           }
 
-
           //SE HOUVE MUDANÇA DA FOTO, ELA É SALVA NA PASTA IMG_ALUNO NO DIRETÓRIO
           if(imagemMudou = true)then
           begin
-              {
-              //SALVA FOTO PASTA
-              IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+
+              IF(DModule.confservidorImagens = TRUE)THEN
               BEGIN
-                CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
-              END;
-              cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
-              }
 
-              try
-                  SQLConnection1.open;
-                  if SQLConnection1.Connected then
-                  begin
-                    ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
-                    ms := TMemoryStream.Create;
-                    cxImage1.Picture.Graphic.SaveToStream(ms);
-                    ms.Position := 0;
-                    jsa := TJSONArray.Create;
-                    jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
+                  try
+                      SQLConnection1.open;
+                      if SQLConnection1.Connected then
+                      begin
+                        ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+                        ms := TMemoryStream.Create;
+                        cxImage1.Picture.Graphic.SaveToStream(ms);
+                        ms.Position := 0;
+                        jsa := TJSONArray.Create;
+                        jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
 
-                    if(ser.setFotoAluno(jsa, clientdataset1idAluno.AsInteger) = true)then
-                    begin
-                      // ShowMessage('imagem enviada com sucesso.');
-                    end else
-                    begin
-                      ShowMessage('Falha ao enviar imagem.');
-                    end;
-                    ser.Free;
+                        if(ser.setFotoAluno(jsa, clientdataset1idAluno.AsInteger) = true)then
+                        begin
+                          // ShowMessage('imagem enviada com sucesso.');
+                        end else
+                        begin
+                          ShowMessage('Falha ao enviar imagem.');
+                        end;
+                        ser.Free;
+                      end;
+                      SQLConnection1.close;
+                  except
+                  on e:exception do
+                      ShowMessage('Erro ao salvar imagem do aluno. Verifique a conexão com o servidor de imagens. '
+                                  + #13 + e.message);
                   end;
-                  SQLConnection1.close;
-              except
-              on e:exception do
-                  ShowMessage('Erro ao salvar imagem do aluno. Verifique a conexão com o servidor de imagens. '
-                              + #13 + e.message);
-              end;
+
+              END ELSE
+              BEGIN
+
+                  //SALVA FOTO PASTA
+                  IF NOT(DirectoryExists( Application.ExeName + '\img_Aluno' ))THEN
+                  BEGIN
+                    CreateDir(ExtractFilePath(Application.ExeName) + '\img_Aluno')
+                  END;
+                  cxImage1.Picture.SaveToFile(ExtractFilePath(Application.ExeName) + 'img_Aluno\'+ ClientDataSet1idAluno.AsString + '.bmp');
+
+              END;
+              imagemMudou := false;
 
           end;
-          imagemMudou := false;
 
           //PAGE PERFIL DO ALUNO VOLTA AO ESTRUTURA NORMAL DE APRESENTAÇÃO
           cxPageControl1.ActivePageIndex := 0;
@@ -2331,50 +2338,55 @@ begin
         //Se estiver no modo de edição ou inserção, não Faz nada!
   END ELSE
   BEGIN
-      {
-      // Foto na pasta local img_Aluno
-      caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
 
-      cxImage1.Picture := nil;
-      if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
-      begin
-        cxImage1.Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
-      end else
-      begin
-        ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
-        cxImage1.Style.Color := clWindow;
-      end;
-      }
+      IF(DModule.confservidorImagens = TRUE)THEN
+      BEGIN
 
-      // Assimila foto do servidor
-      try
-          SQLConnection1.Open;
-          if SQLConnection1.Connected then
-          begin
-
-              ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
-              fotoStream := ser.getFotoAluno(clientdataset1idAluno.AsInteger);
-              
-              if not(fotoStream = nil)then
+          // Assimila foto do servidor
+          try
+              SQLConnection1.Open;
+              if SQLConnection1.Connected then
               begin
-                fotoStream.Position := 0;
-                cxImage1.Picture.Bitmap.LoadFromStream(fotoStream);
-              end else
-              begin
-                cxImage1.Picture := nil;
-                ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+
+                  ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+                  fotoStream := ser.getFotoAluno(clientdataset1idAluno.AsInteger);
+
+                  if not(fotoStream = nil)then
+                  begin
+                    fotoStream.Position := 0;
+                    cxImage1.Picture.Bitmap.LoadFromStream(fotoStream);
+                  end else
+                  begin
+                    cxImage1.Picture := nil;
+                    ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+                  end;
+                  ser.Free;
               end;
-              ser.Free;
+              SQLConnection1.close;
+          except
+          on e:exception do
+              begin
+                  ImageListAUX.GetBitmap(1, cxImage1.Picture.Bitmap);
+                  //ShowMessage('Erro ao requerer servidor de imagens: ' + #13 + e.message);
+              end;
           end;
-          SQLConnection1.close;
-      except
-      on e:exception do
-          begin
-              ImageListAUX.GetBitmap(1, cxImage1.Picture.Bitmap);
-              //ShowMessage('Erro ao requerer servidor de imagens: ' + #13 + e.message);
-          end;
-      end;
 
+
+      END ELSE
+      BEGIN
+          // Foto na pasta local img_Aluno
+          caminho := ExtractFilePath(Application.ExeName) + 'img_Aluno\';
+
+          cxImage1.Picture := nil;
+          if FileExists(caminho + ClientDataSet1idAluno.asstring + '.bmp')then
+          begin
+            cxImage1.Picture.LoadFromFile(caminho + ClientDataSet1idAluno.asstring+ '.bmp');
+          end else
+          begin
+            ImageListAUX.GetBitmap(0, cxImage1.Picture.Bitmap);
+            cxImage1.Style.Color := clWindow;
+          end;
+      END;
 
   end;
 
@@ -3933,6 +3945,20 @@ begin
         ShowMessage('SELECIONE UMA MODALIDADE');
     END;
 
+end;
+
+procedure TF01001.SQLConnection1AfterConnect(Sender: TObject);
+begin
+  inherited;
+
+  SQLConnection1.Params.Values['hostname'] := DModule.FDConnection.Params.Values['SERVER'];
+  SQLConnection1.Params.Values['port'] := '211';
+  {
+  showmessage(
+  SQLConnection1.Params.Values['hostname']  + #13 +
+  SQLConnection1.Params.Values['port']
+  );
+  }
 end;
 
 procedure TF01001.BtnLimparFiltrosClick(Sender: TObject);

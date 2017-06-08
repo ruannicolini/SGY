@@ -61,6 +61,9 @@ type
     DBEdit2: TDBEdit;
     cxDBCheckBox4: TcxDBCheckBox;
     cxDBCheckBox1: TcxDBCheckBox;
+    qConfigservidorImagens: TBooleanField;
+    cdsConfigservidorImagens: TBooleanField;
+    cxDBCheckBox2: TcxDBCheckBox;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAltSalvClick(Sender: TObject);
     procedure cdsConfigReconcileError(DataSet: TCustomClientDataSet;
@@ -122,6 +125,7 @@ begin
                 DMODULE.confvideoYoutube :=  cdsConfigvideoYoutube.AsBoolean;
                 DMODULE.confAvaAnamnese :=  cdsConfigAVAANAMNESE.AsBoolean ;
                 DMODULE.confavafisica :=  cdsConfigAVAFISICA.AsBoolean;
+                DMODULE.confservidorImagens :=  cdsConfigservidorImagens.AsBoolean;
                 DMODULE.confavapostural :=  false;
                 DMODULE.confAvaDadosClinicos := FALSE;
 

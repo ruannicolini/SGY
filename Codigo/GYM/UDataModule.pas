@@ -93,7 +93,8 @@ type
     nomeusuario: string;
     username: string;
     senha: string;
-    //idTipoUsuario: integer;
+
+    //Permissões
     administrador : boolean;  // id = (1)
     instrutor : boolean;      // id = (2)
     atendente : boolean;      // id = (3)
@@ -109,6 +110,7 @@ type
     confAvaFisica : boolean;
     confAvaPostural : boolean;
     confAvaDadosClinicos : boolean;
+    confservidorImagens : boolean;
 
     //FUNÇÕES
     function buscaProximoParametro(p: string): integer;

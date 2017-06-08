@@ -452,7 +452,6 @@ begin
     exit
   end;
 
-
  {
   //ATRIBUI TEMPORARIAMENTO O USUARIO ADMIN    << PARA TESTES
     DModule.idTipoUsuario := 1;
@@ -541,7 +540,6 @@ begin
       DModule.qAcesso.SQL.Add('left outer join interface i on i.idinterface = s.idinterface ');
       DModule.qAcesso.SQL.Add('left outer join modulo m on m.idmodulo = i.idmodulo ');
       DModule.qAcesso.SQL.Add('where (   (1<>1) ');
-
       if(Dmodule.administrador = true )then
       DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 1) ');
       if(Dmodule.instrutor = true )then
@@ -551,10 +549,6 @@ begin
       if(Dmodule.avaliador = true )then
       DModule.qAcesso.SQL.Add(' or (idTipoUsuario = 4) ');
       DModule.qAcesso.SQL.Add(')');
-
-      //DModule.qAcesso.Open();
-      //ShowMessage( (DModule.qAcesso.sql.text));
-      //ShowMessage(inttostr(DModule.qAcesso.RecordCount));
       DModule.cdsAcesso.Close;
       DModule.cdsAcesso.Open;
       DModule.cdsAcesso.First;
@@ -569,28 +563,19 @@ begin
       Dmodule.qAux.close;
       Dmodule.qAux.SQL.Text := 'select * from configuracaounidade where IDconfiguracaounidade = 1';
       Dmodule.qAux.open;
-
       DMODULE.confVecimentoFicha := DModule.qAux.FieldByName('vencimentoFicha').AsInteger;
       DMODULE.confVideoYoutube := DModule.qAux.FieldByName('videoYoutube').AsBoolean;
       DMODULE.confAvaAnamnese := DModule.qAux.FieldByName('avaAnamnese').AsBoolean;
       DMODULE.confAvaFisica := DModule.qAux.FieldByName('avaFisica').AsBoolean;
       DMODULE.confAvaPostural := DModule.qAux.FieldByName('avaPostural').AsBoolean;
       DMODULE.confAvaDadosClinicos := DModule.qAux.FieldByName('avaDadosClinicos').AsBoolean;
-
+      DMODULE.confservidorImagens := DModule.qAux.FieldByName('servidorImagens').AsBoolean;
 
       // HABILITA AS ABAS DE INDICADORES
       if(DMODULE.administrador = TRUE)then
       begin
         tbsIndAluno.TabVisible := true;
         tbsIndfat.TabVisible := true;
-
-        {
-        With TFPrincipalAdmin.Create(Application) do
-        Begin
-          ShowModal;
-          Free;
-        End;
-        }
       end;
 
   end;
@@ -605,9 +590,9 @@ end;
 procedure TFPrincipalAdmin.FormShow(Sender: TObject);
 begin
 
+  // Gera os gráficos para o administrados
   if(DModule.administrador =  true)then
   begin
-      // Gera os gráficos para o administrados
       geratodosGraficos;
   end;
 
