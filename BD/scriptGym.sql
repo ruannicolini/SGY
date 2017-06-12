@@ -295,6 +295,10 @@ Create table parametros (
   PRIMARY KEY (`parametro`)
 );
 
+-- CADASTRA CONFIG
+INSERT INTO configuracaoUnidade(idConfiguracaoUnidade, cnpj, razaoSocial, nomeFantasia, telefone, vencimentoFicha, videoYoutube, avaAnamnese, avaFisica, avaPostural, avaDadosClinicos, servidorImagens) 
+VALUES (1,'0','Razão Social','Nome Fantasia','(00)0000-0000',1, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
+
 -- CADASTRA TREINO
 INSERT INTO TREINO(IDTREINO, DESCRICAOTREINO) VALUES(1,'A');
 INSERT INTO TREINO(IDTREINO, DESCRICAOTREINO) VALUES(2,'B');
