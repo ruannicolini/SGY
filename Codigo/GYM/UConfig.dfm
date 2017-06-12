@@ -123,6 +123,7 @@ object FConfig: TFConfig
           Top = 42
           DataBinding.DataField = 'razaoSocial'
           DataBinding.DataSource = dsConfig
+          Properties.CharCase = ecUpperCase
           TabOrder = 1
           Width = 267
         end
