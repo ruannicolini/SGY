@@ -681,6 +681,8 @@ type
     procedure DSAvaFisicaDataChange(Sender: TObject; Field: TField);
     procedure report_AvaFisicaBeforePrint(Sender: TfrxReportComponent);
     procedure SQLConnection1AfterConnect(Sender: TObject);
+    procedure REPORT_FICHAcpBeforePrint(Sender: TfrxReportComponent);
+    procedure REPORT_FICHABeforePrint(Sender: TfrxReportComponent);
   private
     { Private declarations }
   public
@@ -3845,6 +3847,61 @@ begin
   BEGIN
     TfrxMemoView(SENDER).Text := 'COMPOSIÇÃO CORPORAL - ' + ClientDataSet1descricaoprotocoloAvaFisica.AsString;
   END;}
+
+end;
+
+procedure TF01001.REPORT_FICHABeforePrint(Sender: TfrxReportComponent);
+begin
+  inherited;
+  IF SENDER.Name = 'Memo1' then
+  BEGIN
+    DMODULE.qAux.SQL.Text := 'SELECT * FROM configuracaounidade WHERE IDconfiguracaounidade = 1';
+    DMODULE.qAux.CLOSE;
+    DMODULE.qAux.OPEN;
+    IF(DMODULE.qAux.RecordCount > 0)THEN
+    BEGIN
+      if NOT(DMODULE.qAux.FieldByName('nomeFantasia').IsNull)then
+      BEGIN
+        TfrxMemoView(SENDER).Text := DMODULE.qAux.FieldByName('nomeFantasia').AsString;
+      END ELSE
+      BEGIN
+        TfrxMemoView(SENDER).Text := 'FICHA DE EXERCÍCIOS';
+      END;
+
+    END ELSE
+    BEGIN
+      TfrxMemoView(SENDER).Text := 'FICHA DE EXERCÍCIOS';
+    END;
+
+  END;
+
+end;
+
+procedure TF01001.REPORT_FICHAcpBeforePrint(Sender: TfrxReportComponent);
+begin
+
+  inherited;
+  IF SENDER.Name = 'Memo1' then
+  BEGIN
+    DMODULE.qAux.SQL.Text := 'SELECT * FROM configuracaounidade WHERE IDconfiguracaounidade = 1';
+    DMODULE.qAux.CLOSE;
+    DMODULE.qAux.OPEN;
+    IF(DMODULE.qAux.RecordCount > 0)THEN
+    BEGIN
+      if NOT(DMODULE.qAux.FieldByName('nomeFantasia').IsNull)then
+      BEGIN
+        TfrxMemoView(SENDER).Text := DMODULE.qAux.FieldByName('nomeFantasia').AsString;
+      END ELSE
+      BEGIN
+        TfrxMemoView(SENDER).Text := 'FICHA DE EXERCÍCIOS';
+      END;
+
+    END ELSE
+    BEGIN
+      TfrxMemoView(SENDER).Text := 'FICHA DE EXERCÍCIOS';
+    END;
+
+  END;
 
 end;
 

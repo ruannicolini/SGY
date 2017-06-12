@@ -3,8 +3,6 @@
   ClientHeight = 741
   ClientWidth = 1008
   OnCreate = FormCreate
-  ExplicitLeft = -237
-  ExplicitTop = -279
   ExplicitWidth = 1024
   ExplicitHeight = 780
   PixelsPerInch = 96
@@ -1063,7 +1061,7 @@
                 TabOrder = 1
                 object btnImprimirFicha: TSpeedButton
                   Left = 635
-                  Top = 3
+                  Top = 1
                   Width = 151
                   Height = 30
                   Align = alCustom
@@ -2136,7 +2134,7 @@
     Left = 144
     Top = 40
     Bitmap = {
-      494C01010F002C00300410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F002C003C0410001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000F7F7F708C3C3C33C77777788363636C9101010EF1E1E
@@ -3070,12 +3068,13 @@
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42779.735011747710000000
-    ReportOptions.LastChange = 42881.633322037000000000
+    ReportOptions.LastChange = 42898.449034664350000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
+    OnBeforePrint = REPORT_FICHABeforePrint
     Left = 22
     Top = 644
     Datasets = <
@@ -3649,7 +3648,7 @@
     Left = 112
     Top = 40
     Bitmap = {
-      494C0101020014009C015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001400A8015F005F00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000007C0100005F00000001002000000000001034
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13933,7 +13932,8 @@
       'begin'
       ''
       'end.')
-    Left = 134
+    OnBeforePrint = REPORT_FICHAcpBeforePrint
+    Left = 126
     Top = 380
     Datasets = <
       item
