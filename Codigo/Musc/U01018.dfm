@@ -1,0 +1,79 @@
+object F01018: TF01018
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'F01018'
+  ClientHeight = 142
+  ClientWidth = 291
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poOwnerFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 35
+    Width = 285
+    Height = 104
+    Align = alClient
+    BevelKind = bkTile
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitLeft = 0
+    ExplicitTop = 26
+    ExplicitHeight = 106
+    object LBTREINO: TLabel
+      Left = 16
+      Top = 13
+      Width = 38
+      Height = 13
+      Caption = 'TREINO'
+    end
+    object JvComboBox1: TJvComboBox
+      Left = 24
+      Top = 32
+      Width = 233
+      Height = 21
+      TabOrder = 0
+      Text = ''
+    end
+    object Button1: TButton
+      Left = 176
+      Top = 61
+      Width = 81
+      Height = 25
+      Caption = 'IMPRIMIR'
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+  end
+  object PanelStatus: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 285
+    Height = 26
+    Align = alTop
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = '  IMPRIMIR TREINO'
+    Color = clTeal
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clCream
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 1
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitWidth = 288
+  end
+end

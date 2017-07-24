@@ -14,7 +14,8 @@ uses
   Datasnap.Provider, FireDAC.Comp.DataSet, FireDAC.Comp.Client, cxListBox,
   cxDBEdit, Vcl.Grids, Vcl.DBGrids, DBGridBeleza, Data.DBXDataSnap,
   IPPeerClient, Data.DBXCommon, Data.SqlExpr, Datasnap.DSConnect, Data.DBXJSONCommon,
-  System.ImageList, Vcl.ImgList;
+  System.ImageList, Vcl.ImgList, dxStatusBar, Vcl.Menus, cxButtons, frxClass,
+  frxExportPDF, frxGradient, frxDBSet;
 
 type
   TFPrincipal = class(TForm)
@@ -30,11 +31,6 @@ type
     FotoAluno: TdxTileControlItem;
     imgAluno: TcxImage;
     labelNomeAluno: TcxLabel;
-    dxTileControl1ActionBarItem1: TdxTileControlActionBarItem;
-    dxTileControl1ActionBarItem2: TdxTileControlActionBarItem;
-    dxTileControl1ActionBarItem3: TdxTileControlActionBarItem;
-    dxTileControl1ActionBarItem4: TdxTileControlActionBarItem;
-    dxTileControl1ActionBarItem5: TdxTileControlActionBarItem;
     PanelPrincipal: TPanel;
     btnNext: TSpeedButton;
     btnPrior: TSpeedButton;
@@ -49,16 +45,6 @@ type
     pFichaAluno: TDataSetProvider;
     CDSFichaAluno: TClientDataSet;
     DSFichaAluno: TDataSource;
-    qFichaAlunoidFichaAluno: TIntegerField;
-    qFichaAlunoidAluno: TIntegerField;
-    qFichaAlunodataComposicao: TDateField;
-    qFichaAlunodataVencimento: TDateField;
-    qFichaAlunonomeInstrutor: TStringField;
-    CDSFichaAlunoidFichaAluno: TIntegerField;
-    CDSFichaAlunoidAluno: TIntegerField;
-    CDSFichaAlunodataComposicao: TDateField;
-    CDSFichaAlunodataVencimento: TDateField;
-    CDSFichaAlunonomeInstrutor: TStringField;
     qserie: TFDQuery;
     pSerie: TDataSetProvider;
     cdsSerie: TClientDataSet;
@@ -135,7 +121,133 @@ type
     DSProviderConnection1: TDSProviderConnection;
     SQLConnection1: TSQLConnection;
     ImageListAUX: TImageList;
-    cxImageListAUX: TcxImageList;
+    qRelFicha: TFDQuery;
+    qRelFichaidAluno: TIntegerField;
+    qRelFichanomeAluno: TStringField;
+    qRelFichadataNascimento: TDateField;
+    qRelFichaemail: TStringField;
+    qRelFichasexo: TStringField;
+    qRelFichacidade: TStringField;
+    qRelFichabairro: TStringField;
+    qRelFicharua: TStringField;
+    qRelFichanumero: TIntegerField;
+    qRelFichacep: TIntegerField;
+    qRelFichatel1: TStringField;
+    qRelFichatel2: TStringField;
+    qRelFichanomeResponsavel: TStringField;
+    qRelFichaparentescoResponsavel: TStringField;
+    qRelFichatelResponsavel: TStringField;
+    qRelFichadataCadastro: TDateField;
+    qRelFichacpf: TStringField;
+    qRelFichaidInstrutor: TIntegerField;
+    qRelFichaNOMEINSTRUTORFICHA: TStringField;
+    qRelFichaDATACOMPOSICAO: TDateField;
+    qRelFichaDATAVENCIMENTO: TDateField;
+    qRelFichaCODFICHA: TIntegerField;
+    pRelFicha: TDataSetProvider;
+    CDSRelFicha: TClientDataSet;
+    CDSRelFichaidAluno: TIntegerField;
+    CDSRelFichanomeAluno: TStringField;
+    CDSRelFichadataNascimento: TDateField;
+    CDSRelFichaemail: TStringField;
+    CDSRelFichasexo: TStringField;
+    CDSRelFichacidade: TStringField;
+    CDSRelFichabairro: TStringField;
+    CDSRelFicharua: TStringField;
+    CDSRelFichanumero: TIntegerField;
+    CDSRelFichacep: TIntegerField;
+    CDSRelFichatel1: TStringField;
+    CDSRelFichatel2: TStringField;
+    CDSRelFichanomeResponsavel: TStringField;
+    CDSRelFichaparentescoResponsavel: TStringField;
+    CDSRelFichatelResponsavel: TStringField;
+    CDSRelFichadataCadastro: TDateField;
+    CDSRelFichacpf: TStringField;
+    CDSRelFichaidInstrutor: TIntegerField;
+    CDSRelFichaNOMEINSTRUTORFICHA: TStringField;
+    CDSRelFichaDATACOMPOSICAO: TDateField;
+    CDSRelFichaDATAVENCIMENTO: TDateField;
+    CDSRelFichaCODFICHA: TIntegerField;
+    DSRelFicha: TDataSource;
+    qserieFichaAluno: TFDQuery;
+    qserieFichaAlunoidFichaAluno: TIntegerField;
+    qserieFichaAlunoidTreino: TIntegerField;
+    qserieFichaAlunoidExercicio: TIntegerField;
+    qserieFichaAlunoqtdSerie: TIntegerField;
+    qserieFichaAlunoqtdRepeticao: TIntegerField;
+    qserieFichaAlunodescricaoTreino: TStringField;
+    qserieFichaAlunonomeExercicio: TStringField;
+    qserieFichaAlunoidgrupoExercicio: TIntegerField;
+    qserieFichaAlunodescricaoGrupoExercicio: TStringField;
+    qserieFichaAlunoidequipamento: TIntegerField;
+    qserieFichaAlunodescricaoequipamento: TStringField;
+    qserieFichaAlunotipomedida: TStringField;
+    pserieFichaAluno: TDataSetProvider;
+    CDSserieFichaAluno: TClientDataSet;
+    CDSserieFichaAlunoidFichaAluno: TIntegerField;
+    CDSserieFichaAlunoidTreino: TIntegerField;
+    CDSserieFichaAlunoidExercicio: TIntegerField;
+    CDSserieFichaAlunoqtdSerie: TIntegerField;
+    CDSserieFichaAlunoqtdRepeticao: TIntegerField;
+    CDSserieFichaAlunodescricaoTreino: TStringField;
+    CDSserieFichaAlunonomeExercicio: TStringField;
+    CDSserieFichaAlunoidgrupoExercicio: TIntegerField;
+    CDSserieFichaAlunodescricaoGrupoExercicio: TStringField;
+    CDSserieFichaAlunoidequipamento: TIntegerField;
+    CDSserieFichaAlunodescricaoequipamento: TStringField;
+    DSserieFichaAluno: TDataSource;
+    frxGradientObject1: TfrxGradientObject;
+    frxPDFExport1: TfrxPDFExport;
+    CDSserieFichaAlunotipomedida: TStringField;
+    frxDBDataset1: TfrxDBDataset;
+    frxDBDataset2: TfrxDBDataset;
+    qFichaAlunoidAluno: TIntegerField;
+    qFichaAlunonomeAluno: TStringField;
+    qFichaAlunodataNascimento: TDateField;
+    qFichaAlunoemail: TStringField;
+    qFichaAlunosexo: TStringField;
+    qFichaAlunocidade: TStringField;
+    qFichaAlunobairro: TStringField;
+    qFichaAlunorua: TStringField;
+    qFichaAlunonumero: TIntegerField;
+    qFichaAlunocep: TIntegerField;
+    qFichaAlunotel1: TStringField;
+    qFichaAlunotel2: TStringField;
+    qFichaAlunonomeResponsavel: TStringField;
+    qFichaAlunoparentescoResponsavel: TStringField;
+    qFichaAlunotelResponsavel: TStringField;
+    qFichaAlunodataCadastro: TDateField;
+    qFichaAlunocpf: TStringField;
+    qFichaAlunoidInstrutor: TIntegerField;
+    qFichaAlunoidProtocoloAvaFisica: TIntegerField;
+    qFichaAlunoNOMEINSTRUTORFICHA: TStringField;
+    qFichaAlunoDATACOMPOSICAO: TDateField;
+    qFichaAlunoDATAVENCIMENTO: TDateField;
+    CDSFichaAlunoidAluno: TIntegerField;
+    CDSFichaAlunonomeAluno: TStringField;
+    CDSFichaAlunodataNascimento: TDateField;
+    CDSFichaAlunoemail: TStringField;
+    CDSFichaAlunosexo: TStringField;
+    CDSFichaAlunocidade: TStringField;
+    CDSFichaAlunobairro: TStringField;
+    CDSFichaAlunorua: TStringField;
+    CDSFichaAlunonumero: TIntegerField;
+    CDSFichaAlunocep: TIntegerField;
+    CDSFichaAlunotel1: TStringField;
+    CDSFichaAlunotel2: TStringField;
+    CDSFichaAlunonomeResponsavel: TStringField;
+    CDSFichaAlunoparentescoResponsavel: TStringField;
+    CDSFichaAlunotelResponsavel: TStringField;
+    CDSFichaAlunodataCadastro: TDateField;
+    CDSFichaAlunocpf: TStringField;
+    CDSFichaAlunoidInstrutor: TIntegerField;
+    CDSFichaAlunoidProtocoloAvaFisica: TIntegerField;
+    CDSFichaAlunoNOMEINSTRUTORFICHA: TStringField;
+    CDSFichaAlunoDATACOMPOSICAO: TDateField;
+    CDSFichaAlunoDATAVENCIMENTO: TDateField;
+    qFichaAlunoIDFICHAALUNO: TIntegerField;
+    CDSFichaAlunoIDFICHAALUNO: TIntegerField;
+    REPORT_FICHAcp: TfrxReport;
     procedure btnPriorClick(Sender: TObject);
     procedure btnNextClick(Sender: TObject);
     procedure dxTileControl1Item8Click(Sender: TdxTileControlItem);
@@ -143,6 +255,11 @@ type
     procedure gridFADblClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure dsAlunoRegistroDataChange(Sender: TObject; Field: TField);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure dxTileControl1Item6Click(Sender: TdxTileControlItem);
+    procedure DSRelFichaDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -158,7 +275,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDataModule, U01015, DBCommon, UMetodosServidor;
+uses UDataModule, U01015, DBCommon, UMetodosServidor, U01018;
 
 procedure TFPrincipal.AdjustColumnWidths(DBGrid: TDBGrid);
 var
@@ -243,6 +360,8 @@ begin
   dsAlunoRegistro.DataSet.close;
   dsAlunoRegistro.DataSet.open;
 
+
+
 end;
 
 procedure TFPrincipal.dsAlunoRegistroDataChange(Sender: TObject; Field: TField);
@@ -321,6 +440,47 @@ begin
 
 end;
 
+procedure TFPrincipal.DSRelFichaDataChange(Sender: TObject; Field: TField);
+begin
+  //PESQUISA FICHA DE EXERCICIO
+  qserieFichaAluno.Params[0].AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+  DSserieFichaAluno.DataSet.close;
+  DSserieFichaAluno.DataSet.open;
+end;
+
+procedure TFPrincipal.dxTileControl1Item6Click(Sender: TdxTileControlItem);
+begin
+    With TF01018.Create(self, CDSFichaAlunoidFichaAluno.AsInteger) do  // 1 =Pagamento, 2=Isenção
+    Begin
+
+        if(ShowModal = mrOk)then
+        begin
+            TRY
+                qRelFicha.ParamByName('IDFA').AsInteger := CDSFichaAlunoidFichaAluno.AsInteger;
+                DSRelFicha.DataSet.Close;
+                DSRelFicha.DataSet.Open;
+
+                if NOT(U01018.resposta = 'COMPLETO')then
+                begin
+                    CDSserieFichaAluno.Filtered := false;
+                    CDSserieFichaAluno.Filter := 'descricaoTreino LIKE '+ QuotedStr('%'+ U01018.resposta + '%');
+                    CDSserieFichaAluno.Filtered := true;
+                end;
+
+                REPORT_FICHAcp.PrepareReport;
+                REPORT_FICHAcp.print;
+                //REPORT_FICHAcp.ShowReport(TRUE);
+
+                //limpa filter
+                CDSserieFichaAluno.Filtered := false;
+            EXCEPT
+                RAISE;
+            END;
+        end;
+        FREE;
+    End;
+end;
+
 procedure TFPrincipal.dxTileControl1Item8Click(Sender: TdxTileControlItem);
 begin
   CLOSE;
@@ -332,6 +492,31 @@ begin
   //Ajusta a DBGridBeleza
   AdjustColumnWidths(gridFA);
 
+end;
+
+procedure TFPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+showmessage('teste');
+  if ((ssAlt in Shift) and (Key = VK_F4)) then
+  Key := 0;
+end;
+
+procedure TFPrincipal.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+showmessage('teste');
+  if ((Key = #13)) then
+  begin
+  //Key := 0;
+  end;
+end;
+
+procedure TFPrincipal.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+showmessage('teste');
+  if ((ssAlt in Shift) and (Key = VK_F4)) then
+  Key := 0;
 end;
 
 procedure TFPrincipal.gridFADblClick(Sender: TObject);
